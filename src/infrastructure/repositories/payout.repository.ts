@@ -2,9 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../../infrastructure/prisma/prisma.service";
 import type { IPayoutRepository } from "./interfaces/payout-repository.interface";
 import { Payout } from "../../domain/payout/payout.aggregate";
-import { PayoutItem } from "../../domain/payout/payout-item.entity";
 import { Uuid } from "../../domain/@shared/interfaces/uuid";
-import { Money } from "../../domain/@shared/value-objects/money.value";
 import { PayoutStatus } from "../../domain/@shared/value-objects/payout-status.value";
 
 @Injectable()
@@ -27,6 +25,7 @@ export class PayoutRepository implements IPayoutRepository {
         items: {
           create: payout.items.map((item) => ({
             id: item.id.getValue(),
+            payoutId: payout.id.getValue(),
             amountInCents: item.amountInCents.getValue(),
             consumptionId: item.consumptionId.getValue(),
           })),
@@ -35,17 +34,34 @@ export class PayoutRepository implements IPayoutRepository {
     });
   }
 
-  async findById(id: Uuid): Promise<Payout | null> {
-    const payoutData = await this.prisma.payout.findUnique({
+  async findById(id: Uuid): Promise<{
+    id: string;
+    clientId: string;
+    grossInCents: number;
+    feeInCents: number;
+    netInCents: number;
+    status: string;
+    paidAt: Date | null;
+    proofFileUrl: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    items: {
+      id: string;
+      payoutId: string;
+      amountInCents: number;
+      consumptionId: string;
+    }[];
+  } | null> {
+    const payout = await this.prisma.payout.findUnique({
       where: { id: id.getValue() },
       include: { items: true },
     });
 
-    if (!payoutData) {
+    if (!payout) {
       return null;
     }
 
-    return this.toDomainEntity(payoutData);
+    return payout;
   }
 
   async findMany(
@@ -53,13 +69,34 @@ export class PayoutRepository implements IPayoutRepository {
     limit: number,
     clientId?: string,
     status?: PayoutStatus,
-  ): Promise<{ payouts: Payout[]; totalPages: number }> {
+  ): Promise<{
+    payouts: {
+      id: string;
+      clientId: string;
+      grossInCents: number;
+      feeInCents: number;
+      netInCents: number;
+      status: string;
+      paidAt: Date | null;
+      proofFileUrl: string | null;
+      createdAt: Date;
+      updatedAt: Date;
+      items: {
+        id: string;
+        payoutId: string;
+        amountInCents: number;
+        consumptionId: string;
+      }[];
+    }[];
+    totalPages: number;
+  }> {
     const where = {
       ...(clientId && { clientId }),
       ...(status && { status: status.getValue() }),
     };
 
-    const skip = (page - 1) * limit;
+    const take = Math.max(limit, 1);
+    const skip = (Math.max(page, 1) - 1) * take;
 
     const [total, payoutsData] = await Promise.all([
       this.prisma.payout.count({ where }),
@@ -68,14 +105,14 @@ export class PayoutRepository implements IPayoutRepository {
         include: { items: true },
         orderBy: { createdAt: "desc" },
         skip,
-        take: limit,
+        take,
       }),
     ]);
 
     const totalPages = Math.ceil(total / limit);
 
     return {
-      payouts: payoutsData.map((data) => this.toDomainEntity(data)),
+      payouts: payoutsData,
       totalPages,
     };
   }
@@ -111,51 +148,4 @@ export class PayoutRepository implements IPayoutRepository {
       }
     });
   }
-
-  private toDomainEntity(payoutData: PayoutData): Payout {
-    const items = payoutData.items.map(
-      (item: any) =>
-        new PayoutItem(
-          new Uuid(item.id),
-          new Uuid(item.payoutId),
-          new Money(item.amountInCents),
-          new Uuid(item.consumptionId),
-        ),
-    );
-
-    return new Payout(
-      new Uuid(payoutData.id),
-      new Uuid(payoutData.clientId),
-      new Money(payoutData.grossInCents),
-      new Money(payoutData.feeInCents),
-      new Money(payoutData.netInCents),
-      PayoutStatus.fromString(payoutData.status),
-      items,
-      new Date(payoutData.createdAt),
-      new Date(payoutData.updatedAt),
-      payoutData.paidAt ? new Date(payoutData.paidAt) : undefined,
-      payoutData.proofFileUrl || undefined,
-    );
-  }
-}
-
-interface PayoutData {
-  id: string;
-  clientId: string;
-  grossInCents: number;
-  feeInCents: number;
-  netInCents: number;
-  status: string;
-  items: PayoutItemData[];
-  createdAt: Date;
-  updatedAt: Date;
-  paidAt: Date | null;
-  proofFileUrl: string | null;
-}
-
-interface PayoutItemData {
-  id: string;
-  payoutId: string;
-  amountInCents: number;
-  consumptionId: string;
 }

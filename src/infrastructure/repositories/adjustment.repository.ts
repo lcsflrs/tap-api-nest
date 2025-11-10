@@ -2,7 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../../infrastructure/prisma/prisma.service";
 import type { IAdjustmentRepository } from "./interfaces/adjustment-repository.interface";
 import { Adjustment } from "../../domain/adjustment/adjustment.aggregate";
-import { Money } from "../../domain/@shared/value-objects/money.value";
 import { Uuid } from "../../domain/@shared/interfaces/uuid";
 
 @Injectable()
@@ -22,25 +21,59 @@ export class AdjustmentRepository implements IAdjustmentRepository {
     });
   }
 
-  async findById(id: Uuid): Promise<Adjustment | null> {
-    const adjustmentData = await this.prisma.adjustment.findUnique({
+  async findById(id: Uuid): Promise<{
+    id: string;
+    clientId: string;
+    valueInCents: number;
+    reason: string;
+    attachment: string | null;
+  } | null> {
+    const adjustment = await this.prisma.adjustment.findUnique({
       where: { id: id.getValue() },
     });
 
-    if (!adjustmentData) {
+    if (!adjustment) {
       return null;
     }
 
-    return this.toDomainEntity(adjustmentData);
+    return adjustment;
   }
 
-  async findMany(clientId?: Uuid): Promise<Adjustment[]> {
-    const adjustmentsData = await this.prisma.adjustment.findMany({
-      where: clientId ? { clientId: clientId.getValue() } : undefined,
-      orderBy: { createdAt: "desc" },
-    });
+  async findMany(
+    page: number,
+    limit: number,
+    clientId?: Uuid,
+  ): Promise<{
+    adjustments: {
+      id: string;
+      clientId: string;
+      valueInCents: number;
+      reason: string;
+      attachment: string | null;
+    }[];
+    totalPages: number;
+  }> {
+    const take = Math.max(limit, 1);
+    const skip = (Math.max(page, 1) - 1) * take;
 
-    return adjustmentsData.map((data) => this.toDomainEntity(data));
+    const where = clientId ? { clientId: clientId.getValue() } : undefined;
+
+    const [adjustments, total] = await Promise.all([
+      this.prisma.adjustment.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        skip,
+        take,
+      }),
+      this.prisma.adjustment.count({ where }),
+    ]);
+
+    const totalPages = Math.ceil(total / take);
+
+    return {
+      adjustments,
+      totalPages,
+    };
   }
 
   async update(adjustment: Adjustment): Promise<void> {
@@ -53,24 +86,4 @@ export class AdjustmentRepository implements IAdjustmentRepository {
       },
     });
   }
-
-  private toDomainEntity(adjustmentData: AdjustmentData): Adjustment {
-    return new Adjustment(
-      new Uuid(adjustmentData.id),
-      new Uuid(adjustmentData.clientId),
-      new Money(adjustmentData.valueInCents),
-      adjustmentData.reason,
-      adjustmentData.createdAt,
-      adjustmentData.attachment || undefined,
-    );
-  }
-}
-
-interface AdjustmentData {
-  id: string;
-  clientId: string;
-  valueInCents: number;
-  reason: string;
-  attachment: string | null;
-  createdAt: Date;
 }

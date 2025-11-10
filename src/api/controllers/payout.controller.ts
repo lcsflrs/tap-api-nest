@@ -6,58 +6,72 @@ import {
   Body,
   Param,
   Query,
+  ParseIntPipe,
 } from "@nestjs/common";
-import { PayoutService } from "../../application/services/payout.service";
-import type {
-  CreatePayoutInput,
-  FindPayoutByIdInput,
-  FindManyPayoutInput,
-  MarkPayoutPaidInput,
-  AddItemToPayoutInput,
-} from "../../application/dtos/payout-dtos";
+import { CommandBus, QueryBus } from "@nestjs/cqrs";
+import { CreatePayoutCommand } from "src/application/services/commands/dtos/create-payout.command";
+import { MarkPayoutPaidCommand } from "src/application/services/commands/dtos/mark-payout-paid.command";
+import { AddItemToPayoutCommand } from "src/application/services/commands/dtos/add-item-to-payout.command";
+import { FindPayoutByIdQuery } from "src/application/services/queries/dtos/find-payout-by-id.query";
+import { FindManyPayoutsQuery } from "src/application/services/queries/dtos/find-many-payouts.query";
 
 @Controller("payouts")
 export class PayoutController {
-  constructor(private readonly payoutService: PayoutService) {}
+  constructor(
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+  ) {}
 
   @Post()
-  async create(@Body() input: CreatePayoutInput) {
-    return this.payoutService.createPayout(input);
+  async create(
+    @Body()
+    body: {
+      clientId: string;
+      items: Array<{
+        amountInCents: number;
+        consumptionId: string;
+      }>;
+    },
+  ) {
+    return this.commandBus.execute(
+      new CreatePayoutCommand(body.clientId, body.items),
+    );
   }
 
   @Get(":id")
-  async findById(@Param() params: FindPayoutByIdInput) {
-    return this.payoutService.findPayoutById(params);
+  async findById(@Param("id") id: string) {
+    return this.queryBus.execute(new FindPayoutByIdQuery(id));
   }
 
   @Get()
-  async findMany(@Query() query: FindManyPayoutInput) {
-    return this.payoutService.findManyPayouts(query);
+  async findMany(
+    @Query("page", ParseIntPipe) page: number,
+    @Query("limit", ParseIntPipe) limit: number,
+    @Query("clientId") clientId?: string,
+    @Query("status") status?: string,
+  ) {
+    return this.queryBus.execute(
+      new FindManyPayoutsQuery(page, limit, clientId, status),
+    );
   }
 
   @Patch(":id/paid")
   async markAsPaid(
-    @Param() params: MarkPayoutPaidInput,
-    @Body() body: Omit<MarkPayoutPaidInput, "id">,
+    @Param("id") id: string,
+    @Body() body: { proofFileUrl: string },
   ) {
-    const input: MarkPayoutPaidInput = {
-      id: params.id,
-      ...body,
-    };
-
-    return this.payoutService.markPayoutAsPaid(input);
+    return this.commandBus.execute(
+      new MarkPayoutPaidCommand(id, body.proofFileUrl),
+    );
   }
 
   @Patch(":id/items")
   async addItem(
-    @Param() params: AddItemToPayoutInput,
-    @Body() body: Omit<AddItemToPayoutInput, "id">,
+    @Param("id") id: string,
+    @Body() body: { amountInCents: number; consumptionId: string },
   ) {
-    const input: AddItemToPayoutInput = {
-      id: params.id,
-      ...body,
-    };
-
-    return this.payoutService.addItemToPayout(input);
+    return this.commandBus.execute(
+      new AddItemToPayoutCommand(id, body.amountInCents, body.consumptionId),
+    );
   }
 }
