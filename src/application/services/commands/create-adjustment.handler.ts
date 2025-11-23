@@ -8,7 +8,7 @@ import { Uuid } from "../../../domain/@shared/interfaces/uuid";
 
 @CommandHandler(CreateAdjustmentCommand)
 export class CreateAdjustmentHandler
-  implements ICommandHandler<CreateAdjustmentCommand>
+  implements ICommandHandler<CreateAdjustmentCommand, { id: string }>
 {
   constructor(
     @Inject("AdjustmentRepository")
