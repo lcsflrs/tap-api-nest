@@ -21,61 +21,6 @@ export class AdjustmentRepository implements IAdjustmentRepository {
     });
   }
 
-  async findById(id: Uuid): Promise<{
-    id: string;
-    clientId: string;
-    valueInCents: number;
-    reason: string;
-    attachment: string | null;
-  } | null> {
-    const adjustment = await this.prisma.adjustment.findUnique({
-      where: { id: id.getValue() },
-    });
-
-    if (!adjustment) {
-      return null;
-    }
-
-    return adjustment;
-  }
-
-  async findMany(
-    page: number,
-    limit: number,
-    clientId?: Uuid,
-  ): Promise<{
-    adjustments: {
-      id: string;
-      clientId: string;
-      valueInCents: number;
-      reason: string;
-      attachment: string | null;
-    }[];
-    totalPages: number;
-  }> {
-    const take = Math.max(limit, 1);
-    const skip = (Math.max(page, 1) - 1) * take;
-
-    const where = clientId ? { clientId: clientId.getValue() } : undefined;
-
-    const [adjustments, total] = await Promise.all([
-      this.prisma.adjustment.findMany({
-        where,
-        orderBy: { createdAt: "desc" },
-        skip,
-        take,
-      }),
-      this.prisma.adjustment.count({ where }),
-    ]);
-
-    const totalPages = Math.ceil(total / take);
-
-    return {
-      adjustments,
-      totalPages,
-    };
-  }
-
   async update(adjustment: Adjustment): Promise<void> {
     await this.prisma.adjustment.update({
       where: { id: adjustment.id.getValue() },
@@ -85,5 +30,17 @@ export class AdjustmentRepository implements IAdjustmentRepository {
         attachment: adjustment.attachment,
       },
     });
+  }
+
+  async findById(id: Uuid): Promise<Adjustment | null> {
+    const adjustment = await this.prisma.adjustment.findUnique({
+      where: { id: id.getValue() },
+    });
+
+    if (!adjustment) {
+      return null;
+    }
+
+    return Adjustment.fromJSON(adjustment);
   }
 }

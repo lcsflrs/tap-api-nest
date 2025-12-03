@@ -5,11 +5,10 @@ import { IPayoutRepository } from "../../../infrastructure/repositories/interfac
 import { PayoutItem } from "../../../domain/payout/payout-item.entity";
 import { Money } from "../../../domain/@shared/value-objects/money.value";
 import { Uuid } from "../../../domain/@shared/interfaces/uuid";
-import { PayoutMapper } from "../@shared/payout.mapper";
 
 @CommandHandler(AddItemToPayoutCommand)
 export class AddItemToPayoutHandler
-  implements ICommandHandler<AddItemToPayoutCommand, { id: string }>
+  implements ICommandHandler<AddItemToPayoutCommand>
 {
   constructor(
     @Inject("PayoutRepository")
@@ -23,20 +22,17 @@ export class AddItemToPayoutHandler
       throw new NotFoundException("Payout not found");
     }
 
-    const payoutEntity = PayoutMapper.toDomain(payout);
-
     const payoutItem = PayoutItem.create(
-      new Uuid(payout.id),
+      payout.id,
       new Money(command.amountInCents),
       new Uuid(command.consumptionId),
     );
 
-    payoutEntity.addItem(payoutItem);
-
-    await this.payoutRepository.update(payoutEntity);
+    payout.addItem(payoutItem);
+    await this.payoutRepository.update(payout);
 
     return {
-      id: payoutEntity.id.getValue(),
+      id: payout.id.getValue(),
     };
   }
 }

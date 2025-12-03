@@ -9,6 +9,7 @@ export class Adjustment extends AggregateRoot {
     private _valueInCents: Money,
     private _reason: string,
     private _createdAt: Date = new Date(),
+    private _updatedAt: Date,
     private _attachment?: string,
   ) {
     super(id);
@@ -34,7 +35,20 @@ export class Adjustment extends AggregateRoot {
       valueInCents,
       reason,
       new Date(),
+      new Date(),
       attachment,
+    );
+  }
+
+  static fromJSON(json: any): Adjustment {
+    return new Adjustment(
+      new Uuid(json.id),
+      new Uuid(json.clientId),
+      Money.create(json.valueInCents),
+      json.reason,
+      new Date(json.createdAt),
+      new Date(json.updatedAt),
+      json.attachment || undefined,
     );
   }
 
@@ -56,5 +70,9 @@ export class Adjustment extends AggregateRoot {
 
   get createdAt(): Date {
     return this._createdAt;
+  }
+
+  get updatedAt(): Date {
+    return this._updatedAt;
   }
 }

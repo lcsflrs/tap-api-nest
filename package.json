@@ -6,15 +6,17 @@
     "dev": "nest start --watch",
     "build": "nest build",
     "start": "node dist/main",
-    "prisma:migrate": "prisma migrate dev --schema=./src/infrastructure/prisma/schema.prisma",
-    "prisma:generate": "prisma generate --schema=./src/infrastructure/prisma/schema.prisma"
+    "prisma:reset": "bun prisma migrate reset",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "prisma generate"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.10",
     "@nestjs/testing": "^11.1.8",
     "@types/bun": "latest",
     "@types/node": "^24.9.1",
-    "prisma": "^6.18.0"
+    "dotenv": "^17.2.3",
+    "prisma": "^7.0.1"
   },
   "peerDependencies": {
     "typescript": "^5.9.3"
@@ -24,7 +26,7 @@
     "@nestjs/core": "^11.1.8",
     "@nestjs/cqrs": "^11.0.3",
     "@nestjs/platform-express": "^11.1.8",
-    "@prisma/client": "^6.18.0",
+    "@prisma/client": "^7.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "reflect-metadata": "^0.2.2",

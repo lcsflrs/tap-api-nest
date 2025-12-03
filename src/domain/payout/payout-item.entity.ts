@@ -34,6 +34,15 @@ export class PayoutItem extends Entity {
     );
   }
 
+  static fromJSON(json: any): PayoutItem {
+    return new PayoutItem(
+      new Uuid(json.id),
+      new Uuid(json.payoutId),
+      Money.create(json.amountInCents),
+      new Uuid(json.consumptionId),
+    );
+  }
+
   get payoutId(): Uuid {
     return this._payoutId;
   }

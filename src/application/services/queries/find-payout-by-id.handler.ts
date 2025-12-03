@@ -1,20 +1,19 @@
 import { QueryHandler, IQueryHandler } from "@nestjs/cqrs";
 import { Inject, NotFoundException } from "@nestjs/common";
-import { IPayoutRepository } from "src/infrastructure/repositories/interfaces/payout-repository.interface";
+import { PrismaService } from "src/infrastructure/prisma/prisma.service";
 import { FindPayoutByIdQuery } from "./dtos/find-payout-by-id.query";
-import { Uuid } from "src/domain/@shared/interfaces/uuid";
 
 @QueryHandler(FindPayoutByIdQuery)
 export class FindPayoutByIdHandler
   implements IQueryHandler<FindPayoutByIdQuery, FindPayoutByIdResult>
 {
-  constructor(
-    @Inject("PayoutRepository")
-    private readonly payoutRepository: IPayoutRepository,
-  ) {}
+  constructor(@Inject() private readonly prisma: PrismaService) {}
 
   async execute(query: FindPayoutByIdQuery): Promise<FindPayoutByIdResult> {
-    const payout = await this.payoutRepository.findById(new Uuid(query.id));
+    const payout = await this.prisma.payout.findUnique({
+      where: { id: query.id },
+      include: { items: true },
+    });
 
     if (!payout) {
       throw new NotFoundException("Payout not found");

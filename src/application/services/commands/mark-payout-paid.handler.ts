@@ -3,7 +3,6 @@ import { Inject, NotFoundException } from "@nestjs/common";
 import { MarkPayoutPaidCommand } from "./dtos/mark-payout-paid.command";
 import { IPayoutRepository } from "../../../infrastructure/repositories/interfaces/payout-repository.interface";
 import { Uuid } from "../../../domain/@shared/interfaces/uuid";
-import { PayoutMapper } from "../@shared/payout.mapper";
 
 @CommandHandler(MarkPayoutPaidCommand)
 export class MarkPayoutPaidHandler
@@ -21,9 +20,9 @@ export class MarkPayoutPaidHandler
       throw new NotFoundException("Payout not found");
     }
 
-    const payoutEntity = PayoutMapper.toDomain(payout);
-    await this.payoutRepository.update(payoutEntity);
+    payout.markAsPaid(command.proofFileUrl);
+    await this.payoutRepository.update(payout);
 
-    return { id: payoutEntity.id.getValue() };
+    return { id: payout.id.getValue() };
   }
 }

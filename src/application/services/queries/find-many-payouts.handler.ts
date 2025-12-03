@@ -1,34 +1,46 @@
 import { QueryHandler, IQueryHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
-import { IPayoutRepository } from "src/infrastructure/repositories/interfaces/payout-repository.interface";
+import { PrismaService } from "src/infrastructure/prisma/prisma.service";
 import { FindManyPayoutsQuery } from "./dtos/find-many-payouts.query";
-import { PayoutStatus } from "src/domain/@shared/value-objects/payout-status.value";
 
 @QueryHandler(FindManyPayoutsQuery)
 export class FindManyPayoutsHandler
-  implements IQueryHandler<FindManyPayoutsQuery, FindManyPayoutsResult>
+  implements IQueryHandler<FindManyPayoutsQuery>
 {
-  constructor(
-    @Inject("PayoutRepository")
-    private readonly payoutRepository: IPayoutRepository,
-  ) {}
+  constructor(@Inject() private readonly prisma: PrismaService) {}
 
   async execute(query: FindManyPayoutsQuery): Promise<FindManyPayoutsResult> {
-    return await this.payoutRepository.findMany(
-      query.page,
-      query.limit,
-      query.clientId,
-      query.status ? PayoutStatus.fromString(query.status) : undefined,
-    );
+    const { clientId, status, limit, page } = query;
+
+    const where = {
+      ...(clientId && { clientId }),
+      ...(status && { status }),
+    };
+
+    const take = Math.max(limit, 1);
+    const skip = (Math.max(page, 1) - 1) * take;
+
+    const [total, payouts] = await Promise.all([
+      this.prisma.payout.count({ where }),
+      this.prisma.payout.findMany({
+        where,
+        include: { items: true },
+        orderBy: { createdAt: "desc" },
+        skip,
+        take,
+      }),
+    ]);
+
+    const totalPages = Math.ceil(total / limit);
+
+    return {
+      payouts,
+      totalPages,
+    };
   }
 }
 
-interface FindManyPayoutsResult {
-  payouts: Payout[];
-  totalPages: number;
-}
-
-interface Payout {
+interface PayoutType {
   id: string;
   clientId: string;
   grossInCents: number;
@@ -45,4 +57,9 @@ interface Payout {
     amountInCents: number;
     consumptionId: string;
   }>;
+}
+
+interface FindManyPayoutsResult {
+  payouts: PayoutType[];
+  totalPages: number;
 }

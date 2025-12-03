@@ -1,34 +1,53 @@
 import { QueryHandler, IQueryHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
 import { FindManyAdjustmentsQuery } from "./dtos/find-many-adjustments.query";
-import { IAdjustmentRepository } from "../../../infrastructure/repositories/interfaces/adjustment-repository.interface";
-import { Uuid } from "../../../domain/@shared/interfaces/uuid";
+import { PrismaService } from "src/infrastructure/prisma/prisma.service";
 
 @QueryHandler(FindManyAdjustmentsQuery)
 export class FindManyAdjustmentsHandler
-  implements IQueryHandler<FindManyAdjustmentsQuery, FindManyAdjustmentsResult>
+  implements IQueryHandler<FindManyAdjustmentsQuery>
 {
-  constructor(
-    @Inject("AdjustmentRepository")
-    private readonly adjustmentRepository: IAdjustmentRepository,
-  ) {}
+  constructor(@Inject() private readonly prisma: PrismaService) {}
 
-  async execute(query: FindManyAdjustmentsQuery) {
-    const { page, limit } = query;
-    const clientId = query.clientId ? new Uuid(query.clientId) : undefined;
+  async execute(
+    query: FindManyAdjustmentsQuery,
+  ): Promise<FindManyAdjustmentsResult> {
+    const { page, limit, clientId } = query;
+    const take = Math.max(limit, 1);
+    const skip = (Math.max(page, 1) - 1) * take;
 
-    return await this.adjustmentRepository.findMany(page, limit, clientId);
+    const where = clientId ? { clientId: clientId } : undefined;
+
+    const [adjustments, total] = await Promise.all([
+      this.prisma.adjustment.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        skip,
+        take,
+      }),
+      this.prisma.adjustment.count({ where }),
+    ]);
+
+    const totalPages = Math.ceil(total / take);
+
+    return {
+      adjustments,
+      totalPages,
+    };
   }
 }
 
-interface FindManyAdjustmentsResult {
-  adjustments: Adjustment[];
-}
-
-interface Adjustment {
-  id: string;
+interface AdjustmentType {
   clientId: string;
+  id: string;
   valueInCents: number;
   reason: string;
   attachment: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface FindManyAdjustmentsResult {
+  adjustments: AdjustmentType[];
+  totalPages: number;
 }

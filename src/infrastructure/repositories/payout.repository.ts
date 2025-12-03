@@ -34,89 +34,6 @@ export class PayoutRepository implements IPayoutRepository {
     });
   }
 
-  async findById(id: Uuid): Promise<{
-    id: string;
-    clientId: string;
-    grossInCents: number;
-    feeInCents: number;
-    netInCents: number;
-    status: string;
-    paidAt: Date | null;
-    proofFileUrl: string | null;
-    createdAt: Date;
-    updatedAt: Date;
-    items: {
-      id: string;
-      payoutId: string;
-      amountInCents: number;
-      consumptionId: string;
-    }[];
-  } | null> {
-    const payout = await this.prisma.payout.findUnique({
-      where: { id: id.getValue() },
-      include: { items: true },
-    });
-
-    if (!payout) {
-      return null;
-    }
-
-    return payout;
-  }
-
-  async findMany(
-    page: number,
-    limit: number,
-    clientId?: string,
-    status?: PayoutStatus,
-  ): Promise<{
-    payouts: {
-      id: string;
-      clientId: string;
-      grossInCents: number;
-      feeInCents: number;
-      netInCents: number;
-      status: string;
-      paidAt: Date | null;
-      proofFileUrl: string | null;
-      createdAt: Date;
-      updatedAt: Date;
-      items: {
-        id: string;
-        payoutId: string;
-        amountInCents: number;
-        consumptionId: string;
-      }[];
-    }[];
-    totalPages: number;
-  }> {
-    const where = {
-      ...(clientId && { clientId }),
-      ...(status && { status: status.getValue() }),
-    };
-
-    const take = Math.max(limit, 1);
-    const skip = (Math.max(page, 1) - 1) * take;
-
-    const [total, payoutsData] = await Promise.all([
-      this.prisma.payout.count({ where }),
-      this.prisma.payout.findMany({
-        where,
-        include: { items: true },
-        orderBy: { createdAt: "desc" },
-        skip,
-        take,
-      }),
-    ]);
-
-    const totalPages = Math.ceil(total / limit);
-
-    return {
-      payouts: payoutsData,
-      totalPages,
-    };
-  }
-
   async update(payout: Payout): Promise<void> {
     await this.prisma.$transaction(async (tx) => {
       await tx.payout.update({
@@ -147,5 +64,18 @@ export class PayoutRepository implements IPayoutRepository {
         });
       }
     });
+  }
+
+  async findById(id: Uuid): Promise<Payout | null> {
+    const payout = await this.prisma.payout.findUnique({
+      where: { id: id.getValue() },
+      include: { items: true },
+    });
+
+    if (!payout) {
+      return null;
+    }
+
+    return Payout.fromJSON(payout);
   }
 }

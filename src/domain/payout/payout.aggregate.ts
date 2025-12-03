@@ -13,8 +13,8 @@ export class Payout extends AggregateRoot {
     private _netInCents: Money,
     private _status: PayoutStatus,
     private _items: PayoutItem[] = [],
-    private readonly _createdAt: Date = new Date(),
-    private _updatedAt: Date = new Date(),
+    private readonly _createdAt: Date,
+    private _updatedAt: Date,
     private _paidAt?: Date,
     private _proofFileUrl?: string,
   ) {
@@ -77,6 +77,26 @@ export class Payout extends AggregateRoot {
     this._paidAt = new Date();
     this._proofFileUrl = proofFileUrl;
     this.touch();
+  }
+
+  static fromJSON(json: any): Payout {
+    const payout = new Payout(
+      new Uuid(json.id),
+      new Uuid(json.clientId),
+      Money.create(json.grossInCents),
+      Money.create(json.feeInCents),
+      Money.create(json.netInCents),
+      PayoutStatus.fromString(json.status),
+      [],
+      json.createdAt,
+      json.updatedAt,
+      json.paidAt ? new Date(json.paidAt) : undefined,
+      json.proofFileUrl,
+    );
+
+    payout._items = json.items.map((item: any) => PayoutItem.fromJSON(item));
+
+    return payout;
   }
 
   get clientId(): Uuid {
