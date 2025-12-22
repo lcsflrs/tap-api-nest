@@ -5,6 +5,7 @@ import { IAdjustmentRepository } from "../../../infrastructure/repositories/inte
 import { Adjustment } from "../../../domain/adjustment/adjustment.aggregate";
 import { Money } from "../../../domain/@shared/value-objects/money.value";
 import { Uuid } from "../../../domain/@shared/interfaces/uuid";
+import { AdjustmentType } from "../../../domain/adjustment/adjustment.aggregate";
 
 @CommandHandler(CreateAdjustmentCommand)
 export class CreateAdjustmentHandler
@@ -20,6 +21,7 @@ export class CreateAdjustmentHandler
       new Uuid(command.clientId),
       new Money(command.valueInCents),
       command.reason,
+      command.type as AdjustmentType,
       command.attachment,
     );
 

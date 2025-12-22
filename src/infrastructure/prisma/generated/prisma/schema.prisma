@@ -7,6 +7,11 @@ datasource db {
   provider = "mysql"
 }
 
+enum AdjustmentType {
+  CREDIT
+  DEBIT
+}
+
 model Payout {
   id           String       @id
   clientId     String
@@ -17,6 +22,7 @@ model Payout {
   paidAt       DateTime?
   proofFileUrl String?
   items        PayoutItem[]
+  payoutDate   DateTime
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 
@@ -37,13 +43,14 @@ model PayoutItem {
 }
 
 model Adjustment {
-  id           String   @id
+  id           String         @id
   clientId     String
   valueInCents Int
   reason       String
+  type         AdjustmentType
   attachment   String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
 
   @@index([clientId])
   @@map("adjustments")

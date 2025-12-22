@@ -6,6 +6,7 @@ export class FindManyAdjustmentsQuery extends Query<{
     clientId: string;
     valueInCents: number;
     reason: string;
+    type: string;
     attachment: string | null;
   }[];
   totalPages: number;

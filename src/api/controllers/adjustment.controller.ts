@@ -11,6 +11,7 @@ import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { CreateAdjustmentCommand } from "src/application/services/commands/dtos/create-adjustment.command";
 import { FindAdjustmentByIdQuery } from "src/application/services/queries/dtos/find-adjustment-by-id.query";
 import { FindManyAdjustmentsQuery } from "src/application/services/queries/dtos/find-many-adjustments.query";
+import { GetAdjustmentsMetricsQuery } from "src/application/services/queries/dtos/get-adjustments-metrics.query";
 
 @Controller("adjustments")
 export class AdjustmentController {
@@ -26,6 +27,7 @@ export class AdjustmentController {
       clientId: string;
       valueInCents: number;
       reason: string;
+      type: string;
       attachment?: string;
     },
   ) {
@@ -34,9 +36,15 @@ export class AdjustmentController {
         body.clientId,
         body.valueInCents,
         body.reason,
+        body.type,
         body.attachment,
       ),
     );
+  }
+
+  @Get("metrics")
+  async getAdjustmentsMetrics() {
+    return this.queryBus.execute(new GetAdjustmentsMetricsQuery());
   }
 
   @Get(":id")

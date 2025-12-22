@@ -2,12 +2,15 @@ import { AggregateRoot } from "../@shared/interfaces/aggregate-root.abstract.";
 import { Uuid } from "../@shared/interfaces/uuid";
 import { Money } from "../@shared/value-objects/money.value";
 
+export type AdjustmentType = "CREDIT" | "DEBIT";
+
 export class Adjustment extends AggregateRoot {
   constructor(
     id: Uuid,
     private _clientId: Uuid,
     private _valueInCents: Money,
     private _reason: string,
+    private _type: AdjustmentType,
     private _createdAt: Date = new Date(),
     private _updatedAt: Date,
     private _attachment?: string,
@@ -19,6 +22,7 @@ export class Adjustment extends AggregateRoot {
     clientId: Uuid,
     valueInCents: Money,
     reason: string,
+    type: AdjustmentType,
     attachment?: string,
   ): Adjustment {
     if (reason.trim().length === 0) {
@@ -34,6 +38,7 @@ export class Adjustment extends AggregateRoot {
       clientId,
       valueInCents,
       reason,
+      type,
       new Date(),
       new Date(),
       attachment,
@@ -46,6 +51,7 @@ export class Adjustment extends AggregateRoot {
       new Uuid(json.clientId),
       Money.create(json.valueInCents),
       json.reason,
+      json.type as AdjustmentType,
       new Date(json.createdAt),
       new Date(json.updatedAt),
       json.attachment || undefined,
@@ -62,6 +68,10 @@ export class Adjustment extends AggregateRoot {
 
   get reason(): string {
     return this._reason;
+  }
+
+  get type(): AdjustmentType {
+    return this._type;
   }
 
   get attachment(): string | undefined {

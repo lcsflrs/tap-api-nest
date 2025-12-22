@@ -42,6 +42,7 @@ interface AdjustmentType {
   id: string;
   valueInCents: number;
   reason: string;
+  type: string;
   attachment: string | null;
   createdAt: Date;
   updatedAt: Date;

@@ -33,6 +33,7 @@ interface FindPayoutByIdResult {
   paidAt: Date | null;
   proofFileUrl: string | null;
   createdAt: Date;
+  payoutDate: Date;
   updatedAt: Date;
   items: Array<{
     id: string;

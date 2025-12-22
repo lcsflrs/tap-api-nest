@@ -15,6 +15,7 @@ export class AdjustmentRepository implements IAdjustmentRepository {
         clientId: adjustment.clientId.getValue(),
         valueInCents: adjustment.valueInCents.getValue(),
         reason: adjustment.reason,
+        type: adjustment.type,
         attachment: adjustment.attachment,
         createdAt: adjustment.createdAt,
       },

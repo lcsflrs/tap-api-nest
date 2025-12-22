@@ -10,6 +10,7 @@ export class FindPayoutByIdQuery extends Query<{
   paidAt: Date | null;
   proofFileUrl: string | null;
   createdAt: Date;
+  payoutDate: Date;
   updatedAt: Date;
   items: {
     id: string;

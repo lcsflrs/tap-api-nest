@@ -28,7 +28,7 @@ export class Money implements ValueObject<number> {
   }
 
   multiply(factor: number): Money {
-    return new Money(this._amountInCents * factor);
+    return new Money(Math.round(this._amountInCents * factor));
   }
 
   subtract(amount: Money): Money {

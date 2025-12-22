@@ -39,12 +39,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 7.0.1
- * Query Engine version: f09f2815f091dbba658cdcd2264306d88bb5bda6
+ * Prisma Client JS version: 7.1.0
+ * Query Engine version: ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba
  */
 Prisma.prismaVersion = {
-  client: "7.0.1",
-  engine: "f09f2815f091dbba658cdcd2264306d88bb5bda6"
+  client: "7.1.0",
+  engine: "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -101,6 +101,7 @@ exports.Prisma.PayoutScalarFieldEnum = {
   status: 'status',
   paidAt: 'paidAt',
   proofFileUrl: 'proofFileUrl',
+  payoutDate: 'payoutDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -117,6 +118,7 @@ exports.Prisma.AdjustmentScalarFieldEnum = {
   clientId: 'clientId',
   valueInCents: 'valueInCents',
   reason: 'reason',
+  type: 'type',
   attachment: 'attachment',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -151,7 +153,10 @@ exports.Prisma.AdjustmentOrderByRelevanceFieldEnum = {
   reason: 'reason',
   attachment: 'attachment'
 };
-
+exports.AdjustmentType = exports.$Enums.AdjustmentType = {
+  CREDIT: 'CREDIT',
+  DEBIT: 'DEBIT'
+};
 
 exports.Prisma.ModelName = {
   Payout: 'Payout',
@@ -163,13 +168,13 @@ exports.Prisma.ModelName = {
  */
 const config = {
   "previewFeatures": [],
-  "clientVersion": "7.0.1",
-  "engineVersion": "f09f2815f091dbba658cdcd2264306d88bb5bda6",
+  "clientVersion": "7.1.0",
+  "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
   "activeProvider": "mysql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel Payout {\n  id           String       @id\n  clientId     String\n  grossInCents Int\n  feeInCents   Int\n  netInCents   Int\n  status       String       @default(\"PENDING\")\n  paidAt       DateTime?\n  proofFileUrl String?\n  items        PayoutItem[]\n  createdAt    DateTime     @default(now())\n  updatedAt    DateTime     @updatedAt\n\n  @@index([clientId])\n  @@index([status])\n  @@map(\"payouts\")\n}\n\nmodel PayoutItem {\n  id            String @id\n  payoutId      String\n  amountInCents Int\n  consumptionId String @unique\n  payout        Payout @relation(fields: [payoutId], references: [id], onDelete: Cascade)\n\n  @@index([payoutId])\n  @@map(\"payout_items\")\n}\n\nmodel Adjustment {\n  id           String   @id\n  clientId     String\n  valueInCents Int\n  reason       String\n  attachment   String?\n  createdAt    DateTime @default(now())\n  updatedAt    DateTime @updatedAt\n\n  @@index([clientId])\n  @@map(\"adjustments\")\n}\n"
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nenum AdjustmentType {\n  CREDIT\n  DEBIT\n}\n\nmodel Payout {\n  id           String       @id\n  clientId     String\n  grossInCents Int\n  feeInCents   Int\n  netInCents   Int\n  status       String       @default(\"PENDING\")\n  paidAt       DateTime?\n  proofFileUrl String?\n  items        PayoutItem[]\n  payoutDate   DateTime\n  createdAt    DateTime     @default(now())\n  updatedAt    DateTime     @updatedAt\n\n  @@index([clientId])\n  @@index([status])\n  @@map(\"payouts\")\n}\n\nmodel PayoutItem {\n  id            String @id\n  payoutId      String\n  amountInCents Int\n  consumptionId String @unique\n  payout        Payout @relation(fields: [payoutId], references: [id], onDelete: Cascade)\n\n  @@index([payoutId])\n  @@map(\"payout_items\")\n}\n\nmodel Adjustment {\n  id           String         @id\n  clientId     String\n  valueInCents Int\n  reason       String\n  type         AdjustmentType\n  attachment   String?\n  createdAt    DateTime       @default(now())\n  updatedAt    DateTime       @updatedAt\n\n  @@index([clientId])\n  @@map(\"adjustments\")\n}\n"
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Payout\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clientId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"grossInCents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"feeInCents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"netInCents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"paidAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"proofFileUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"items\",\"kind\":\"object\",\"type\":\"PayoutItem\",\"relationName\":\"PayoutToPayoutItem\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"payouts\"},\"PayoutItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payoutId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amountInCents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"consumptionId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payout\",\"kind\":\"object\",\"type\":\"Payout\",\"relationName\":\"PayoutToPayoutItem\"}],\"dbName\":\"payout_items\"},\"Adjustment\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clientId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"valueInCents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attachment\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"adjustments\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Payout\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clientId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"grossInCents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"feeInCents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"netInCents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"paidAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"proofFileUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"items\",\"kind\":\"object\",\"type\":\"PayoutItem\",\"relationName\":\"PayoutToPayoutItem\"},{\"name\":\"payoutDate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"payouts\"},\"PayoutItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payoutId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amountInCents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"consumptionId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payout\",\"kind\":\"object\",\"type\":\"Payout\",\"relationName\":\"PayoutToPayoutItem\"}],\"dbName\":\"payout_items\"},\"Adjustment\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clientId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"valueInCents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"AdjustmentType\"},{\"name\":\"attachment\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"adjustments\"}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.compilerWasm = {
   getRuntime: async () => require('./query_compiler_bg.js'),

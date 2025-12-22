@@ -14,6 +14,7 @@ export class Payout extends AggregateRoot {
     private _status: PayoutStatus,
     private _items: PayoutItem[] = [],
     private readonly _createdAt: Date,
+    private _payoutDate: Date,
     private _updatedAt: Date,
     private _paidAt?: Date,
     private _proofFileUrl?: string,
@@ -25,6 +26,10 @@ export class Payout extends AggregateRoot {
     const feeInCents = grossInCents.multiply(0.03);
     const netInCents = grossInCents.subtract(feeInCents);
 
+    const createdAt = new Date();
+    const payoutDate = new Date(createdAt);
+    payoutDate.setDate(payoutDate.getDate() + 2);
+
     return new Payout(
       Uuid.generate(),
       clientId,
@@ -33,7 +38,8 @@ export class Payout extends AggregateRoot {
       netInCents,
       PayoutStatus.PENDING,
       [],
-      new Date(),
+      createdAt,
+      payoutDate,
       new Date(),
       undefined,
       undefined,
@@ -90,6 +96,7 @@ export class Payout extends AggregateRoot {
       [],
       json.createdAt,
       json.updatedAt,
+      json.payoutDate,
       json.paidAt ? new Date(json.paidAt) : undefined,
       json.proofFileUrl,
     );
@@ -133,6 +140,10 @@ export class Payout extends AggregateRoot {
 
   get createdAt(): Date {
     return this._createdAt;
+  }
+
+  get payoutDate(): Date {
+    return this._payoutDate;
   }
 
   get updatedAt(): Date {

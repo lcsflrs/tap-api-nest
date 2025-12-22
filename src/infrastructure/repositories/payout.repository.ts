@@ -3,7 +3,6 @@ import { PrismaService } from "../../infrastructure/prisma/prisma.service";
 import type { IPayoutRepository } from "./interfaces/payout-repository.interface";
 import { Payout } from "../../domain/payout/payout.aggregate";
 import { Uuid } from "../../domain/@shared/interfaces/uuid";
-import { PayoutStatus } from "../../domain/@shared/value-objects/payout-status.value";
 
 @Injectable()
 export class PayoutRepository implements IPayoutRepository {
@@ -21,11 +20,11 @@ export class PayoutRepository implements IPayoutRepository {
         paidAt: payout.paidAt,
         proofFileUrl: payout.proofFileUrl,
         createdAt: payout.createdAt,
+        payoutDate: payout.payoutDate,
         updatedAt: payout.updatedAt,
         items: {
           create: payout.items.map((item) => ({
             id: item.id.getValue(),
-            payoutId: payout.id.getValue(),
             amountInCents: item.amountInCents.getValue(),
             consumptionId: item.consumptionId.getValue(),
           })),
@@ -46,6 +45,7 @@ export class PayoutRepository implements IPayoutRepository {
           paidAt: payout.paidAt,
           proofFileUrl: payout.proofFileUrl,
           updatedAt: payout.updatedAt,
+          payoutDate: payout.payoutDate,
         },
       });
 

@@ -14,6 +14,7 @@ import { MarkPayoutPaidCommand } from "src/application/services/commands/dtos/ma
 import { AddItemToPayoutCommand } from "src/application/services/commands/dtos/add-item-to-payout.command";
 import { FindPayoutByIdQuery } from "src/application/services/queries/dtos/find-payout-by-id.query";
 import { FindManyPayoutsQuery } from "src/application/services/queries/dtos/find-many-payouts.query";
+import { GetPayoutsMetricsQuery } from "src/application/services/queries/dtos/get-payouts-metrics.query";
 
 @Controller("payouts")
 export class PayoutController {
@@ -38,6 +39,11 @@ export class PayoutController {
     );
   }
 
+  @Get("metrics")
+  async getPayoutsMetrics() {
+    return this.queryBus.execute(new GetPayoutsMetricsQuery());
+  }
+
   @Get(":id")
   async findById(@Param("id") id: string) {
     return this.queryBus.execute(new FindPayoutByIdQuery(id));
@@ -55,7 +61,7 @@ export class PayoutController {
     );
   }
 
-  @Patch(":id/paid")
+  @Patch(":id/mark-paid")
   async markAsPaid(
     @Param("id") id: string,
     @Body() body: { proofFileUrl: string },

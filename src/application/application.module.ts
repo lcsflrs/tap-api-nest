@@ -9,6 +9,8 @@ import { FindManyAdjustmentsHandler } from "./services/queries/find-many-adjustm
 import { FindPayoutByIdHandler } from "./services/queries/find-payout-by-id.handler";
 import { FindManyPayoutsHandler } from "./services/queries/find-many-payouts.handler";
 import { InfrastructureModule } from "src/infrastructure/infrastructure.module";
+import { GetPayoutsMetricsHandler } from "./services/queries/get-payouts-metrics.handler";
+import { GetAdjustmentsMetricsHandler } from "./services/queries/get-adjustments-metrics.handler";
 
 const PayoutCommandHandlers = [
   AddItemToPayoutHandler,
@@ -22,6 +24,8 @@ const PayoutQueryHandlers = [
   FindManyAdjustmentsHandler,
   FindPayoutByIdHandler,
   FindManyPayoutsHandler,
+  GetPayoutsMetricsHandler,
+  GetAdjustmentsMetricsHandler,
 ];
 
 @Module({

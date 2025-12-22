@@ -30,6 +30,23 @@ export type PayoutItem = $Result.DefaultSelection<Prisma.$PayoutItemPayload>
 export type Adjustment = $Result.DefaultSelection<Prisma.$AdjustmentPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const AdjustmentType: {
+  CREDIT: 'CREDIT',
+  DEBIT: 'DEBIT'
+};
+
+export type AdjustmentType = (typeof AdjustmentType)[keyof typeof AdjustmentType]
+
+}
+
+export type AdjustmentType = $Enums.AdjustmentType
+
+export const AdjustmentType: typeof $Enums.AdjustmentType
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -41,7 +58,7 @@ export type Adjustment = $Result.DefaultSelection<Prisma.$AdjustmentPayload>
  * ```
  *
  *
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ * Read more in our [docs](https://pris.ly/d/client).
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
@@ -62,7 +79,7 @@ export class PrismaClient<
    * ```
    *
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+   * Read more in our [docs](https://pris.ly/d/client).
    */
 
   constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
@@ -85,7 +102,7 @@ export class PrismaClient<
    * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
 
@@ -97,7 +114,7 @@ export class PrismaClient<
    * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
 
@@ -108,7 +125,7 @@ export class PrismaClient<
    * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
 
@@ -120,7 +137,7 @@ export class PrismaClient<
    * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
@@ -225,8 +242,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 7.0.1
-   * Query Engine version: f09f2815f091dbba658cdcd2264306d88bb5bda6
+   * Prisma Client JS version: 7.1.0
+   * Query Engine version: ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba
    */
   export type PrismaVersion = {
     client: string
@@ -883,7 +900,7 @@ export namespace Prisma {
      *  { emit: 'stdout', level: 'error' }
      * 
      * ```
-     * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
+     * Read more in our [docs](https://pris.ly/d/logging).
      */
     log?: (LogLevel | LogDefinition)[]
     /**
@@ -919,6 +936,22 @@ export namespace Prisma {
      * ```
      */
     omit?: Prisma.GlobalOmitConfig
+    /**
+     * SQL commenter plugins that add metadata to SQL queries as comments.
+     * Comments follow the sqlcommenter format: https://google.github.io/sqlcommenter/
+     * 
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   adapter,
+     *   comments: [
+     *     traceContext(),
+     *     queryInsights(),
+     *   ],
+     * })
+     * ```
+     */
+    comments?: runtime.SqlCommenterPlugin[]
   }
   export type GlobalOmitConfig = {
     payout?: PayoutOmit
@@ -1067,6 +1100,7 @@ export namespace Prisma {
     status: string | null
     paidAt: Date | null
     proofFileUrl: string | null
+    payoutDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1080,6 +1114,7 @@ export namespace Prisma {
     status: string | null
     paidAt: Date | null
     proofFileUrl: string | null
+    payoutDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1093,6 +1128,7 @@ export namespace Prisma {
     status: number
     paidAt: number
     proofFileUrl: number
+    payoutDate: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1120,6 +1156,7 @@ export namespace Prisma {
     status?: true
     paidAt?: true
     proofFileUrl?: true
+    payoutDate?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1133,6 +1170,7 @@ export namespace Prisma {
     status?: true
     paidAt?: true
     proofFileUrl?: true
+    payoutDate?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1146,6 +1184,7 @@ export namespace Prisma {
     status?: true
     paidAt?: true
     proofFileUrl?: true
+    payoutDate?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1246,6 +1285,7 @@ export namespace Prisma {
     status: string
     paidAt: Date | null
     proofFileUrl: string | null
+    payoutDate: Date
     createdAt: Date
     updatedAt: Date
     _count: PayoutCountAggregateOutputType | null
@@ -1278,6 +1318,7 @@ export namespace Prisma {
     status?: boolean
     paidAt?: boolean
     proofFileUrl?: boolean
+    payoutDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     items?: boolean | Payout$itemsArgs<ExtArgs>
@@ -1295,11 +1336,12 @@ export namespace Prisma {
     status?: boolean
     paidAt?: boolean
     proofFileUrl?: boolean
+    payoutDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PayoutOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "grossInCents" | "feeInCents" | "netInCents" | "status" | "paidAt" | "proofFileUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["payout"]>
+  export type PayoutOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "grossInCents" | "feeInCents" | "netInCents" | "status" | "paidAt" | "proofFileUrl" | "payoutDate" | "createdAt" | "updatedAt", ExtArgs["result"]["payout"]>
   export type PayoutInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     items?: boolean | Payout$itemsArgs<ExtArgs>
     _count?: boolean | PayoutCountOutputTypeDefaultArgs<ExtArgs>
@@ -1319,6 +1361,7 @@ export namespace Prisma {
       status: string
       paidAt: Date | null
       proofFileUrl: string | null
+      payoutDate: Date
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["payout"]>
@@ -1699,6 +1742,7 @@ export namespace Prisma {
     readonly status: FieldRef<"Payout", 'String'>
     readonly paidAt: FieldRef<"Payout", 'DateTime'>
     readonly proofFileUrl: FieldRef<"Payout", 'String'>
+    readonly payoutDate: FieldRef<"Payout", 'DateTime'>
     readonly createdAt: FieldRef<"Payout", 'DateTime'>
     readonly updatedAt: FieldRef<"Payout", 'DateTime'>
   }
@@ -3063,6 +3107,7 @@ export namespace Prisma {
     clientId: string | null
     valueInCents: number | null
     reason: string | null
+    type: $Enums.AdjustmentType | null
     attachment: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3073,6 +3118,7 @@ export namespace Prisma {
     clientId: string | null
     valueInCents: number | null
     reason: string | null
+    type: $Enums.AdjustmentType | null
     attachment: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3083,6 +3129,7 @@ export namespace Prisma {
     clientId: number
     valueInCents: number
     reason: number
+    type: number
     attachment: number
     createdAt: number
     updatedAt: number
@@ -3103,6 +3150,7 @@ export namespace Prisma {
     clientId?: true
     valueInCents?: true
     reason?: true
+    type?: true
     attachment?: true
     createdAt?: true
     updatedAt?: true
@@ -3113,6 +3161,7 @@ export namespace Prisma {
     clientId?: true
     valueInCents?: true
     reason?: true
+    type?: true
     attachment?: true
     createdAt?: true
     updatedAt?: true
@@ -3123,6 +3172,7 @@ export namespace Prisma {
     clientId?: true
     valueInCents?: true
     reason?: true
+    type?: true
     attachment?: true
     createdAt?: true
     updatedAt?: true
@@ -3220,6 +3270,7 @@ export namespace Prisma {
     clientId: string
     valueInCents: number
     reason: string
+    type: $Enums.AdjustmentType
     attachment: string | null
     createdAt: Date
     updatedAt: Date
@@ -3249,6 +3300,7 @@ export namespace Prisma {
     clientId?: boolean
     valueInCents?: boolean
     reason?: boolean
+    type?: boolean
     attachment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3261,12 +3313,13 @@ export namespace Prisma {
     clientId?: boolean
     valueInCents?: boolean
     reason?: boolean
+    type?: boolean
     attachment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AdjustmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "valueInCents" | "reason" | "attachment" | "createdAt" | "updatedAt", ExtArgs["result"]["adjustment"]>
+  export type AdjustmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "valueInCents" | "reason" | "type" | "attachment" | "createdAt" | "updatedAt", ExtArgs["result"]["adjustment"]>
 
   export type $AdjustmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Adjustment"
@@ -3276,6 +3329,7 @@ export namespace Prisma {
       clientId: string
       valueInCents: number
       reason: string
+      type: $Enums.AdjustmentType
       attachment: string | null
       createdAt: Date
       updatedAt: Date
@@ -3652,6 +3706,7 @@ export namespace Prisma {
     readonly clientId: FieldRef<"Adjustment", 'String'>
     readonly valueInCents: FieldRef<"Adjustment", 'Int'>
     readonly reason: FieldRef<"Adjustment", 'String'>
+    readonly type: FieldRef<"Adjustment", 'AdjustmentType'>
     readonly attachment: FieldRef<"Adjustment", 'String'>
     readonly createdAt: FieldRef<"Adjustment", 'DateTime'>
     readonly updatedAt: FieldRef<"Adjustment", 'DateTime'>
@@ -3999,6 +4054,7 @@ export namespace Prisma {
     status: 'status',
     paidAt: 'paidAt',
     proofFileUrl: 'proofFileUrl',
+    payoutDate: 'payoutDate',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4021,6 +4077,7 @@ export namespace Prisma {
     clientId: 'clientId',
     valueInCents: 'valueInCents',
     reason: 'reason',
+    type: 'type',
     attachment: 'attachment',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -4101,6 +4158,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'AdjustmentType'
+   */
+  export type EnumAdjustmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdjustmentType'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -4122,6 +4186,7 @@ export namespace Prisma {
     status?: StringFilter<"Payout"> | string
     paidAt?: DateTimeNullableFilter<"Payout"> | Date | string | null
     proofFileUrl?: StringNullableFilter<"Payout"> | string | null
+    payoutDate?: DateTimeFilter<"Payout"> | Date | string
     createdAt?: DateTimeFilter<"Payout"> | Date | string
     updatedAt?: DateTimeFilter<"Payout"> | Date | string
     items?: PayoutItemListRelationFilter
@@ -4136,6 +4201,7 @@ export namespace Prisma {
     status?: SortOrder
     paidAt?: SortOrderInput | SortOrder
     proofFileUrl?: SortOrderInput | SortOrder
+    payoutDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     items?: PayoutItemOrderByRelationAggregateInput
@@ -4154,6 +4220,7 @@ export namespace Prisma {
     status?: StringFilter<"Payout"> | string
     paidAt?: DateTimeNullableFilter<"Payout"> | Date | string | null
     proofFileUrl?: StringNullableFilter<"Payout"> | string | null
+    payoutDate?: DateTimeFilter<"Payout"> | Date | string
     createdAt?: DateTimeFilter<"Payout"> | Date | string
     updatedAt?: DateTimeFilter<"Payout"> | Date | string
     items?: PayoutItemListRelationFilter
@@ -4168,6 +4235,7 @@ export namespace Prisma {
     status?: SortOrder
     paidAt?: SortOrderInput | SortOrder
     proofFileUrl?: SortOrderInput | SortOrder
+    payoutDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PayoutCountOrderByAggregateInput
@@ -4189,6 +4257,7 @@ export namespace Prisma {
     status?: StringWithAggregatesFilter<"Payout"> | string
     paidAt?: DateTimeNullableWithAggregatesFilter<"Payout"> | Date | string | null
     proofFileUrl?: StringNullableWithAggregatesFilter<"Payout"> | string | null
+    payoutDate?: DateTimeWithAggregatesFilter<"Payout"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Payout"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Payout"> | Date | string
   }
@@ -4254,6 +4323,7 @@ export namespace Prisma {
     clientId?: StringFilter<"Adjustment"> | string
     valueInCents?: IntFilter<"Adjustment"> | number
     reason?: StringFilter<"Adjustment"> | string
+    type?: EnumAdjustmentTypeFilter<"Adjustment"> | $Enums.AdjustmentType
     attachment?: StringNullableFilter<"Adjustment"> | string | null
     createdAt?: DateTimeFilter<"Adjustment"> | Date | string
     updatedAt?: DateTimeFilter<"Adjustment"> | Date | string
@@ -4264,6 +4334,7 @@ export namespace Prisma {
     clientId?: SortOrder
     valueInCents?: SortOrder
     reason?: SortOrder
+    type?: SortOrder
     attachment?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -4278,6 +4349,7 @@ export namespace Prisma {
     clientId?: StringFilter<"Adjustment"> | string
     valueInCents?: IntFilter<"Adjustment"> | number
     reason?: StringFilter<"Adjustment"> | string
+    type?: EnumAdjustmentTypeFilter<"Adjustment"> | $Enums.AdjustmentType
     attachment?: StringNullableFilter<"Adjustment"> | string | null
     createdAt?: DateTimeFilter<"Adjustment"> | Date | string
     updatedAt?: DateTimeFilter<"Adjustment"> | Date | string
@@ -4288,6 +4360,7 @@ export namespace Prisma {
     clientId?: SortOrder
     valueInCents?: SortOrder
     reason?: SortOrder
+    type?: SortOrder
     attachment?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -4306,6 +4379,7 @@ export namespace Prisma {
     clientId?: StringWithAggregatesFilter<"Adjustment"> | string
     valueInCents?: IntWithAggregatesFilter<"Adjustment"> | number
     reason?: StringWithAggregatesFilter<"Adjustment"> | string
+    type?: EnumAdjustmentTypeWithAggregatesFilter<"Adjustment"> | $Enums.AdjustmentType
     attachment?: StringNullableWithAggregatesFilter<"Adjustment"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Adjustment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Adjustment"> | Date | string
@@ -4320,6 +4394,7 @@ export namespace Prisma {
     status?: string
     paidAt?: Date | string | null
     proofFileUrl?: string | null
+    payoutDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     items?: PayoutItemCreateNestedManyWithoutPayoutInput
@@ -4334,6 +4409,7 @@ export namespace Prisma {
     status?: string
     paidAt?: Date | string | null
     proofFileUrl?: string | null
+    payoutDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     items?: PayoutItemUncheckedCreateNestedManyWithoutPayoutInput
@@ -4348,6 +4424,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     proofFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    payoutDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: PayoutItemUpdateManyWithoutPayoutNestedInput
@@ -4362,6 +4439,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     proofFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    payoutDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     items?: PayoutItemUncheckedUpdateManyWithoutPayoutNestedInput
@@ -4376,6 +4454,7 @@ export namespace Prisma {
     status?: string
     paidAt?: Date | string | null
     proofFileUrl?: string | null
+    payoutDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4389,6 +4468,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     proofFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    payoutDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4402,6 +4482,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     proofFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    payoutDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4459,6 +4540,7 @@ export namespace Prisma {
     clientId: string
     valueInCents: number
     reason: string
+    type: $Enums.AdjustmentType
     attachment?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -4469,6 +4551,7 @@ export namespace Prisma {
     clientId: string
     valueInCents: number
     reason: string
+    type: $Enums.AdjustmentType
     attachment?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -4479,6 +4562,7 @@ export namespace Prisma {
     clientId?: StringFieldUpdateOperationsInput | string
     valueInCents?: IntFieldUpdateOperationsInput | number
     reason?: StringFieldUpdateOperationsInput | string
+    type?: EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
     attachment?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4489,6 +4573,7 @@ export namespace Prisma {
     clientId?: StringFieldUpdateOperationsInput | string
     valueInCents?: IntFieldUpdateOperationsInput | number
     reason?: StringFieldUpdateOperationsInput | string
+    type?: EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
     attachment?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4499,6 +4584,7 @@ export namespace Prisma {
     clientId: string
     valueInCents: number
     reason: string
+    type: $Enums.AdjustmentType
     attachment?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -4509,6 +4595,7 @@ export namespace Prisma {
     clientId?: StringFieldUpdateOperationsInput | string
     valueInCents?: IntFieldUpdateOperationsInput | number
     reason?: StringFieldUpdateOperationsInput | string
+    type?: EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
     attachment?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4519,6 +4606,7 @@ export namespace Prisma {
     clientId?: StringFieldUpdateOperationsInput | string
     valueInCents?: IntFieldUpdateOperationsInput | number
     reason?: StringFieldUpdateOperationsInput | string
+    type?: EnumAdjustmentTypeFieldUpdateOperationsInput | $Enums.AdjustmentType
     attachment?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4617,6 +4705,7 @@ export namespace Prisma {
     status?: SortOrder
     paidAt?: SortOrder
     proofFileUrl?: SortOrder
+    payoutDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4636,6 +4725,7 @@ export namespace Prisma {
     status?: SortOrder
     paidAt?: SortOrder
     proofFileUrl?: SortOrder
+    payoutDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4649,6 +4739,7 @@ export namespace Prisma {
     status?: SortOrder
     paidAt?: SortOrder
     proofFileUrl?: SortOrder
+    payoutDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4779,6 +4870,13 @@ export namespace Prisma {
     amountInCents?: SortOrder
   }
 
+  export type EnumAdjustmentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdjustmentType | EnumAdjustmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AdjustmentType[]
+    notIn?: $Enums.AdjustmentType[]
+    not?: NestedEnumAdjustmentTypeFilter<$PrismaModel> | $Enums.AdjustmentType
+  }
+
   export type AdjustmentOrderByRelevanceInput = {
     fields: AdjustmentOrderByRelevanceFieldEnum | AdjustmentOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -4790,6 +4888,7 @@ export namespace Prisma {
     clientId?: SortOrder
     valueInCents?: SortOrder
     reason?: SortOrder
+    type?: SortOrder
     attachment?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -4804,6 +4903,7 @@ export namespace Prisma {
     clientId?: SortOrder
     valueInCents?: SortOrder
     reason?: SortOrder
+    type?: SortOrder
     attachment?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -4814,6 +4914,7 @@ export namespace Prisma {
     clientId?: SortOrder
     valueInCents?: SortOrder
     reason?: SortOrder
+    type?: SortOrder
     attachment?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -4821,6 +4922,16 @@ export namespace Prisma {
 
   export type AdjustmentSumOrderByAggregateInput = {
     valueInCents?: SortOrder
+  }
+
+  export type EnumAdjustmentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdjustmentType | EnumAdjustmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AdjustmentType[]
+    notIn?: $Enums.AdjustmentType[]
+    not?: NestedEnumAdjustmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.AdjustmentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAdjustmentTypeFilter<$PrismaModel>
+    _max?: NestedEnumAdjustmentTypeFilter<$PrismaModel>
   }
 
   export type PayoutItemCreateNestedManyWithoutPayoutInput = {
@@ -4901,6 +5012,10 @@ export namespace Prisma {
     upsert?: PayoutUpsertWithoutItemsInput
     connect?: PayoutWhereUniqueInput
     update?: XOR<XOR<PayoutUpdateToOneWithWhereWithoutItemsInput, PayoutUpdateWithoutItemsInput>, PayoutUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type EnumAdjustmentTypeFieldUpdateOperationsInput = {
+    set?: $Enums.AdjustmentType
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5068,6 +5183,23 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumAdjustmentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdjustmentType | EnumAdjustmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AdjustmentType[]
+    notIn?: $Enums.AdjustmentType[]
+    not?: NestedEnumAdjustmentTypeFilter<$PrismaModel> | $Enums.AdjustmentType
+  }
+
+  export type NestedEnumAdjustmentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdjustmentType | EnumAdjustmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AdjustmentType[]
+    notIn?: $Enums.AdjustmentType[]
+    not?: NestedEnumAdjustmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.AdjustmentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAdjustmentTypeFilter<$PrismaModel>
+    _max?: NestedEnumAdjustmentTypeFilter<$PrismaModel>
+  }
+
   export type PayoutItemCreateWithoutPayoutInput = {
     id: string
     amountInCents: number
@@ -5125,6 +5257,7 @@ export namespace Prisma {
     status?: string
     paidAt?: Date | string | null
     proofFileUrl?: string | null
+    payoutDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5138,6 +5271,7 @@ export namespace Prisma {
     status?: string
     paidAt?: Date | string | null
     proofFileUrl?: string | null
+    payoutDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5167,6 +5301,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     proofFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    payoutDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5180,6 +5315,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     proofFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    payoutDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
