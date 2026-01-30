@@ -1,8 +1,8 @@
 import { Query } from "@nestjs/cqrs";
 
 export class GetPayoutsMetricsQuery extends Query<{
-  totalDueTodayInCents: number;
-  totalDueTodayCount: number;
+  totalPaidTodayInCents: number;
+  totalPaidTodayCount: number;
   totalPendingInCents: number;
   totalPendingCount: number;
   totalPaidInCents: number;

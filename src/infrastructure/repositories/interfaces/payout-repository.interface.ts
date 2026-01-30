@@ -1,5 +1,5 @@
-import { Payout } from "../../../domain/payout/payout.aggregate";
-import { Uuid } from "../../../domain/@shared/interfaces/uuid";
+import { Payout } from "@domain/payout/payout.aggregate";
+import { Uuid } from "@domain/@shared/interfaces/uuid";
 
 export interface IPayoutRepository {
   save(payout: Payout): Promise<void>;

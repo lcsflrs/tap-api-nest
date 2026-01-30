@@ -1,8 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "../../infrastructure/prisma/prisma.service";
+import { PrismaService } from "../prisma/prisma.service";
 import type { IAdjustmentRepository } from "./interfaces/adjustment-repository.interface";
-import { Adjustment } from "../../domain/adjustment/adjustment.aggregate";
-import { Uuid } from "../../domain/@shared/interfaces/uuid";
+import { Adjustment } from "@domain/adjustment/adjustment.aggregate";
+import { Uuid } from "@domain/@shared/interfaces/uuid";
+import { AdjustmentType } from "@infrastructure/prisma/generated/prisma";
 
 @Injectable()
 export class AdjustmentRepository implements IAdjustmentRepository {
@@ -12,12 +13,12 @@ export class AdjustmentRepository implements IAdjustmentRepository {
     await this.prisma.adjustment.create({
       data: {
         id: adjustment.id.getValue(),
-        clientId: adjustment.clientId.getValue(),
         valueInCents: adjustment.valueInCents.getValue(),
         reason: adjustment.reason,
-        type: adjustment.type,
+        type: adjustment.type as AdjustmentType,
         attachment: adjustment.attachment,
         createdAt: adjustment.createdAt,
+        updatedAt: adjustment.updatedAt,
       },
     });
   }
@@ -28,7 +29,9 @@ export class AdjustmentRepository implements IAdjustmentRepository {
       data: {
         valueInCents: adjustment.valueInCents.getValue(),
         reason: adjustment.reason,
+        type: adjustment.type as AdjustmentType,
         attachment: adjustment.attachment,
+        updatedAt: adjustment.updatedAt,
       },
     });
   }
@@ -43,5 +46,27 @@ export class AdjustmentRepository implements IAdjustmentRepository {
     }
 
     return Adjustment.fromJSON(adjustment);
+  }
+
+  async findByDateRange(startDate: Date, endDate: Date): Promise<Adjustment[]> {
+    const adjustments = await this.prisma.adjustment.findMany({
+      where: {
+        createdAt: {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    return adjustments.map((adj) => Adjustment.fromJSON(adj));
+  }
+
+  async findAll(): Promise<Adjustment[]> {
+    const adjustments = await this.prisma.adjustment.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+
+    return adjustments.map((adj) => Adjustment.fromJSON(adj));
   }
 }

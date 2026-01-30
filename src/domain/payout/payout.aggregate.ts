@@ -7,107 +7,121 @@ import { Money } from "../@shared/value-objects/money.value";
 export class Payout extends AggregateRoot {
   constructor(
     id: Uuid,
-    private _clientId: Uuid,
+    private _storeId: number,
+    private _storeName: string,
     private _grossInCents: Money,
     private _feeInCents: Money,
     private _netInCents: Money,
     private _status: PayoutStatus,
     private _items: PayoutItem[] = [],
     private readonly _createdAt: Date,
-    private _payoutDate: Date,
     private _updatedAt: Date,
-    private _paidAt?: Date,
     private _proofFileUrl?: string,
   ) {
     super(id);
   }
 
-  static create(clientId: Uuid, grossInCents: Money): Payout {
-    const feeInCents = grossInCents.multiply(0.03);
-    const netInCents = grossInCents.subtract(feeInCents);
-
-    const createdAt = new Date();
-    const payoutDate = new Date(createdAt);
-    payoutDate.setDate(payoutDate.getDate() + 2);
-
-    return new Payout(
-      Uuid.generate(),
-      clientId,
-      grossInCents,
-      feeInCents,
-      netInCents,
-      PayoutStatus.PENDING,
-      [],
-      createdAt,
-      payoutDate,
-      new Date(),
-      undefined,
-      undefined,
-    );
-  }
-
-  addItem(payoutItem: PayoutItem): void {
-    if (this._status.isPaid()) {
-      throw new Error("Cannot add item to paid payout");
+  static create(
+    storeId: number,
+    storeName: string,
+    proofFileUrl: string,
+  ): Payout {
+    if (storeId <= 0) {
+      throw new Error("Invalid store ID");
     }
 
-    if (
-      this._items.some((item) =>
-        item.consumptionId.equals(payoutItem.consumptionId),
-      )
-    ) {
-      throw new Error("Consumption already associated with this payout");
-    }
-
-    this._items.push(payoutItem);
-    this._grossInCents = this._grossInCents.add(payoutItem.amountInCents);
-    this._feeInCents = this._grossInCents.multiply(0.03);
-    this._netInCents = this._grossInCents.subtract(this._feeInCents);
-    this.touch();
-  }
-
-  markAsPaid(proofFileUrl: string): void {
-    if (this._status.isPaid()) {
-      throw new Error("Payout already paid");
-    }
-
-    if (this._items.length === 0) {
-      throw new Error("Cannot mark payout as paid without items");
+    if (storeName.trim().length === 0) {
+      throw new Error("Store name cannot be empty");
     }
 
     if (!proofFileUrl || proofFileUrl.trim().length === 0) {
       throw new Error("Proof file URL is required");
     }
 
-    this._status = PayoutStatus.PAID;
-    this._paidAt = new Date();
-    this._proofFileUrl = proofFileUrl;
+    const createdAt = new Date();
+
+    return new Payout(
+      Uuid.generate(),
+      storeId,
+      storeName,
+      Money.create(0),
+      Money.create(0),
+      Money.create(0),
+      PayoutStatus.PAID,
+      [],
+      createdAt,
+      new Date(),
+      proofFileUrl,
+    );
+  }
+
+  addItems(items: PayoutItem[]): void {
+    if (items.length === 0) {
+      throw new Error("Must provide at least one item");
+    }
+
+    if (this._items.length > 0) {
+      throw new Error("Items have already been added to this payout");
+    }
+
+    const storeSaleIds = new Set(items.map((item) => item.storeSaleId));
+    if (storeSaleIds.size !== items.length) {
+      throw new Error("Duplicate store sales in payout items");
+    }
+
+    const invalidItems = items.filter((item) => !item.payoutId.equals(this.id));
+    if (invalidItems.length > 0) {
+      throw new Error("All items must belong to this payout");
+    }
+
+    this._items = [...items];
+
+    this._grossInCents = items.reduce(
+      (sum, item) => sum.add(item.saleGrossInCents),
+      Money.create(0),
+    );
+
+    this._feeInCents = items.reduce(
+      (sum, item) => sum.add(item.saleFeeInCents),
+      Money.create(0),
+    );
+
+    this._netInCents = items.reduce(
+      (sum, item) => sum.add(item.saleNetInCents),
+      Money.create(0),
+    );
+
     this.touch();
   }
 
   static fromJSON(json: any): Payout {
     const payout = new Payout(
       new Uuid(json.id),
-      new Uuid(json.clientId),
+      json.storeId,
+      json.storeName,
       Money.create(json.grossInCents),
       Money.create(json.feeInCents),
       Money.create(json.netInCents),
       PayoutStatus.fromString(json.status),
       [],
-      json.createdAt,
-      json.updatedAt,
-      json.payoutDate,
-      json.paidAt ? new Date(json.paidAt) : undefined,
+      new Date(json.createdAt),
+      new Date(json.updatedAt),
       json.proofFileUrl,
     );
 
-    payout._items = json.items.map((item: any) => PayoutItem.fromJSON(item));
+    if (json.items) {
+      payout._items = json.items.map((item: any) => PayoutItem.fromJSON(item));
+    }
 
     return payout;
   }
 
-  get clientId(): Uuid {
-    return this._clientId;
+  get storeId(): number {
+    return this._storeId;
+  }
+
+  get storeName(): string {
+    return this._storeName;
   }
 
   get grossInCents(): number {
@@ -126,10 +140,6 @@ export class Payout extends AggregateRoot {
     return this._status;
   }
 
-  get paidAt(): Date | undefined {
-    return this._paidAt;
-  }
-
   get proofFileUrl(): string | undefined {
     return this._proofFileUrl;
   }
@@ -140,10 +150,6 @@ export class Payout extends AggregateRoot {
 
   get createdAt(): Date {
     return this._createdAt;
-  }
-
-  get payoutDate(): Date {
-    return this._payoutDate;
   }
 
   get updatedAt(): Date {

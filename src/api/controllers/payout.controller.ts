@@ -2,19 +2,16 @@ import {
   Controller,
   Post,
   Get,
-  Patch,
   Body,
-  Param,
   Query,
   ParseIntPipe,
+  DefaultValuePipe,
 } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
-import { CreatePayoutCommand } from "src/application/services/commands/dtos/create-payout.command";
-import { MarkPayoutPaidCommand } from "src/application/services/commands/dtos/mark-payout-paid.command";
-import { AddItemToPayoutCommand } from "src/application/services/commands/dtos/add-item-to-payout.command";
-import { FindPayoutByIdQuery } from "src/application/services/queries/dtos/find-payout-by-id.query";
-import { FindManyPayoutsQuery } from "src/application/services/queries/dtos/find-many-payouts.query";
-import { GetPayoutsMetricsQuery } from "src/application/services/queries/dtos/get-payouts-metrics.query";
+import { CreatePayoutCommand } from "@application/commands/dtos/create-payout.command";
+import { FindPaidPayoutsQuery } from "@application/queries/dtos/find-paid-payouts.query";
+import { FindPendingPayoutsQuery } from "@application/queries/dtos/find-pending-payouts.query";
+import { GetPayoutsMetricsQuery } from "@application/queries/dtos/get-payouts-metrics.query";
 
 @Controller("payouts")
 export class PayoutController {
@@ -27,15 +24,19 @@ export class PayoutController {
   async create(
     @Body()
     body: {
-      clientId: string;
-      items: Array<{
-        amountInCents: number;
-        consumptionId: string;
-      }>;
+      storeId: number;
+      storeName: string;
+      storeSaleIds: number[];
+      proofFileUrl: string;
     },
   ) {
     return this.commandBus.execute(
-      new CreatePayoutCommand(body.clientId, body.items),
+      new CreatePayoutCommand(
+        body.storeId,
+        body.storeName,
+        body.storeSaleIds,
+        body.proofFileUrl,
+      ),
     );
   }
 
@@ -44,40 +45,26 @@ export class PayoutController {
     return this.queryBus.execute(new GetPayoutsMetricsQuery());
   }
 
-  @Get(":id")
-  async findById(@Param("id") id: string) {
-    return this.queryBus.execute(new FindPayoutByIdQuery(id));
+  @Get("pending")
+  async findPending(
+    @Query("page", new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query("limit", new DefaultValuePipe(10), ParseIntPipe) limit: number,
+    @Query("storeName") storeName?: string,
+  ) {
+    return this.queryBus.execute(
+      new FindPendingPayoutsQuery(page, limit, storeName),
+    );
   }
 
   @Get()
-  async findMany(
-    @Query("page", ParseIntPipe) page: number,
-    @Query("limit", ParseIntPipe) limit: number,
-    @Query("clientId") clientId?: string,
+  async findPaid(
+    @Query("page", new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query("limit", new DefaultValuePipe(10), ParseIntPipe) limit: number,
+    @Query("storeName") storeName?: string,
     @Query("status") status?: string,
   ) {
     return this.queryBus.execute(
-      new FindManyPayoutsQuery(page, limit, clientId, status),
-    );
-  }
-
-  @Patch(":id/mark-paid")
-  async markAsPaid(
-    @Param("id") id: string,
-    @Body() body: { proofFileUrl: string },
-  ) {
-    return this.commandBus.execute(
-      new MarkPayoutPaidCommand(id, body.proofFileUrl),
-    );
-  }
-
-  @Patch(":id/items")
-  async addItem(
-    @Param("id") id: string,
-    @Body() body: { amountInCents: number; consumptionId: string },
-  ) {
-    return this.commandBus.execute(
-      new AddItemToPayoutCommand(id, body.amountInCents, body.consumptionId),
+      new FindPaidPayoutsQuery(page, limit, storeName, status),
     );
   }
 }

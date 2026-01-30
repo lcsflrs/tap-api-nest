@@ -1,8 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "../../infrastructure/prisma/prisma.service";
+import { PrismaService } from "../prisma/prisma.service";
 import type { IPayoutRepository } from "./interfaces/payout-repository.interface";
-import { Payout } from "../../domain/payout/payout.aggregate";
-import { Uuid } from "../../domain/@shared/interfaces/uuid";
+import { Payout } from "@domain/payout/payout.aggregate";
+import { Uuid } from "@domain/@shared/interfaces/uuid";
+import { payouts_status } from "@infrastructure/prisma/generated/prisma";
 
 @Injectable()
 export class PayoutRepository implements IPayoutRepository {
@@ -12,21 +13,24 @@ export class PayoutRepository implements IPayoutRepository {
     await this.prisma.payout.create({
       data: {
         id: payout.id.getValue(),
-        clientId: payout.clientId.getValue(),
+        storeId: payout.storeId,
+        storeName: payout.storeName,
         grossInCents: payout.grossInCents,
         feeInCents: payout.feeInCents,
         netInCents: payout.netInCents,
-        status: payout.status.getValue(),
-        paidAt: payout.paidAt,
+        status: payout.status.getValue() as payouts_status,
         proofFileUrl: payout.proofFileUrl,
         createdAt: payout.createdAt,
-        payoutDate: payout.payoutDate,
         updatedAt: payout.updatedAt,
         items: {
           create: payout.items.map((item) => ({
             id: item.id.getValue(),
-            amountInCents: item.amountInCents.getValue(),
-            consumptionId: item.consumptionId.getValue(),
+            storeSaleId: item.storeSaleId,
+            orderId: item.orderId,
+            saleGrossInCents: item.saleGrossInCents.getValue(),
+            saleFeeInCents: item.saleFeeInCents.getValue(),
+            saleNetInCents: item.saleNetInCents.getValue(),
+            createdAt: new Date(),
           })),
         },
       },
@@ -41,11 +45,9 @@ export class PayoutRepository implements IPayoutRepository {
           grossInCents: payout.grossInCents,
           feeInCents: payout.feeInCents,
           netInCents: payout.netInCents,
-          status: payout.status.getValue(),
-          paidAt: payout.paidAt,
+          status: payout.status.getValue() as payouts_status,
           proofFileUrl: payout.proofFileUrl,
           updatedAt: payout.updatedAt,
-          payoutDate: payout.payoutDate,
         },
       });
 
@@ -58,8 +60,12 @@ export class PayoutRepository implements IPayoutRepository {
           data: payout.items.map((item) => ({
             id: item.id.getValue(),
             payoutId: payout.id.getValue(),
-            amountInCents: item.amountInCents.getValue(),
-            consumptionId: item.consumptionId.getValue(),
+            storeSaleId: item.storeSaleId,
+            orderId: item.orderId,
+            saleGrossInCents: item.saleGrossInCents.getValue(),
+            saleFeeInCents: item.saleFeeInCents.getValue(),
+            saleNetInCents: item.saleNetInCents.getValue(),
+            createdAt: new Date(),
           })),
         });
       }

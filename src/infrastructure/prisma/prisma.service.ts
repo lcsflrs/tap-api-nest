@@ -14,7 +14,7 @@ export class PrismaService
 {
   constructor() {
     const adapter = new PrismaMariaDb({
-      connectionLimit: 5,
+      connectionLimit: 10,
       database: process.env.DATABASE_NAME,
       host: process.env.DATABASE_HOST,
       password: process.env.DATABASE_PASSWORD,

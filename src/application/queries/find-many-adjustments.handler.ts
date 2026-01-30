@@ -1,31 +1,26 @@
 import { QueryHandler, IQueryHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
 import { FindManyAdjustmentsQuery } from "./dtos/find-many-adjustments.query";
-import { PrismaService } from "src/infrastructure/prisma/prisma.service";
+import { PrismaService } from "@infrastructure/prisma/prisma.service";
 
 @QueryHandler(FindManyAdjustmentsQuery)
-export class FindManyAdjustmentsHandler
-  implements IQueryHandler<FindManyAdjustmentsQuery>
-{
+export class FindManyAdjustmentsHandler implements IQueryHandler<FindManyAdjustmentsQuery> {
   constructor(@Inject() private readonly prisma: PrismaService) {}
 
   async execute(
     query: FindManyAdjustmentsQuery,
   ): Promise<FindManyAdjustmentsResult> {
-    const { page, limit, clientId } = query;
+    const { page, limit } = query;
     const take = Math.max(limit, 1);
     const skip = (Math.max(page, 1) - 1) * take;
 
-    const where = clientId ? { clientId: clientId } : undefined;
-
     const [adjustments, total] = await Promise.all([
       this.prisma.adjustment.findMany({
-        where,
         orderBy: { createdAt: "desc" },
         skip,
         take,
       }),
-      this.prisma.adjustment.count({ where }),
+      this.prisma.adjustment.count(),
     ]);
 
     const totalPages = Math.ceil(total / take);
@@ -33,12 +28,12 @@ export class FindManyAdjustmentsHandler
     return {
       adjustments,
       totalPages,
+      total,
     };
   }
 }
 
 interface AdjustmentType {
-  clientId: string;
   id: string;
   valueInCents: number;
   reason: string;
@@ -51,4 +46,5 @@ interface AdjustmentType {
 interface FindManyAdjustmentsResult {
   adjustments: AdjustmentType[];
   totalPages: number;
+  total: number;
 }

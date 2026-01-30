@@ -1,12 +1,10 @@
 import { QueryHandler, IQueryHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
-import { PrismaService } from "src/infrastructure/prisma/prisma.service";
 import { GetAdjustmentsMetricsQuery } from "./dtos/get-adjustments-metrics.query";
+import { PrismaService } from "@infrastructure/prisma/prisma.service";
 
 @QueryHandler(GetAdjustmentsMetricsQuery)
-export class GetAdjustmentsMetricsHandler
-  implements IQueryHandler<GetAdjustmentsMetricsQuery>
-{
+export class GetAdjustmentsMetricsHandler implements IQueryHandler<GetAdjustmentsMetricsQuery> {
   constructor(@Inject() private readonly prisma: PrismaService) {}
 
   async execute(

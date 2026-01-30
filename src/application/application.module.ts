@@ -1,29 +1,20 @@
 import { Module } from "@nestjs/common";
 import { CqrsModule } from "@nestjs/cqrs";
-import { AddItemToPayoutHandler } from "./services/commands/add-item-to-payout.handler";
-import { CreateAdjustmentHandler } from "./services/commands/create-adjustment.handler";
-import { CreatePayoutHandler } from "./services/commands/create-payout.handler";
-import { MarkPayoutPaidHandler } from "./services/commands/mark-payout-paid.handler";
-import { FindAdjustmentByIdHandler } from "./services/queries/find-adjustment-by-id.handler";
-import { FindManyAdjustmentsHandler } from "./services/queries/find-many-adjustments.handler";
-import { FindPayoutByIdHandler } from "./services/queries/find-payout-by-id.handler";
-import { FindManyPayoutsHandler } from "./services/queries/find-many-payouts.handler";
+import { CreateAdjustmentHandler } from "./commands/create-adjustment.handler";
+import { CreatePayoutHandler } from "./commands/create-payout.handler";
+import { FindManyAdjustmentsHandler } from "./queries/find-many-adjustments.handler";
+import { FindPendingPayoutsHandler } from "./queries/find-pending-payouts.handler";
+import { FindPaidPayoutsHandler } from "./queries/find-paid-payouts.handler";
 import { InfrastructureModule } from "src/infrastructure/infrastructure.module";
-import { GetPayoutsMetricsHandler } from "./services/queries/get-payouts-metrics.handler";
-import { GetAdjustmentsMetricsHandler } from "./services/queries/get-adjustments-metrics.handler";
+import { GetPayoutsMetricsHandler } from "./queries/get-payouts-metrics.handler";
+import { GetAdjustmentsMetricsHandler } from "./queries/get-adjustments-metrics.handler";
 
-const PayoutCommandHandlers = [
-  AddItemToPayoutHandler,
-  CreateAdjustmentHandler,
-  CreatePayoutHandler,
-  MarkPayoutPaidHandler,
-];
+const PayoutCommandHandlers = [CreateAdjustmentHandler, CreatePayoutHandler];
 
 const PayoutQueryHandlers = [
-  FindAdjustmentByIdHandler,
   FindManyAdjustmentsHandler,
-  FindPayoutByIdHandler,
-  FindManyPayoutsHandler,
+  FindPendingPayoutsHandler,
+  FindPaidPayoutsHandler,
   GetPayoutsMetricsHandler,
   GetAdjustmentsMetricsHandler,
 ];

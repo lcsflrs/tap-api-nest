@@ -5,6 +5,7 @@ export class PayoutStatus implements ValueObject<string> {
   static readonly PAID = new PayoutStatus("PAID");
 
   private static readonly VALID_STATUSES = ["PENDING", "PAID"] as const;
+
   private readonly value: string;
 
   private constructor(value: string) {
@@ -18,7 +19,14 @@ export class PayoutStatus implements ValueObject<string> {
       throw new Error("Invalid payout status");
     }
 
-    return upperValue === "PAID" ? PayoutStatus.PAID : PayoutStatus.PENDING;
+    switch (upperValue) {
+      case "PENDING":
+        return PayoutStatus.PENDING;
+      case "PAID":
+        return PayoutStatus.PAID;
+      default:
+        return PayoutStatus.PENDING;
+    }
   }
 
   private static isValid(value: string): boolean {

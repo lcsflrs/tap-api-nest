@@ -1,19 +1,20 @@
 services:
-  bd:
-    image: mysql
-    container_name: tap_mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+  api:
+    container_name: tap-backoffice-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bun dev
     ports:
-      - "3306:3306"
+      - "5001:5001"
     volumes:
-      - mysql-volume:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      - .:/usr/app
+      - /usr/app/node_modules
+    env_file:
+      - .env
+    networks:
+      - web
 
-volumes:
-  mysql-volume:
+networks:
+  web:
+    external: true

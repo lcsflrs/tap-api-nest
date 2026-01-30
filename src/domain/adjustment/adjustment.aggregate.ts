@@ -7,7 +7,6 @@ export type AdjustmentType = "CREDIT" | "DEBIT";
 export class Adjustment extends AggregateRoot {
   constructor(
     id: Uuid,
-    private _clientId: Uuid,
     private _valueInCents: Money,
     private _reason: string,
     private _type: AdjustmentType,
@@ -19,7 +18,6 @@ export class Adjustment extends AggregateRoot {
   }
 
   static create(
-    clientId: Uuid,
     valueInCents: Money,
     reason: string,
     type: AdjustmentType,
@@ -35,7 +33,6 @@ export class Adjustment extends AggregateRoot {
 
     return new Adjustment(
       Uuid.generate(),
-      clientId,
       valueInCents,
       reason,
       type,
@@ -48,7 +45,6 @@ export class Adjustment extends AggregateRoot {
   static fromJSON(json: any): Adjustment {
     return new Adjustment(
       new Uuid(json.id),
-      new Uuid(json.clientId),
       Money.create(json.valueInCents),
       json.reason,
       json.type as AdjustmentType,
@@ -56,10 +52,6 @@ export class Adjustment extends AggregateRoot {
       new Date(json.updatedAt),
       json.attachment || undefined,
     );
-  }
-
-  get clientId(): Uuid {
-    return this._clientId;
   }
 
   get valueInCents(): Money {

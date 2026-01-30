@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
-import { PrismaService } from "src/infrastructure/prisma/prisma.service";
-import { PayoutRepository } from "src/infrastructure/repositories/payout.repository";
-import { AdjustmentRepository } from "src/infrastructure/repositories/adjustment.repository";
+import { PayoutRepository } from "@infrastructure/repositories/payout.repository";
+import { AdjustmentRepository } from "@infrastructure/repositories/adjustment.repository";
+import { PrismaService } from "@infrastructure/prisma/prisma.service";
 
 @Module({
   providers: [

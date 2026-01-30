@@ -1,5 +1,11 @@
 {
   "collection": "@nestjs/schematics",
   "sourceRoot": "src/api",
-  "entryFile": "api/main"
+  "entryFile": "api/main",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "tsConfigPath": "tsconfig.json",
+    "assets": ["**/*.prisma"],
+    "watchAssets": true
+  }
 }

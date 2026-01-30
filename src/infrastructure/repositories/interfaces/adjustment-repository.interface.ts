@@ -1,5 +1,5 @@
-import { Adjustment } from "../../../domain/adjustment/adjustment.aggregate";
-import { Uuid } from "../../../domain/@shared/interfaces/uuid";
+import { Adjustment } from "@domain/adjustment/adjustment.aggregate";
+import { Uuid } from "@domain/@shared/interfaces/uuid";
 
 export interface IAdjustmentRepository {
   save(adjustment: Adjustment): Promise<void>;

@@ -3,25 +3,49 @@ import { Uuid } from "../@shared/interfaces/uuid";
 import { Money } from "../@shared/value-objects/money.value";
 
 export class PayoutItem extends Entity {
+  private static readonly TAP_FEE_RATE = 0.03;
+
   constructor(
     id: Uuid,
     private _payoutId: Uuid,
-    private _amountInCents: Money,
-    private _consumptionId: Uuid,
+    private _storeSaleId: number,
+    private _orderId: string,
+    private _saleGrossInCents: Money,
+    private _saleFeeInCents: Money,
+    private _saleNetInCents: Money,
   ) {
     super(id);
   }
 
   static create(
     payoutId: Uuid,
-    amountInCents: Money,
-    consumptionId: Uuid,
+    storeSaleId: number,
+    orderId: string,
+    saleGrossInCents: Money,
   ): PayoutItem {
+    if (storeSaleId <= 0) {
+      throw new Error("Invalid store sale ID");
+    }
+
+    if (orderId.trim().length === 0) {
+      throw new Error("Order ID cannot be empty");
+    }
+
+    if (saleGrossInCents.getValue() <= 0) {
+      throw new Error("Sale amount must be greater than zero");
+    }
+
+    const saleFeeInCents = saleGrossInCents.multiply(this.TAP_FEE_RATE);
+    const saleNetInCents = saleGrossInCents.subtract(saleFeeInCents);
+
     return new PayoutItem(
       Uuid.generate(),
       payoutId,
-      amountInCents,
-      consumptionId,
+      storeSaleId,
+      orderId,
+      saleGrossInCents,
+      saleFeeInCents,
+      saleNetInCents,
     );
   }
 
@@ -29,8 +53,9 @@ export class PayoutItem extends Entity {
     return (
       this.id.equals(other.id) &&
       this._payoutId.equals(other._payoutId) &&
-      this._amountInCents.equals(other._amountInCents) &&
-      this._consumptionId.equals(other._consumptionId)
+      this._storeSaleId === other._storeSaleId &&
+      this._orderId === other._orderId &&
+      this._saleGrossInCents.equals(other._saleGrossInCents)
     );
   }
 
@@ -38,8 +63,11 @@ export class PayoutItem extends Entity {
     return new PayoutItem(
       new Uuid(json.id),
       new Uuid(json.payoutId),
-      Money.create(json.amountInCents),
-      new Uuid(json.consumptionId),
+      json.storeSaleId,
+      json.orderId,
+      Money.create(json.saleGrossInCents),
+      Money.create(json.saleFeeInCents),
+      Money.create(json.saleNetInCents),
     );
   }
 
@@ -47,11 +75,23 @@ export class PayoutItem extends Entity {
     return this._payoutId;
   }
 
-  get amountInCents(): Money {
-    return this._amountInCents;
+  get storeSaleId(): number {
+    return this._storeSaleId;
   }
 
-  get consumptionId(): Uuid {
-    return this._consumptionId;
+  get orderId(): string {
+    return this._orderId;
+  }
+
+  get saleGrossInCents(): Money {
+    return this._saleGrossInCents;
+  }
+
+  get saleFeeInCents(): Money {
+    return this._saleFeeInCents;
+  }
+
+  get saleNetInCents(): Money {
+    return this._saleNetInCents;
   }
 }
