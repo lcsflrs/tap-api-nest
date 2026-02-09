@@ -4,6 +4,8 @@ export class FindPendingPayoutsQuery extends Query<{
   stores: {
     storeId: number;
     storeName: string;
+    date: Date;
+    payoutDate: Date;
     totalGrossInCents: number;
     totalFeeInCents: number;
     totalNetInCents: number;

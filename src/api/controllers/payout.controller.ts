@@ -28,6 +28,7 @@ export class PayoutController {
       storeName: string;
       storeSaleIds: number[];
       proofFileUrl: string;
+      date: string;
     },
   ) {
     return this.commandBus.execute(
@@ -36,6 +37,7 @@ export class PayoutController {
         body.storeName,
         body.storeSaleIds,
         body.proofFileUrl,
+        body.date,
       ),
     );
   }

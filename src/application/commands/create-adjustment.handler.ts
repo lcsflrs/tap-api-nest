@@ -1,7 +1,7 @@
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
 import { CreateAdjustmentCommand } from "./dtos/create-adjustment.command";
-import { IAdjustmentRepository } from "@infrastructure/repositories/interfaces/adjustment-repository.interface";
+import type { IAdjustmentRepository } from "@infrastructure/repositories/interfaces/adjustment-repository.interface";
 import { Adjustment } from "@domain/adjustment/adjustment.aggregate";
 import { Money } from "@domain/@shared/value-objects/money.value";
 import { AdjustmentType } from "@domain/adjustment/adjustment.aggregate";

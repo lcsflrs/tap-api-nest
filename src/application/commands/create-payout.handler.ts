@@ -1,7 +1,7 @@
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
 import { CreatePayoutCommand } from "./dtos/create-payout.command";
-import { IPayoutRepository } from "@infrastructure/repositories/interfaces/payout-repository.interface";
+import type { IPayoutRepository } from "@infrastructure/repositories/interfaces/payout-repository.interface";
 import { PrismaService } from "@infrastructure/prisma/prisma.service";
 import { Payout } from "@domain/payout/payout.aggregate";
 import { PayoutItem } from "@domain/payout/payout-item.entity";
@@ -23,6 +23,10 @@ export class CreatePayoutHandler implements ICommandHandler<CreatePayoutCommand>
         payment_method_id: 4,
         status: "paid",
         payout_items: null,
+        paid_at: {
+          gte: new Date(`${command.date}T00:00:00`),
+          lt: new Date(`${command.date}T23:59:59`),
+        },
       },
       select: {
         id: true,

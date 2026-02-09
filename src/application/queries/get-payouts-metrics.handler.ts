@@ -34,23 +34,28 @@ export class GetPayoutsMetricsHandler implements IQueryHandler<GetPayoutsMetrics
       }),
 
       this.prisma.$queryRaw<
-        Array<{ total_in_cents: bigint; fee_in_cents: bigint; count: bigint }>
+        Array<{
+          total_in_cents: bigint;
+          fee_in_cents: bigint;
+          group_count: bigint;
+        }>
       >`
         SELECT
           SUM(ss.total_in_cents) as total_in_cents,
           SUM(FLOOR(ss.total_in_cents * 0.03)) as fee_in_cents,
-          COUNT(*) as count
+          COUNT(DISTINCT CONCAT(ss.store_id, '-', DATE(ss.paid_at))) as group_count
         FROM store_sales ss
         LEFT JOIN payout_items pi ON ss.id = pi.store_sale_id
         WHERE pi.id IS NULL
           AND ss.status = 'paid'
+          AND ss.payment_method_id = 4
       `,
     ]);
 
     const pending = pendingSales[0] || {
       total_in_cents: BigInt(0),
       fee_in_cents: BigInt(0),
-      count: BigInt(0),
+      group_count: BigInt(0),
     };
 
     const pendingNetInCents =
@@ -61,7 +66,7 @@ export class GetPayoutsMetricsHandler implements IQueryHandler<GetPayoutsMetrics
       totalPaidTodayInCents: paidToday._sum.netInCents ?? 0,
       totalPaidTodayCount: paidToday._count._all,
       totalPendingInCents: pendingNetInCents,
-      totalPendingCount: Number(pending.count),
+      totalPendingCount: Number(pending.group_count),
       totalPaidInCents: paidMetrics._sum.netInCents ?? 0,
       totalPaidCount: paidMetrics._count._all,
       totalFeeInCents: (paidMetrics._sum.feeInCents ?? 0) + pendingFeeInCents,

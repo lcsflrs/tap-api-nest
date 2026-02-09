@@ -8,6 +8,7 @@ export class CreatePayoutCommand extends Command<{
     public readonly storeName: string,
     public readonly storeSaleIds: number[],
     public readonly proofFileUrl: string,
+    public readonly date: string,
   ) {
     super();
   }
