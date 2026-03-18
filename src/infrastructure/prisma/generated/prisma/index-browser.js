@@ -120,6 +120,354 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.AccessUserScalarFieldEnum = {
+  id: 'id',
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  password: 'password',
+  document: 'document',
+  emailVerified: 'emailVerified',
+  phoneVerified: 'phoneVerified',
+  emailCodeVerification: 'emailCodeVerification',
+  firstAccess: 'firstAccess',
+  birthdate: 'birthdate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OwnerScalarFieldEnum = {
+  id: 'id',
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  document: 'document',
+  emailVerified: 'emailVerified',
+  phoneVerified: 'phoneVerified',
+  lastName: 'lastName',
+  birthdate: 'birthdate',
+  line1: 'line1',
+  line2: 'line2',
+  line3: 'line3',
+  neighborhood: 'neighborhood',
+  city: 'city',
+  state: 'state',
+  countryCode: 'countryCode',
+  zipCode: 'zipCode',
+  isActive: 'isActive',
+  accessUserId: 'accessUserId',
+  ioCustomerId: 'ioCustomerId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CustomerScalarFieldEnum = {
+  id: 'id',
+  ioCustomerId: 'ioCustomerId',
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  document: 'document',
+  emailVerified: 'emailVerified',
+  phoneVerified: 'phoneVerified',
+  codeVerification: 'codeVerification',
+  defaultCardId: 'defaultCardId',
+  birthdate: 'birthdate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CustomerWalletScalarFieldEnum = {
+  customerId: 'customerId',
+  balance: 'balance',
+  defaultCreditCardId: 'defaultCreditCardId',
+  defaultPaymentMethod: 'defaultPaymentMethod'
+};
+
+exports.Prisma.CustomerWalletTransactionScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  amountInCents: 'amountInCents',
+  type: 'type',
+  description: 'description',
+  balanceAfter: 'balanceAfter',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CreditCardScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  cardId: 'cardId',
+  cardToken: 'cardToken',
+  first4Digits: 'first4Digits',
+  last4Digits: 'last4Digits',
+  cardBrand: 'cardBrand',
+  expirationMonth: 'expirationMonth',
+  expirationYear: 'expirationYear',
+  holderName: 'holderName',
+  authenticated: 'authenticated',
+  authRandomCents: 'authRandomCents',
+  authTransactionId: 'authTransactionId',
+  authRefundDate: 'authRefundDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PartyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  date: 'date',
+  time: 'time',
+  description: 'description',
+  address: 'address',
+  accessUserId: 'accessUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.IngressBatchScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  quantity: 'quantity',
+  quantitySold: 'quantitySold',
+  priceInCents: 'priceInCents',
+  isActive: 'isActive',
+  partyId: 'partyId'
+};
+
+exports.Prisma.IngressStatusScalarFieldEnum = {
+  id: 'id',
+  status: 'status'
+};
+
+exports.Prisma.IngressScalarFieldEnum = {
+  id: 'id',
+  transactionId: 'transactionId',
+  partyId: 'partyId',
+  ingressStatusId: 'ingressStatusId',
+  ingressBatchId: 'ingressBatchId',
+  paymentMethodId: 'paymentMethodId',
+  customerId: 'customerId',
+  valueInCents: 'valueInCents',
+  braceletNumber: 'braceletNumber',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.InviteScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  phone: 'phone',
+  document: 'document',
+  email: 'email',
+  partyId: 'partyId',
+  invitedByCustomerId: 'invitedByCustomerId',
+  ingressId: 'ingressId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PromoterScalarFieldEnum = {
+  id: 'id',
+  partyId: 'partyId',
+  customerId: 'customerId',
+  isActive: 'isActive',
+  bonusInCents: 'bonusInCents',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PaymentMethodScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.PixTransactionScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  storeId: 'storeId',
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  status: 'status',
+  expirationDate: 'expirationDate',
+  pixKey: 'pixKey',
+  pixQrCode: 'pixQrCode',
+  amountInCents: 'amountInCents',
+  description: 'description',
+  pixEmv: 'pixEmv',
+  pixType: 'pixType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StorePixTransactionScalarFieldEnum = {
+  id: 'id',
+  storeId: 'storeId',
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  status: 'status',
+  expirationDate: 'expirationDate',
+  pixKey: 'pixKey',
+  pixQrCode: 'pixQrCode',
+  amountInCents: 'amountInCents',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StoreScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
+  name: 'name',
+  statementDescriptor: 'statementDescriptor',
+  mcc: 'mcc',
+  businessLine1: 'businessLine1',
+  businessLine2: 'businessLine2',
+  businessLine3: 'businessLine3',
+  businessNeighborhood: 'businessNeighborhood',
+  businessCity: 'businessCity',
+  businessState: 'businessState',
+  businessCountryCode: 'businessCountryCode',
+  businessZipCode: 'businessZipCode',
+  businessPhone: 'businessPhone',
+  businessEmail: 'businessEmail',
+  businessName: 'businessName',
+  businessDocument: 'businessDocument',
+  businessWebsite: 'businessWebsite',
+  businessOpenDate: 'businessOpenDate',
+  ioSellerId: 'ioSellerId',
+  taxpayerId: 'taxpayerId',
+  ownerTaxpayerId: 'ownerTaxpayerId',
+  webhookUrl: 'webhookUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StoreBankAccountScalarFieldEnum = {
+  id: 'id',
+  ioToken: 'ioToken',
+  accountNumber: 'accountNumber',
+  routingNumber: 'routingNumber',
+  holderName: 'holderName',
+  type: 'type',
+  bankCode: 'bankCode',
+  document: 'document',
+  storeId: 'storeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TransferHistoryScalarFieldEnum = {
+  id: 'id',
+  bankAccountId: 'bankAccountId',
+  storeId: 'storeId',
+  description: 'description',
+  statementDescriptor: 'statementDescriptor',
+  amountInCents: 'amountInCents',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ShopScalarFieldEnum = {
+  id: 'id',
+  storeId: 'storeId',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ShopProductScalarFieldEnum = {
+  id: 'id',
+  shopId: 'shopId',
+  productId: 'productId',
+  priceInCents: 'priceInCents',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ShopWorkerScalarFieldEnum = {
+  id: 'id',
+  shopId: 'shopId',
+  accessUserId: 'accessUserId',
+  role: 'role',
+  active: 'active',
+  expirationDate: 'expirationDate',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PartyShopScalarFieldEnum = {
+  id: 'id',
+  partyId: 'partyId',
+  shopId: 'shopId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StoreSaleScalarFieldEnum = {
+  id: 'id',
+  partyShopId: 'partyShopId',
+  storeId: 'storeId',
+  shopId: 'shopId',
+  paymentMethodId: 'paymentMethodId',
+  customerId: 'customerId',
+  creditCardId: 'creditCardId',
+  orderId: 'orderId',
+  status: 'status',
+  totalInCents: 'totalInCents',
+  installments: 'installments',
+  interestInCents: 'interestInCents',
+  paidAt: 'paidAt',
+  refundedAt: 'refundedAt',
+  transactionId: 'transactionId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StoreSaleProductScalarFieldEnum = {
+  id: 'id',
+  storeSaleId: 'storeSaleId',
+  shopProductId: 'shopProductId',
+  quantity: 'quantity',
+  priceInCents: 'priceInCents',
+  totalInCents: 'totalInCents',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  dosage: 'dosage',
+  dosageUnitId: 'dosageUnitId',
+  containerTypeId: 'containerTypeId',
+  productTypeId: 'productTypeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProductTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.ContainerTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.DosageUnitScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
 exports.Prisma.PayoutScalarFieldEnum = {
   id: 'id',
   storeId: 'storeId',
@@ -154,366 +502,6 @@ exports.Prisma.AdjustmentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.Access_userScalarFieldEnum = {
-  id: 'id',
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  password: 'password',
-  document: 'document',
-  email_verified: 'email_verified',
-  phone_verified: 'phone_verified',
-  email_code_verification: 'email_code_verification',
-  first_access: 'first_access',
-  birthdate: 'birthdate',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Container_typeScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
-exports.Prisma.Credit_cardScalarFieldEnum = {
-  id: 'id',
-  customer_id: 'customer_id',
-  card_id: 'card_id',
-  card_token: 'card_token',
-  first4_digits: 'first4_digits',
-  last4_digits: 'last4_digits',
-  card_brand: 'card_brand',
-  expiration_month: 'expiration_month',
-  expiration_year: 'expiration_year',
-  holder_name: 'holder_name',
-  authenticated: 'authenticated',
-  auth_random_cents: 'auth_random_cents',
-  auth_transaction_id: 'auth_transaction_id',
-  auth_refund_date: 'auth_refund_date',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.CustomerScalarFieldEnum = {
-  id: 'id',
-  io_customer_id: 'io_customer_id',
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  document: 'document',
-  email_verified: 'email_verified',
-  phone_verified: 'phone_verified',
-  code_verification: 'code_verification',
-  default_card_id: 'default_card_id',
-  birthdate: 'birthdate',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Customer_walletScalarFieldEnum = {
-  customer_id: 'customer_id',
-  balance: 'balance',
-  default_credit_card_id: 'default_credit_card_id',
-  default_payment_method: 'default_payment_method'
-};
-
-exports.Prisma.Customer_wallet_transactionsScalarFieldEnum = {
-  id: 'id',
-  customer_id: 'customer_id',
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  amount_in_cents: 'amount_in_cents',
-  type: 'type',
-  description: 'description',
-  balance_after: 'balance_after',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Dosage_unitScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
-exports.Prisma.IngressScalarFieldEnum = {
-  id: 'id',
-  transaction_id: 'transaction_id',
-  party_id: 'party_id',
-  ingress_status_id: 'ingress_status_id',
-  ingress_batch_id: 'ingress_batch_id',
-  payment_method_id: 'payment_method_id',
-  customer_id: 'customer_id',
-  value_in_cents: 'value_in_cents',
-  bracelet_number: 'bracelet_number',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Ingress_batchScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description',
-  quantity: 'quantity',
-  quantity_sold: 'quantity_sold',
-  price_in_cents: 'price_in_cents',
-  is_active: 'is_active',
-  party_id: 'party_id'
-};
-
-exports.Prisma.Ingress_statusScalarFieldEnum = {
-  id: 'id',
-  status: 'status'
-};
-
-exports.Prisma.InviteScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  phone: 'phone',
-  document: 'document',
-  email: 'email',
-  party_id: 'party_id',
-  invited_by_customer_id: 'invited_by_customer_id',
-  ingress_id: 'ingress_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Knex_migrationsScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  batch: 'batch',
-  migration_time: 'migration_time'
-};
-
-exports.Prisma.Knex_migrations_lockScalarFieldEnum = {
-  index: 'index',
-  is_locked: 'is_locked'
-};
-
-exports.Prisma.OwnerScalarFieldEnum = {
-  id: 'id',
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  document: 'document',
-  email_verified: 'email_verified',
-  phone_verified: 'phone_verified',
-  last_name: 'last_name',
-  birthdate: 'birthdate',
-  line1: 'line1',
-  line2: 'line2',
-  line3: 'line3',
-  neighborhood: 'neighborhood',
-  city: 'city',
-  state: 'state',
-  country_code: 'country_code',
-  zip_code: 'zip_code',
-  is_active: 'is_active',
-  access_user_id: 'access_user_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  io_customer_id: 'io_customer_id'
-};
-
-exports.Prisma.PartyScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  date: 'date',
-  time: 'time',
-  description: 'description',
-  address: 'address',
-  access_user_id: 'access_user_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Party_shopScalarFieldEnum = {
-  id: 'id',
-  party_id: 'party_id',
-  shop_id: 'shop_id',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Payment_methodScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
-exports.Prisma.Pix_transactionsScalarFieldEnum = {
-  id: 'id',
-  customer_id: 'customer_id',
-  store_id: 'store_id',
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  status: 'status',
-  expiration_date: 'expiration_date',
-  pix_key: 'pix_key',
-  pix_qr_code: 'pix_qr_code',
-  amount_in_cents: 'amount_in_cents',
-  description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  pix_emv: 'pix_emv',
-  pix_type: 'pix_type'
-};
-
-exports.Prisma.ProductScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  dosage: 'dosage',
-  dosage_unit_id: 'dosage_unit_id',
-  container_type_id: 'container_type_id',
-  product_type_id: 'product_type_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Product_typeScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
-exports.Prisma.PromoterScalarFieldEnum = {
-  id: 'id',
-  party_id: 'party_id',
-  customer_id: 'customer_id',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  bonus_in_cents: 'bonus_in_cents'
-};
-
-exports.Prisma.ShopScalarFieldEnum = {
-  id: 'id',
-  store_id: 'store_id',
-  name: 'name',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Shop_productsScalarFieldEnum = {
-  id: 'id',
-  shop_id: 'shop_id',
-  product_id: 'product_id',
-  price_in_cents: 'price_in_cents',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Shop_workerScalarFieldEnum = {
-  shop_id: 'shop_id',
-  access_user_id: 'access_user_id',
-  role: 'role',
-  active: 'active',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  id: 'id',
-  expiration_date: 'expiration_date',
-  name: 'name'
-};
-
-exports.Prisma.StoreScalarFieldEnum = {
-  id: 'id',
-  owner_id: 'owner_id',
-  name: 'name',
-  statement_descriptor: 'statement_descriptor',
-  mcc: 'mcc',
-  business_line1: 'business_line1',
-  business_line2: 'business_line2',
-  business_line3: 'business_line3',
-  business_neighborhood: 'business_neighborhood',
-  business_city: 'business_city',
-  business_state: 'business_state',
-  business_country_code: 'business_country_code',
-  business_zip_code: 'business_zip_code',
-  business_phone: 'business_phone',
-  business_email: 'business_email',
-  business_name: 'business_name',
-  business_document: 'business_document',
-  business_website: 'business_website',
-  business_open_date: 'business_open_date',
-  io_seller_id: 'io_seller_id',
-  taxpayer_id: 'taxpayer_id',
-  owner_taxpayer_id: 'owner_taxpayer_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  webhook_url: 'webhook_url'
-};
-
-exports.Prisma.Store_bank_accountScalarFieldEnum = {
-  id: 'id',
-  io_token: 'io_token',
-  account_number: 'account_number',
-  routing_number: 'routing_number',
-  holder_name: 'holder_name',
-  type: 'type',
-  bank_code: 'bank_code',
-  document: 'document',
-  store_id: 'store_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Store_pix_transactionsScalarFieldEnum = {
-  id: 'id',
-  store_id: 'store_id',
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  status: 'status',
-  expiration_date: 'expiration_date',
-  pix_key: 'pix_key',
-  pix_qr_code: 'pix_qr_code',
-  amount_in_cents: 'amount_in_cents',
-  description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Store_salesScalarFieldEnum = {
-  id: 'id',
-  party_shop_id: 'party_shop_id',
-  store_id: 'store_id',
-  shop_id: 'shop_id',
-  payment_method_id: 'payment_method_id',
-  customer_id: 'customer_id',
-  credit_card_id: 'credit_card_id',
-  order_id: 'order_id',
-  status: 'status',
-  total_in_cents: 'total_in_cents',
-  installments: 'installments',
-  interest_in_cents: 'interest_in_cents',
-  paid_at: 'paid_at',
-  refunded_at: 'refunded_at',
-  transaction_id: 'transaction_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Store_sales_productsScalarFieldEnum = {
-  id: 'id',
-  store_sales_id: 'store_sales_id',
-  shop_product_id: 'shop_product_id',
-  quantity: 'quantity',
-  price_in_cents: 'price_in_cents',
-  total_in_cents: 'total_in_cents',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Transfer_historyScalarFieldEnum = {
-  id: 'id',
-  bank_account_id: 'bank_account_id',
-  description: 'description',
-  statement_descriptor: 'statement_descriptor',
-  amount_in_cents: 'amount_in_cents',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  store_id: 'store_id'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -522,6 +510,187 @@ exports.Prisma.SortOrder = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.AccessUserOrderByRelevanceFieldEnum = {
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  password: 'password',
+  document: 'document',
+  emailCodeVerification: 'emailCodeVerification'
+};
+
+exports.Prisma.OwnerOrderByRelevanceFieldEnum = {
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  document: 'document',
+  lastName: 'lastName',
+  line1: 'line1',
+  line2: 'line2',
+  line3: 'line3',
+  neighborhood: 'neighborhood',
+  city: 'city',
+  state: 'state',
+  countryCode: 'countryCode',
+  zipCode: 'zipCode',
+  ioCustomerId: 'ioCustomerId'
+};
+
+exports.Prisma.CustomerOrderByRelevanceFieldEnum = {
+  ioCustomerId: 'ioCustomerId',
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  document: 'document',
+  codeVerification: 'codeVerification',
+  defaultCardId: 'defaultCardId'
+};
+
+exports.Prisma.CustomerWalletOrderByRelevanceFieldEnum = {
+  defaultCreditCardId: 'defaultCreditCardId',
+  defaultPaymentMethod: 'defaultPaymentMethod'
+};
+
+exports.Prisma.CustomerWalletTransactionOrderByRelevanceFieldEnum = {
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  description: 'description'
+};
+
+exports.Prisma.CreditCardOrderByRelevanceFieldEnum = {
+  cardId: 'cardId',
+  cardToken: 'cardToken',
+  first4Digits: 'first4Digits',
+  last4Digits: 'last4Digits',
+  cardBrand: 'cardBrand',
+  expirationMonth: 'expirationMonth',
+  expirationYear: 'expirationYear',
+  holderName: 'holderName',
+  authTransactionId: 'authTransactionId'
+};
+
+exports.Prisma.PartyOrderByRelevanceFieldEnum = {
+  name: 'name',
+  description: 'description',
+  address: 'address'
+};
+
+exports.Prisma.IngressBatchOrderByRelevanceFieldEnum = {
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.IngressStatusOrderByRelevanceFieldEnum = {
+  status: 'status'
+};
+
+exports.Prisma.IngressOrderByRelevanceFieldEnum = {
+  transactionId: 'transactionId'
+};
+
+exports.Prisma.InviteOrderByRelevanceFieldEnum = {
+  name: 'name',
+  phone: 'phone',
+  document: 'document',
+  email: 'email'
+};
+
+exports.Prisma.PaymentMethodOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.PixTransactionOrderByRelevanceFieldEnum = {
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  status: 'status',
+  expirationDate: 'expirationDate',
+  pixKey: 'pixKey',
+  pixQrCode: 'pixQrCode',
+  amountInCents: 'amountInCents',
+  description: 'description',
+  pixEmv: 'pixEmv',
+  pixType: 'pixType'
+};
+
+exports.Prisma.StorePixTransactionOrderByRelevanceFieldEnum = {
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  status: 'status',
+  expirationDate: 'expirationDate',
+  pixKey: 'pixKey',
+  pixQrCode: 'pixQrCode',
+  amountInCents: 'amountInCents',
+  description: 'description'
+};
+
+exports.Prisma.StoreOrderByRelevanceFieldEnum = {
+  name: 'name',
+  statementDescriptor: 'statementDescriptor',
+  businessLine1: 'businessLine1',
+  businessLine2: 'businessLine2',
+  businessLine3: 'businessLine3',
+  businessNeighborhood: 'businessNeighborhood',
+  businessCity: 'businessCity',
+  businessState: 'businessState',
+  businessCountryCode: 'businessCountryCode',
+  businessZipCode: 'businessZipCode',
+  businessPhone: 'businessPhone',
+  businessEmail: 'businessEmail',
+  businessName: 'businessName',
+  businessDocument: 'businessDocument',
+  businessWebsite: 'businessWebsite',
+  ioSellerId: 'ioSellerId',
+  taxpayerId: 'taxpayerId',
+  ownerTaxpayerId: 'ownerTaxpayerId',
+  webhookUrl: 'webhookUrl'
+};
+
+exports.Prisma.StoreBankAccountOrderByRelevanceFieldEnum = {
+  ioToken: 'ioToken',
+  accountNumber: 'accountNumber',
+  routingNumber: 'routingNumber',
+  holderName: 'holderName',
+  type: 'type',
+  bankCode: 'bankCode',
+  document: 'document'
+};
+
+exports.Prisma.TransferHistoryOrderByRelevanceFieldEnum = {
+  description: 'description',
+  statementDescriptor: 'statementDescriptor'
+};
+
+exports.Prisma.ShopOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.ShopWorkerOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.StoreSaleOrderByRelevanceFieldEnum = {
+  orderId: 'orderId',
+  status: 'status',
+  transactionId: 'transactionId'
+};
+
+exports.Prisma.ProductOrderByRelevanceFieldEnum = {
+  name: 'name',
+  dosage: 'dosage'
+};
+
+exports.Prisma.ProductTypeOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.ContainerTypeOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.DosageUnitOrderByRelevanceFieldEnum = {
+  name: 'name'
 };
 
 exports.Prisma.PayoutOrderByRelevanceFieldEnum = {
@@ -541,192 +710,12 @@ exports.Prisma.AdjustmentOrderByRelevanceFieldEnum = {
   reason: 'reason',
   attachment: 'attachment'
 };
-
-exports.Prisma.access_userOrderByRelevanceFieldEnum = {
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  password: 'password',
-  document: 'document',
-  email_code_verification: 'email_code_verification'
+exports.CustomerWalletTransactionType = exports.$Enums.CustomerWalletTransactionType = {
+  in: 'in',
+  out: 'out'
 };
 
-exports.Prisma.container_typeOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.credit_cardOrderByRelevanceFieldEnum = {
-  card_id: 'card_id',
-  card_token: 'card_token',
-  first4_digits: 'first4_digits',
-  last4_digits: 'last4_digits',
-  card_brand: 'card_brand',
-  expiration_month: 'expiration_month',
-  expiration_year: 'expiration_year',
-  holder_name: 'holder_name',
-  auth_transaction_id: 'auth_transaction_id'
-};
-
-exports.Prisma.customerOrderByRelevanceFieldEnum = {
-  io_customer_id: 'io_customer_id',
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  document: 'document',
-  code_verification: 'code_verification',
-  default_card_id: 'default_card_id'
-};
-
-exports.Prisma.customer_walletOrderByRelevanceFieldEnum = {
-  default_credit_card_id: 'default_credit_card_id',
-  default_payment_method: 'default_payment_method'
-};
-
-exports.Prisma.customer_wallet_transactionsOrderByRelevanceFieldEnum = {
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  description: 'description'
-};
-
-exports.Prisma.dosage_unitOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.ingressOrderByRelevanceFieldEnum = {
-  transaction_id: 'transaction_id'
-};
-
-exports.Prisma.ingress_batchOrderByRelevanceFieldEnum = {
-  name: 'name',
-  description: 'description'
-};
-
-exports.Prisma.ingress_statusOrderByRelevanceFieldEnum = {
-  status: 'status'
-};
-
-exports.Prisma.inviteOrderByRelevanceFieldEnum = {
-  name: 'name',
-  phone: 'phone',
-  document: 'document',
-  email: 'email'
-};
-
-exports.Prisma.knex_migrationsOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.ownerOrderByRelevanceFieldEnum = {
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  document: 'document',
-  last_name: 'last_name',
-  line1: 'line1',
-  line2: 'line2',
-  line3: 'line3',
-  neighborhood: 'neighborhood',
-  city: 'city',
-  state: 'state',
-  country_code: 'country_code',
-  zip_code: 'zip_code',
-  io_customer_id: 'io_customer_id'
-};
-
-exports.Prisma.partyOrderByRelevanceFieldEnum = {
-  name: 'name',
-  description: 'description',
-  address: 'address'
-};
-
-exports.Prisma.payment_methodOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.pix_transactionsOrderByRelevanceFieldEnum = {
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  status: 'status',
-  expiration_date: 'expiration_date',
-  pix_key: 'pix_key',
-  pix_qr_code: 'pix_qr_code',
-  amount_in_cents: 'amount_in_cents',
-  description: 'description',
-  pix_emv: 'pix_emv',
-  pix_type: 'pix_type'
-};
-
-exports.Prisma.productOrderByRelevanceFieldEnum = {
-  name: 'name',
-  dosage: 'dosage'
-};
-
-exports.Prisma.product_typeOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.shopOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.shop_workerOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.storeOrderByRelevanceFieldEnum = {
-  name: 'name',
-  statement_descriptor: 'statement_descriptor',
-  business_line1: 'business_line1',
-  business_line2: 'business_line2',
-  business_line3: 'business_line3',
-  business_neighborhood: 'business_neighborhood',
-  business_city: 'business_city',
-  business_state: 'business_state',
-  business_country_code: 'business_country_code',
-  business_zip_code: 'business_zip_code',
-  business_phone: 'business_phone',
-  business_email: 'business_email',
-  business_name: 'business_name',
-  business_document: 'business_document',
-  business_website: 'business_website',
-  io_seller_id: 'io_seller_id',
-  taxpayer_id: 'taxpayer_id',
-  owner_taxpayer_id: 'owner_taxpayer_id',
-  webhook_url: 'webhook_url'
-};
-
-exports.Prisma.store_bank_accountOrderByRelevanceFieldEnum = {
-  io_token: 'io_token',
-  account_number: 'account_number',
-  routing_number: 'routing_number',
-  holder_name: 'holder_name',
-  type: 'type',
-  bank_code: 'bank_code',
-  document: 'document'
-};
-
-exports.Prisma.store_pix_transactionsOrderByRelevanceFieldEnum = {
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  status: 'status',
-  expiration_date: 'expiration_date',
-  pix_key: 'pix_key',
-  pix_qr_code: 'pix_qr_code',
-  amount_in_cents: 'amount_in_cents',
-  description: 'description'
-};
-
-exports.Prisma.store_salesOrderByRelevanceFieldEnum = {
-  order_id: 'order_id',
-  status: 'status',
-  transaction_id: 'transaction_id'
-};
-
-exports.Prisma.transfer_historyOrderByRelevanceFieldEnum = {
-  description: 'description',
-  statement_descriptor: 'statement_descriptor'
-};
-exports.payouts_status = exports.$Enums.payouts_status = {
+exports.PayoutStatus = exports.$Enums.PayoutStatus = {
   PENDING: 'PENDING',
   PAID: 'PAID'
 };
@@ -736,45 +725,38 @@ exports.AdjustmentType = exports.$Enums.AdjustmentType = {
   DEBIT: 'DEBIT'
 };
 
-exports.customer_wallet_transactions_type = exports.$Enums.customer_wallet_transactions_type = {
-  in: 'in',
-  out: 'out'
-};
-
 exports.Prisma.ModelName = {
+  AccessUser: 'AccessUser',
+  Owner: 'Owner',
+  Customer: 'Customer',
+  CustomerWallet: 'CustomerWallet',
+  CustomerWalletTransaction: 'CustomerWalletTransaction',
+  CreditCard: 'CreditCard',
+  Party: 'Party',
+  IngressBatch: 'IngressBatch',
+  IngressStatus: 'IngressStatus',
+  Ingress: 'Ingress',
+  Invite: 'Invite',
+  Promoter: 'Promoter',
+  PaymentMethod: 'PaymentMethod',
+  PixTransaction: 'PixTransaction',
+  StorePixTransaction: 'StorePixTransaction',
+  Store: 'Store',
+  StoreBankAccount: 'StoreBankAccount',
+  TransferHistory: 'TransferHistory',
+  Shop: 'Shop',
+  ShopProduct: 'ShopProduct',
+  ShopWorker: 'ShopWorker',
+  PartyShop: 'PartyShop',
+  StoreSale: 'StoreSale',
+  StoreSaleProduct: 'StoreSaleProduct',
+  Product: 'Product',
+  ProductType: 'ProductType',
+  ContainerType: 'ContainerType',
+  DosageUnit: 'DosageUnit',
   Payout: 'Payout',
   PayoutItem: 'PayoutItem',
-  Adjustment: 'Adjustment',
-  access_user: 'access_user',
-  container_type: 'container_type',
-  credit_card: 'credit_card',
-  customer: 'customer',
-  customer_wallet: 'customer_wallet',
-  customer_wallet_transactions: 'customer_wallet_transactions',
-  dosage_unit: 'dosage_unit',
-  ingress: 'ingress',
-  ingress_batch: 'ingress_batch',
-  ingress_status: 'ingress_status',
-  invite: 'invite',
-  knex_migrations: 'knex_migrations',
-  knex_migrations_lock: 'knex_migrations_lock',
-  owner: 'owner',
-  party: 'party',
-  party_shop: 'party_shop',
-  payment_method: 'payment_method',
-  pix_transactions: 'pix_transactions',
-  product: 'product',
-  product_type: 'product_type',
-  promoter: 'promoter',
-  shop: 'shop',
-  shop_products: 'shop_products',
-  shop_worker: 'shop_worker',
-  store: 'store',
-  store_bank_account: 'store_bank_account',
-  store_pix_transactions: 'store_pix_transactions',
-  store_sales: 'store_sales',
-  store_sales_products: 'store_sales_products',
-  transfer_history: 'transfer_history'
+  Adjustment: 'Adjustment'
 };
 
 /**

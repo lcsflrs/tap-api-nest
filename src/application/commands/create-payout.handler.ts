@@ -17,16 +17,14 @@ export class CreatePayoutHandler implements ICommandHandler<CreatePayoutCommand>
   ) {}
 
   async execute(command: CreatePayoutCommand): Promise<{ id: string }> {
-    const result = await this.storeSaleRepository.findSalesForPayout(
+    const result = await this.storeSaleRepository.findForPayout(
       command.shopId,
       command.storeSaleIds,
       command.date,
     );
 
-    if (result.sales.length === 0) {
-      throw new BadRequestException(
-        "Nenhuma venda elegível encontrada para o payout",
-      );
+    if (result.storeSales.length === 0) {
+      throw Error("None elegible sale found for payout");
     }
 
     const payout = Payout.create(
@@ -35,9 +33,9 @@ export class CreatePayoutHandler implements ICommandHandler<CreatePayoutCommand>
       command.proofFileUrl,
     );
 
-    const items = result.sales.map((sale) =>
+    const items = result.storeSales.map((sale) =>
       PayoutItem.create(
-        payout.id,
+        payout.getId(),
         sale.id,
         sale.orderId,
         Money.create(sale.totalInCents),
@@ -48,6 +46,6 @@ export class CreatePayoutHandler implements ICommandHandler<CreatePayoutCommand>
 
     await this.payoutRepository.save(payout);
 
-    return { id: payout.id.getValue() };
+    return { id: payout.getId().getValue() };
   }
 }

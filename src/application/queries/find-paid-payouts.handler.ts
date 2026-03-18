@@ -2,7 +2,7 @@ import { QueryHandler, IQueryHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
 import { FindPaidPayoutsQuery } from "./dtos/find-paid-payouts.query";
 import { PrismaService } from "@infrastructure/prisma/prisma.service";
-import { payouts_status } from "@infrastructure/prisma/generated/prisma";
+import { PayoutStatus } from "@infrastructure/prisma/generated/prisma";
 
 @QueryHandler(FindPaidPayoutsQuery)
 export class FindPaidPayoutsHandler implements IQueryHandler<FindPaidPayoutsQuery> {
@@ -17,7 +17,7 @@ export class FindPaidPayoutsHandler implements IQueryHandler<FindPaidPayoutsQuer
           contains: storeName,
         },
       }),
-      ...(status && { status: status as payouts_status }),
+      ...(status && { status: status as PayoutStatus }),
     };
 
     const currentPage = Math.max(page, 1);

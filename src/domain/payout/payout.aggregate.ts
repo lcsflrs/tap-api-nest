@@ -1,22 +1,20 @@
-import { AggregateRoot } from "../@shared/interfaces/aggregate-root.abstract.";
+import { AggregateRoot } from "../@shared/interfaces/aggregate-root.abstract";
 import { Uuid } from "../@shared/interfaces/uuid";
-import { PayoutItem } from "./payout-item.entity";
-import { PayoutStatus } from "../@shared/value-objects/payout-status.value";
+import { PayoutItem, PayoutItemJSON } from "./payout-item.entity";
+import { PayoutStatus } from "./payout-status.value";
 import { Money } from "../@shared/value-objects/money.value";
 
-export class Payout extends AggregateRoot {
+export class Payout extends AggregateRoot<Uuid> {
   constructor(
     id: Uuid,
-    private _storeId: number,
-    private _storeName: string,
+    private readonly _storeId: number,
+    private readonly _storeName: string,
     private _grossInCents: Money,
     private _feeInCents: Money,
     private _netInCents: Money,
     private _status: PayoutStatus,
     private _items: PayoutItem[] = [],
-    private readonly _createdAt: Date,
-    private _updatedAt: Date,
-    private _proofFileUrl?: string,
+    private readonly _proofFileUrl?: string,
   ) {
     super(id);
   }
@@ -38,7 +36,7 @@ export class Payout extends AggregateRoot {
       throw new Error("Proof file URL is required");
     }
 
-    const createdAt = new Date();
+    const now = new Date();
 
     return new Payout(
       Uuid.generate(),
@@ -49,10 +47,42 @@ export class Payout extends AggregateRoot {
       Money.create(0),
       PayoutStatus.PAID,
       [],
-      createdAt,
-      new Date(),
       proofFileUrl,
     );
+  }
+
+  static fromJSON(json: PayoutJSON): Payout {
+    const payout = new Payout(
+      new Uuid(json.id),
+      json.storeId,
+      json.storeName,
+      Money.create(json.grossInCents),
+      Money.create(json.feeInCents),
+      Money.create(json.netInCents),
+      PayoutStatus.fromString(json.status),
+      [],
+      json.proofFileUrl,
+    );
+
+    if (json.items) {
+      payout._items = json.items.map((item) => PayoutItem.fromJSON(item));
+    }
+
+    return payout;
+  }
+
+  toJSON(): PayoutJSON {
+    return {
+      id: this.id.getValue(),
+      storeId: this._storeId,
+      storeName: this._storeName,
+      grossInCents: this._grossInCents.getValue(),
+      feeInCents: this._feeInCents.getValue(),
+      netInCents: this._netInCents.getValue(),
+      status: this._status.toString(),
+      items: this._items.map((item) => item.toJSON()),
+      proofFileUrl: this._proofFileUrl,
+    };
   }
 
   addItems(items: PayoutItem[]): void {
@@ -90,30 +120,10 @@ export class Payout extends AggregateRoot {
       (sum, item) => sum.add(item.saleNetInCents),
       Money.create(0),
     );
-
-    this.touch();
   }
 
-  static fromJSON(json: any): Payout {
-    const payout = new Payout(
-      new Uuid(json.id),
-      json.storeId,
-      json.storeName,
-      Money.create(json.grossInCents),
-      Money.create(json.feeInCents),
-      Money.create(json.netInCents),
-      PayoutStatus.fromString(json.status),
-      [],
-      new Date(json.createdAt),
-      new Date(json.updatedAt),
-      json.proofFileUrl,
-    );
-
-    if (json.items) {
-      payout._items = json.items.map((item: any) => PayoutItem.fromJSON(item));
-    }
-
-    return payout;
+  getId(): Uuid {
+    return this.id;
   }
 
   get storeId(): number {
@@ -147,16 +157,16 @@ export class Payout extends AggregateRoot {
   get items(): PayoutItem[] {
     return [...this._items];
   }
+}
 
-  get createdAt(): Date {
-    return this._createdAt;
-  }
-
-  get updatedAt(): Date {
-    return this._updatedAt;
-  }
-
-  private touch(): void {
-    this._updatedAt = new Date();
-  }
+interface PayoutJSON {
+  id: string;
+  storeId: number;
+  storeName: string;
+  grossInCents: number;
+  feeInCents: number;
+  netInCents: number;
+  status: string;
+  proofFileUrl?: string;
+  items?: PayoutItemJSON[];
 }

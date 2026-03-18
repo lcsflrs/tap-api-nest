@@ -27,7 +27,7 @@ export class CreateAdjustmentHandler implements ICommandHandler<
     await this.adjustmentRepository.save(adjustment);
 
     return {
-      id: adjustment.id.getValue(),
+      id: adjustment.getId().getValue(),
     };
   }
 }

@@ -2,7 +2,7 @@ import { Entity } from "../@shared/interfaces/entity.abstract";
 import { Uuid } from "../@shared/interfaces/uuid";
 import { Money } from "../@shared/value-objects/money.value";
 
-export class PayoutItem extends Entity {
+export class PayoutItem extends Entity<Uuid> {
   private static readonly TAP_FEE_RATE = 0.03;
 
   constructor(
@@ -59,7 +59,7 @@ export class PayoutItem extends Entity {
     );
   }
 
-  static fromJSON(json: any): PayoutItem {
+  static fromJSON(json: PayoutItemJSON): PayoutItem {
     return new PayoutItem(
       new Uuid(json.id),
       new Uuid(json.payoutId),
@@ -69,6 +69,18 @@ export class PayoutItem extends Entity {
       Money.create(json.saleFeeInCents),
       Money.create(json.saleNetInCents),
     );
+  }
+
+  toJSON(): PayoutItemJSON {
+    return {
+      id: this.id.getValue(),
+      payoutId: this._payoutId.getValue(),
+      storeSaleId: this._storeSaleId,
+      orderId: this._orderId,
+      saleGrossInCents: this._saleGrossInCents.getValue(),
+      saleFeeInCents: this._saleFeeInCents.getValue(),
+      saleNetInCents: this._saleNetInCents.getValue(),
+    };
   }
 
   get payoutId(): Uuid {
@@ -94,4 +106,14 @@ export class PayoutItem extends Entity {
   get saleNetInCents(): Money {
     return this._saleNetInCents;
   }
+}
+
+export interface PayoutItemJSON {
+  id: string;
+  payoutId: string;
+  storeSaleId: number;
+  orderId: string;
+  saleGrossInCents: number;
+  saleFeeInCents: number;
+  saleNetInCents: number;
 }

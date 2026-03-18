@@ -1,4 +1,4 @@
-import type { ValueObject } from "../interfaces/value-object.interface";
+import { ValueObject } from "@domain/@shared/interfaces/value-object.interface";
 
 export class PayoutStatus implements ValueObject<string> {
   static readonly PENDING = new PayoutStatus("PENDING");

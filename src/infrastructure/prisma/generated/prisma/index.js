@@ -93,6 +93,354 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.AccessUserScalarFieldEnum = {
+  id: 'id',
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  password: 'password',
+  document: 'document',
+  emailVerified: 'emailVerified',
+  phoneVerified: 'phoneVerified',
+  emailCodeVerification: 'emailCodeVerification',
+  firstAccess: 'firstAccess',
+  birthdate: 'birthdate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OwnerScalarFieldEnum = {
+  id: 'id',
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  document: 'document',
+  emailVerified: 'emailVerified',
+  phoneVerified: 'phoneVerified',
+  lastName: 'lastName',
+  birthdate: 'birthdate',
+  line1: 'line1',
+  line2: 'line2',
+  line3: 'line3',
+  neighborhood: 'neighborhood',
+  city: 'city',
+  state: 'state',
+  countryCode: 'countryCode',
+  zipCode: 'zipCode',
+  isActive: 'isActive',
+  accessUserId: 'accessUserId',
+  ioCustomerId: 'ioCustomerId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CustomerScalarFieldEnum = {
+  id: 'id',
+  ioCustomerId: 'ioCustomerId',
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  document: 'document',
+  emailVerified: 'emailVerified',
+  phoneVerified: 'phoneVerified',
+  codeVerification: 'codeVerification',
+  defaultCardId: 'defaultCardId',
+  birthdate: 'birthdate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CustomerWalletScalarFieldEnum = {
+  customerId: 'customerId',
+  balance: 'balance',
+  defaultCreditCardId: 'defaultCreditCardId',
+  defaultPaymentMethod: 'defaultPaymentMethod'
+};
+
+exports.Prisma.CustomerWalletTransactionScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  amountInCents: 'amountInCents',
+  type: 'type',
+  description: 'description',
+  balanceAfter: 'balanceAfter',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CreditCardScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  cardId: 'cardId',
+  cardToken: 'cardToken',
+  first4Digits: 'first4Digits',
+  last4Digits: 'last4Digits',
+  cardBrand: 'cardBrand',
+  expirationMonth: 'expirationMonth',
+  expirationYear: 'expirationYear',
+  holderName: 'holderName',
+  authenticated: 'authenticated',
+  authRandomCents: 'authRandomCents',
+  authTransactionId: 'authTransactionId',
+  authRefundDate: 'authRefundDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PartyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  date: 'date',
+  time: 'time',
+  description: 'description',
+  address: 'address',
+  accessUserId: 'accessUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.IngressBatchScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  quantity: 'quantity',
+  quantitySold: 'quantitySold',
+  priceInCents: 'priceInCents',
+  isActive: 'isActive',
+  partyId: 'partyId'
+};
+
+exports.Prisma.IngressStatusScalarFieldEnum = {
+  id: 'id',
+  status: 'status'
+};
+
+exports.Prisma.IngressScalarFieldEnum = {
+  id: 'id',
+  transactionId: 'transactionId',
+  partyId: 'partyId',
+  ingressStatusId: 'ingressStatusId',
+  ingressBatchId: 'ingressBatchId',
+  paymentMethodId: 'paymentMethodId',
+  customerId: 'customerId',
+  valueInCents: 'valueInCents',
+  braceletNumber: 'braceletNumber',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.InviteScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  phone: 'phone',
+  document: 'document',
+  email: 'email',
+  partyId: 'partyId',
+  invitedByCustomerId: 'invitedByCustomerId',
+  ingressId: 'ingressId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PromoterScalarFieldEnum = {
+  id: 'id',
+  partyId: 'partyId',
+  customerId: 'customerId',
+  isActive: 'isActive',
+  bonusInCents: 'bonusInCents',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PaymentMethodScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.PixTransactionScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  storeId: 'storeId',
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  status: 'status',
+  expirationDate: 'expirationDate',
+  pixKey: 'pixKey',
+  pixQrCode: 'pixQrCode',
+  amountInCents: 'amountInCents',
+  description: 'description',
+  pixEmv: 'pixEmv',
+  pixType: 'pixType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StorePixTransactionScalarFieldEnum = {
+  id: 'id',
+  storeId: 'storeId',
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  status: 'status',
+  expirationDate: 'expirationDate',
+  pixKey: 'pixKey',
+  pixQrCode: 'pixQrCode',
+  amountInCents: 'amountInCents',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StoreScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
+  name: 'name',
+  statementDescriptor: 'statementDescriptor',
+  mcc: 'mcc',
+  businessLine1: 'businessLine1',
+  businessLine2: 'businessLine2',
+  businessLine3: 'businessLine3',
+  businessNeighborhood: 'businessNeighborhood',
+  businessCity: 'businessCity',
+  businessState: 'businessState',
+  businessCountryCode: 'businessCountryCode',
+  businessZipCode: 'businessZipCode',
+  businessPhone: 'businessPhone',
+  businessEmail: 'businessEmail',
+  businessName: 'businessName',
+  businessDocument: 'businessDocument',
+  businessWebsite: 'businessWebsite',
+  businessOpenDate: 'businessOpenDate',
+  ioSellerId: 'ioSellerId',
+  taxpayerId: 'taxpayerId',
+  ownerTaxpayerId: 'ownerTaxpayerId',
+  webhookUrl: 'webhookUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StoreBankAccountScalarFieldEnum = {
+  id: 'id',
+  ioToken: 'ioToken',
+  accountNumber: 'accountNumber',
+  routingNumber: 'routingNumber',
+  holderName: 'holderName',
+  type: 'type',
+  bankCode: 'bankCode',
+  document: 'document',
+  storeId: 'storeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TransferHistoryScalarFieldEnum = {
+  id: 'id',
+  bankAccountId: 'bankAccountId',
+  storeId: 'storeId',
+  description: 'description',
+  statementDescriptor: 'statementDescriptor',
+  amountInCents: 'amountInCents',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ShopScalarFieldEnum = {
+  id: 'id',
+  storeId: 'storeId',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ShopProductScalarFieldEnum = {
+  id: 'id',
+  shopId: 'shopId',
+  productId: 'productId',
+  priceInCents: 'priceInCents',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ShopWorkerScalarFieldEnum = {
+  id: 'id',
+  shopId: 'shopId',
+  accessUserId: 'accessUserId',
+  role: 'role',
+  active: 'active',
+  expirationDate: 'expirationDate',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PartyShopScalarFieldEnum = {
+  id: 'id',
+  partyId: 'partyId',
+  shopId: 'shopId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StoreSaleScalarFieldEnum = {
+  id: 'id',
+  partyShopId: 'partyShopId',
+  storeId: 'storeId',
+  shopId: 'shopId',
+  paymentMethodId: 'paymentMethodId',
+  customerId: 'customerId',
+  creditCardId: 'creditCardId',
+  orderId: 'orderId',
+  status: 'status',
+  totalInCents: 'totalInCents',
+  installments: 'installments',
+  interestInCents: 'interestInCents',
+  paidAt: 'paidAt',
+  refundedAt: 'refundedAt',
+  transactionId: 'transactionId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StoreSaleProductScalarFieldEnum = {
+  id: 'id',
+  storeSaleId: 'storeSaleId',
+  shopProductId: 'shopProductId',
+  quantity: 'quantity',
+  priceInCents: 'priceInCents',
+  totalInCents: 'totalInCents',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  dosage: 'dosage',
+  dosageUnitId: 'dosageUnitId',
+  containerTypeId: 'containerTypeId',
+  productTypeId: 'productTypeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProductTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.ContainerTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.DosageUnitScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
 exports.Prisma.PayoutScalarFieldEnum = {
   id: 'id',
   storeId: 'storeId',
@@ -127,366 +475,6 @@ exports.Prisma.AdjustmentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.Access_userScalarFieldEnum = {
-  id: 'id',
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  password: 'password',
-  document: 'document',
-  email_verified: 'email_verified',
-  phone_verified: 'phone_verified',
-  email_code_verification: 'email_code_verification',
-  first_access: 'first_access',
-  birthdate: 'birthdate',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Container_typeScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
-exports.Prisma.Credit_cardScalarFieldEnum = {
-  id: 'id',
-  customer_id: 'customer_id',
-  card_id: 'card_id',
-  card_token: 'card_token',
-  first4_digits: 'first4_digits',
-  last4_digits: 'last4_digits',
-  card_brand: 'card_brand',
-  expiration_month: 'expiration_month',
-  expiration_year: 'expiration_year',
-  holder_name: 'holder_name',
-  authenticated: 'authenticated',
-  auth_random_cents: 'auth_random_cents',
-  auth_transaction_id: 'auth_transaction_id',
-  auth_refund_date: 'auth_refund_date',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.CustomerScalarFieldEnum = {
-  id: 'id',
-  io_customer_id: 'io_customer_id',
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  document: 'document',
-  email_verified: 'email_verified',
-  phone_verified: 'phone_verified',
-  code_verification: 'code_verification',
-  default_card_id: 'default_card_id',
-  birthdate: 'birthdate',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Customer_walletScalarFieldEnum = {
-  customer_id: 'customer_id',
-  balance: 'balance',
-  default_credit_card_id: 'default_credit_card_id',
-  default_payment_method: 'default_payment_method'
-};
-
-exports.Prisma.Customer_wallet_transactionsScalarFieldEnum = {
-  id: 'id',
-  customer_id: 'customer_id',
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  amount_in_cents: 'amount_in_cents',
-  type: 'type',
-  description: 'description',
-  balance_after: 'balance_after',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Dosage_unitScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
-exports.Prisma.IngressScalarFieldEnum = {
-  id: 'id',
-  transaction_id: 'transaction_id',
-  party_id: 'party_id',
-  ingress_status_id: 'ingress_status_id',
-  ingress_batch_id: 'ingress_batch_id',
-  payment_method_id: 'payment_method_id',
-  customer_id: 'customer_id',
-  value_in_cents: 'value_in_cents',
-  bracelet_number: 'bracelet_number',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Ingress_batchScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description',
-  quantity: 'quantity',
-  quantity_sold: 'quantity_sold',
-  price_in_cents: 'price_in_cents',
-  is_active: 'is_active',
-  party_id: 'party_id'
-};
-
-exports.Prisma.Ingress_statusScalarFieldEnum = {
-  id: 'id',
-  status: 'status'
-};
-
-exports.Prisma.InviteScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  phone: 'phone',
-  document: 'document',
-  email: 'email',
-  party_id: 'party_id',
-  invited_by_customer_id: 'invited_by_customer_id',
-  ingress_id: 'ingress_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Knex_migrationsScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  batch: 'batch',
-  migration_time: 'migration_time'
-};
-
-exports.Prisma.Knex_migrations_lockScalarFieldEnum = {
-  index: 'index',
-  is_locked: 'is_locked'
-};
-
-exports.Prisma.OwnerScalarFieldEnum = {
-  id: 'id',
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  document: 'document',
-  email_verified: 'email_verified',
-  phone_verified: 'phone_verified',
-  last_name: 'last_name',
-  birthdate: 'birthdate',
-  line1: 'line1',
-  line2: 'line2',
-  line3: 'line3',
-  neighborhood: 'neighborhood',
-  city: 'city',
-  state: 'state',
-  country_code: 'country_code',
-  zip_code: 'zip_code',
-  is_active: 'is_active',
-  access_user_id: 'access_user_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  io_customer_id: 'io_customer_id'
-};
-
-exports.Prisma.PartyScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  date: 'date',
-  time: 'time',
-  description: 'description',
-  address: 'address',
-  access_user_id: 'access_user_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Party_shopScalarFieldEnum = {
-  id: 'id',
-  party_id: 'party_id',
-  shop_id: 'shop_id',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Payment_methodScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
-exports.Prisma.Pix_transactionsScalarFieldEnum = {
-  id: 'id',
-  customer_id: 'customer_id',
-  store_id: 'store_id',
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  status: 'status',
-  expiration_date: 'expiration_date',
-  pix_key: 'pix_key',
-  pix_qr_code: 'pix_qr_code',
-  amount_in_cents: 'amount_in_cents',
-  description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  pix_emv: 'pix_emv',
-  pix_type: 'pix_type'
-};
-
-exports.Prisma.ProductScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  dosage: 'dosage',
-  dosage_unit_id: 'dosage_unit_id',
-  container_type_id: 'container_type_id',
-  product_type_id: 'product_type_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Product_typeScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-};
-
-exports.Prisma.PromoterScalarFieldEnum = {
-  id: 'id',
-  party_id: 'party_id',
-  customer_id: 'customer_id',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  bonus_in_cents: 'bonus_in_cents'
-};
-
-exports.Prisma.ShopScalarFieldEnum = {
-  id: 'id',
-  store_id: 'store_id',
-  name: 'name',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Shop_productsScalarFieldEnum = {
-  id: 'id',
-  shop_id: 'shop_id',
-  product_id: 'product_id',
-  price_in_cents: 'price_in_cents',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Shop_workerScalarFieldEnum = {
-  shop_id: 'shop_id',
-  access_user_id: 'access_user_id',
-  role: 'role',
-  active: 'active',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  id: 'id',
-  expiration_date: 'expiration_date',
-  name: 'name'
-};
-
-exports.Prisma.StoreScalarFieldEnum = {
-  id: 'id',
-  owner_id: 'owner_id',
-  name: 'name',
-  statement_descriptor: 'statement_descriptor',
-  mcc: 'mcc',
-  business_line1: 'business_line1',
-  business_line2: 'business_line2',
-  business_line3: 'business_line3',
-  business_neighborhood: 'business_neighborhood',
-  business_city: 'business_city',
-  business_state: 'business_state',
-  business_country_code: 'business_country_code',
-  business_zip_code: 'business_zip_code',
-  business_phone: 'business_phone',
-  business_email: 'business_email',
-  business_name: 'business_name',
-  business_document: 'business_document',
-  business_website: 'business_website',
-  business_open_date: 'business_open_date',
-  io_seller_id: 'io_seller_id',
-  taxpayer_id: 'taxpayer_id',
-  owner_taxpayer_id: 'owner_taxpayer_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  webhook_url: 'webhook_url'
-};
-
-exports.Prisma.Store_bank_accountScalarFieldEnum = {
-  id: 'id',
-  io_token: 'io_token',
-  account_number: 'account_number',
-  routing_number: 'routing_number',
-  holder_name: 'holder_name',
-  type: 'type',
-  bank_code: 'bank_code',
-  document: 'document',
-  store_id: 'store_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Store_pix_transactionsScalarFieldEnum = {
-  id: 'id',
-  store_id: 'store_id',
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  status: 'status',
-  expiration_date: 'expiration_date',
-  pix_key: 'pix_key',
-  pix_qr_code: 'pix_qr_code',
-  amount_in_cents: 'amount_in_cents',
-  description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Store_salesScalarFieldEnum = {
-  id: 'id',
-  party_shop_id: 'party_shop_id',
-  store_id: 'store_id',
-  shop_id: 'shop_id',
-  payment_method_id: 'payment_method_id',
-  customer_id: 'customer_id',
-  credit_card_id: 'credit_card_id',
-  order_id: 'order_id',
-  status: 'status',
-  total_in_cents: 'total_in_cents',
-  installments: 'installments',
-  interest_in_cents: 'interest_in_cents',
-  paid_at: 'paid_at',
-  refunded_at: 'refunded_at',
-  transaction_id: 'transaction_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Store_sales_productsScalarFieldEnum = {
-  id: 'id',
-  store_sales_id: 'store_sales_id',
-  shop_product_id: 'shop_product_id',
-  quantity: 'quantity',
-  price_in_cents: 'price_in_cents',
-  total_in_cents: 'total_in_cents',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Transfer_historyScalarFieldEnum = {
-  id: 'id',
-  bank_account_id: 'bank_account_id',
-  description: 'description',
-  statement_descriptor: 'statement_descriptor',
-  amount_in_cents: 'amount_in_cents',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  store_id: 'store_id'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -495,6 +483,187 @@ exports.Prisma.SortOrder = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.AccessUserOrderByRelevanceFieldEnum = {
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  password: 'password',
+  document: 'document',
+  emailCodeVerification: 'emailCodeVerification'
+};
+
+exports.Prisma.OwnerOrderByRelevanceFieldEnum = {
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  document: 'document',
+  lastName: 'lastName',
+  line1: 'line1',
+  line2: 'line2',
+  line3: 'line3',
+  neighborhood: 'neighborhood',
+  city: 'city',
+  state: 'state',
+  countryCode: 'countryCode',
+  zipCode: 'zipCode',
+  ioCustomerId: 'ioCustomerId'
+};
+
+exports.Prisma.CustomerOrderByRelevanceFieldEnum = {
+  ioCustomerId: 'ioCustomerId',
+  phone: 'phone',
+  email: 'email',
+  name: 'name',
+  document: 'document',
+  codeVerification: 'codeVerification',
+  defaultCardId: 'defaultCardId'
+};
+
+exports.Prisma.CustomerWalletOrderByRelevanceFieldEnum = {
+  defaultCreditCardId: 'defaultCreditCardId',
+  defaultPaymentMethod: 'defaultPaymentMethod'
+};
+
+exports.Prisma.CustomerWalletTransactionOrderByRelevanceFieldEnum = {
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  description: 'description'
+};
+
+exports.Prisma.CreditCardOrderByRelevanceFieldEnum = {
+  cardId: 'cardId',
+  cardToken: 'cardToken',
+  first4Digits: 'first4Digits',
+  last4Digits: 'last4Digits',
+  cardBrand: 'cardBrand',
+  expirationMonth: 'expirationMonth',
+  expirationYear: 'expirationYear',
+  holderName: 'holderName',
+  authTransactionId: 'authTransactionId'
+};
+
+exports.Prisma.PartyOrderByRelevanceFieldEnum = {
+  name: 'name',
+  description: 'description',
+  address: 'address'
+};
+
+exports.Prisma.IngressBatchOrderByRelevanceFieldEnum = {
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.IngressStatusOrderByRelevanceFieldEnum = {
+  status: 'status'
+};
+
+exports.Prisma.IngressOrderByRelevanceFieldEnum = {
+  transactionId: 'transactionId'
+};
+
+exports.Prisma.InviteOrderByRelevanceFieldEnum = {
+  name: 'name',
+  phone: 'phone',
+  document: 'document',
+  email: 'email'
+};
+
+exports.Prisma.PaymentMethodOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.PixTransactionOrderByRelevanceFieldEnum = {
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  status: 'status',
+  expirationDate: 'expirationDate',
+  pixKey: 'pixKey',
+  pixQrCode: 'pixQrCode',
+  amountInCents: 'amountInCents',
+  description: 'description',
+  pixEmv: 'pixEmv',
+  pixType: 'pixType'
+};
+
+exports.Prisma.StorePixTransactionOrderByRelevanceFieldEnum = {
+  transactionId: 'transactionId',
+  referenceId: 'referenceId',
+  status: 'status',
+  expirationDate: 'expirationDate',
+  pixKey: 'pixKey',
+  pixQrCode: 'pixQrCode',
+  amountInCents: 'amountInCents',
+  description: 'description'
+};
+
+exports.Prisma.StoreOrderByRelevanceFieldEnum = {
+  name: 'name',
+  statementDescriptor: 'statementDescriptor',
+  businessLine1: 'businessLine1',
+  businessLine2: 'businessLine2',
+  businessLine3: 'businessLine3',
+  businessNeighborhood: 'businessNeighborhood',
+  businessCity: 'businessCity',
+  businessState: 'businessState',
+  businessCountryCode: 'businessCountryCode',
+  businessZipCode: 'businessZipCode',
+  businessPhone: 'businessPhone',
+  businessEmail: 'businessEmail',
+  businessName: 'businessName',
+  businessDocument: 'businessDocument',
+  businessWebsite: 'businessWebsite',
+  ioSellerId: 'ioSellerId',
+  taxpayerId: 'taxpayerId',
+  ownerTaxpayerId: 'ownerTaxpayerId',
+  webhookUrl: 'webhookUrl'
+};
+
+exports.Prisma.StoreBankAccountOrderByRelevanceFieldEnum = {
+  ioToken: 'ioToken',
+  accountNumber: 'accountNumber',
+  routingNumber: 'routingNumber',
+  holderName: 'holderName',
+  type: 'type',
+  bankCode: 'bankCode',
+  document: 'document'
+};
+
+exports.Prisma.TransferHistoryOrderByRelevanceFieldEnum = {
+  description: 'description',
+  statementDescriptor: 'statementDescriptor'
+};
+
+exports.Prisma.ShopOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.ShopWorkerOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.StoreSaleOrderByRelevanceFieldEnum = {
+  orderId: 'orderId',
+  status: 'status',
+  transactionId: 'transactionId'
+};
+
+exports.Prisma.ProductOrderByRelevanceFieldEnum = {
+  name: 'name',
+  dosage: 'dosage'
+};
+
+exports.Prisma.ProductTypeOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.ContainerTypeOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.DosageUnitOrderByRelevanceFieldEnum = {
+  name: 'name'
 };
 
 exports.Prisma.PayoutOrderByRelevanceFieldEnum = {
@@ -514,240 +683,53 @@ exports.Prisma.AdjustmentOrderByRelevanceFieldEnum = {
   reason: 'reason',
   attachment: 'attachment'
 };
-
-exports.Prisma.access_userOrderByRelevanceFieldEnum = {
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  password: 'password',
-  document: 'document',
-  email_code_verification: 'email_code_verification'
-};
-
-exports.Prisma.container_typeOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.credit_cardOrderByRelevanceFieldEnum = {
-  card_id: 'card_id',
-  card_token: 'card_token',
-  first4_digits: 'first4_digits',
-  last4_digits: 'last4_digits',
-  card_brand: 'card_brand',
-  expiration_month: 'expiration_month',
-  expiration_year: 'expiration_year',
-  holder_name: 'holder_name',
-  auth_transaction_id: 'auth_transaction_id'
-};
-
-exports.Prisma.customerOrderByRelevanceFieldEnum = {
-  io_customer_id: 'io_customer_id',
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  document: 'document',
-  code_verification: 'code_verification',
-  default_card_id: 'default_card_id'
-};
-
-exports.Prisma.customer_walletOrderByRelevanceFieldEnum = {
-  default_credit_card_id: 'default_credit_card_id',
-  default_payment_method: 'default_payment_method'
-};
-
-exports.Prisma.customer_wallet_transactionsOrderByRelevanceFieldEnum = {
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  description: 'description'
-};
-
-exports.Prisma.dosage_unitOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.ingressOrderByRelevanceFieldEnum = {
-  transaction_id: 'transaction_id'
-};
-
-exports.Prisma.ingress_batchOrderByRelevanceFieldEnum = {
-  name: 'name',
-  description: 'description'
-};
-
-exports.Prisma.ingress_statusOrderByRelevanceFieldEnum = {
-  status: 'status'
-};
-
-exports.Prisma.inviteOrderByRelevanceFieldEnum = {
-  name: 'name',
-  phone: 'phone',
-  document: 'document',
-  email: 'email'
-};
-
-exports.Prisma.knex_migrationsOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.ownerOrderByRelevanceFieldEnum = {
-  phone: 'phone',
-  email: 'email',
-  name: 'name',
-  document: 'document',
-  last_name: 'last_name',
-  line1: 'line1',
-  line2: 'line2',
-  line3: 'line3',
-  neighborhood: 'neighborhood',
-  city: 'city',
-  state: 'state',
-  country_code: 'country_code',
-  zip_code: 'zip_code',
-  io_customer_id: 'io_customer_id'
-};
-
-exports.Prisma.partyOrderByRelevanceFieldEnum = {
-  name: 'name',
-  description: 'description',
-  address: 'address'
-};
-
-exports.Prisma.payment_methodOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.pix_transactionsOrderByRelevanceFieldEnum = {
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  status: 'status',
-  expiration_date: 'expiration_date',
-  pix_key: 'pix_key',
-  pix_qr_code: 'pix_qr_code',
-  amount_in_cents: 'amount_in_cents',
-  description: 'description',
-  pix_emv: 'pix_emv',
-  pix_type: 'pix_type'
-};
-
-exports.Prisma.productOrderByRelevanceFieldEnum = {
-  name: 'name',
-  dosage: 'dosage'
-};
-
-exports.Prisma.product_typeOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.shopOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.shop_workerOrderByRelevanceFieldEnum = {
-  name: 'name'
-};
-
-exports.Prisma.storeOrderByRelevanceFieldEnum = {
-  name: 'name',
-  statement_descriptor: 'statement_descriptor',
-  business_line1: 'business_line1',
-  business_line2: 'business_line2',
-  business_line3: 'business_line3',
-  business_neighborhood: 'business_neighborhood',
-  business_city: 'business_city',
-  business_state: 'business_state',
-  business_country_code: 'business_country_code',
-  business_zip_code: 'business_zip_code',
-  business_phone: 'business_phone',
-  business_email: 'business_email',
-  business_name: 'business_name',
-  business_document: 'business_document',
-  business_website: 'business_website',
-  io_seller_id: 'io_seller_id',
-  taxpayer_id: 'taxpayer_id',
-  owner_taxpayer_id: 'owner_taxpayer_id',
-  webhook_url: 'webhook_url'
-};
-
-exports.Prisma.store_bank_accountOrderByRelevanceFieldEnum = {
-  io_token: 'io_token',
-  account_number: 'account_number',
-  routing_number: 'routing_number',
-  holder_name: 'holder_name',
-  type: 'type',
-  bank_code: 'bank_code',
-  document: 'document'
-};
-
-exports.Prisma.store_pix_transactionsOrderByRelevanceFieldEnum = {
-  transaction_id: 'transaction_id',
-  reference_id: 'reference_id',
-  status: 'status',
-  expiration_date: 'expiration_date',
-  pix_key: 'pix_key',
-  pix_qr_code: 'pix_qr_code',
-  amount_in_cents: 'amount_in_cents',
-  description: 'description'
-};
-
-exports.Prisma.store_salesOrderByRelevanceFieldEnum = {
-  order_id: 'order_id',
-  status: 'status',
-  transaction_id: 'transaction_id'
-};
-
-exports.Prisma.transfer_historyOrderByRelevanceFieldEnum = {
-  description: 'description',
-  statement_descriptor: 'statement_descriptor'
-};
 exports.AdjustmentType = exports.$Enums.AdjustmentType = {
   CREDIT: 'CREDIT',
   DEBIT: 'DEBIT'
 };
 
-exports.customer_wallet_transactions_type = exports.$Enums.customer_wallet_transactions_type = {
+exports.CustomerWalletTransactionType = exports.$Enums.CustomerWalletTransactionType = {
   in: 'in',
   out: 'out'
 };
 
-exports.payouts_status = exports.$Enums.payouts_status = {
+exports.PayoutStatus = exports.$Enums.PayoutStatus = {
   PENDING: 'PENDING',
   PAID: 'PAID'
 };
 
 exports.Prisma.ModelName = {
+  AccessUser: 'AccessUser',
+  Owner: 'Owner',
+  Customer: 'Customer',
+  CustomerWallet: 'CustomerWallet',
+  CustomerWalletTransaction: 'CustomerWalletTransaction',
+  CreditCard: 'CreditCard',
+  Party: 'Party',
+  IngressBatch: 'IngressBatch',
+  IngressStatus: 'IngressStatus',
+  Ingress: 'Ingress',
+  Invite: 'Invite',
+  Promoter: 'Promoter',
+  PaymentMethod: 'PaymentMethod',
+  PixTransaction: 'PixTransaction',
+  StorePixTransaction: 'StorePixTransaction',
+  Store: 'Store',
+  StoreBankAccount: 'StoreBankAccount',
+  TransferHistory: 'TransferHistory',
+  Shop: 'Shop',
+  ShopProduct: 'ShopProduct',
+  ShopWorker: 'ShopWorker',
+  PartyShop: 'PartyShop',
+  StoreSale: 'StoreSale',
+  StoreSaleProduct: 'StoreSaleProduct',
+  Product: 'Product',
+  ProductType: 'ProductType',
+  ContainerType: 'ContainerType',
+  DosageUnit: 'DosageUnit',
   Payout: 'Payout',
   PayoutItem: 'PayoutItem',
-  Adjustment: 'Adjustment',
-  access_user: 'access_user',
-  container_type: 'container_type',
-  credit_card: 'credit_card',
-  customer: 'customer',
-  customer_wallet: 'customer_wallet',
-  customer_wallet_transactions: 'customer_wallet_transactions',
-  dosage_unit: 'dosage_unit',
-  ingress: 'ingress',
-  ingress_batch: 'ingress_batch',
-  ingress_status: 'ingress_status',
-  invite: 'invite',
-  knex_migrations: 'knex_migrations',
-  knex_migrations_lock: 'knex_migrations_lock',
-  owner: 'owner',
-  party: 'party',
-  party_shop: 'party_shop',
-  payment_method: 'payment_method',
-  pix_transactions: 'pix_transactions',
-  product: 'product',
-  product_type: 'product_type',
-  promoter: 'promoter',
-  shop: 'shop',
-  shop_products: 'shop_products',
-  shop_worker: 'shop_worker',
-  store: 'store',
-  store_bank_account: 'store_bank_account',
-  store_pix_transactions: 'store_pix_transactions',
-  store_sales: 'store_sales',
-  store_sales_products: 'store_sales_products',
-  transfer_history: 'transfer_history'
+  Adjustment: 'Adjustment'
 };
 /**
  * Create the Client
@@ -757,10 +739,10 @@ const config = {
   "clientVersion": "7.1.0",
   "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
   "activeProvider": "mysql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel Payout {\n  id           String         @id\n  storeId      Int            @map(\"store_id\") @db.UnsignedInt\n  storeName    String         @map(\"store_name\") @db.VarChar(255)\n  grossInCents Int            @map(\"gross_in_cents\")\n  feeInCents   Int            @map(\"fee_in_cents\")\n  netInCents   Int            @map(\"net_in_cents\")\n  status       payouts_status @default(PAID)\n  proofFileUrl String?        @map(\"proof_file_url\") @db.VarChar(500)\n  createdAt    DateTime       @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt    DateTime       @default(now()) @updatedAt @map(\"updated_at\") @db.Timestamp(0)\n  items        PayoutItem[]\n  store        store          @relation(fields: [storeId], references: [id], onUpdate: NoAction, map: \"payouts_store_id_foreign\")\n\n  @@index([status], map: \"payouts_status_index\")\n  @@index([storeId], map: \"payouts_store_id_index\")\n  @@map(\"payouts\")\n}\n\nmodel PayoutItem {\n  id               String      @id\n  payoutId         String      @map(\"payout_id\")\n  storeSaleId      Int         @unique(map: \"payout_items_store_sale_id_unique\") @map(\"store_sale_id\") @db.UnsignedInt\n  orderId          String      @map(\"order_id\") @db.VarChar(255)\n  saleGrossInCents Int         @map(\"sale_gross_in_cents\")\n  saleFeeInCents   Int         @map(\"sale_fee_in_cents\")\n  saleNetInCents   Int         @map(\"sale_net_in_cents\")\n  createdAt        DateTime    @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  payout           Payout      @relation(fields: [payoutId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"payout_items_payout_id_foreign\")\n  store_sales      store_sales @relation(fields: [storeSaleId], references: [id], onUpdate: NoAction, map: \"payout_items_store_sale_id_foreign\")\n\n  @@index([orderId], map: \"payout_items_order_id_index\")\n  @@index([payoutId], map: \"payout_items_payout_id_index\")\n  @@map(\"payout_items\")\n}\n\nmodel Adjustment {\n  id           String         @id\n  valueInCents Int            @map(\"value_in_cents\")\n  reason       String         @db.Text\n  type         AdjustmentType\n  attachment   String?        @db.VarChar(500)\n  createdAt    DateTime       @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt    DateTime       @default(now()) @updatedAt @map(\"updated_at\") @db.Timestamp(0)\n\n  @@index([createdAt], map: \"adjustments_created_at_index\")\n  @@map(\"adjustments\")\n}\n\nmodel access_user {\n  id                      Int           @id @default(autoincrement()) @db.UnsignedInt\n  phone                   String?       @db.VarChar(15)\n  email                   String        @db.VarChar(255)\n  name                    String        @db.VarChar(100)\n  password                String        @db.VarChar(255)\n  document                String        @db.VarChar(15)\n  email_verified          Boolean?      @default(false)\n  phone_verified          Boolean?      @default(false)\n  email_code_verification String?       @db.VarChar(6)\n  first_access            Boolean?      @default(true)\n  birthdate               DateTime?     @db.Date\n  created_at              DateTime      @default(now()) @db.Timestamp(0)\n  updated_at              DateTime      @default(now()) @db.Timestamp(0)\n  owner                   owner[]\n  party                   party[]\n  shop_worker             shop_worker[]\n}\n\nmodel container_type {\n  id      Int       @id @default(autoincrement()) @db.UnsignedInt\n  name    String    @db.VarChar(255)\n  product product[]\n}\n\nmodel credit_card {\n  id                  Int           @id @default(autoincrement()) @db.UnsignedInt\n  customer_id         Int           @db.UnsignedInt\n  card_id             String        @db.VarChar(255)\n  card_token          String        @db.VarChar(255)\n  first4_digits       String        @db.VarChar(255)\n  last4_digits        String        @db.VarChar(255)\n  card_brand          String        @db.VarChar(255)\n  expiration_month    String        @db.VarChar(255)\n  expiration_year     String        @db.VarChar(255)\n  holder_name         String        @db.VarChar(255)\n  authenticated       Boolean?      @default(false)\n  auth_random_cents   Int?\n  auth_transaction_id String?       @db.VarChar(255)\n  auth_refund_date    DateTime?     @db.DateTime(0)\n  created_at          DateTime      @default(now()) @db.Timestamp(0)\n  updated_at          DateTime      @default(now()) @db.Timestamp(0)\n  customer            customer      @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"credit_card_customer_id_foreign\")\n  store_sales         store_sales[]\n\n  @@index([customer_id], map: \"credit_card_customer_id_foreign\")\n}\n\nmodel customer {\n  id                           Int                            @id @default(autoincrement()) @db.UnsignedInt\n  io_customer_id               String?                        @db.VarChar(255)\n  phone                        String?                        @db.VarChar(255)\n  email                        String                         @db.VarChar(255)\n  name                         String                         @db.VarChar(255)\n  document                     String?                        @db.VarChar(255)\n  email_verified               Boolean?                       @default(false)\n  phone_verified               Boolean?                       @default(false)\n  code_verification            String?                        @db.VarChar(255)\n  default_card_id              String?                        @db.VarChar(255)\n  birthdate                    DateTime?                      @db.Date\n  created_at                   DateTime                       @default(now()) @db.Timestamp(0)\n  updated_at                   DateTime                       @default(now()) @db.Timestamp(0)\n  credit_card                  credit_card[]\n  customer_wallet              customer_wallet?\n  customer_wallet_transactions customer_wallet_transactions[]\n  ingress                      ingress[]\n  invite                       invite[]\n  pix_transactions             pix_transactions[]\n  promoter                     promoter[]\n  store_sales                  store_sales[]\n}\n\nmodel customer_wallet {\n  customer_id            Int      @id @db.UnsignedInt\n  balance                Int      @default(0) @db.UnsignedInt\n  default_credit_card_id String?  @db.VarChar(255)\n  default_payment_method String?  @db.VarChar(50)\n  customer               customer @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"customer_wallet_customer_id_foreign\")\n}\n\nmodel customer_wallet_transactions {\n  id              Int                               @id @default(autoincrement()) @db.UnsignedInt\n  customer_id     Int                               @db.UnsignedInt\n  transaction_id  String                            @unique(map: \"customer_wallet_transactions_transaction_id_unique\") @db.VarChar(255)\n  reference_id    String                            @unique(map: \"customer_wallet_transactions_reference_id_unique\") @db.VarChar(255)\n  amount_in_cents Int\n  type            customer_wallet_transactions_type\n  description     String?                           @db.VarChar(255)\n  balance_after   Int\n  created_at      DateTime                          @default(now()) @db.Timestamp(0)\n  updated_at      DateTime                          @default(now()) @db.Timestamp(0)\n  customer        customer                          @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"customer_wallet_transactions_customer_id_foreign\")\n\n  @@index([customer_id], map: \"customer_wallet_transactions_customer_id_foreign\")\n}\n\nmodel dosage_unit {\n  id      Int       @id @default(autoincrement()) @db.UnsignedInt\n  name    String    @db.VarChar(255)\n  product product[]\n}\n\nmodel ingress {\n  id                Int            @id @default(autoincrement()) @db.UnsignedInt\n  transaction_id    String?        @db.VarChar(255)\n  party_id          Int            @db.UnsignedInt\n  ingress_status_id Int            @db.UnsignedInt\n  ingress_batch_id  Int?           @db.UnsignedInt\n  payment_method_id Int            @db.UnsignedInt\n  customer_id       Int            @db.UnsignedInt\n  value_in_cents    Int?\n  bracelet_number   Int?\n  created_at        DateTime       @default(now()) @db.Timestamp(0)\n  updated_at        DateTime       @default(now()) @db.Timestamp(0)\n  customer          customer       @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_customer_id_foreign\")\n  ingress_batch     ingress_batch? @relation(fields: [ingress_batch_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_ingress_batch_id_foreign\")\n  ingress_status    ingress_status @relation(fields: [ingress_status_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_ingress_status_id_foreign\")\n  party             party          @relation(fields: [party_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_party_id_foreign\")\n  payment_method    payment_method @relation(fields: [payment_method_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_payment_method_id_foreign\")\n  invite            invite[]\n\n  @@index([customer_id], map: \"ingress_customer_id_foreign\")\n  @@index([ingress_batch_id], map: \"ingress_ingress_batch_id_foreign\")\n  @@index([ingress_status_id], map: \"ingress_ingress_status_id_foreign\")\n  @@index([party_id], map: \"ingress_party_id_foreign\")\n  @@index([payment_method_id], map: \"ingress_payment_method_id_foreign\")\n}\n\nmodel ingress_batch {\n  id             Int       @id @default(autoincrement()) @db.UnsignedInt\n  name           String    @db.VarChar(255)\n  description    String?   @db.VarChar(255)\n  quantity       Int\n  quantity_sold  Int       @default(0)\n  price_in_cents Int\n  is_active      Boolean   @default(false)\n  party_id       Int       @db.UnsignedInt\n  ingress        ingress[]\n  party          party     @relation(fields: [party_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_batch_party_id_foreign\")\n\n  @@index([party_id], map: \"ingress_batch_party_id_foreign\")\n}\n\nmodel ingress_status {\n  id      Int       @id @default(autoincrement()) @db.UnsignedInt\n  status  String    @db.VarChar(255)\n  ingress ingress[]\n}\n\nmodel invite {\n  id                     Int      @id @default(autoincrement()) @db.UnsignedInt\n  name                   String?  @db.VarChar(255)\n  phone                  String?  @db.VarChar(255)\n  document               String?  @db.VarChar(255)\n  email                  String?  @db.VarChar(255)\n  party_id               Int      @db.UnsignedInt\n  invited_by_customer_id Int      @db.UnsignedInt\n  ingress_id             Int?     @db.UnsignedInt\n  created_at             DateTime @default(now()) @db.Timestamp(0)\n  updated_at             DateTime @default(now()) @db.Timestamp(0)\n  ingress                ingress? @relation(fields: [ingress_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"invite_ingress_id_foreign\")\n  customer               customer @relation(fields: [invited_by_customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"invite_invited_by_customer_id_foreign\")\n  party                  party    @relation(fields: [party_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"invite_party_id_foreign\")\n\n  @@index([ingress_id], map: \"invite_ingress_id_foreign\")\n  @@index([invited_by_customer_id], map: \"invite_invited_by_customer_id_foreign\")\n  @@index([party_id], map: \"invite_party_id_foreign\")\n}\n\nmodel knex_migrations {\n  id             Int       @id @default(autoincrement()) @db.UnsignedInt\n  name           String?   @db.VarChar(255)\n  batch          Int?\n  migration_time DateTime? @db.Timestamp(0)\n}\n\nmodel knex_migrations_lock {\n  index     Int  @id @default(autoincrement()) @db.UnsignedInt\n  is_locked Int?\n}\n\nmodel owner {\n  id             Int         @id @default(autoincrement()) @db.UnsignedInt\n  phone          String?     @db.VarChar(255)\n  email          String      @db.VarChar(255)\n  name           String      @db.VarChar(255)\n  document       String?     @db.VarChar(255)\n  email_verified Boolean?    @default(false)\n  phone_verified Boolean?    @default(false)\n  last_name      String      @db.VarChar(255)\n  birthdate      DateTime?   @db.Date\n  line1          String?     @db.VarChar(100)\n  line2          String?     @db.VarChar(10)\n  line3          String?     @db.VarChar(100)\n  neighborhood   String?     @db.VarChar(40)\n  city           String?     @db.VarChar(40)\n  state          String?     @db.VarChar(2)\n  country_code   String?     @db.VarChar(3)\n  zip_code       String?     @db.VarChar(10)\n  is_active      Boolean?    @default(true)\n  access_user_id Int         @db.UnsignedInt\n  created_at     DateTime    @default(now()) @db.Timestamp(0)\n  updated_at     DateTime    @default(now()) @db.Timestamp(0)\n  io_customer_id String?     @db.VarChar(255)\n  access_user    access_user @relation(fields: [access_user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"owner_access_user_id_foreign\")\n  store          store[]\n\n  @@index([access_user_id], map: \"owner_access_user_id_foreign\")\n}\n\nmodel party {\n  id             Int             @id @default(autoincrement()) @db.UnsignedInt\n  name           String          @db.VarChar(255)\n  date           DateTime        @db.Date\n  time           DateTime        @db.Time(0)\n  description    String          @db.VarChar(255)\n  address        String?         @db.VarChar(255)\n  access_user_id Int             @db.UnsignedInt\n  created_at     DateTime        @default(now()) @db.Timestamp(0)\n  updated_at     DateTime        @default(now()) @db.Timestamp(0)\n  ingress        ingress[]\n  ingress_batch  ingress_batch[]\n  invite         invite[]\n  access_user    access_user     @relation(fields: [access_user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"party_access_user_id_foreign\")\n  party_shop     party_shop[]\n  promoter       promoter[]\n\n  @@index([access_user_id], map: \"party_access_user_id_foreign\")\n}\n\nmodel party_shop {\n  id          Int           @id @default(autoincrement()) @db.UnsignedInt\n  party_id    Int           @db.UnsignedInt\n  shop_id     Int           @db.UnsignedInt\n  is_active   Boolean?      @default(true)\n  created_at  DateTime      @default(now()) @db.Timestamp(0)\n  updated_at  DateTime      @default(now()) @db.Timestamp(0)\n  party       party         @relation(fields: [party_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"party_shop_party_id_foreign\")\n  shop        shop          @relation(fields: [shop_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"party_shop_shop_id_foreign\")\n  store_sales store_sales[]\n\n  @@index([party_id], map: \"party_shop_party_id_foreign\")\n  @@index([shop_id], map: \"party_shop_shop_id_foreign\")\n}\n\nmodel payment_method {\n  id          Int           @id @default(autoincrement()) @db.UnsignedInt\n  name        String        @db.VarChar(255)\n  ingress     ingress[]\n  store_sales store_sales[]\n}\n\nmodel pix_transactions {\n  id              Int       @id @default(autoincrement()) @db.UnsignedInt\n  customer_id     Int?      @db.UnsignedInt\n  store_id        Int?      @db.UnsignedInt\n  transaction_id  String    @unique(map: \"pix_transactions_transaction_id_unique\") @db.VarChar(255)\n  reference_id    String    @unique(map: \"pix_transactions_reference_id_unique\") @db.VarChar(255)\n  status          String    @db.VarChar(255)\n  expiration_date String    @db.VarChar(255)\n  pix_key         String    @db.VarChar(255)\n  pix_qr_code     String    @db.VarChar(255)\n  amount_in_cents String    @db.VarChar(255)\n  description     String?   @db.VarChar(255)\n  created_at      DateTime  @default(now()) @db.Timestamp(0)\n  updated_at      DateTime  @default(now()) @db.Timestamp(0)\n  pix_emv         String?   @db.Text\n  pix_type        String?   @db.VarChar(255)\n  customer        customer? @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"pix_transactions_customer_id_foreign\")\n  store           store?    @relation(fields: [store_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"pix_transactions_store_id_foreign\")\n\n  @@index([customer_id], map: \"pix_transactions_customer_id_foreign\")\n  @@index([store_id], map: \"pix_transactions_store_id_foreign\")\n}\n\nmodel product {\n  id                Int             @id @default(autoincrement()) @db.UnsignedInt\n  name              String          @db.VarChar(255)\n  dosage            String          @db.VarChar(255)\n  dosage_unit_id    Int?            @db.UnsignedInt\n  container_type_id Int?            @db.UnsignedInt\n  product_type_id   Int?            @db.UnsignedInt\n  created_at        DateTime        @default(now()) @db.Timestamp(0)\n  updated_at        DateTime        @default(now()) @db.Timestamp(0)\n  container_type    container_type? @relation(fields: [container_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"product_container_type_id_foreign\")\n  dosage_unit       dosage_unit?    @relation(fields: [dosage_unit_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"product_dosage_unit_id_foreign\")\n  product_type      product_type?   @relation(fields: [product_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"product_product_type_id_foreign\")\n  shop_products     shop_products[]\n\n  @@index([container_type_id], map: \"product_container_type_id_foreign\")\n  @@index([dosage_unit_id], map: \"product_dosage_unit_id_foreign\")\n  @@index([product_type_id], map: \"product_product_type_id_foreign\")\n}\n\nmodel product_type {\n  id      Int       @id @default(autoincrement()) @db.UnsignedInt\n  name    String    @db.VarChar(255)\n  product product[]\n}\n\nmodel promoter {\n  id             Int      @id @default(autoincrement()) @db.UnsignedInt\n  party_id       Int      @db.UnsignedInt\n  customer_id    Int      @db.UnsignedInt\n  is_active      Boolean? @default(true)\n  created_at     DateTime @default(now()) @db.Timestamp(0)\n  updated_at     DateTime @default(now()) @db.Timestamp(0)\n  bonus_in_cents Int?     @default(0)\n  customer       customer @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"promoter_customer_id_foreign\")\n  party          party    @relation(fields: [party_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"promoter_party_id_foreign\")\n\n  @@index([customer_id], map: \"promoter_customer_id_foreign\")\n  @@index([party_id], map: \"promoter_party_id_foreign\")\n}\n\nmodel shop {\n  id            Int             @id @default(autoincrement()) @db.UnsignedInt\n  store_id      Int             @db.UnsignedInt\n  name          String          @db.VarChar(255)\n  created_at    DateTime        @default(now()) @db.Timestamp(0)\n  updated_at    DateTime        @default(now()) @db.Timestamp(0)\n  party_shop    party_shop[]\n  store         store           @relation(fields: [store_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"shop_store_id_foreign\")\n  shop_products shop_products[]\n  shop_worker   shop_worker[]\n  store_sales   store_sales[]\n\n  @@index([store_id], map: \"shop_store_id_foreign\")\n}\n\nmodel shop_products {\n  id                   Int                    @id @default(autoincrement()) @db.UnsignedInt\n  shop_id              Int                    @db.UnsignedInt\n  product_id           Int?                   @db.UnsignedInt\n  price_in_cents       Int\n  is_active            Boolean?               @default(true)\n  created_at           DateTime               @default(now()) @db.Timestamp(0)\n  updated_at           DateTime               @default(now()) @db.Timestamp(0)\n  product              product?               @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"shop_products_product_id_foreign\")\n  shop                 shop                   @relation(fields: [shop_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"shop_products_shop_id_foreign\")\n  store_sales_products store_sales_products[]\n\n  @@index([product_id], map: \"shop_products_product_id_foreign\")\n  @@index([shop_id], map: \"shop_products_shop_id_foreign\")\n}\n\nmodel shop_worker {\n  shop_id         Int          @db.UnsignedInt\n  access_user_id  Int?         @db.UnsignedInt\n  role            Int\n  active          Boolean?     @default(true)\n  created_at      DateTime     @default(now()) @db.Timestamp(0)\n  updated_at      DateTime     @default(now()) @db.Timestamp(0)\n  id              Int          @id @default(autoincrement()) @db.UnsignedInt\n  expiration_date DateTime?    @db.Timestamp(0)\n  name            String?      @db.VarChar(100)\n  access_user     access_user? @relation(fields: [access_user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"shop_worker_access_user_id_foreign\")\n  shop            shop         @relation(fields: [shop_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"shop_worker_shop_id_foreign\")\n\n  @@index([access_user_id], map: \"shop_worker_access_user_id_foreign\")\n  @@index([shop_id], map: \"shop_worker_shop_id_foreign\")\n}\n\nmodel store {\n  id                     Int                      @id @default(autoincrement()) @db.UnsignedInt\n  owner_id               Int                      @db.UnsignedInt\n  name                   String                   @db.VarChar(255)\n  statement_descriptor   String?                  @db.VarChar(40)\n  mcc                    Int?\n  business_line1         String?                  @db.VarChar(100)\n  business_line2         String?                  @db.VarChar(10)\n  business_line3         String?                  @db.VarChar(100)\n  business_neighborhood  String?                  @db.VarChar(40)\n  business_city          String?                  @db.VarChar(40)\n  business_state         String?                  @db.VarChar(2)\n  business_country_code  String?                  @db.VarChar(3)\n  business_zip_code      String?                  @db.VarChar(10)\n  business_phone         String?                  @db.VarChar(20)\n  business_email         String?                  @db.VarChar(255)\n  business_name          String?                  @db.VarChar(255)\n  business_document      String?                  @db.VarChar(20)\n  business_website       String?                  @db.VarChar(255)\n  business_open_date     DateTime?                @db.Date\n  io_seller_id           String?                  @db.VarChar(255)\n  taxpayer_id            String?                  @db.VarChar(255)\n  owner_taxpayer_id      String?                  @db.VarChar(255)\n  created_at             DateTime                 @default(now()) @db.Timestamp(0)\n  updated_at             DateTime                 @default(now()) @db.Timestamp(0)\n  webhook_url            String?                  @db.VarChar(255)\n  payouts                Payout[]\n  pix_transactions       pix_transactions[]\n  shop                   shop[]\n  owner                  owner                    @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_owner_id_foreign\")\n  store_bank_account     store_bank_account[]\n  store_pix_transactions store_pix_transactions[]\n  store_sales            store_sales[]\n  transfer_history       transfer_history[]\n\n  @@index([owner_id], map: \"store_owner_id_foreign\")\n}\n\nmodel store_bank_account {\n  id               Int                @id @default(autoincrement()) @db.UnsignedInt\n  io_token         String             @db.VarChar(255)\n  account_number   String             @db.VarChar(255)\n  routing_number   String             @db.VarChar(255)\n  holder_name      String             @db.VarChar(255)\n  type             String             @db.VarChar(255)\n  bank_code        String             @db.VarChar(255)\n  document         String             @db.VarChar(255)\n  store_id         Int                @db.UnsignedInt\n  created_at       DateTime           @default(now()) @db.Timestamp(0)\n  updated_at       DateTime           @default(now()) @db.Timestamp(0)\n  store            store              @relation(fields: [store_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_bank_account_store_id_foreign\")\n  transfer_history transfer_history[]\n\n  @@index([store_id], map: \"store_bank_account_store_id_foreign\")\n}\n\nmodel store_pix_transactions {\n  id              Int      @id @default(autoincrement()) @db.UnsignedInt\n  store_id        Int      @db.UnsignedInt\n  transaction_id  String   @unique(map: \"store_pix_transactions_transaction_id_unique\") @db.VarChar(255)\n  reference_id    String   @unique(map: \"store_pix_transactions_reference_id_unique\") @db.VarChar(255)\n  status          String   @db.VarChar(255)\n  expiration_date String   @db.VarChar(255)\n  pix_key         String   @db.VarChar(255)\n  pix_qr_code     String   @db.VarChar(255)\n  amount_in_cents String   @db.VarChar(255)\n  description     String?  @db.VarChar(255)\n  created_at      DateTime @default(now()) @db.Timestamp(0)\n  updated_at      DateTime @default(now()) @db.Timestamp(0)\n  store           store    @relation(fields: [store_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_pix_transactions_store_id_foreign\")\n\n  @@index([store_id], map: \"store_pix_transactions_store_id_foreign\")\n}\n\nmodel store_sales {\n  id                   Int                    @id @default(autoincrement()) @db.UnsignedInt\n  party_shop_id        Int?                   @db.UnsignedInt\n  store_id             Int                    @db.UnsignedInt\n  shop_id              Int                    @db.UnsignedInt\n  payment_method_id    Int                    @db.UnsignedInt\n  customer_id          Int?                   @db.UnsignedInt\n  credit_card_id       Int?                   @db.UnsignedInt\n  order_id             String                 @db.VarChar(255)\n  status               String                 @db.VarChar(255)\n  total_in_cents       Int\n  installments         Int?                   @db.UnsignedTinyInt\n  interest_in_cents    Int?\n  paid_at              DateTime?              @db.DateTime(0)\n  refunded_at          DateTime?              @db.DateTime(0)\n  transaction_id       String?                @db.VarChar(255)\n  created_at           DateTime               @default(now()) @db.Timestamp(0)\n  updated_at           DateTime               @default(now()) @db.Timestamp(0)\n  payout_items         PayoutItem?\n  credit_card          credit_card?           @relation(fields: [credit_card_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_credit_card_id_foreign\")\n  customer             customer?              @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_customer_id_foreign\")\n  party_shop           party_shop?            @relation(fields: [party_shop_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_party_shop_id_foreign\")\n  payment_method       payment_method         @relation(fields: [payment_method_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_payment_method_id_foreign\")\n  shop                 shop                   @relation(fields: [shop_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_shop_id_foreign\")\n  store                store                  @relation(fields: [store_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_store_id_foreign\")\n  store_sales_products store_sales_products[]\n\n  @@index([credit_card_id], map: \"store_sales_credit_card_id_foreign\")\n  @@index([customer_id], map: \"store_sales_customer_id_foreign\")\n  @@index([party_shop_id], map: \"store_sales_party_shop_id_foreign\")\n  @@index([payment_method_id], map: \"store_sales_payment_method_id_foreign\")\n  @@index([shop_id], map: \"store_sales_shop_id_foreign\")\n  @@index([store_id], map: \"store_sales_store_id_foreign\")\n}\n\nmodel store_sales_products {\n  id              Int           @id @default(autoincrement()) @db.UnsignedInt\n  store_sales_id  Int           @db.UnsignedInt\n  shop_product_id Int           @db.UnsignedInt\n  quantity        Int           @db.UnsignedInt\n  price_in_cents  Int           @db.UnsignedInt\n  total_in_cents  Int           @db.UnsignedInt\n  created_at      DateTime      @default(now()) @db.Timestamp(0)\n  updated_at      DateTime      @default(now()) @db.Timestamp(0)\n  shop_products   shop_products @relation(fields: [shop_product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_products_shop_product_id_foreign\")\n  store_sales     store_sales   @relation(fields: [store_sales_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_products_store_sales_id_foreign\")\n\n  @@index([shop_product_id], map: \"store_sales_products_shop_product_id_foreign\")\n  @@index([store_sales_id], map: \"store_sales_products_store_sales_id_foreign\")\n}\n\nmodel transfer_history {\n  id                   Int                @id @default(autoincrement()) @db.UnsignedInt\n  bank_account_id      Int                @db.UnsignedInt\n  description          String?            @db.VarChar(255)\n  statement_descriptor String?            @db.VarChar(255)\n  amount_in_cents      Int\n  created_at           DateTime           @default(now()) @db.Timestamp(0)\n  updated_at           DateTime           @default(now()) @db.Timestamp(0)\n  store_id             Int                @db.UnsignedInt\n  store_bank_account   store_bank_account @relation(fields: [bank_account_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"transfer_history_bank_account_id_foreign\")\n  store                store              @relation(fields: [store_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"transfer_history_store_id_foreign\")\n\n  @@index([bank_account_id], map: \"transfer_history_bank_account_id_foreign\")\n  @@index([store_id], map: \"transfer_history_store_id_foreign\")\n}\n\nenum AdjustmentType {\n  CREDIT\n  DEBIT\n}\n\nenum customer_wallet_transactions_type {\n  in\n  out\n}\n\nenum payouts_status {\n  PENDING\n  PAID\n}\n"
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nenum AdjustmentType {\n  CREDIT\n  DEBIT\n}\n\nenum CustomerWalletTransactionType {\n  in\n  out\n}\n\nenum PayoutStatus {\n  PENDING\n  PAID\n}\n\nmodel AccessUser {\n  id                    Int          @id @default(autoincrement()) @db.UnsignedInt\n  phone                 String?      @db.VarChar(15)\n  email                 String       @unique @db.VarChar(255)\n  name                  String       @db.VarChar(100)\n  password              String       @db.VarChar(255)\n  document              String       @db.VarChar(15)\n  emailVerified         Boolean?     @default(false) @map(\"email_verified\")\n  phoneVerified         Boolean?     @default(false) @map(\"phone_verified\")\n  emailCodeVerification String?      @map(\"email_code_verification\") @db.VarChar(6)\n  firstAccess           Boolean?     @default(true) @map(\"first_access\")\n  birthdate             DateTime?    @db.Date\n  createdAt             DateTime     @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt             DateTime     @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  owners                Owner[]\n  parties               Party[]\n  shopWorkers           ShopWorker[]\n\n  @@map(\"access_user\")\n}\n\nmodel Owner {\n  id            Int        @id @default(autoincrement()) @db.UnsignedInt\n  phone         String?    @db.VarChar(255)\n  email         String     @db.VarChar(255)\n  name          String     @db.VarChar(255)\n  document      String?    @db.VarChar(255)\n  emailVerified Boolean?   @default(false) @map(\"email_verified\")\n  phoneVerified Boolean?   @default(false) @map(\"phone_verified\")\n  lastName      String     @map(\"last_name\") @db.VarChar(255)\n  birthdate     DateTime?  @db.Date\n  line1         String?    @db.VarChar(100)\n  line2         String?    @db.VarChar(10)\n  line3         String?    @db.VarChar(100)\n  neighborhood  String?    @db.VarChar(40)\n  city          String?    @db.VarChar(40)\n  state         String?    @db.VarChar(2)\n  countryCode   String?    @map(\"country_code\") @db.VarChar(3)\n  zipCode       String?    @map(\"zip_code\") @db.VarChar(10)\n  isActive      Boolean?   @default(true) @map(\"is_active\")\n  accessUserId  Int        @map(\"access_user_id\") @db.UnsignedInt\n  ioCustomerId  String?    @map(\"io_customer_id\") @db.VarChar(255)\n  createdAt     DateTime   @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt     DateTime   @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  accessUser    AccessUser @relation(fields: [accessUserId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"owner_access_user_id_foreign\")\n  stores        Store[]\n\n  @@index([accessUserId], map: \"owner_access_user_id_foreign\")\n  @@map(\"owner\")\n}\n\nmodel Customer {\n  id                 Int                         @id @default(autoincrement()) @db.UnsignedInt\n  ioCustomerId       String?                     @map(\"io_customer_id\") @db.VarChar(255)\n  phone              String?                     @db.VarChar(255)\n  email              String                      @db.VarChar(255)\n  name               String                      @db.VarChar(255)\n  document           String?                     @db.VarChar(255)\n  emailVerified      Boolean?                    @default(false) @map(\"email_verified\")\n  phoneVerified      Boolean?                    @default(false) @map(\"phone_verified\")\n  codeVerification   String?                     @map(\"code_verification\") @db.VarChar(255)\n  defaultCardId      String?                     @map(\"default_card_id\") @db.VarChar(255)\n  birthdate          DateTime?                   @db.Date\n  createdAt          DateTime                    @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt          DateTime                    @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  creditCards        CreditCard[]\n  wallet             CustomerWallet?\n  walletTransactions CustomerWalletTransaction[]\n  ingresses          Ingress[]\n  invites            Invite[]\n  pixTransactions    PixTransaction[]\n  promoters          Promoter[]\n  storeSales         StoreSale[]\n\n  @@map(\"customer\")\n}\n\nmodel CustomerWallet {\n  customerId           Int      @id @map(\"customer_id\") @db.UnsignedInt\n  balance              Int      @default(0) @db.UnsignedInt\n  defaultCreditCardId  String?  @map(\"default_credit_card_id\") @db.VarChar(255)\n  defaultPaymentMethod String?  @map(\"default_payment_method\") @db.VarChar(50)\n  customer             Customer @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"customer_wallet_customer_id_foreign\")\n\n  @@map(\"customer_wallet\")\n}\n\nmodel CustomerWalletTransaction {\n  id            Int                           @id @default(autoincrement()) @db.UnsignedInt\n  customerId    Int                           @map(\"customer_id\") @db.UnsignedInt\n  transactionId String                        @unique(map: \"customer_wallet_transactions_transaction_id_unique\") @map(\"transaction_id\") @db.VarChar(255)\n  referenceId   String                        @unique(map: \"customer_wallet_transactions_reference_id_unique\") @map(\"reference_id\") @db.VarChar(255)\n  amountInCents Int                           @map(\"amount_in_cents\")\n  type          CustomerWalletTransactionType\n  description   String?                       @db.VarChar(255)\n  balanceAfter  Int                           @map(\"balance_after\")\n  createdAt     DateTime                      @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt     DateTime                      @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  customer      Customer                      @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"customer_wallet_transactions_customer_id_foreign\")\n\n  @@index([customerId], map: \"customer_wallet_transactions_customer_id_foreign\")\n  @@map(\"customer_wallet_transactions\")\n}\n\nmodel CreditCard {\n  id                Int         @id @default(autoincrement()) @db.UnsignedInt\n  customerId        Int         @map(\"customer_id\") @db.UnsignedInt\n  cardId            String      @map(\"card_id\") @db.VarChar(255)\n  cardToken         String      @map(\"card_token\") @db.VarChar(255)\n  first4Digits      String      @map(\"first4_digits\") @db.VarChar(255)\n  last4Digits       String      @map(\"last4_digits\") @db.VarChar(255)\n  cardBrand         String      @map(\"card_brand\") @db.VarChar(255)\n  expirationMonth   String      @map(\"expiration_month\") @db.VarChar(255)\n  expirationYear    String      @map(\"expiration_year\") @db.VarChar(255)\n  holderName        String      @map(\"holder_name\") @db.VarChar(255)\n  authenticated     Boolean?    @default(false)\n  authRandomCents   Int?        @map(\"auth_random_cents\")\n  authTransactionId String?     @map(\"auth_transaction_id\") @db.VarChar(255)\n  authRefundDate    DateTime?   @map(\"auth_refund_date\") @db.DateTime(0)\n  createdAt         DateTime    @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt         DateTime    @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  customer          Customer    @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"credit_card_customer_id_foreign\")\n  storeSales        StoreSale[]\n\n  @@index([customerId], map: \"credit_card_customer_id_foreign\")\n  @@map(\"credit_card\")\n}\n\nmodel Party {\n  id           Int            @id @default(autoincrement()) @db.UnsignedInt\n  name         String         @db.VarChar(255)\n  date         DateTime       @db.Date\n  time         DateTime       @db.Time(0)\n  description  String         @db.VarChar(255)\n  address      String?        @db.VarChar(255)\n  accessUserId Int            @map(\"access_user_id\") @db.UnsignedInt\n  createdAt    DateTime       @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt    DateTime       @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  accessUser   AccessUser     @relation(fields: [accessUserId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"party_access_user_id_foreign\")\n  ingresses    Ingress[]\n  batches      IngressBatch[]\n  invites      Invite[]\n  partyShops   PartyShop[]\n  promoters    Promoter[]\n\n  @@index([accessUserId], map: \"party_access_user_id_foreign\")\n  @@map(\"party\")\n}\n\nmodel IngressBatch {\n  id           Int       @id @default(autoincrement()) @db.UnsignedInt\n  name         String    @db.VarChar(255)\n  description  String?   @db.VarChar(255)\n  quantity     Int\n  quantitySold Int       @default(0) @map(\"quantity_sold\")\n  priceInCents Int       @map(\"price_in_cents\")\n  isActive     Boolean   @default(false) @map(\"is_active\")\n  partyId      Int       @map(\"party_id\") @db.UnsignedInt\n  party        Party     @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_batch_party_id_foreign\")\n  ingresses    Ingress[]\n\n  @@index([partyId], map: \"ingress_batch_party_id_foreign\")\n  @@map(\"ingress_batch\")\n}\n\nmodel IngressStatus {\n  id        Int       @id @default(autoincrement()) @db.UnsignedInt\n  status    String    @db.VarChar(255)\n  ingresses Ingress[]\n\n  @@map(\"ingress_status\")\n}\n\nmodel Ingress {\n  id              Int           @id @default(autoincrement()) @db.UnsignedInt\n  transactionId   String?       @map(\"transaction_id\") @db.VarChar(255)\n  partyId         Int           @map(\"party_id\") @db.UnsignedInt\n  ingressStatusId Int           @map(\"ingress_status_id\") @db.UnsignedInt\n  ingressBatchId  Int?          @map(\"ingress_batch_id\") @db.UnsignedInt\n  paymentMethodId Int           @map(\"payment_method_id\") @db.UnsignedInt\n  customerId      Int           @map(\"customer_id\") @db.UnsignedInt\n  valueInCents    Int?          @map(\"value_in_cents\")\n  braceletNumber  Int?          @map(\"bracelet_number\")\n  createdAt       DateTime      @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt       DateTime      @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  customer        Customer      @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_customer_id_foreign\")\n  ingressBatch    IngressBatch? @relation(fields: [ingressBatchId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_ingress_batch_id_foreign\")\n  ingressStatus   IngressStatus @relation(fields: [ingressStatusId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_ingress_status_id_foreign\")\n  party           Party         @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_party_id_foreign\")\n  paymentMethod   PaymentMethod @relation(fields: [paymentMethodId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"ingress_payment_method_id_foreign\")\n  invites         Invite[]\n\n  @@index([customerId], map: \"ingress_customer_id_foreign\")\n  @@index([ingressBatchId], map: \"ingress_ingress_batch_id_foreign\")\n  @@index([ingressStatusId], map: \"ingress_ingress_status_id_foreign\")\n  @@index([partyId], map: \"ingress_party_id_foreign\")\n  @@index([paymentMethodId], map: \"ingress_payment_method_id_foreign\")\n  @@map(\"ingress\")\n}\n\nmodel Invite {\n  id                  Int      @id @default(autoincrement()) @db.UnsignedInt\n  name                String?  @db.VarChar(255)\n  phone               String?  @db.VarChar(255)\n  document            String?  @db.VarChar(255)\n  email               String?  @db.VarChar(255)\n  partyId             Int      @map(\"party_id\") @db.UnsignedInt\n  invitedByCustomerId Int      @map(\"invited_by_customer_id\") @db.UnsignedInt\n  ingressId           Int?     @map(\"ingress_id\") @db.UnsignedInt\n  createdAt           DateTime @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt           DateTime @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  ingress             Ingress? @relation(fields: [ingressId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"invite_ingress_id_foreign\")\n  customer            Customer @relation(fields: [invitedByCustomerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"invite_invited_by_customer_id_foreign\")\n  party               Party    @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"invite_party_id_foreign\")\n\n  @@index([ingressId], map: \"invite_ingress_id_foreign\")\n  @@index([invitedByCustomerId], map: \"invite_invited_by_customer_id_foreign\")\n  @@index([partyId], map: \"invite_party_id_foreign\")\n  @@map(\"invite\")\n}\n\nmodel Promoter {\n  id           Int      @id @default(autoincrement()) @db.UnsignedInt\n  partyId      Int      @map(\"party_id\") @db.UnsignedInt\n  customerId   Int      @map(\"customer_id\") @db.UnsignedInt\n  isActive     Boolean? @default(true) @map(\"is_active\")\n  bonusInCents Int?     @default(0) @map(\"bonus_in_cents\")\n  createdAt    DateTime @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt    DateTime @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  customer     Customer @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"promoter_customer_id_foreign\")\n  party        Party    @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"promoter_party_id_foreign\")\n\n  @@index([customerId], map: \"promoter_customer_id_foreign\")\n  @@index([partyId], map: \"promoter_party_id_foreign\")\n  @@map(\"promoter\")\n}\n\nmodel PaymentMethod {\n  id         Int         @id @default(autoincrement()) @db.UnsignedInt\n  name       String      @db.VarChar(255)\n  ingresses  Ingress[]\n  storeSales StoreSale[]\n\n  @@map(\"payment_method\")\n}\n\nmodel PixTransaction {\n  id             Int       @id @default(autoincrement()) @db.UnsignedInt\n  customerId     Int?      @map(\"customer_id\") @db.UnsignedInt\n  storeId        Int?      @map(\"store_id\") @db.UnsignedInt\n  transactionId  String    @unique(map: \"pix_transactions_transaction_id_unique\") @map(\"transaction_id\") @db.VarChar(255)\n  referenceId    String    @unique(map: \"pix_transactions_reference_id_unique\") @map(\"reference_id\") @db.VarChar(255)\n  status         String    @db.VarChar(255)\n  expirationDate String    @map(\"expiration_date\") @db.VarChar(255)\n  pixKey         String    @map(\"pix_key\") @db.VarChar(255)\n  pixQrCode      String    @map(\"pix_qr_code\") @db.VarChar(255)\n  amountInCents  String    @map(\"amount_in_cents\") @db.VarChar(255)\n  description    String?   @db.VarChar(255)\n  pixEmv         String?   @map(\"pix_emv\") @db.Text\n  pixType        String?   @map(\"pix_type\") @db.VarChar(255)\n  createdAt      DateTime  @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt      DateTime  @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  customer       Customer? @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"pix_transactions_customer_id_foreign\")\n  store          Store?    @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"pix_transactions_store_id_foreign\")\n\n  @@index([customerId], map: \"pix_transactions_customer_id_foreign\")\n  @@index([storeId], map: \"pix_transactions_store_id_foreign\")\n  @@map(\"pix_transactions\")\n}\n\nmodel StorePixTransaction {\n  id             Int      @id @default(autoincrement()) @db.UnsignedInt\n  storeId        Int      @map(\"store_id\") @db.UnsignedInt\n  transactionId  String   @unique(map: \"store_pix_transactions_transaction_id_unique\") @map(\"transaction_id\") @db.VarChar(255)\n  referenceId    String   @unique(map: \"store_pix_transactions_reference_id_unique\") @map(\"reference_id\") @db.VarChar(255)\n  status         String   @db.VarChar(255)\n  expirationDate String   @map(\"expiration_date\") @db.VarChar(255)\n  pixKey         String   @map(\"pix_key\") @db.VarChar(255)\n  pixQrCode      String   @map(\"pix_qr_code\") @db.VarChar(255)\n  amountInCents  String   @map(\"amount_in_cents\") @db.VarChar(255)\n  description    String?  @db.VarChar(255)\n  createdAt      DateTime @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt      DateTime @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  store          Store    @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_pix_transactions_store_id_foreign\")\n\n  @@index([storeId], map: \"store_pix_transactions_store_id_foreign\")\n  @@map(\"store_pix_transactions\")\n}\n\nmodel Store {\n  id                   Int                   @id @default(autoincrement()) @db.UnsignedInt\n  ownerId              Int                   @map(\"owner_id\") @db.UnsignedInt\n  name                 String                @db.VarChar(255)\n  statementDescriptor  String?               @map(\"statement_descriptor\") @db.VarChar(40)\n  mcc                  Int?\n  businessLine1        String?               @map(\"business_line1\") @db.VarChar(100)\n  businessLine2        String?               @map(\"business_line2\") @db.VarChar(10)\n  businessLine3        String?               @map(\"business_line3\") @db.VarChar(100)\n  businessNeighborhood String?               @map(\"business_neighborhood\") @db.VarChar(40)\n  businessCity         String?               @map(\"business_city\") @db.VarChar(40)\n  businessState        String?               @map(\"business_state\") @db.VarChar(2)\n  businessCountryCode  String?               @map(\"business_country_code\") @db.VarChar(3)\n  businessZipCode      String?               @map(\"business_zip_code\") @db.VarChar(10)\n  businessPhone        String?               @map(\"business_phone\") @db.VarChar(20)\n  businessEmail        String?               @map(\"business_email\") @db.VarChar(255)\n  businessName         String?               @map(\"business_name\") @db.VarChar(255)\n  businessDocument     String?               @map(\"business_document\") @db.VarChar(20)\n  businessWebsite      String?               @map(\"business_website\") @db.VarChar(255)\n  businessOpenDate     DateTime?             @map(\"business_open_date\") @db.Date\n  ioSellerId           String?               @map(\"io_seller_id\") @db.VarChar(255)\n  taxpayerId           String?               @map(\"taxpayer_id\") @db.VarChar(255)\n  ownerTaxpayerId      String?               @map(\"owner_taxpayer_id\") @db.VarChar(255)\n  webhookUrl           String?               @map(\"webhook_url\") @db.VarChar(255)\n  createdAt            DateTime              @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt            DateTime              @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  owner                Owner                 @relation(fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_owner_id_foreign\")\n  payouts              Payout[]\n  pixTransactions      PixTransaction[]\n  storePixTransactions StorePixTransaction[]\n  shops                Shop[]\n  bankAccounts         StoreBankAccount[]\n  storeSales           StoreSale[]\n  transferHistories    TransferHistory[]\n\n  @@index([ownerId], map: \"store_owner_id_foreign\")\n  @@map(\"store\")\n}\n\nmodel StoreBankAccount {\n  id                Int               @id @default(autoincrement()) @db.UnsignedInt\n  ioToken           String            @map(\"io_token\") @db.VarChar(255)\n  accountNumber     String            @map(\"account_number\") @db.VarChar(255)\n  routingNumber     String            @map(\"routing_number\") @db.VarChar(255)\n  holderName        String            @map(\"holder_name\") @db.VarChar(255)\n  type              String            @db.VarChar(255)\n  bankCode          String            @map(\"bank_code\") @db.VarChar(255)\n  document          String            @db.VarChar(255)\n  storeId           Int               @map(\"store_id\") @db.UnsignedInt\n  createdAt         DateTime          @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt         DateTime          @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  store             Store             @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_bank_account_store_id_foreign\")\n  transferHistories TransferHistory[]\n\n  @@index([storeId], map: \"store_bank_account_store_id_foreign\")\n  @@map(\"store_bank_account\")\n}\n\nmodel TransferHistory {\n  id                  Int              @id @default(autoincrement()) @db.UnsignedInt\n  bankAccountId       Int              @map(\"bank_account_id\") @db.UnsignedInt\n  storeId             Int              @map(\"store_id\") @db.UnsignedInt\n  description         String?          @db.VarChar(255)\n  statementDescriptor String?          @map(\"statement_descriptor\") @db.VarChar(255)\n  amountInCents       Int              @map(\"amount_in_cents\")\n  createdAt           DateTime         @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt           DateTime         @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  storeBankAccount    StoreBankAccount @relation(fields: [bankAccountId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"transfer_history_bank_account_id_foreign\")\n  store               Store            @relation(fields: [storeId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"transfer_history_store_id_foreign\")\n\n  @@index([bankAccountId], map: \"transfer_history_bank_account_id_foreign\")\n  @@index([storeId], map: \"transfer_history_store_id_foreign\")\n  @@map(\"transfer_history\")\n}\n\nmodel Shop {\n  id           Int           @id @default(autoincrement()) @db.UnsignedInt\n  storeId      Int           @map(\"store_id\") @db.UnsignedInt\n  name         String        @db.VarChar(255)\n  createdAt    DateTime      @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt    DateTime      @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  store        Store         @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"shop_store_id_foreign\")\n  partyShops   PartyShop[]\n  shopProducts ShopProduct[]\n  shopWorkers  ShopWorker[]\n  storeSales   StoreSale[]\n\n  @@index([storeId], map: \"shop_store_id_foreign\")\n  @@map(\"shop\")\n}\n\nmodel ShopProduct {\n  id             Int                @id @default(autoincrement()) @db.UnsignedInt\n  shopId         Int                @map(\"shop_id\") @db.UnsignedInt\n  productId      Int?               @map(\"product_id\") @db.UnsignedInt\n  priceInCents   Int                @map(\"price_in_cents\")\n  isActive       Boolean?           @default(true) @map(\"is_active\")\n  createdAt      DateTime           @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt      DateTime           @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  product        Product?           @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"shop_products_product_id_foreign\")\n  shop           Shop               @relation(fields: [shopId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"shop_products_shop_id_foreign\")\n  storeSaleItems StoreSaleProduct[]\n\n  @@index([productId], map: \"shop_products_product_id_foreign\")\n  @@index([shopId], map: \"shop_products_shop_id_foreign\")\n  @@map(\"shop_products\")\n}\n\nmodel ShopWorker {\n  id             Int         @id @default(autoincrement()) @db.UnsignedInt\n  shopId         Int         @map(\"shop_id\") @db.UnsignedInt\n  accessUserId   Int?        @map(\"access_user_id\") @db.UnsignedInt\n  role           Int\n  active         Boolean?    @default(true)\n  expirationDate DateTime?   @map(\"expiration_date\") @db.Timestamp(0)\n  name           String?     @db.VarChar(100)\n  createdAt      DateTime    @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt      DateTime    @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  accessUser     AccessUser? @relation(fields: [accessUserId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"shop_worker_access_user_id_foreign\")\n  shop           Shop        @relation(fields: [shopId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"shop_worker_shop_id_foreign\")\n\n  @@index([accessUserId], map: \"shop_worker_access_user_id_foreign\")\n  @@index([shopId], map: \"shop_worker_shop_id_foreign\")\n  @@map(\"shop_worker\")\n}\n\nmodel PartyShop {\n  id         Int         @id @default(autoincrement()) @db.UnsignedInt\n  partyId    Int         @map(\"party_id\") @db.UnsignedInt\n  shopId     Int         @map(\"shop_id\") @db.UnsignedInt\n  isActive   Boolean?    @default(true) @map(\"is_active\")\n  createdAt  DateTime    @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt  DateTime    @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  party      Party       @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"party_shop_party_id_foreign\")\n  shop       Shop        @relation(fields: [shopId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"party_shop_shop_id_foreign\")\n  storeSales StoreSale[]\n\n  @@index([partyId], map: \"party_shop_party_id_foreign\")\n  @@index([shopId], map: \"party_shop_shop_id_foreign\")\n  @@map(\"party_shop\")\n}\n\nmodel StoreSale {\n  id              Int                @id @default(autoincrement()) @db.UnsignedInt\n  partyShopId     Int?               @map(\"party_shop_id\") @db.UnsignedInt\n  storeId         Int                @map(\"store_id\") @db.UnsignedInt\n  shopId          Int                @map(\"shop_id\") @db.UnsignedInt\n  paymentMethodId Int                @map(\"payment_method_id\") @db.UnsignedInt\n  customerId      Int?               @map(\"customer_id\") @db.UnsignedInt\n  creditCardId    Int?               @map(\"credit_card_id\") @db.UnsignedInt\n  orderId         String             @map(\"order_id\") @db.VarChar(255)\n  status          String             @db.VarChar(255)\n  totalInCents    Int                @map(\"total_in_cents\")\n  installments    Int?               @db.UnsignedTinyInt\n  interestInCents Int?               @map(\"interest_in_cents\")\n  paidAt          DateTime?          @map(\"paid_at\") @db.DateTime(0)\n  refundedAt      DateTime?          @map(\"refunded_at\") @db.DateTime(0)\n  transactionId   String?            @map(\"transaction_id\") @db.VarChar(255)\n  createdAt       DateTime           @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt       DateTime           @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  payoutItem      PayoutItem?\n  creditCard      CreditCard?        @relation(fields: [creditCardId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_credit_card_id_foreign\")\n  customer        Customer?          @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_customer_id_foreign\")\n  partyShop       PartyShop?         @relation(fields: [partyShopId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_party_shop_id_foreign\")\n  paymentMethod   PaymentMethod      @relation(fields: [paymentMethodId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_payment_method_id_foreign\")\n  shop            Shop               @relation(fields: [shopId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_shop_id_foreign\")\n  store           Store              @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_store_id_foreign\")\n  saleProducts    StoreSaleProduct[]\n\n  @@index([creditCardId], map: \"store_sales_credit_card_id_foreign\")\n  @@index([customerId], map: \"store_sales_customer_id_foreign\")\n  @@index([partyShopId], map: \"store_sales_party_shop_id_foreign\")\n  @@index([paymentMethodId], map: \"store_sales_payment_method_id_foreign\")\n  @@index([shopId], map: \"store_sales_shop_id_foreign\")\n  @@index([storeId], map: \"store_sales_store_id_foreign\")\n  @@map(\"store_sales\")\n}\n\nmodel StoreSaleProduct {\n  id            Int         @id @default(autoincrement()) @db.UnsignedInt\n  storeSaleId   Int         @map(\"store_sales_id\") @db.UnsignedInt\n  shopProductId Int         @map(\"shop_product_id\") @db.UnsignedInt\n  quantity      Int         @db.UnsignedInt\n  priceInCents  Int         @map(\"price_in_cents\") @db.UnsignedInt\n  totalInCents  Int         @map(\"total_in_cents\") @db.UnsignedInt\n  createdAt     DateTime    @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt     DateTime    @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  shopProduct   ShopProduct @relation(fields: [shopProductId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_products_shop_product_id_foreign\")\n  storeSale     StoreSale   @relation(fields: [storeSaleId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"store_sales_products_store_sales_id_foreign\")\n\n  @@index([shopProductId], map: \"store_sales_products_shop_product_id_foreign\")\n  @@index([storeSaleId], map: \"store_sales_products_store_sales_id_foreign\")\n  @@map(\"store_sales_products\")\n}\n\nmodel Product {\n  id              Int            @id @default(autoincrement()) @db.UnsignedInt\n  name            String         @db.VarChar(255)\n  dosage          String         @db.VarChar(255)\n  dosageUnitId    Int?           @map(\"dosage_unit_id\") @db.UnsignedInt\n  containerTypeId Int?           @map(\"container_type_id\") @db.UnsignedInt\n  productTypeId   Int?           @map(\"product_type_id\") @db.UnsignedInt\n  createdAt       DateTime       @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt       DateTime       @default(now()) @map(\"updated_at\") @db.Timestamp(0)\n  containerType   ContainerType? @relation(fields: [containerTypeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"product_container_type_id_foreign\")\n  dosageUnit      DosageUnit?    @relation(fields: [dosageUnitId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"product_dosage_unit_id_foreign\")\n  productType     ProductType?   @relation(fields: [productTypeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"product_product_type_id_foreign\")\n  shopProducts    ShopProduct[]\n\n  @@index([containerTypeId], map: \"product_container_type_id_foreign\")\n  @@index([dosageUnitId], map: \"product_dosage_unit_id_foreign\")\n  @@index([productTypeId], map: \"product_product_type_id_foreign\")\n  @@map(\"product\")\n}\n\nmodel ProductType {\n  id       Int       @id @default(autoincrement()) @db.UnsignedInt\n  name     String    @db.VarChar(255)\n  products Product[]\n\n  @@map(\"product_type\")\n}\n\nmodel ContainerType {\n  id       Int       @id @default(autoincrement()) @db.UnsignedInt\n  name     String    @db.VarChar(255)\n  products Product[]\n\n  @@map(\"container_type\")\n}\n\nmodel DosageUnit {\n  id       Int       @id @default(autoincrement()) @db.UnsignedInt\n  name     String    @db.VarChar(255)\n  products Product[]\n\n  @@map(\"dosage_unit\")\n}\n\nmodel Payout {\n  id           String       @id\n  storeId      Int          @map(\"store_id\") @db.UnsignedInt\n  storeName    String       @map(\"store_name\") @db.VarChar(255)\n  grossInCents Int          @map(\"gross_in_cents\")\n  feeInCents   Int          @map(\"fee_in_cents\")\n  netInCents   Int          @map(\"net_in_cents\")\n  status       PayoutStatus @default(PAID)\n  proofFileUrl String?      @map(\"proof_file_url\") @db.VarChar(500)\n  createdAt    DateTime     @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt    DateTime     @default(now()) @updatedAt @map(\"updated_at\") @db.Timestamp(0)\n  items        PayoutItem[]\n  store        Store        @relation(fields: [storeId], references: [id], onUpdate: NoAction, map: \"payouts_store_id_foreign\")\n\n  @@index([status], map: \"payouts_status_index\")\n  @@index([storeId], map: \"payouts_store_id_index\")\n  @@map(\"payouts\")\n}\n\nmodel PayoutItem {\n  id               String    @id\n  payoutId         String    @map(\"payout_id\")\n  storeSaleId      Int       @unique(map: \"payout_items_store_sale_id_unique\") @map(\"store_sale_id\") @db.UnsignedInt\n  orderId          String    @map(\"order_id\") @db.VarChar(255)\n  saleGrossInCents Int       @map(\"sale_gross_in_cents\")\n  saleFeeInCents   Int       @map(\"sale_fee_in_cents\")\n  saleNetInCents   Int       @map(\"sale_net_in_cents\")\n  createdAt        DateTime  @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  payout           Payout    @relation(fields: [payoutId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"payout_items_payout_id_foreign\")\n  storeSale        StoreSale @relation(fields: [storeSaleId], references: [id], onUpdate: NoAction, map: \"payout_items_store_sale_id_foreign\")\n\n  @@index([orderId], map: \"payout_items_order_id_index\")\n  @@index([payoutId], map: \"payout_items_payout_id_index\")\n  @@map(\"payout_items\")\n}\n\nmodel Adjustment {\n  id           String         @id\n  valueInCents Int            @map(\"value_in_cents\")\n  reason       String         @db.Text\n  type         AdjustmentType\n  attachment   String?        @db.VarChar(500)\n  createdAt    DateTime       @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt    DateTime       @default(now()) @updatedAt @map(\"updated_at\") @db.Timestamp(0)\n\n  @@index([createdAt], map: \"adjustments_created_at_index\")\n  @@map(\"adjustments\")\n}\n"
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Payout\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"storeId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_id\"},{\"name\":\"storeName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"store_name\"},{\"name\":\"grossInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"gross_in_cents\"},{\"name\":\"feeInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"fee_in_cents\"},{\"name\":\"netInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"net_in_cents\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"payouts_status\"},{\"name\":\"proofFileUrl\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"proof_file_url\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"items\",\"kind\":\"object\",\"type\":\"PayoutItem\",\"relationName\":\"PayoutToPayoutItem\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"store\",\"relationName\":\"PayoutTostore\"}],\"dbName\":\"payouts\"},\"PayoutItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payoutId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"payout_id\"},{\"name\":\"storeSaleId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_sale_id\"},{\"name\":\"orderId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"order_id\"},{\"name\":\"saleGrossInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"sale_gross_in_cents\"},{\"name\":\"saleFeeInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"sale_fee_in_cents\"},{\"name\":\"saleNetInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"sale_net_in_cents\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"payout\",\"kind\":\"object\",\"type\":\"Payout\",\"relationName\":\"PayoutToPayoutItem\"},{\"name\":\"store_sales\",\"kind\":\"object\",\"type\":\"store_sales\",\"relationName\":\"PayoutItemTostore_sales\"}],\"dbName\":\"payout_items\"},\"Adjustment\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"valueInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"value_in_cents\"},{\"name\":\"reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"AdjustmentType\"},{\"name\":\"attachment\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"adjustments\"},\"access_user\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email_verified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"phone_verified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"email_code_verification\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"first_access\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"owner\",\"kind\":\"object\",\"type\":\"owner\",\"relationName\":\"access_userToowner\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"party\",\"relationName\":\"access_userToparty\"},{\"name\":\"shop_worker\",\"kind\":\"object\",\"type\":\"shop_worker\",\"relationName\":\"access_userToshop_worker\"}],\"dbName\":null},\"container_type\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"product\",\"relationName\":\"container_typeToproduct\"}],\"dbName\":null},\"credit_card\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"card_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"card_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"first4_digits\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last4_digits\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"card_brand\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiration_month\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiration_year\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"holder_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"authenticated\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"auth_random_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"auth_transaction_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"auth_refund_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"customer\",\"relationName\":\"credit_cardTocustomer\"},{\"name\":\"store_sales\",\"kind\":\"object\",\"type\":\"store_sales\",\"relationName\":\"credit_cardTostore_sales\"}],\"dbName\":null},\"customer\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"io_customer_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email_verified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"phone_verified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"code_verification\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"default_card_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"credit_card\",\"kind\":\"object\",\"type\":\"credit_card\",\"relationName\":\"credit_cardTocustomer\"},{\"name\":\"customer_wallet\",\"kind\":\"object\",\"type\":\"customer_wallet\",\"relationName\":\"customerTocustomer_wallet\"},{\"name\":\"customer_wallet_transactions\",\"kind\":\"object\",\"type\":\"customer_wallet_transactions\",\"relationName\":\"customerTocustomer_wallet_transactions\"},{\"name\":\"ingress\",\"kind\":\"object\",\"type\":\"ingress\",\"relationName\":\"customerToingress\"},{\"name\":\"invite\",\"kind\":\"object\",\"type\":\"invite\",\"relationName\":\"customerToinvite\"},{\"name\":\"pix_transactions\",\"kind\":\"object\",\"type\":\"pix_transactions\",\"relationName\":\"customerTopix_transactions\"},{\"name\":\"promoter\",\"kind\":\"object\",\"type\":\"promoter\",\"relationName\":\"customerTopromoter\"},{\"name\":\"store_sales\",\"kind\":\"object\",\"type\":\"store_sales\",\"relationName\":\"customerTostore_sales\"}],\"dbName\":null},\"customer_wallet\":{\"fields\":[{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"balance\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"default_credit_card_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"default_payment_method\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"customer\",\"relationName\":\"customerTocustomer_wallet\"}],\"dbName\":null},\"customer_wallet_transactions\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"transaction_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"reference_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount_in_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"customer_wallet_transactions_type\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"balance_after\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"customer\",\"relationName\":\"customerTocustomer_wallet_transactions\"}],\"dbName\":null},\"dosage_unit\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"product\",\"relationName\":\"dosage_unitToproduct\"}],\"dbName\":null},\"ingress\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"transaction_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"party_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"ingress_status_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"ingress_batch_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"payment_method_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"value_in_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"bracelet_number\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"customer\",\"relationName\":\"customerToingress\"},{\"name\":\"ingress_batch\",\"kind\":\"object\",\"type\":\"ingress_batch\",\"relationName\":\"ingressToingress_batch\"},{\"name\":\"ingress_status\",\"kind\":\"object\",\"type\":\"ingress_status\",\"relationName\":\"ingressToingress_status\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"party\",\"relationName\":\"ingressToparty\"},{\"name\":\"payment_method\",\"kind\":\"object\",\"type\":\"payment_method\",\"relationName\":\"ingressTopayment_method\"},{\"name\":\"invite\",\"kind\":\"object\",\"type\":\"invite\",\"relationName\":\"ingressToinvite\"}],\"dbName\":null},\"ingress_batch\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"quantity_sold\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"price_in_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"party_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"ingress\",\"kind\":\"object\",\"type\":\"ingress\",\"relationName\":\"ingressToingress_batch\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"party\",\"relationName\":\"ingress_batchToparty\"}],\"dbName\":null},\"ingress_status\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ingress\",\"kind\":\"object\",\"type\":\"ingress\",\"relationName\":\"ingressToingress_status\"}],\"dbName\":null},\"invite\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"party_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"invited_by_customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"ingress_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ingress\",\"kind\":\"object\",\"type\":\"ingress\",\"relationName\":\"ingressToinvite\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"customer\",\"relationName\":\"customerToinvite\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"party\",\"relationName\":\"inviteToparty\"}],\"dbName\":null},\"knex_migrations\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"batch\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"migration_time\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"knex_migrations_lock\":{\"fields\":[{\"name\":\"index\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"is_locked\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null},\"owner\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email_verified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"phone_verified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"last_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"line1\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"line2\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"line3\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"neighborhood\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"city\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"state\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"zip_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"access_user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"io_customer_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"access_user\",\"kind\":\"object\",\"type\":\"access_user\",\"relationName\":\"access_userToowner\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"store\",\"relationName\":\"ownerTostore\"}],\"dbName\":null},\"party\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"time\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"access_user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ingress\",\"kind\":\"object\",\"type\":\"ingress\",\"relationName\":\"ingressToparty\"},{\"name\":\"ingress_batch\",\"kind\":\"object\",\"type\":\"ingress_batch\",\"relationName\":\"ingress_batchToparty\"},{\"name\":\"invite\",\"kind\":\"object\",\"type\":\"invite\",\"relationName\":\"inviteToparty\"},{\"name\":\"access_user\",\"kind\":\"object\",\"type\":\"access_user\",\"relationName\":\"access_userToparty\"},{\"name\":\"party_shop\",\"kind\":\"object\",\"type\":\"party_shop\",\"relationName\":\"partyToparty_shop\"},{\"name\":\"promoter\",\"kind\":\"object\",\"type\":\"promoter\",\"relationName\":\"partyTopromoter\"}],\"dbName\":null},\"party_shop\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"party_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"shop_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"party\",\"relationName\":\"partyToparty_shop\"},{\"name\":\"shop\",\"kind\":\"object\",\"type\":\"shop\",\"relationName\":\"party_shopToshop\"},{\"name\":\"store_sales\",\"kind\":\"object\",\"type\":\"store_sales\",\"relationName\":\"party_shopTostore_sales\"}],\"dbName\":null},\"payment_method\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ingress\",\"kind\":\"object\",\"type\":\"ingress\",\"relationName\":\"ingressTopayment_method\"},{\"name\":\"store_sales\",\"kind\":\"object\",\"type\":\"store_sales\",\"relationName\":\"payment_methodTostore_sales\"}],\"dbName\":null},\"pix_transactions\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"store_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"transaction_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"reference_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiration_date\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pix_key\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pix_qr_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount_in_cents\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"pix_emv\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pix_type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"customer\",\"relationName\":\"customerTopix_transactions\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"store\",\"relationName\":\"pix_transactionsTostore\"}],\"dbName\":null},\"product\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"dosage\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"dosage_unit_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"container_type_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"product_type_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"container_type\",\"kind\":\"object\",\"type\":\"container_type\",\"relationName\":\"container_typeToproduct\"},{\"name\":\"dosage_unit\",\"kind\":\"object\",\"type\":\"dosage_unit\",\"relationName\":\"dosage_unitToproduct\"},{\"name\":\"product_type\",\"kind\":\"object\",\"type\":\"product_type\",\"relationName\":\"productToproduct_type\"},{\"name\":\"shop_products\",\"kind\":\"object\",\"type\":\"shop_products\",\"relationName\":\"productToshop_products\"}],\"dbName\":null},\"product_type\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"product\",\"relationName\":\"productToproduct_type\"}],\"dbName\":null},\"promoter\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"party_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"bonus_in_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"customer\",\"relationName\":\"customerTopromoter\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"party\",\"relationName\":\"partyTopromoter\"}],\"dbName\":null},\"shop\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"store_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"party_shop\",\"kind\":\"object\",\"type\":\"party_shop\",\"relationName\":\"party_shopToshop\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"store\",\"relationName\":\"shopTostore\"},{\"name\":\"shop_products\",\"kind\":\"object\",\"type\":\"shop_products\",\"relationName\":\"shopToshop_products\"},{\"name\":\"shop_worker\",\"kind\":\"object\",\"type\":\"shop_worker\",\"relationName\":\"shopToshop_worker\"},{\"name\":\"store_sales\",\"kind\":\"object\",\"type\":\"store_sales\",\"relationName\":\"shopTostore_sales\"}],\"dbName\":null},\"shop_products\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"shop_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"product_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"price_in_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"product\",\"relationName\":\"productToshop_products\"},{\"name\":\"shop\",\"kind\":\"object\",\"type\":\"shop\",\"relationName\":\"shopToshop_products\"},{\"name\":\"store_sales_products\",\"kind\":\"object\",\"type\":\"store_sales_products\",\"relationName\":\"shop_productsTostore_sales_products\"}],\"dbName\":null},\"shop_worker\":{\"fields\":[{\"name\":\"shop_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"access_user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"expiration_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"access_user\",\"kind\":\"object\",\"type\":\"access_user\",\"relationName\":\"access_userToshop_worker\"},{\"name\":\"shop\",\"kind\":\"object\",\"type\":\"shop\",\"relationName\":\"shopToshop_worker\"}],\"dbName\":null},\"store\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"owner_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"statement_descriptor\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"mcc\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"business_line1\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_line2\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_line3\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_neighborhood\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_city\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_state\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_country_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_zip_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_website\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"business_open_date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"io_seller_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"taxpayer_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"owner_taxpayer_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"webhook_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payouts\",\"kind\":\"object\",\"type\":\"Payout\",\"relationName\":\"PayoutTostore\"},{\"name\":\"pix_transactions\",\"kind\":\"object\",\"type\":\"pix_transactions\",\"relationName\":\"pix_transactionsTostore\"},{\"name\":\"shop\",\"kind\":\"object\",\"type\":\"shop\",\"relationName\":\"shopTostore\"},{\"name\":\"owner\",\"kind\":\"object\",\"type\":\"owner\",\"relationName\":\"ownerTostore\"},{\"name\":\"store_bank_account\",\"kind\":\"object\",\"type\":\"store_bank_account\",\"relationName\":\"storeTostore_bank_account\"},{\"name\":\"store_pix_transactions\",\"kind\":\"object\",\"type\":\"store_pix_transactions\",\"relationName\":\"storeTostore_pix_transactions\"},{\"name\":\"store_sales\",\"kind\":\"object\",\"type\":\"store_sales\",\"relationName\":\"storeTostore_sales\"},{\"name\":\"transfer_history\",\"kind\":\"object\",\"type\":\"transfer_history\",\"relationName\":\"storeTotransfer_history\"}],\"dbName\":null},\"store_bank_account\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"io_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"account_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"routing_number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"holder_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bank_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"store_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"store\",\"relationName\":\"storeTostore_bank_account\"},{\"name\":\"transfer_history\",\"kind\":\"object\",\"type\":\"transfer_history\",\"relationName\":\"store_bank_accountTotransfer_history\"}],\"dbName\":null},\"store_pix_transactions\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"store_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"transaction_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"reference_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiration_date\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pix_key\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pix_qr_code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount_in_cents\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"store\",\"relationName\":\"storeTostore_pix_transactions\"}],\"dbName\":null},\"store_sales\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"party_shop_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"store_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"shop_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"payment_method_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"credit_card_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"order_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"total_in_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"installments\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"interest_in_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"paid_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refunded_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"transaction_id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"payout_items\",\"kind\":\"object\",\"type\":\"PayoutItem\",\"relationName\":\"PayoutItemTostore_sales\"},{\"name\":\"credit_card\",\"kind\":\"object\",\"type\":\"credit_card\",\"relationName\":\"credit_cardTostore_sales\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"customer\",\"relationName\":\"customerTostore_sales\"},{\"name\":\"party_shop\",\"kind\":\"object\",\"type\":\"party_shop\",\"relationName\":\"party_shopTostore_sales\"},{\"name\":\"payment_method\",\"kind\":\"object\",\"type\":\"payment_method\",\"relationName\":\"payment_methodTostore_sales\"},{\"name\":\"shop\",\"kind\":\"object\",\"type\":\"shop\",\"relationName\":\"shopTostore_sales\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"store\",\"relationName\":\"storeTostore_sales\"},{\"name\":\"store_sales_products\",\"kind\":\"object\",\"type\":\"store_sales_products\",\"relationName\":\"store_salesTostore_sales_products\"}],\"dbName\":null},\"store_sales_products\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"store_sales_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"shop_product_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"price_in_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"total_in_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"shop_products\",\"kind\":\"object\",\"type\":\"shop_products\",\"relationName\":\"shop_productsTostore_sales_products\"},{\"name\":\"store_sales\",\"kind\":\"object\",\"type\":\"store_sales\",\"relationName\":\"store_salesTostore_sales_products\"}],\"dbName\":null},\"transfer_history\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"bank_account_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"statement_descriptor\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount_in_cents\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"store_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"store_bank_account\",\"kind\":\"object\",\"type\":\"store_bank_account\",\"relationName\":\"store_bank_accountTotransfer_history\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"store\",\"relationName\":\"storeTotransfer_history\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"AccessUser\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"email_verified\"},{\"name\":\"phoneVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"phone_verified\"},{\"name\":\"emailCodeVerification\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"email_code_verification\"},{\"name\":\"firstAccess\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"first_access\"},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"owners\",\"kind\":\"object\",\"type\":\"Owner\",\"relationName\":\"AccessUserToOwner\"},{\"name\":\"parties\",\"kind\":\"object\",\"type\":\"Party\",\"relationName\":\"AccessUserToParty\"},{\"name\":\"shopWorkers\",\"kind\":\"object\",\"type\":\"ShopWorker\",\"relationName\":\"AccessUserToShopWorker\"}],\"dbName\":\"access_user\"},\"Owner\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"email_verified\"},{\"name\":\"phoneVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"phone_verified\"},{\"name\":\"lastName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"last_name\"},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"line1\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"line2\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"line3\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"neighborhood\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"city\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"state\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"countryCode\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"country_code\"},{\"name\":\"zipCode\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"zip_code\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"is_active\"},{\"name\":\"accessUserId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"access_user_id\"},{\"name\":\"ioCustomerId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"io_customer_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"accessUser\",\"kind\":\"object\",\"type\":\"AccessUser\",\"relationName\":\"AccessUserToOwner\"},{\"name\":\"stores\",\"kind\":\"object\",\"type\":\"Store\",\"relationName\":\"OwnerToStore\"}],\"dbName\":\"owner\"},\"Customer\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"ioCustomerId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"io_customer_id\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"email_verified\"},{\"name\":\"phoneVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"phone_verified\"},{\"name\":\"codeVerification\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"code_verification\"},{\"name\":\"defaultCardId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"default_card_id\"},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"creditCards\",\"kind\":\"object\",\"type\":\"CreditCard\",\"relationName\":\"CreditCardToCustomer\"},{\"name\":\"wallet\",\"kind\":\"object\",\"type\":\"CustomerWallet\",\"relationName\":\"CustomerToCustomerWallet\"},{\"name\":\"walletTransactions\",\"kind\":\"object\",\"type\":\"CustomerWalletTransaction\",\"relationName\":\"CustomerToCustomerWalletTransaction\"},{\"name\":\"ingresses\",\"kind\":\"object\",\"type\":\"Ingress\",\"relationName\":\"CustomerToIngress\"},{\"name\":\"invites\",\"kind\":\"object\",\"type\":\"Invite\",\"relationName\":\"CustomerToInvite\"},{\"name\":\"pixTransactions\",\"kind\":\"object\",\"type\":\"PixTransaction\",\"relationName\":\"CustomerToPixTransaction\"},{\"name\":\"promoters\",\"kind\":\"object\",\"type\":\"Promoter\",\"relationName\":\"CustomerToPromoter\"},{\"name\":\"storeSales\",\"kind\":\"object\",\"type\":\"StoreSale\",\"relationName\":\"CustomerToStoreSale\"}],\"dbName\":\"customer\"},\"CustomerWallet\":{\"fields\":[{\"name\":\"customerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"customer_id\"},{\"name\":\"balance\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"defaultCreditCardId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"default_credit_card_id\"},{\"name\":\"defaultPaymentMethod\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"default_payment_method\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"CustomerToCustomerWallet\"}],\"dbName\":\"customer_wallet\"},\"CustomerWalletTransaction\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"customer_id\"},{\"name\":\"transactionId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"transaction_id\"},{\"name\":\"referenceId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"reference_id\"},{\"name\":\"amountInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"amount_in_cents\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"CustomerWalletTransactionType\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"balanceAfter\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"balance_after\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"CustomerToCustomerWalletTransaction\"}],\"dbName\":\"customer_wallet_transactions\"},\"CreditCard\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"customer_id\"},{\"name\":\"cardId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"card_id\"},{\"name\":\"cardToken\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"card_token\"},{\"name\":\"first4Digits\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"first4_digits\"},{\"name\":\"last4Digits\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"last4_digits\"},{\"name\":\"cardBrand\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"card_brand\"},{\"name\":\"expirationMonth\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"expiration_month\"},{\"name\":\"expirationYear\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"expiration_year\"},{\"name\":\"holderName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"holder_name\"},{\"name\":\"authenticated\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"authRandomCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"auth_random_cents\"},{\"name\":\"authTransactionId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"auth_transaction_id\"},{\"name\":\"authRefundDate\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"auth_refund_date\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"CreditCardToCustomer\"},{\"name\":\"storeSales\",\"kind\":\"object\",\"type\":\"StoreSale\",\"relationName\":\"CreditCardToStoreSale\"}],\"dbName\":\"credit_card\"},\"Party\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"time\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accessUserId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"access_user_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"accessUser\",\"kind\":\"object\",\"type\":\"AccessUser\",\"relationName\":\"AccessUserToParty\"},{\"name\":\"ingresses\",\"kind\":\"object\",\"type\":\"Ingress\",\"relationName\":\"IngressToParty\"},{\"name\":\"batches\",\"kind\":\"object\",\"type\":\"IngressBatch\",\"relationName\":\"IngressBatchToParty\"},{\"name\":\"invites\",\"kind\":\"object\",\"type\":\"Invite\",\"relationName\":\"InviteToParty\"},{\"name\":\"partyShops\",\"kind\":\"object\",\"type\":\"PartyShop\",\"relationName\":\"PartyToPartyShop\"},{\"name\":\"promoters\",\"kind\":\"object\",\"type\":\"Promoter\",\"relationName\":\"PartyToPromoter\"}],\"dbName\":\"party\"},\"IngressBatch\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"quantitySold\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"quantity_sold\"},{\"name\":\"priceInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"price_in_cents\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"is_active\"},{\"name\":\"partyId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"party_id\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"Party\",\"relationName\":\"IngressBatchToParty\"},{\"name\":\"ingresses\",\"kind\":\"object\",\"type\":\"Ingress\",\"relationName\":\"IngressToIngressBatch\"}],\"dbName\":\"ingress_batch\"},\"IngressStatus\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ingresses\",\"kind\":\"object\",\"type\":\"Ingress\",\"relationName\":\"IngressToIngressStatus\"}],\"dbName\":\"ingress_status\"},\"Ingress\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"transactionId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"transaction_id\"},{\"name\":\"partyId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"party_id\"},{\"name\":\"ingressStatusId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"ingress_status_id\"},{\"name\":\"ingressBatchId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"ingress_batch_id\"},{\"name\":\"paymentMethodId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"payment_method_id\"},{\"name\":\"customerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"customer_id\"},{\"name\":\"valueInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"value_in_cents\"},{\"name\":\"braceletNumber\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"bracelet_number\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"CustomerToIngress\"},{\"name\":\"ingressBatch\",\"kind\":\"object\",\"type\":\"IngressBatch\",\"relationName\":\"IngressToIngressBatch\"},{\"name\":\"ingressStatus\",\"kind\":\"object\",\"type\":\"IngressStatus\",\"relationName\":\"IngressToIngressStatus\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"Party\",\"relationName\":\"IngressToParty\"},{\"name\":\"paymentMethod\",\"kind\":\"object\",\"type\":\"PaymentMethod\",\"relationName\":\"IngressToPaymentMethod\"},{\"name\":\"invites\",\"kind\":\"object\",\"type\":\"Invite\",\"relationName\":\"IngressToInvite\"}],\"dbName\":\"ingress\"},\"Invite\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"partyId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"party_id\"},{\"name\":\"invitedByCustomerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"invited_by_customer_id\"},{\"name\":\"ingressId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"ingress_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"ingress\",\"kind\":\"object\",\"type\":\"Ingress\",\"relationName\":\"IngressToInvite\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"CustomerToInvite\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"Party\",\"relationName\":\"InviteToParty\"}],\"dbName\":\"invite\"},\"Promoter\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"partyId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"party_id\"},{\"name\":\"customerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"customer_id\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"is_active\"},{\"name\":\"bonusInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"bonus_in_cents\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"CustomerToPromoter\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"Party\",\"relationName\":\"PartyToPromoter\"}],\"dbName\":\"promoter\"},\"PaymentMethod\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ingresses\",\"kind\":\"object\",\"type\":\"Ingress\",\"relationName\":\"IngressToPaymentMethod\"},{\"name\":\"storeSales\",\"kind\":\"object\",\"type\":\"StoreSale\",\"relationName\":\"PaymentMethodToStoreSale\"}],\"dbName\":\"payment_method\"},\"PixTransaction\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"customer_id\"},{\"name\":\"storeId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_id\"},{\"name\":\"transactionId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"transaction_id\"},{\"name\":\"referenceId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"reference_id\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expirationDate\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"expiration_date\"},{\"name\":\"pixKey\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"pix_key\"},{\"name\":\"pixQrCode\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"pix_qr_code\"},{\"name\":\"amountInCents\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"amount_in_cents\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pixEmv\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"pix_emv\"},{\"name\":\"pixType\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"pix_type\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"CustomerToPixTransaction\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"Store\",\"relationName\":\"PixTransactionToStore\"}],\"dbName\":\"pix_transactions\"},\"StorePixTransaction\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"storeId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_id\"},{\"name\":\"transactionId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"transaction_id\"},{\"name\":\"referenceId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"reference_id\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expirationDate\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"expiration_date\"},{\"name\":\"pixKey\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"pix_key\"},{\"name\":\"pixQrCode\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"pix_qr_code\"},{\"name\":\"amountInCents\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"amount_in_cents\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"Store\",\"relationName\":\"StoreToStorePixTransaction\"}],\"dbName\":\"store_pix_transactions\"},\"Store\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"ownerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"owner_id\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"statementDescriptor\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"statement_descriptor\"},{\"name\":\"mcc\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"businessLine1\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_line1\"},{\"name\":\"businessLine2\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_line2\"},{\"name\":\"businessLine3\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_line3\"},{\"name\":\"businessNeighborhood\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_neighborhood\"},{\"name\":\"businessCity\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_city\"},{\"name\":\"businessState\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_state\"},{\"name\":\"businessCountryCode\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_country_code\"},{\"name\":\"businessZipCode\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_zip_code\"},{\"name\":\"businessPhone\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_phone\"},{\"name\":\"businessEmail\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_email\"},{\"name\":\"businessName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_name\"},{\"name\":\"businessDocument\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_document\"},{\"name\":\"businessWebsite\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"business_website\"},{\"name\":\"businessOpenDate\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"business_open_date\"},{\"name\":\"ioSellerId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"io_seller_id\"},{\"name\":\"taxpayerId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"taxpayer_id\"},{\"name\":\"ownerTaxpayerId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"owner_taxpayer_id\"},{\"name\":\"webhookUrl\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"webhook_url\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"owner\",\"kind\":\"object\",\"type\":\"Owner\",\"relationName\":\"OwnerToStore\"},{\"name\":\"payouts\",\"kind\":\"object\",\"type\":\"Payout\",\"relationName\":\"PayoutToStore\"},{\"name\":\"pixTransactions\",\"kind\":\"object\",\"type\":\"PixTransaction\",\"relationName\":\"PixTransactionToStore\"},{\"name\":\"storePixTransactions\",\"kind\":\"object\",\"type\":\"StorePixTransaction\",\"relationName\":\"StoreToStorePixTransaction\"},{\"name\":\"shops\",\"kind\":\"object\",\"type\":\"Shop\",\"relationName\":\"ShopToStore\"},{\"name\":\"bankAccounts\",\"kind\":\"object\",\"type\":\"StoreBankAccount\",\"relationName\":\"StoreToStoreBankAccount\"},{\"name\":\"storeSales\",\"kind\":\"object\",\"type\":\"StoreSale\",\"relationName\":\"StoreToStoreSale\"},{\"name\":\"transferHistories\",\"kind\":\"object\",\"type\":\"TransferHistory\",\"relationName\":\"StoreToTransferHistory\"}],\"dbName\":\"store\"},\"StoreBankAccount\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"ioToken\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"io_token\"},{\"name\":\"accountNumber\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"account_number\"},{\"name\":\"routingNumber\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"routing_number\"},{\"name\":\"holderName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"holder_name\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bankCode\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"bank_code\"},{\"name\":\"document\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"storeId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"Store\",\"relationName\":\"StoreToStoreBankAccount\"},{\"name\":\"transferHistories\",\"kind\":\"object\",\"type\":\"TransferHistory\",\"relationName\":\"StoreBankAccountToTransferHistory\"}],\"dbName\":\"store_bank_account\"},\"TransferHistory\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"bankAccountId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"bank_account_id\"},{\"name\":\"storeId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_id\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"statementDescriptor\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"statement_descriptor\"},{\"name\":\"amountInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"amount_in_cents\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"storeBankAccount\",\"kind\":\"object\",\"type\":\"StoreBankAccount\",\"relationName\":\"StoreBankAccountToTransferHistory\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"Store\",\"relationName\":\"StoreToTransferHistory\"}],\"dbName\":\"transfer_history\"},\"Shop\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"storeId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_id\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"Store\",\"relationName\":\"ShopToStore\"},{\"name\":\"partyShops\",\"kind\":\"object\",\"type\":\"PartyShop\",\"relationName\":\"PartyShopToShop\"},{\"name\":\"shopProducts\",\"kind\":\"object\",\"type\":\"ShopProduct\",\"relationName\":\"ShopToShopProduct\"},{\"name\":\"shopWorkers\",\"kind\":\"object\",\"type\":\"ShopWorker\",\"relationName\":\"ShopToShopWorker\"},{\"name\":\"storeSales\",\"kind\":\"object\",\"type\":\"StoreSale\",\"relationName\":\"ShopToStoreSale\"}],\"dbName\":\"shop\"},\"ShopProduct\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"shopId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"shop_id\"},{\"name\":\"productId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"product_id\"},{\"name\":\"priceInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"price_in_cents\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"is_active\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"product\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ProductToShopProduct\"},{\"name\":\"shop\",\"kind\":\"object\",\"type\":\"Shop\",\"relationName\":\"ShopToShopProduct\"},{\"name\":\"storeSaleItems\",\"kind\":\"object\",\"type\":\"StoreSaleProduct\",\"relationName\":\"ShopProductToStoreSaleProduct\"}],\"dbName\":\"shop_products\"},\"ShopWorker\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"shopId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"shop_id\"},{\"name\":\"accessUserId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"access_user_id\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"expirationDate\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"expiration_date\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"accessUser\",\"kind\":\"object\",\"type\":\"AccessUser\",\"relationName\":\"AccessUserToShopWorker\"},{\"name\":\"shop\",\"kind\":\"object\",\"type\":\"Shop\",\"relationName\":\"ShopToShopWorker\"}],\"dbName\":\"shop_worker\"},\"PartyShop\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"partyId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"party_id\"},{\"name\":\"shopId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"shop_id\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"is_active\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"party\",\"kind\":\"object\",\"type\":\"Party\",\"relationName\":\"PartyToPartyShop\"},{\"name\":\"shop\",\"kind\":\"object\",\"type\":\"Shop\",\"relationName\":\"PartyShopToShop\"},{\"name\":\"storeSales\",\"kind\":\"object\",\"type\":\"StoreSale\",\"relationName\":\"PartyShopToStoreSale\"}],\"dbName\":\"party_shop\"},\"StoreSale\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"partyShopId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"party_shop_id\"},{\"name\":\"storeId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_id\"},{\"name\":\"shopId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"shop_id\"},{\"name\":\"paymentMethodId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"payment_method_id\"},{\"name\":\"customerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"customer_id\"},{\"name\":\"creditCardId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"credit_card_id\"},{\"name\":\"orderId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"order_id\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"totalInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"total_in_cents\"},{\"name\":\"installments\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"interestInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"interest_in_cents\"},{\"name\":\"paidAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"paid_at\"},{\"name\":\"refundedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"refunded_at\"},{\"name\":\"transactionId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"transaction_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"payoutItem\",\"kind\":\"object\",\"type\":\"PayoutItem\",\"relationName\":\"PayoutItemToStoreSale\"},{\"name\":\"creditCard\",\"kind\":\"object\",\"type\":\"CreditCard\",\"relationName\":\"CreditCardToStoreSale\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"CustomerToStoreSale\"},{\"name\":\"partyShop\",\"kind\":\"object\",\"type\":\"PartyShop\",\"relationName\":\"PartyShopToStoreSale\"},{\"name\":\"paymentMethod\",\"kind\":\"object\",\"type\":\"PaymentMethod\",\"relationName\":\"PaymentMethodToStoreSale\"},{\"name\":\"shop\",\"kind\":\"object\",\"type\":\"Shop\",\"relationName\":\"ShopToStoreSale\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"Store\",\"relationName\":\"StoreToStoreSale\"},{\"name\":\"saleProducts\",\"kind\":\"object\",\"type\":\"StoreSaleProduct\",\"relationName\":\"StoreSaleToStoreSaleProduct\"}],\"dbName\":\"store_sales\"},\"StoreSaleProduct\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"storeSaleId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_sales_id\"},{\"name\":\"shopProductId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"shop_product_id\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"priceInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"price_in_cents\"},{\"name\":\"totalInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"total_in_cents\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"shopProduct\",\"kind\":\"object\",\"type\":\"ShopProduct\",\"relationName\":\"ShopProductToStoreSaleProduct\"},{\"name\":\"storeSale\",\"kind\":\"object\",\"type\":\"StoreSale\",\"relationName\":\"StoreSaleToStoreSaleProduct\"}],\"dbName\":\"store_sales_products\"},\"Product\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"dosage\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"dosageUnitId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"dosage_unit_id\"},{\"name\":\"containerTypeId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"container_type_id\"},{\"name\":\"productTypeId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"product_type_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"containerType\",\"kind\":\"object\",\"type\":\"ContainerType\",\"relationName\":\"ContainerTypeToProduct\"},{\"name\":\"dosageUnit\",\"kind\":\"object\",\"type\":\"DosageUnit\",\"relationName\":\"DosageUnitToProduct\"},{\"name\":\"productType\",\"kind\":\"object\",\"type\":\"ProductType\",\"relationName\":\"ProductToProductType\"},{\"name\":\"shopProducts\",\"kind\":\"object\",\"type\":\"ShopProduct\",\"relationName\":\"ProductToShopProduct\"}],\"dbName\":\"product\"},\"ProductType\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"products\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ProductToProductType\"}],\"dbName\":\"product_type\"},\"ContainerType\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"products\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"ContainerTypeToProduct\"}],\"dbName\":\"container_type\"},\"DosageUnit\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"products\",\"kind\":\"object\",\"type\":\"Product\",\"relationName\":\"DosageUnitToProduct\"}],\"dbName\":\"dosage_unit\"},\"Payout\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"storeId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_id\"},{\"name\":\"storeName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"store_name\"},{\"name\":\"grossInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"gross_in_cents\"},{\"name\":\"feeInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"fee_in_cents\"},{\"name\":\"netInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"net_in_cents\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"PayoutStatus\"},{\"name\":\"proofFileUrl\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"proof_file_url\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"items\",\"kind\":\"object\",\"type\":\"PayoutItem\",\"relationName\":\"PayoutToPayoutItem\"},{\"name\":\"store\",\"kind\":\"object\",\"type\":\"Store\",\"relationName\":\"PayoutToStore\"}],\"dbName\":\"payouts\"},\"PayoutItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"payoutId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"payout_id\"},{\"name\":\"storeSaleId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"store_sale_id\"},{\"name\":\"orderId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"order_id\"},{\"name\":\"saleGrossInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"sale_gross_in_cents\"},{\"name\":\"saleFeeInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"sale_fee_in_cents\"},{\"name\":\"saleNetInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"sale_net_in_cents\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"payout\",\"kind\":\"object\",\"type\":\"Payout\",\"relationName\":\"PayoutToPayoutItem\"},{\"name\":\"storeSale\",\"kind\":\"object\",\"type\":\"StoreSale\",\"relationName\":\"PayoutItemToStoreSale\"}],\"dbName\":\"payout_items\"},\"Adjustment\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"valueInCents\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"value_in_cents\"},{\"name\":\"reason\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"AdjustmentType\"},{\"name\":\"attachment\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"adjustments\"}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.compilerWasm = {
       getRuntime: async () => require('./query_compiler_bg.js'),

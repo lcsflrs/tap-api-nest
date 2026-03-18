@@ -3,7 +3,7 @@ import { PrismaService } from "../prisma/prisma.service";
 import type { IAdjustmentRepository } from "./interfaces/adjustment-repository.interface";
 import { Adjustment } from "@domain/adjustment/adjustment.aggregate";
 import { Uuid } from "@domain/@shared/interfaces/uuid";
-import { AdjustmentType } from "@infrastructure/prisma/generated/prisma";
+import { AdjustmentMapper } from "@infrastructure/mappers/adjustment.mapper";
 
 @Injectable()
 export class AdjustmentRepository implements IAdjustmentRepository {
@@ -11,28 +11,14 @@ export class AdjustmentRepository implements IAdjustmentRepository {
 
   async save(adjustment: Adjustment): Promise<void> {
     await this.prisma.adjustment.create({
-      data: {
-        id: adjustment.id.getValue(),
-        valueInCents: adjustment.valueInCents.getValue(),
-        reason: adjustment.reason,
-        type: adjustment.type as AdjustmentType,
-        attachment: adjustment.attachment,
-        createdAt: adjustment.createdAt,
-        updatedAt: adjustment.updatedAt,
-      },
+      data: AdjustmentMapper.toPersistence(adjustment),
     });
   }
 
   async update(adjustment: Adjustment): Promise<void> {
     await this.prisma.adjustment.update({
-      where: { id: adjustment.id.getValue() },
-      data: {
-        valueInCents: adjustment.valueInCents.getValue(),
-        reason: adjustment.reason,
-        type: adjustment.type as AdjustmentType,
-        attachment: adjustment.attachment,
-        updatedAt: adjustment.updatedAt,
-      },
+      where: { id: adjustment.getId().getValue() },
+      data: AdjustmentMapper.toPersistence(adjustment),
     });
   }
 
@@ -45,7 +31,7 @@ export class AdjustmentRepository implements IAdjustmentRepository {
       return null;
     }
 
-    return Adjustment.fromJSON(adjustment);
+    return AdjustmentMapper.toDomain(adjustment);
   }
 
   async findByDateRange(startDate: Date, endDate: Date): Promise<Adjustment[]> {
@@ -59,7 +45,7 @@ export class AdjustmentRepository implements IAdjustmentRepository {
       orderBy: { createdAt: "desc" },
     });
 
-    return adjustments.map((adj) => Adjustment.fromJSON(adj));
+    return adjustments.map((adj) => AdjustmentMapper.toDomain(adj));
   }
 
   async findAll(): Promise<Adjustment[]> {
@@ -67,6 +53,6 @@ export class AdjustmentRepository implements IAdjustmentRepository {
       orderBy: { createdAt: "desc" },
     });
 
-    return adjustments.map((adj) => Adjustment.fromJSON(adj));
+    return adjustments.map((adj) => AdjustmentMapper.toDomain(adj));
   }
 }

@@ -13,11 +13,11 @@ export class FindPendingPayoutsHandler implements IQueryHandler<FindPendingPayou
   async execute(query: FindPendingPayoutsQuery) {
     const { storeName, page, limit } = query;
 
-    const pendingSales = await this.prisma.store_sales.findMany({
+    const pendingSales = await this.prisma.storeSale.findMany({
       where: {
-        payment_method_id: 4,
+        paymentMethodId: 4,
         status: "paid",
-        payout_items: null,
+        payoutItem: null,
         ...(storeName && {
           store: {
             name: {
@@ -35,21 +35,21 @@ export class FindPendingPayoutsHandler implements IQueryHandler<FindPendingPayou
         },
       },
       orderBy: {
-        paid_at: "asc",
+        paidAt: "asc",
       },
     });
 
     const groupedByStoreAndDate = pendingSales.reduce(
       (acc, sale) => {
-        const storeId = sale.shop_id;
-        const paidAtDate = sale.paid_at
-          ? new Date(sale.paid_at).toISOString().split("T")[0]
+        const storeId = sale.shopId;
+        const paidAtDate = sale.paidAt
+          ? new Date(sale.paidAt).toISOString().split("T")[0]
           : "unknown";
 
         const key = `${storeId}-${paidAtDate}`;
 
         if (!acc[key]) {
-          const saleDate = sale.paid_at ? new Date(sale.paid_at) : new Date();
+          const saleDate = sale.paidAt ? new Date(sale.paidAt) : new Date();
           const payoutDate = new Date(saleDate);
           payoutDate.setDate(
             payoutDate.getDate() + FindPendingPayoutsHandler.PAYOUT_DAYS,
@@ -68,7 +68,7 @@ export class FindPendingPayoutsHandler implements IQueryHandler<FindPendingPayou
           };
         }
 
-        const grossInCents = sale.total_in_cents;
+        const grossInCents = sale.totalInCents;
         const feeInCents = Math.floor(
           grossInCents * FindPendingPayoutsHandler.TAP_FEE,
         );
@@ -76,11 +76,11 @@ export class FindPendingPayoutsHandler implements IQueryHandler<FindPendingPayou
 
         acc[key].sales.push({
           id: sale.id,
-          orderId: sale.order_id,
+          orderId: sale.orderId,
           grossInCents,
           feeInCents,
           netInCents,
-          paidAt: sale.paid_at!,
+          paidAt: sale.paidAt!,
         });
 
         acc[key].totalGrossInCents += grossInCents;
@@ -95,7 +95,11 @@ export class FindPendingPayoutsHandler implements IQueryHandler<FindPendingPayou
 
     const allStores = Object.values(groupedByStoreAndDate).sort((a, b) => {
       const nameCompare = a.storeName.localeCompare(b.storeName);
-      if (nameCompare !== 0) return nameCompare;
+
+      if (nameCompare !== 0) {
+        return nameCompare;
+      }
+
       return new Date(a.date).getTime() - new Date(b.date).getTime();
     });
 

@@ -1,18 +1,16 @@
-import { AggregateRoot } from "../@shared/interfaces/aggregate-root.abstract.";
+import { AggregateRoot } from "../@shared/interfaces/aggregate-root.abstract";
 import { Uuid } from "../@shared/interfaces/uuid";
 import { Money } from "../@shared/value-objects/money.value";
 
 export type AdjustmentType = "CREDIT" | "DEBIT";
 
-export class Adjustment extends AggregateRoot {
+export class Adjustment extends AggregateRoot<Uuid> {
   constructor(
     id: Uuid,
-    private _valueInCents: Money,
-    private _reason: string,
-    private _type: AdjustmentType,
-    private _createdAt: Date = new Date(),
-    private _updatedAt: Date,
-    private _attachment?: string,
+    private readonly _valueInCents: Money,
+    private readonly _reason: string,
+    private readonly _type: AdjustmentType,
+    private readonly _attachment?: string,
   ) {
     super(id);
   }
@@ -31,27 +29,39 @@ export class Adjustment extends AggregateRoot {
       throw new Error("Adjustment reason is too long");
     }
 
+    const now = new Date();
+
     return new Adjustment(
       Uuid.generate(),
       valueInCents,
       reason,
       type,
-      new Date(),
-      new Date(),
       attachment,
     );
   }
 
-  static fromJSON(json: any): Adjustment {
+  static fromJSON(json: AdjustmentJSON): Adjustment {
     return new Adjustment(
       new Uuid(json.id),
       Money.create(json.valueInCents),
       json.reason,
-      json.type as AdjustmentType,
-      new Date(json.createdAt),
-      new Date(json.updatedAt),
-      json.attachment || undefined,
+      json.type,
+      json.attachment ?? undefined,
     );
+  }
+
+  toJSON(): AdjustmentJSON {
+    return {
+      id: this.getId().getValue(),
+      valueInCents: this._valueInCents.getValue(),
+      reason: this._reason,
+      type: this._type,
+      attachment: this._attachment,
+    };
+  }
+
+  getId(): Uuid {
+    return this.id;
   }
 
   get valueInCents(): Money {
@@ -69,12 +79,12 @@ export class Adjustment extends AggregateRoot {
   get attachment(): string | undefined {
     return this._attachment;
   }
+}
 
-  get createdAt(): Date {
-    return this._createdAt;
-  }
-
-  get updatedAt(): Date {
-    return this._updatedAt;
-  }
+interface AdjustmentJSON {
+  id: string;
+  valueInCents: number;
+  reason: string;
+  type: AdjustmentType;
+  attachment?: string;
 }

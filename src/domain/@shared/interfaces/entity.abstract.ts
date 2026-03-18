@@ -1,13 +1,7 @@
-import type { Uuid } from "./uuid";
+export abstract class Entity<TId> {
+  constructor(protected readonly id: TId) {}
 
-export abstract class Entity {
-  public readonly id: Uuid;
-
-  constructor(id: Uuid) {
-    this.id = id;
-  }
-
-  public getId() {
+  public getId(): TId {
     return this.id;
   }
 }
