@@ -26,10 +26,7 @@ export class VerifyWorkerAccessHandler implements IQueryHandler<VerifyWorkerAcce
     }
 
     const worker = await this.prisma.shopWorker.findFirst({
-      where: {
-        id: payload.workerId,
-        active: true,
-      },
+      where: { id: payload.workerId, active: true },
     });
 
     if (!worker) {

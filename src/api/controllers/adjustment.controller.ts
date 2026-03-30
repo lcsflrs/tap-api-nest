@@ -1,16 +1,10 @@
-import {
-  Controller,
-  Post,
-  Get,
-  Body,
-  Param,
-  Query,
-  ParseIntPipe,
-} from "@nestjs/common";
+import { Body, Controller, Get, Post, Query } from "@nestjs/common";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { CreateAdjustmentCommand } from "@application/commands/dtos/create-adjustment.command";
 import { FindManyAdjustmentsQuery } from "@application/queries/dtos/find-many-adjustments.query";
 import { GetAdjustmentsMetricsQuery } from "@application/queries/dtos/get-adjustments-metrics.query";
+import { CreateAdjustmentDto } from "@api/dtos/adjustment/create-adjustment.dto";
+import { FindManyAdjustmentsDto } from "@api/dtos/adjustment/find-many-adjustments.dto";
 
 @Controller("adjustments")
 export class AdjustmentController {
@@ -20,15 +14,7 @@ export class AdjustmentController {
   ) {}
 
   @Post()
-  async create(
-    @Body()
-    body: {
-      valueInCents: number;
-      reason: string;
-      type: string;
-      attachment?: string;
-    },
-  ) {
+  async create(@Body() body: CreateAdjustmentDto) {
     return this.commandBus.execute(
       new CreateAdjustmentCommand(
         body.valueInCents,
@@ -45,10 +31,9 @@ export class AdjustmentController {
   }
 
   @Get()
-  async findMany(
-    @Query("page", ParseIntPipe) page: number,
-    @Query("limit", ParseIntPipe) limit: number,
-  ) {
-    return this.queryBus.execute(new FindManyAdjustmentsQuery(page, limit));
+  async findMany(@Query() query: FindManyAdjustmentsDto) {
+    return this.queryBus.execute(
+      new FindManyAdjustmentsQuery(query.page, query.limit),
+    );
   }
 }

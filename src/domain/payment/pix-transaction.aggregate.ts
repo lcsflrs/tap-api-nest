@@ -46,8 +46,6 @@ export class PixTransaction extends AggregateRoot<PixTransactionID> {
       throw new Error("ReferenceId is required");
     }
 
-    const now = new Date();
-
     return new PixTransaction(
       id,
       customerId,
@@ -163,6 +161,14 @@ export class PixTransaction extends AggregateRoot<PixTransactionID> {
 
   get pixQrCode(): string {
     return this._pixQrCode;
+  }
+
+  get expirationDate(): string {
+    return this._expirationDate;
+  }
+
+  get description(): string | null {
+    return this._description;
   }
 }
 

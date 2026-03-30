@@ -35,7 +35,7 @@ export interface PaymentGatewayInterface {
     token: string,
   ): Promise<any>;
   listAllBankAccounts(ioSellerId: string, token: string): Promise<any>;
-  getBankAccount(
+  getIopayBankAccount(
     bankAccountId: number,
     ioSellerId: string,
     token: string,
@@ -50,6 +50,25 @@ export interface PaymentGatewayInterface {
     body: BodyGeneratePixTransactionDTO,
     token: string,
   ): Promise<any>;
+  generateStorePixTransaction(params: {
+    storeId: number;
+    amountInCents: number;
+    referenceId: string;
+    description: string;
+    statementDescriptor: string;
+  }): Promise<{
+    storeId: number;
+    transactionId: string;
+    referenceId: string;
+    pixKey: string;
+    pixQrCode: string;
+    pixEmv: string;
+    expirationDate: string;
+    status: string;
+    amountInCents: number;
+    description: string;
+    customerId?: number | null;
+  }>;
   getTransaction(transactionId: string, token: string): Promise<any>;
   refundTransaction(
     transactionId: string,

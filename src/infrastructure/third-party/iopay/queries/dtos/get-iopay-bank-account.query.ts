@@ -1,6 +1,6 @@
 import { IQuery } from "@nestjs/cqrs";
 
-export interface GetBankAccountResult {
+export interface GetIopayBankAccountResult {
   id: number;
   accountNumber: string;
   bankCode: string;
@@ -8,7 +8,7 @@ export interface GetBankAccountResult {
   type: string;
 }
 
-export class GetBankAccountQuery implements IQuery {
+export class GetIopayBankAccountQuery implements IQuery {
   constructor(
     public readonly ioSellerId: string,
     public readonly bankAccountId: number,

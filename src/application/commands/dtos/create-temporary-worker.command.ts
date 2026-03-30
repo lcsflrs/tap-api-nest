@@ -7,13 +7,13 @@ export class CreateTemporaryWorkerCommand extends Command<{
   expirationHours: number;
   expirationDate: Date | null;
   accessJwt: string;
-  role: number;
+  role: string;
 }> {
   constructor(
     public readonly shopId: number,
     public readonly name: string,
     public readonly expirationHours: number,
-    public readonly role: number,
+    public readonly role: string,
   ) {
     super();
   }

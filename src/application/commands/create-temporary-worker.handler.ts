@@ -23,7 +23,7 @@ export class CreateTemporaryWorkerHandler implements ICommandHandler<CreateTempo
     const worker = Worker.create(
       new WorkerID(0),
       new ShopID(shopId),
-      WorkerType.fromNumber(role),
+      WorkerType.fromString(role),
       name,
       expirationHours,
     );
@@ -41,7 +41,7 @@ export class CreateTemporaryWorkerHandler implements ICommandHandler<CreateTempo
       name: savedWorker.name,
       expirationHours: savedWorker.getExpirationHours(),
       expirationDate: savedWorker.expirationDate,
-      role: savedWorker.role.getNumericValue(),
+      role: savedWorker.role.getValue(),
       accessJwt,
     };
   }

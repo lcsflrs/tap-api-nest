@@ -1,4 +1,4 @@
-import { Injectable, OnModuleInit } from "@nestjs/common";
+import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import axios, { AxiosInstance } from "axios";
 import { ThirdPartyError } from "@domain/@shared/errors/third-party.error";
@@ -16,6 +16,7 @@ import {
 import { BankAccountType } from "@domain/store/store-bank-account-type.value";
 import { Cpf } from "@domain/@shared/value-objects/cpf.value";
 import { Cnpj } from "@domain/@shared/value-objects/cnpj.value";
+import type { IStoreRepository } from "@infrastructure/repositories/interfaces/store-repository.interface";
 
 @Injectable()
 export class IopayService implements PaymentGatewayInterface, OnModuleInit {
@@ -28,7 +29,11 @@ export class IopayService implements PaymentGatewayInterface, OnModuleInit {
   private cachedAuthToken: string | null = null;
   private authTokenExpiresAt: number = 0;
 
-  constructor(private readonly configService: ConfigService) {
+  constructor(
+    private readonly configService: ConfigService,
+    @Inject("StoreRepository")
+    private readonly storeRepository: IStoreRepository,
+  ) {
     const baseUrl = this.configService.get<string>("iopay.baseUrl");
     const email = this.configService.get<string>("iopay.email");
     const secret = this.configService.get<string>("iopay.secret");
@@ -226,7 +231,11 @@ export class IopayService implements PaymentGatewayInterface, OnModuleInit {
     });
   }
 
-  getBankAccount(bankAccountId: number, ioSellerId: string, token: string) {
+  getIopayBankAccount(
+    bankAccountId: number,
+    ioSellerId: string,
+    token: string,
+  ) {
     return this.gateway.get(
       `/v1/sellers/bank_accounts/get/${ioSellerId}/${bankAccountId}`,
       { headers: { Authorization: `Bearer ${token}` } },
@@ -251,6 +260,84 @@ export class IopayService implements PaymentGatewayInterface, OnModuleInit {
     return this.gateway.post(`/v1/transaction/new/${ioCustomerId}`, body, {
       headers: { Authorization: `Bearer ${token}` },
     });
+  }
+
+  async generateStorePixTransaction(params: {
+    storeId: number;
+    amountInCents: number;
+    referenceId: string;
+    description: string;
+    statementDescriptor: string;
+  }): Promise<{
+    storeId: number;
+    transactionId: string;
+    referenceId: string;
+    pixKey: string;
+    pixQrCode: string;
+    pixEmv: string;
+    expirationDate: string;
+    status: string;
+    amountInCents: number;
+    description: string;
+    customerId?: number | null;
+  }> {
+    const storeData = await this.storeRepository.findByIdWithOwnerIoCustomerId(
+      params.storeId,
+    );
+
+    if (!storeData) {
+      throw new Error("Store not found");
+    }
+
+    if (!storeData.ownerIoCustomerId) {
+      throw new Error("Owner does not have an ioCustomerId");
+    }
+
+    try {
+      const authResponse = await this.getAuthToken();
+      const authToken: string = authResponse.data.access_token;
+
+      const body: BodyGeneratePixTransactionDTO = {
+        amount: params.amountInCents,
+        currency: "BRL",
+        payment_type: "pix",
+        io_seller_id: this.getPaymentIoSellerId(),
+        reference_id: params.referenceId,
+        description: params.description,
+        statement_descriptor: params.statementDescriptor,
+      };
+
+      const response = await this.generatePixTransaction(
+        storeData.ownerIoCustomerId,
+        body,
+        authToken,
+      );
+
+      if (!response.data?.success) {
+        throw new Error(
+          response.data?.message ??
+            "No response data from PIX store transaction",
+        );
+      }
+
+      const { success } = response.data;
+
+      return {
+        storeId: params.storeId,
+        referenceId: params.referenceId,
+        transactionId: success.id,
+        pixKey: success.payment_method.key.value,
+        pixQrCode: success.pix_qrcode_url,
+        pixEmv: success.payment_method.qr_code.emv,
+        expirationDate: success.payment_method.expiration_date,
+        status: success.status,
+        amountInCents: Math.round(parseFloat(success.amount) * 100),
+        description: success.description,
+        customerId: null,
+      };
+    } catch (err: any) {
+      throw new Error(`[IOPAY_GATEWAY] ${err.message}`);
+    }
   }
 
   getTransaction(transactionId: string, token: string) {

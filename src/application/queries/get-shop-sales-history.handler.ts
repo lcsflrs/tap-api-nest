@@ -2,6 +2,7 @@ import { QueryHandler, IQueryHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
 import { GetShopSalesHistoryQuery } from "./dtos/get-shop-sales-history.query";
 import { PrismaService } from "@infrastructure/prisma/prisma.service";
+import { SaleStatus } from "@domain/store/sale/store-sale.aggregate";
 
 @QueryHandler(GetShopSalesHistoryQuery)
 export class GetShopSalesHistoryHandler implements IQueryHandler<GetShopSalesHistoryQuery> {
@@ -29,7 +30,7 @@ export class GetShopSalesHistoryHandler implements IQueryHandler<GetShopSalesHis
         shopId: sale.shopId,
         paymentMethodId: sale.paymentMethodId,
         orderId: sale.orderId,
-        status: sale.status,
+        status: sale.status as SaleStatus,
         totalInCents: sale.totalInCents,
         installments: sale.installments ?? 0,
         interestInCents: sale.interestInCents ?? undefined,

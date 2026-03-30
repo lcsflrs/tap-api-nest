@@ -1,6 +1,6 @@
 import { ValueObject } from "@domain/@shared/interfaces/value-object.interface";
 
-export type PixTypeValue = "AddBalance" | "BuyTicket";
+export type PixTypeValue = "AddBalance" | "BuyTicket" | "StoreSale";
 
 export class PixType implements ValueObject<string> {
   private constructor(private readonly _value: PixTypeValue) {}
@@ -13,12 +13,20 @@ export class PixType implements ValueObject<string> {
     return new PixType("BuyTicket");
   }
 
+  static storeSale(): PixType {
+    return new PixType("StoreSale");
+  }
+
   static from(value: string): PixType {
-    if (value !== "AddBalance" && value !== "BuyTicket") {
+    if (
+      value !== "AddBalance" &&
+      value !== "BuyTicket" &&
+      value !== "StoreSale"
+    ) {
       throw new Error(`Invalid pix type: ${value}`);
     }
 
-    return new PixType(value);
+    return new PixType(value as PixTypeValue);
   }
 
   isAddBalance(): boolean {
@@ -27,6 +35,10 @@ export class PixType implements ValueObject<string> {
 
   isBuyTicket(): boolean {
     return this._value === "BuyTicket";
+  }
+
+  isStoreSale(): boolean {
+    return this._value === "StoreSale";
   }
 
   getValue(): string {

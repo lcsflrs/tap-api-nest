@@ -1,28 +1,30 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
 import {
-  GetBankAccountQuery,
-  GetBankAccountResult,
-} from "./dtos/get-bank-account.query";
+  GetIopayBankAccountQuery,
+  GetIopayBankAccountResult,
+} from "./dtos/get-iopay-bank-account.query";
 import { PAYMENT_GATEWAY_TOKEN } from "@domain/@shared/payment-gateway/payment-gateway.token";
 import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 
-@QueryHandler(GetBankAccountQuery)
-export class GetBankAccountHandler implements IQueryHandler<
-  GetBankAccountQuery,
-  GetBankAccountResult
+@QueryHandler(GetIopayBankAccountQuery)
+export class GetIopayBankAccountHandler implements IQueryHandler<
+  GetIopayBankAccountQuery,
+  GetIopayBankAccountResult
 > {
   constructor(
     @Inject(PAYMENT_GATEWAY_TOKEN)
     private readonly paymentGateway: PaymentGatewayInterface,
   ) {}
 
-  async execute(query: GetBankAccountQuery): Promise<GetBankAccountResult> {
+  async execute(
+    query: GetIopayBankAccountQuery,
+  ): Promise<GetIopayBankAccountResult> {
     try {
       const authResponse = await this.paymentGateway.getAuthToken();
       const authToken: string = authResponse.data.access_token;
 
-      const response = await this.paymentGateway.getBankAccount(
+      const response = await this.paymentGateway.getIopayBankAccount(
         query.bankAccountId,
         query.ioSellerId,
         authToken,

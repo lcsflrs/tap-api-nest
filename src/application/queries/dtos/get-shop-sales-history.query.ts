@@ -1,5 +1,5 @@
 import { Query } from "@nestjs/cqrs";
-import { SalesStatus } from "@domain/store/store-sales.entity";
+import { SaleStatus } from "@domain/store/sale/store-sale.aggregate";
 
 export class GetShopSalesHistoryQuery extends Query<{
   sales: {
@@ -8,7 +8,7 @@ export class GetShopSalesHistoryQuery extends Query<{
     shopId: number;
     paymentMethodId: number;
     orderId: string;
-    status: SalesStatus;
+    status: SaleStatus;
     totalInCents: number;
     installments: number;
     interestInCents?: number;

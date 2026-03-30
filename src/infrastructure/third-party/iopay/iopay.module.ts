@@ -16,7 +16,7 @@ import { GenerateStorePixTransactionHandler } from "./commands/generate-store-pi
 import { RefundTransactionHandler } from "./commands/refund-transaction.handler";
 import { GetSpecialTokenHandler } from "./queries/get-special-token.handler";
 import { GetBalanceHandler } from "./queries/get-balance.handler";
-import { GetBankAccountHandler } from "./queries/get-bank-account.handler";
+import { GetIopayBankAccountHandler } from "./queries/get-iopay-bank-account.handler";
 import { GetTransactionHandler } from "./queries/get-transaction.handler";
 import { ListAllBankAccountsHandler } from "./queries/list-all-bank-accounts.handler";
 import { ListAllTransfersHandler } from "./queries/list-all-transfers.handler";
@@ -36,7 +36,7 @@ const CommandHandlers = [
 const QueryHandlers = [
   GetSpecialTokenHandler,
   GetBalanceHandler,
-  GetBankAccountHandler,
+  GetIopayBankAccountHandler,
   GetTransactionHandler,
   ListAllBankAccountsHandler,
   ListAllTransfersHandler,
