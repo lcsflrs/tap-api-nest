@@ -4,7 +4,7 @@ import { CreateStorePaymentGatewayCommand } from "./dtos/create-store-payment-ga
 import type { IStoreRepository } from "@infrastructure/repositories/interfaces/store-repository.interface";
 import type { IOwnerRepository } from "@infrastructure/repositories/interfaces/owner-repository.interface";
 import { PAYMENT_GATEWAY_TOKEN } from "@domain/@shared/payment-gateway/payment-gateway.token";
-import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
+import type { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 import { Store } from "@domain/store/store.aggregate";
 import { StoreID } from "@domain/store/store-id.value";
 

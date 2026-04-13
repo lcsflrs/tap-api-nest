@@ -5,7 +5,7 @@ import {
   GetIopayBankAccountResult,
 } from "./dtos/get-iopay-bank-account.query";
 import { PAYMENT_GATEWAY_TOKEN } from "@domain/@shared/payment-gateway/payment-gateway.token";
-import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
+import type { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 
 @QueryHandler(GetIopayBankAccountQuery)
 export class GetIopayBankAccountHandler implements IQueryHandler<

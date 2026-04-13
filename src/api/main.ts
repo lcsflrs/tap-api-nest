@@ -33,7 +33,7 @@ async function bootstrap() {
     console.error("Uncaught exception:", err);
   });
 
-  const port = process.env.PORT || 5001;
+  const port = process.env.PORT || 5000;
   await app.listen(port);
 
   console.log(`Server is running on: http://localhost:${port}/api/v1`);

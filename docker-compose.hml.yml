@@ -1,0 +1,92 @@
+services:
+  traefik:
+    image: traefik:v3.0
+    restart: always
+    container_name: traefik-hml
+    networks:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+    command:
+      - --log.level=INFO
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=web
+      - --entrypoints.web.address=:80
+      - --entrypoints.web-secured.address=:443
+      - --certificatesresolvers.le.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
+      - --certificatesresolvers.le.acme.email=${ACME_EMAIL}
+      - --certificatesresolvers.le.acme.storage=/letsencrypt/acme.json
+      - --certificatesresolvers.le.acme.httpChallenge.entryPoint=web
+    volumes:
+      - letsencrypt:/letsencrypt/
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.redirect-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-https.redirectscheme.permanent=true"
+      - "traefik.http.middlewares.limit.buffering.maxRequestBodyBytes=50000000"
+      - "traefik.http.middlewares.limit.buffering.memRequestBodyBytes=50000000"
+      - "traefik.http.middlewares.limit.buffering.maxResponseBodyBytes=50000000"
+      - "traefik.http.middlewares.limit.buffering.memResponseBodyBytes=50000000"
+
+  db:
+    container_name: tap-mysql-hml
+    image: mysql:8.0
+    restart: always
+    networks:
+      - web
+    env_file:
+      - .env.hml
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  api:
+    container_name: tap-api-hml
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
+    networks:
+      - web
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env.hml
+    command: ["sh", "-c", "bunx prisma migrate deploy && bun run start"]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.tap-api-web.rule=Host(`hml.api.tapapp.com.br`)"
+      - "traefik.http.routers.tap-api-web.entrypoints=web"
+      - "traefik.http.routers.tap-api-web.middlewares=redirect-https@docker,limit@docker"
+      - "traefik.http.routers.tap-api-secured.rule=Host(`hml.api.tapapp.com.br`)"
+      - "traefik.http.routers.tap-api-secured.entrypoints=web-secured"
+      - "traefik.http.routers.tap-api-secured.tls.certresolver=le"
+      - "traefik.http.services.tap-api-secured.loadbalancer.server.port=5000"
+    restart: unless-stopped
+
+networks:
+  web:
+    external: true
+
+volumes:
+  mysql-data:
+  letsencrypt:

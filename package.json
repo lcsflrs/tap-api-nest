@@ -8,9 +8,8 @@
     "start": "node dist/main",
     "prisma:reset": "bun prisma migrate reset",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:generate": "prisma generate",
-    "prisma:pull:sales": "prisma db pull --config=prisma-sales.config.ts",
-    "prisma:generate:sales": "prisma generate --config=prisma-sales.config.ts"
+    "prisma:pull": "prisma db pull",
+    "prisma:generate": "prisma generate"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.10",

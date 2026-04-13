@@ -2,7 +2,7 @@ import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { Inject } from "@nestjs/common";
 import { GetBalanceQuery, GetBalanceResult } from "./dtos/get-balance.query";
 import { PAYMENT_GATEWAY_TOKEN } from "@domain/@shared/payment-gateway/payment-gateway.token";
-import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
+import type { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 
 @QueryHandler(GetBalanceQuery)
 export class GetBalanceHandler implements IQueryHandler<

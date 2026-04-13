@@ -3,7 +3,7 @@ import { Inject } from "@nestjs/common";
 import { AddStoreBankAccountCommand } from "./dtos/add-store-bank-account.command";
 import type { IStoreRepository } from "@infrastructure/repositories/interfaces/store-repository.interface";
 import { PAYMENT_GATEWAY_TOKEN } from "@domain/@shared/payment-gateway/payment-gateway.token";
-import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
+import type { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 import { Cpf } from "@domain/@shared/value-objects/cpf.value";
 import { Cnpj } from "@domain/@shared/value-objects/cnpj.value";
 import { StoreBankAccount } from "@domain/store/store-bank-account.entity";

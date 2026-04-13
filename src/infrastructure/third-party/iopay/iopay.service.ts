@@ -2,7 +2,7 @@ import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import axios, { AxiosInstance } from "axios";
 import { ThirdPartyError } from "@domain/@shared/errors/third-party.error";
-import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
+import type { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 import {
   BodyAssociateTokenizedBankAccountDTO,
   BodyCreateCreditTransactionWithSplitDTO,

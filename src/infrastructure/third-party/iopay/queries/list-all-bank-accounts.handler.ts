@@ -5,7 +5,7 @@ import {
   ListAllBankAccountsResult,
 } from "./dtos/list-all-bank-accounts.query";
 import { PAYMENT_GATEWAY_TOKEN } from "@domain/@shared/payment-gateway/payment-gateway.token";
-import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
+import type { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 
 @QueryHandler(ListAllBankAccountsQuery)
 export class ListAllBankAccountsHandler implements IQueryHandler<

@@ -7,21 +7,6 @@ datasource db {
   provider = "mysql"
 }
 
-enum AdjustmentType {
-  CREDIT
-  DEBIT
-}
-
-enum CustomerWalletTransactionType {
-  in
-  out
-}
-
-enum PayoutStatus {
-  PENDING
-  PAID
-}
-
 model AccessUser {
   id                    Int          @id @default(autoincrement()) @db.UnsignedInt
   phone                 String?      @db.VarChar(15)
@@ -29,13 +14,13 @@ model AccessUser {
   name                  String       @db.VarChar(100)
   password              String       @db.VarChar(255)
   document              String       @db.VarChar(15)
-  emailVerified         Boolean?     @default(false)      @map("email_verified")
-  phoneVerified         Boolean?     @default(false)      @map("phone_verified")
-  emailCodeVerification String?      @db.VarChar(6)       @map("email_code_verification")
-  firstAccess           Boolean?     @default(true)       @map("first_access")
+  emailVerified         Boolean?     @default(false) @map("email_verified")
+  phoneVerified         Boolean?     @default(false) @map("phone_verified")
+  emailCodeVerification String?      @map("email_code_verification") @db.VarChar(6)
+  firstAccess           Boolean?     @default(true) @map("first_access")
   birthdate             DateTime?    @db.Date
-  createdAt             DateTime     @default(now())      @map("created_at") @db.Timestamp(0)
-  updatedAt             DateTime     @default(now())      @map("updated_at") @db.Timestamp(0)
+  createdAt             DateTime     @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt             DateTime     @default(now()) @map("updated_at") @db.Timestamp(0)
   owners                Owner[]
   parties               Party[]
   shopWorkers           ShopWorker[]
@@ -44,29 +29,29 @@ model AccessUser {
 }
 
 model Owner {
-  id            Int         @id @default(autoincrement()) @db.UnsignedInt
-  phone         String?     @db.VarChar(255)
-  email         String      @db.VarChar(255)
-  name          String      @db.VarChar(255)
-  document      String?     @db.VarChar(255)
-  emailVerified Boolean?    @default(false) @map("email_verified")
-  phoneVerified Boolean?    @default(false) @map("phone_verified")
-  lastName      String      @db.VarChar(255) @map("last_name")
-  birthdate     DateTime?   @db.Date
-  line1         String?     @db.VarChar(100)
-  line2         String?     @db.VarChar(10)
-  line3         String?     @db.VarChar(100)
-  neighborhood  String?     @db.VarChar(40)
-  city          String?     @db.VarChar(40)
-  state         String?     @db.VarChar(2)
-  countryCode   String?     @db.VarChar(3)  @map("country_code")
-  zipCode       String?     @db.VarChar(10) @map("zip_code")
-  isActive      Boolean?    @default(true)  @map("is_active")
-  accessUserId  Int         @db.UnsignedInt @map("access_user_id")
-  ioCustomerId  String?     @db.VarChar(255) @map("io_customer_id")
-  createdAt     DateTime    @default(now()) @map("created_at") @db.Timestamp(0)
-  updatedAt     DateTime    @default(now()) @map("updated_at") @db.Timestamp(0)
-  accessUser    AccessUser  @relation(fields: [accessUserId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "owner_access_user_id_foreign")
+  id            Int        @id @default(autoincrement()) @db.UnsignedInt
+  phone         String?    @db.VarChar(255)
+  email         String     @db.VarChar(255)
+  name          String     @db.VarChar(255)
+  document      String?    @db.VarChar(255)
+  emailVerified Boolean?   @default(false) @map("email_verified")
+  phoneVerified Boolean?   @default(false) @map("phone_verified")
+  lastName      String     @map("last_name") @db.VarChar(255)
+  birthdate     DateTime?  @db.Date
+  line1         String?    @db.VarChar(100)
+  line2         String?    @db.VarChar(10)
+  line3         String?    @db.VarChar(100)
+  neighborhood  String?    @db.VarChar(40)
+  city          String?    @db.VarChar(40)
+  state         String?    @db.VarChar(2)
+  countryCode   String?    @map("country_code") @db.VarChar(3)
+  zipCode       String?    @map("zip_code") @db.VarChar(10)
+  isActive      Boolean?   @default(true) @map("is_active")
+  accessUserId  Int        @map("access_user_id") @db.UnsignedInt
+  createdAt     DateTime   @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime   @default(now()) @map("updated_at") @db.Timestamp(0)
+  ioCustomerId  String?    @map("io_customer_id") @db.VarChar(255)
+  accessUser    AccessUser @relation(fields: [accessUserId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "owner_access_user_id_foreign")
   stores        Store[]
 
   @@index([accessUserId], map: "owner_access_user_id_foreign")
@@ -74,36 +59,36 @@ model Owner {
 }
 
 model Customer {
-  id                          Int                          @id @default(autoincrement()) @db.UnsignedInt
-  ioCustomerId                String?                      @db.VarChar(255) @map("io_customer_id")
-  phone                       String?                      @db.VarChar(255)
-  email                       String                       @db.VarChar(255)
-  name                        String                       @db.VarChar(255)
-  document                    String?                      @db.VarChar(255)
-  emailVerified               Boolean?                     @default(false) @map("email_verified")
-  phoneVerified               Boolean?                     @default(false) @map("phone_verified")
-  codeVerification            String?                      @db.VarChar(255) @map("code_verification")
-  defaultCardId               String?                      @db.VarChar(255) @map("default_card_id")
-  birthdate                   DateTime?                    @db.Date
-  createdAt                   DateTime                     @default(now()) @map("created_at") @db.Timestamp(0)
-  updatedAt                   DateTime                     @default(now()) @map("updated_at") @db.Timestamp(0)
-  creditCards                 CreditCard[]
-  wallet                      CustomerWallet?
-  walletTransactions          CustomerWalletTransaction[]
-  ingresses                   Ingress[]
-  invites                     Invite[]
-  pixTransactions             PixTransaction[]
-  promoters                   Promoter[]
-  storeSales                  StoreSale[]
+  id                 Int                         @id @default(autoincrement()) @db.UnsignedInt
+  ioCustomerId       String?                     @map("io_customer_id") @db.VarChar(255)
+  phone              String?                     @db.VarChar(255)
+  email              String                      @db.VarChar(255)
+  name               String                      @db.VarChar(255)
+  document           String?                     @db.VarChar(255)
+  emailVerified      Boolean?                    @default(false) @map("email_verified")
+  phoneVerified      Boolean?                    @default(false) @map("phone_verified")
+  codeVerification   String?                     @map("code_verification") @db.VarChar(255)
+  defaultCardId      String?                     @map("default_card_id") @db.VarChar(255)
+  birthdate          DateTime?                   @db.Date
+  createdAt          DateTime                    @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt          DateTime                    @default(now()) @map("updated_at") @db.Timestamp(0)
+  creditCards        CreditCard[]
+  wallet             CustomerWallet?
+  walletTransactions CustomerWalletTransaction[]
+  ingresses          Ingress[]
+  invites            Invite[]
+  pixTransactions    PixTransaction[]
+  promoters          Promoter[]
+  storeSales         StoreSale[]
 
   @@map("customer")
 }
 
 model CustomerWallet {
-  customerId           Int      @id @db.UnsignedInt                      @map("customer_id")
+  customerId           Int      @id @map("customer_id") @db.UnsignedInt
   balance              Int      @default(0) @db.UnsignedInt
-  defaultCreditCardId  String?  @db.VarChar(255)                         @map("default_credit_card_id")
-  defaultPaymentMethod String?  @db.VarChar(50)                          @map("default_payment_method")
+  defaultCreditCardId  String?  @map("default_credit_card_id") @db.VarChar(255)
+  defaultPaymentMethod String?  @map("default_payment_method") @db.VarChar(50)
   customer             Customer @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "customer_wallet_customer_id_foreign")
 
   @@map("customer_wallet")
@@ -111,9 +96,9 @@ model CustomerWallet {
 
 model CustomerWalletTransaction {
   id            Int                           @id @default(autoincrement()) @db.UnsignedInt
-  customerId    Int                           @db.UnsignedInt               @map("customer_id")
-  transactionId String                        @unique(map: "customer_wallet_transactions_transaction_id_unique") @db.VarChar(255) @map("transaction_id")
-  referenceId   String                        @unique(map: "customer_wallet_transactions_reference_id_unique")  @db.VarChar(255) @map("reference_id")
+  customerId    Int                           @map("customer_id") @db.UnsignedInt
+  transactionId String                        @unique(map: "customer_wallet_transactions_transaction_id_unique") @map("transaction_id") @db.VarChar(255)
+  referenceId   String                        @unique(map: "customer_wallet_transactions_reference_id_unique") @map("reference_id") @db.VarChar(255)
   amountInCents Int                           @map("amount_in_cents")
   type          CustomerWalletTransactionType
   description   String?                       @db.VarChar(255)
@@ -127,45 +112,46 @@ model CustomerWalletTransaction {
 }
 
 model CreditCard {
-  id               Int         @id @default(autoincrement()) @db.UnsignedInt
-  customerId       Int         @db.UnsignedInt @map("customer_id")
-  cardId           String      @db.VarChar(255) @map("card_id")
-  cardToken        String      @db.VarChar(255) @map("card_token")
-  first4Digits     String      @db.VarChar(255) @map("first4_digits")
-  last4Digits      String      @db.VarChar(255) @map("last4_digits")
-  cardBrand        String      @db.VarChar(255) @map("card_brand")
-  expirationMonth  String      @db.VarChar(255) @map("expiration_month")
-  expirationYear   String      @db.VarChar(255) @map("expiration_year")
-  holderName       String      @db.VarChar(255) @map("holder_name")
-  authenticated    Boolean?    @default(false)
-  authRandomCents  Int?        @map("auth_random_cents")
-  authTransactionId String?    @db.VarChar(255) @map("auth_transaction_id")
-  authRefundDate   DateTime?   @db.DateTime(0)  @map("auth_refund_date")
-  createdAt        DateTime    @default(now())  @map("created_at") @db.Timestamp(0)
-  updatedAt        DateTime    @default(now())  @map("updated_at") @db.Timestamp(0)
-  customer         Customer    @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "credit_card_customer_id_foreign")
-  storeSales       StoreSale[]
+  id                Int         @id @default(autoincrement()) @db.UnsignedInt
+  customerId        Int         @map("customer_id") @db.UnsignedInt
+  cardId            String      @map("card_id") @db.VarChar(255)
+  cardToken         String      @map("card_token") @db.VarChar(255)
+  first4Digits      String      @map("first4_digits") @db.VarChar(255)
+  last4Digits       String      @map("last4_digits") @db.VarChar(255)
+  cardBrand         String      @map("card_brand") @db.VarChar(255)
+  expirationMonth   String      @map("expiration_month") @db.VarChar(255)
+  expirationYear    String      @map("expiration_year") @db.VarChar(255)
+  holderName        String      @map("holder_name") @db.VarChar(255)
+  authenticated     Boolean?    @default(false)
+  authRandomCents   Int?        @map("auth_random_cents")
+  authTransactionId String?     @map("auth_transaction_id") @db.VarChar(255)
+  authRefundDate    DateTime?   @map("auth_refund_date") @db.DateTime(0)
+  createdAt         DateTime    @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt         DateTime    @default(now()) @map("updated_at") @db.Timestamp(0)
+  customer          Customer    @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "credit_card_customer_id_foreign")
+  storeSales        StoreSale[]
 
   @@index([customerId], map: "credit_card_customer_id_foreign")
   @@map("credit_card")
 }
 
 model Party {
-  id           Int            @id @default(autoincrement()) @db.UnsignedInt
-  name         String         @db.VarChar(255)
-  date         DateTime       @db.Date
-  time         DateTime       @db.Time(0)
-  description  String         @db.VarChar(255)
-  address      String?        @db.VarChar(255)
-  accessUserId Int            @db.UnsignedInt @map("access_user_id")
-  createdAt    DateTime       @default(now()) @map("created_at") @db.Timestamp(0)
-  updatedAt    DateTime       @default(now()) @map("updated_at") @db.Timestamp(0)
-  accessUser   AccessUser     @relation(fields: [accessUserId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "party_access_user_id_foreign")
-  ingresses    Ingress[]
-  batches      IngressBatch[]
-  invites      Invite[]
-  partyShops   PartyShop[]
-  promoters    Promoter[]
+  id               Int              @id @default(autoincrement()) @db.UnsignedInt
+  name             String           @db.VarChar(255)
+  date             DateTime         @db.Date
+  time             DateTime         @db.Time(0)
+  description      String           @db.VarChar(255)
+  address          String?          @db.VarChar(255)
+  accessUserId     Int              @map("access_user_id") @db.UnsignedInt
+  createdAt        DateTime         @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt        DateTime         @default(now()) @map("updated_at") @db.Timestamp(0)
+  ingresses        Ingress[]
+  batches          IngressBatch[]
+  invites          Invite[]
+  accessUser       AccessUser       @relation(fields: [accessUserId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "party_access_user_id_foreign")
+  partyShops       PartyShop[]
+  pixTransactions PixTransaction[]
+  promoters        Promoter[]
 
   @@index([accessUserId], map: "party_access_user_id_foreign")
   @@map("party")
@@ -179,9 +165,9 @@ model IngressBatch {
   quantitySold Int       @default(0) @map("quantity_sold")
   priceInCents Int       @map("price_in_cents")
   isActive     Boolean   @default(false) @map("is_active")
-  partyId      Int       @db.UnsignedInt @map("party_id")
-  party        Party     @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ingress_batch_party_id_foreign")
+  partyId      Int       @map("party_id") @db.UnsignedInt
   ingresses    Ingress[]
+  party        Party     @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ingress_batch_party_id_foreign")
 
   @@index([partyId], map: "ingress_batch_party_id_foreign")
   @@map("ingress_batch")
@@ -197,16 +183,16 @@ model IngressStatus {
 
 model Ingress {
   id              Int           @id @default(autoincrement()) @db.UnsignedInt
-  transactionId   String?       @db.VarChar(255) @map("transaction_id")
-  partyId         Int           @db.UnsignedInt  @map("party_id")
-  ingressStatusId Int           @db.UnsignedInt  @map("ingress_status_id")
-  ingressBatchId  Int?          @db.UnsignedInt  @map("ingress_batch_id")
-  paymentMethodId Int           @db.UnsignedInt  @map("payment_method_id")
-  customerId      Int           @db.UnsignedInt  @map("customer_id")
+  transactionId   String?       @map("transaction_id") @db.VarChar(255)
+  partyId         Int           @map("party_id") @db.UnsignedInt
+  ingressStatusId Int           @map("ingress_status_id") @db.UnsignedInt
+  ingressBatchId  Int?          @map("ingress_batch_id") @db.UnsignedInt
+  paymentMethodId Int           @map("payment_method_id") @db.UnsignedInt
+  customerId      Int           @map("customer_id") @db.UnsignedInt
   valueInCents    Int?          @map("value_in_cents")
   braceletNumber  Int?          @map("bracelet_number")
-  createdAt       DateTime      @default(now())  @map("created_at") @db.Timestamp(0)
-  updatedAt       DateTime      @default(now())  @map("updated_at") @db.Timestamp(0)
+  createdAt       DateTime      @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt       DateTime      @default(now()) @map("updated_at") @db.Timestamp(0)
   customer        Customer      @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ingress_customer_id_foreign")
   ingressBatch    IngressBatch? @relation(fields: [ingressBatchId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ingress_ingress_batch_id_foreign")
   ingressStatus   IngressStatus @relation(fields: [ingressStatusId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ingress_ingress_status_id_foreign")
@@ -223,19 +209,19 @@ model Ingress {
 }
 
 model Invite {
-  id                   Int       @id @default(autoincrement()) @db.UnsignedInt
-  name                 String?   @db.VarChar(255)
-  phone                String?   @db.VarChar(255)
-  document             String?   @db.VarChar(255)
-  email                String?   @db.VarChar(255)
-  partyId              Int       @db.UnsignedInt @map("party_id")
-  invitedByCustomerId  Int       @db.UnsignedInt @map("invited_by_customer_id")
-  ingressId            Int?      @db.UnsignedInt @map("ingress_id")
-  createdAt            DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
-  updatedAt            DateTime  @default(now()) @map("updated_at") @db.Timestamp(0)
-  ingress              Ingress?  @relation(fields: [ingressId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "invite_ingress_id_foreign")
-  customer             Customer  @relation(fields: [invitedByCustomerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "invite_invited_by_customer_id_foreign")
-  party                Party     @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "invite_party_id_foreign")
+  id                  Int      @id @default(autoincrement()) @db.UnsignedInt
+  name                String?  @db.VarChar(255)
+  phone               String?  @db.VarChar(255)
+  document            String?  @db.VarChar(255)
+  email               String?  @db.VarChar(255)
+  partyId             Int      @map("party_id") @db.UnsignedInt
+  invitedByCustomerId Int      @map("invited_by_customer_id") @db.UnsignedInt
+  ingressId           Int?     @map("ingress_id") @db.UnsignedInt
+  createdAt           DateTime @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt           DateTime @default(now()) @map("updated_at") @db.Timestamp(0)
+  ingress             Ingress? @relation(fields: [ingressId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "invite_ingress_id_foreign")
+  customer            Customer @relation(fields: [invitedByCustomerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "invite_invited_by_customer_id_foreign")
+  party               Party    @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "invite_party_id_foreign")
 
   @@index([ingressId], map: "invite_ingress_id_foreign")
   @@index([invitedByCustomerId], map: "invite_invited_by_customer_id_foreign")
@@ -245,12 +231,12 @@ model Invite {
 
 model Promoter {
   id           Int      @id @default(autoincrement()) @db.UnsignedInt
-  partyId      Int      @db.UnsignedInt @map("party_id")
-  customerId   Int      @db.UnsignedInt @map("customer_id")
-  isActive     Boolean? @default(true)  @map("is_active")
-  bonusInCents Int?     @default(0)     @map("bonus_in_cents")
+  partyId      Int      @map("party_id") @db.UnsignedInt
+  customerId   Int      @map("customer_id") @db.UnsignedInt
+  isActive     Boolean? @default(true) @map("is_active")
   createdAt    DateTime @default(now()) @map("created_at") @db.Timestamp(0)
   updatedAt    DateTime @default(now()) @map("updated_at") @db.Timestamp(0)
+  bonusInCents Int?     @default(0) @map("bonus_in_cents")
   customer     Customer @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "promoter_customer_id_foreign")
   party        Party    @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "promoter_party_id_foreign")
 
@@ -270,38 +256,41 @@ model PaymentMethod {
 
 model PixTransaction {
   id             Int       @id @default(autoincrement()) @db.UnsignedInt
-  customerId     Int?      @db.UnsignedInt @map("customer_id")
-  storeId        Int?      @db.UnsignedInt @map("store_id")
-  transactionId  String    @unique(map: "pix_transactions_transaction_id_unique") @db.VarChar(255) @map("transaction_id")
-  referenceId    String    @unique(map: "pix_transactions_reference_id_unique")  @db.VarChar(255) @map("reference_id")
+  customerId     Int?      @map("customer_id") @db.UnsignedInt
+  storeId        Int?      @map("store_id") @db.UnsignedInt
+  transactionId  String    @unique(map: "pix_transactions_transaction_id_unique") @map("transaction_id") @db.VarChar(255)
+  referenceId    String    @unique(map: "pix_transactions_reference_id_unique") @map("reference_id") @db.VarChar(255)
   status         String    @db.VarChar(255)
-  expirationDate String    @db.VarChar(255) @map("expiration_date")
-  pixKey         String    @db.VarChar(255) @map("pix_key")
-  pixQrCode      String    @db.VarChar(255) @map("pix_qr_code")
-  amountInCents  String    @db.VarChar(255) @map("amount_in_cents")
+  expirationDate String    @map("expiration_date") @db.VarChar(255)
+  pixKey         String    @map("pix_key") @db.VarChar(255)
+  pixQrCode      String    @map("pix_qr_code") @db.VarChar(255)
+  amountInCents  String    @map("amount_in_cents") @db.VarChar(255)
   description    String?   @db.VarChar(255)
-  pixEmv         String?   @db.Text        @map("pix_emv")
-  pixType        String?   @db.VarChar(255) @map("pix_type")
   createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamp(0)
   updatedAt      DateTime  @default(now()) @map("updated_at") @db.Timestamp(0)
+  pixEmv         String?   @map("pix_emv") @db.Text
+  pixType        String?   @map("pix_type") @db.VarChar(255)
+  partyId        Int?      @map("party_id") @db.UnsignedInt
   customer       Customer? @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "pix_transactions_customer_id_foreign")
+  party          Party?    @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "pix_transactions_party_id_foreign")
   store          Store?    @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "pix_transactions_store_id_foreign")
 
   @@index([customerId], map: "pix_transactions_customer_id_foreign")
   @@index([storeId], map: "pix_transactions_store_id_foreign")
+  @@index([partyId], map: "pix_transactions_party_id_foreign")
   @@map("pix_transactions")
 }
 
 model StorePixTransaction {
   id             Int      @id @default(autoincrement()) @db.UnsignedInt
-  storeId        Int      @db.UnsignedInt @map("store_id")
-  transactionId  String   @unique(map: "store_pix_transactions_transaction_id_unique") @db.VarChar(255) @map("transaction_id")
-  referenceId    String   @unique(map: "store_pix_transactions_reference_id_unique")  @db.VarChar(255) @map("reference_id")
+  storeId        Int      @map("store_id") @db.UnsignedInt
+  transactionId  String   @unique(map: "store_pix_transactions_transaction_id_unique") @map("transaction_id") @db.VarChar(255)
+  referenceId    String   @unique(map: "store_pix_transactions_reference_id_unique") @map("reference_id") @db.VarChar(255)
   status         String   @db.VarChar(255)
-  expirationDate String   @db.VarChar(255) @map("expiration_date")
-  pixKey         String   @db.VarChar(255) @map("pix_key")
-  pixQrCode      String   @db.VarChar(255) @map("pix_qr_code")
-  amountInCents  String   @db.VarChar(255) @map("amount_in_cents")
+  expirationDate String   @map("expiration_date") @db.VarChar(255)
+  pixKey         String   @map("pix_key") @db.VarChar(255)
+  pixQrCode      String   @map("pix_qr_code") @db.VarChar(255)
+  amountInCents  String   @map("amount_in_cents") @db.VarChar(255)
   description    String?  @db.VarChar(255)
   createdAt      DateTime @default(now()) @map("created_at") @db.Timestamp(0)
   updatedAt      DateTime @default(now()) @map("updated_at") @db.Timestamp(0)
@@ -313,36 +302,36 @@ model StorePixTransaction {
 
 model Store {
   id                   Int                   @id @default(autoincrement()) @db.UnsignedInt
-  ownerId              Int                   @db.UnsignedInt  @map("owner_id")
+  ownerId              Int                   @map("owner_id") @db.UnsignedInt
   name                 String                @db.VarChar(255)
-  statementDescriptor  String?               @db.VarChar(40)  @map("statement_descriptor")
+  statementDescriptor  String?               @map("statement_descriptor") @db.VarChar(40)
   mcc                  Int?
-  businessLine1        String?               @db.VarChar(100) @map("business_line1")
-  businessLine2        String?               @db.VarChar(10)  @map("business_line2")
-  businessLine3        String?               @db.VarChar(100) @map("business_line3")
-  businessNeighborhood String?               @db.VarChar(40)  @map("business_neighborhood")
-  businessCity         String?               @db.VarChar(40)  @map("business_city")
-  businessState        String?               @db.VarChar(2)   @map("business_state")
-  businessCountryCode  String?               @db.VarChar(3)   @map("business_country_code")
-  businessZipCode      String?               @db.VarChar(10)  @map("business_zip_code")
-  businessPhone        String?               @db.VarChar(20)  @map("business_phone")
-  businessEmail        String?               @db.VarChar(255) @map("business_email")
-  businessName         String?               @db.VarChar(255) @map("business_name")
-  businessDocument     String?               @db.VarChar(20)  @map("business_document")
-  businessWebsite      String?               @db.VarChar(255) @map("business_website")
-  businessOpenDate     DateTime?             @db.Date         @map("business_open_date")
-  ioSellerId           String?               @db.VarChar(255) @map("io_seller_id")
-  taxpayerId           String?               @db.VarChar(255) @map("taxpayer_id")
-  ownerTaxpayerId      String?               @db.VarChar(255) @map("owner_taxpayer_id")
-  webhookUrl           String?               @db.VarChar(255) @map("webhook_url")
-  createdAt            DateTime              @default(now())  @map("created_at") @db.Timestamp(0)
-  updatedAt            DateTime              @default(now())  @map("updated_at") @db.Timestamp(0)
-  owner                Owner                 @relation(fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "store_owner_id_foreign")
+  businessLine1        String?               @map("business_line1") @db.VarChar(100)
+  businessLine2        String?               @map("business_line2") @db.VarChar(10)
+  businessLine3        String?               @map("business_line3") @db.VarChar(100)
+  businessNeighborhood String?               @map("business_neighborhood") @db.VarChar(40)
+  businessCity         String?               @map("business_city") @db.VarChar(40)
+  businessState        String?               @map("business_state") @db.VarChar(2)
+  businessCountryCode  String?               @map("business_country_code") @db.VarChar(3)
+  businessZipCode      String?               @map("business_zip_code") @db.VarChar(10)
+  businessPhone        String?               @map("business_phone") @db.VarChar(20)
+  businessEmail        String?               @map("business_email") @db.VarChar(255)
+  businessName         String?               @map("business_name") @db.VarChar(255)
+  businessDocument     String?               @map("business_document") @db.VarChar(20)
+  businessWebsite      String?               @map("business_website") @db.VarChar(255)
+  businessOpenDate     DateTime?             @map("business_open_date") @db.Date
+  ioSellerId           String?               @map("io_seller_id") @db.VarChar(255)
+  taxpayerId           String?               @map("taxpayer_id") @db.VarChar(255)
+  ownerTaxpayerId      String?               @map("owner_taxpayer_id") @db.VarChar(255)
+  createdAt            DateTime              @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt            DateTime              @default(now()) @map("updated_at") @db.Timestamp(0)
+  webhookUrl           String?               @map("webhook_url") @db.VarChar(255)
   payouts              Payout[]
   pixTransactions      PixTransaction[]
-  storePixTransactions StorePixTransaction[]
   shops                Shop[]
+  owner                Owner                 @relation(fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "store_owner_id_foreign")
   bankAccounts         StoreBankAccount[]
+  storePixTransactions StorePixTransaction[]
   storeSales           StoreSale[]
   transferHistories    TransferHistory[]
 
@@ -351,18 +340,18 @@ model Store {
 }
 
 model StoreBankAccount {
-  id              Int               @id @default(autoincrement()) @db.UnsignedInt
-  ioToken         String            @db.VarChar(255) @map("io_token")
-  accountNumber   String            @db.VarChar(255) @map("account_number")
-  routingNumber   String            @db.VarChar(255) @map("routing_number")
-  holderName      String            @db.VarChar(255) @map("holder_name")
-  type            String            @db.VarChar(255)
-  bankCode        String            @db.VarChar(255) @map("bank_code")
-  document        String            @db.VarChar(255)
-  storeId         Int               @db.UnsignedInt  @map("store_id")
-  createdAt       DateTime          @default(now())  @map("created_at") @db.Timestamp(0)
-  updatedAt       DateTime          @default(now())  @map("updated_at") @db.Timestamp(0)
-  store           Store             @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "store_bank_account_store_id_foreign")
+  id                Int               @id @default(autoincrement()) @db.UnsignedInt
+  ioToken           String            @map("io_token") @db.VarChar(255)
+  accountNumber     String            @map("account_number") @db.VarChar(255)
+  routingNumber     String            @map("routing_number") @db.VarChar(255)
+  holderName        String            @map("holder_name") @db.VarChar(255)
+  type              String            @db.VarChar(255)
+  bankCode          String            @map("bank_code") @db.VarChar(255)
+  document          String            @db.VarChar(255)
+  storeId           Int               @map("store_id") @db.UnsignedInt
+  createdAt         DateTime          @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt         DateTime          @default(now()) @map("updated_at") @db.Timestamp(0)
+  store             Store             @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "store_bank_account_store_id_foreign")
   transferHistories TransferHistory[]
 
   @@index([storeId], map: "store_bank_account_store_id_foreign")
@@ -371,13 +360,13 @@ model StoreBankAccount {
 
 model TransferHistory {
   id                  Int              @id @default(autoincrement()) @db.UnsignedInt
-  bankAccountId       Int              @db.UnsignedInt  @map("bank_account_id")
-  storeId             Int              @db.UnsignedInt  @map("store_id")
+  bankAccountId       Int              @map("bank_account_id") @db.UnsignedInt
   description         String?          @db.VarChar(255)
-  statementDescriptor String?          @db.VarChar(255) @map("statement_descriptor")
+  statementDescriptor String?          @map("statement_descriptor") @db.VarChar(255)
   amountInCents       Int              @map("amount_in_cents")
-  createdAt           DateTime         @default(now())  @map("created_at") @db.Timestamp(0)
-  updatedAt           DateTime         @default(now())  @map("updated_at") @db.Timestamp(0)
+  createdAt           DateTime         @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt           DateTime         @default(now()) @map("updated_at") @db.Timestamp(0)
+  storeId             Int              @map("store_id") @db.UnsignedInt
   storeBankAccount    StoreBankAccount @relation(fields: [bankAccountId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "transfer_history_bank_account_id_foreign")
   store               Store            @relation(fields: [storeId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "transfer_history_store_id_foreign")
 
@@ -387,13 +376,13 @@ model TransferHistory {
 }
 
 model Shop {
-  id           Int            @id @default(autoincrement()) @db.UnsignedInt
-  storeId      Int            @db.UnsignedInt @map("store_id")
-  name         String         @db.VarChar(255)
-  createdAt    DateTime       @default(now()) @map("created_at") @db.Timestamp(0)
-  updatedAt    DateTime       @default(now()) @map("updated_at") @db.Timestamp(0)
-  store        Store          @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shop_store_id_foreign")
+  id           Int           @id @default(autoincrement()) @db.UnsignedInt
+  storeId      Int           @map("store_id") @db.UnsignedInt
+  name         String        @db.VarChar(255)
+  createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime      @default(now()) @map("updated_at") @db.Timestamp(0)
   partyShops   PartyShop[]
+  store        Store         @relation(fields: [storeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shop_store_id_foreign")
   shopProducts ShopProduct[]
   shopWorkers  ShopWorker[]
   storeSales   StoreSale[]
@@ -404,10 +393,10 @@ model Shop {
 
 model ShopProduct {
   id             Int                @id @default(autoincrement()) @db.UnsignedInt
-  shopId         Int                @db.UnsignedInt @map("shop_id")
-  productId      Int?               @db.UnsignedInt @map("product_id")
+  shopId         Int                @map("shop_id") @db.UnsignedInt
+  productId      Int?               @map("product_id") @db.UnsignedInt
   priceInCents   Int                @map("price_in_cents")
-  isActive       Boolean?           @default(true)  @map("is_active")
+  isActive       Boolean?           @default(true) @map("is_active")
   createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamp(0)
   updatedAt      DateTime           @default(now()) @map("updated_at") @db.Timestamp(0)
   product        Product?           @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shop_products_product_id_foreign")
@@ -420,17 +409,17 @@ model ShopProduct {
 }
 
 model ShopWorker {
-  id             Int          @id @default(autoincrement()) @db.UnsignedInt
-  shopId         Int          @db.UnsignedInt  @map("shop_id")
-  accessUserId   Int?         @db.UnsignedInt  @map("access_user_id")
+  shopId         Int         @map("shop_id") @db.UnsignedInt
+  accessUserId   Int?        @map("access_user_id") @db.UnsignedInt
   role           Int
-  active         Boolean?     @default(true)
-  expirationDate DateTime?    @db.Timestamp(0) @map("expiration_date")
-  name           String?      @db.VarChar(100)
-  createdAt      DateTime     @default(now())  @map("created_at") @db.Timestamp(0)
-  updatedAt      DateTime     @default(now())  @map("updated_at") @db.Timestamp(0)
-  accessUser     AccessUser?  @relation(fields: [accessUserId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shop_worker_access_user_id_foreign")
-  shop           Shop         @relation(fields: [shopId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shop_worker_shop_id_foreign")
+  active         Boolean?    @default(true)
+  createdAt      DateTime    @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt      DateTime    @default(now()) @map("updated_at") @db.Timestamp(0)
+  id             Int         @id @default(autoincrement()) @db.UnsignedInt
+  expirationDate DateTime?   @map("expiration_date") @db.Timestamp(0)
+  name           String?     @db.VarChar(100)
+  accessUser     AccessUser? @relation(fields: [accessUserId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shop_worker_access_user_id_foreign")
+  shop           Shop        @relation(fields: [shopId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "shop_worker_shop_id_foreign")
 
   @@index([accessUserId], map: "shop_worker_access_user_id_foreign")
   @@index([shopId], map: "shop_worker_shop_id_foreign")
@@ -439,9 +428,9 @@ model ShopWorker {
 
 model PartyShop {
   id         Int         @id @default(autoincrement()) @db.UnsignedInt
-  partyId    Int         @db.UnsignedInt @map("party_id")
-  shopId     Int         @db.UnsignedInt @map("shop_id")
-  isActive   Boolean?    @default(true)  @map("is_active")
+  partyId    Int         @map("party_id") @db.UnsignedInt
+  shopId     Int         @map("shop_id") @db.UnsignedInt
+  isActive   Boolean?    @default(true) @map("is_active")
   createdAt  DateTime    @default(now()) @map("created_at") @db.Timestamp(0)
   updatedAt  DateTime    @default(now()) @map("updated_at") @db.Timestamp(0)
   party      Party       @relation(fields: [partyId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "party_shop_party_id_foreign")
@@ -455,22 +444,22 @@ model PartyShop {
 
 model StoreSale {
   id              Int                @id @default(autoincrement()) @db.UnsignedInt
-  partyShopId     Int?               @db.UnsignedInt  @map("party_shop_id")
-  storeId         Int                @db.UnsignedInt  @map("store_id")
-  shopId          Int                @db.UnsignedInt  @map("shop_id")
-  paymentMethodId Int                @db.UnsignedInt  @map("payment_method_id")
-  customerId      Int?               @db.UnsignedInt  @map("customer_id")
-  creditCardId    Int?               @db.UnsignedInt  @map("credit_card_id")
-  orderId         String             @db.VarChar(255) @map("order_id")
+  partyShopId     Int?               @map("party_shop_id") @db.UnsignedInt
+  storeId         Int                @map("store_id") @db.UnsignedInt
+  shopId          Int                @map("shop_id") @db.UnsignedInt
+  paymentMethodId Int                @map("payment_method_id") @db.UnsignedInt
+  customerId      Int?               @map("customer_id") @db.UnsignedInt
+  creditCardId    Int?               @map("credit_card_id") @db.UnsignedInt
+  orderId         String             @map("order_id") @db.VarChar(255)
   status          String             @db.VarChar(255)
   totalInCents    Int                @map("total_in_cents")
   installments    Int?               @db.UnsignedTinyInt
   interestInCents Int?               @map("interest_in_cents")
-  paidAt          DateTime?          @db.DateTime(0)  @map("paid_at")
-  refundedAt      DateTime?          @db.DateTime(0)  @map("refunded_at")
-  transactionId   String?            @db.VarChar(255) @map("transaction_id")
-  createdAt       DateTime           @default(now())  @map("created_at") @db.Timestamp(0)
-  updatedAt       DateTime           @default(now())  @map("updated_at") @db.Timestamp(0)
+  paidAt          DateTime?          @map("paid_at") @db.DateTime(0)
+  refundedAt      DateTime?          @map("refunded_at") @db.DateTime(0)
+  transactionId   String?            @map("transaction_id") @db.VarChar(255)
+  createdAt       DateTime           @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt       DateTime           @default(now()) @map("updated_at") @db.Timestamp(0)
   payoutItem      PayoutItem?
   creditCard      CreditCard?        @relation(fields: [creditCardId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "store_sales_credit_card_id_foreign")
   customer        Customer?          @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "store_sales_customer_id_foreign")
@@ -491,13 +480,13 @@ model StoreSale {
 
 model StoreSaleProduct {
   id            Int         @id @default(autoincrement()) @db.UnsignedInt
-  storeSaleId   Int         @db.UnsignedInt  @map("store_sales_id")
-  shopProductId Int         @db.UnsignedInt  @map("shop_product_id")
+  storeSaleId   Int         @map("store_sales_id") @db.UnsignedInt
+  shopProductId Int         @map("shop_product_id") @db.UnsignedInt
   quantity      Int         @db.UnsignedInt
-  priceInCents  Int         @db.UnsignedInt  @map("price_in_cents")
-  totalInCents  Int         @db.UnsignedInt  @map("total_in_cents")
-  createdAt     DateTime    @default(now())  @map("created_at") @db.Timestamp(0)
-  updatedAt     DateTime    @default(now())  @map("updated_at") @db.Timestamp(0)
+  priceInCents  Int         @map("price_in_cents") @db.UnsignedInt
+  totalInCents  Int         @map("total_in_cents") @db.UnsignedInt
+  createdAt     DateTime    @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime    @default(now()) @map("updated_at") @db.Timestamp(0)
   shopProduct   ShopProduct @relation(fields: [shopProductId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "store_sales_products_shop_product_id_foreign")
   storeSale     StoreSale   @relation(fields: [storeSaleId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "store_sales_products_store_sales_id_foreign")
 
@@ -507,17 +496,17 @@ model StoreSaleProduct {
 }
 
 model Product {
-  id              Int             @id @default(autoincrement()) @db.UnsignedInt
-  name            String          @db.VarChar(255)
-  dosage          String          @db.VarChar(255)
-  dosageUnitId    Int?            @db.UnsignedInt @map("dosage_unit_id")
-  containerTypeId Int?            @db.UnsignedInt @map("container_type_id")
-  productTypeId   Int?            @db.UnsignedInt @map("product_type_id")
-  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamp(0)
-  updatedAt       DateTime        @default(now()) @map("updated_at") @db.Timestamp(0)
-  containerType   ContainerType?  @relation(fields: [containerTypeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_container_type_id_foreign")
-  dosageUnit      DosageUnit?     @relation(fields: [dosageUnitId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_dosage_unit_id_foreign")
-  productType     ProductType?    @relation(fields: [productTypeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_product_type_id_foreign")
+  id              Int            @id @default(autoincrement()) @db.UnsignedInt
+  name            String         @db.VarChar(255)
+  dosage          String         @db.VarChar(255)
+  dosageUnitId    Int?           @map("dosage_unit_id") @db.UnsignedInt
+  containerTypeId Int?           @map("container_type_id") @db.UnsignedInt
+  productTypeId   Int?           @map("product_type_id") @db.UnsignedInt
+  createdAt       DateTime       @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt       DateTime       @default(now()) @map("updated_at") @db.Timestamp(0)
+  containerType   ContainerType? @relation(fields: [containerTypeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_container_type_id_foreign")
+  dosageUnit      DosageUnit?    @relation(fields: [dosageUnitId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_dosage_unit_id_foreign")
+  productType     ProductType?   @relation(fields: [productTypeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_product_type_id_foreign")
   shopProducts    ShopProduct[]
 
   @@index([containerTypeId], map: "product_container_type_id_foreign")
@@ -552,14 +541,14 @@ model DosageUnit {
 
 model Payout {
   id           String       @id
-  storeId      Int          @db.UnsignedInt  @map("store_id")
-  storeName    String       @db.VarChar(255) @map("store_name")
+  storeId      Int          @map("store_id") @db.UnsignedInt
+  storeName    String       @map("store_name") @db.VarChar(255)
   grossInCents Int          @map("gross_in_cents")
   feeInCents   Int          @map("fee_in_cents")
   netInCents   Int          @map("net_in_cents")
   status       PayoutStatus @default(PAID)
-  proofFileUrl String?      @db.VarChar(500) @map("proof_file_url")
-  createdAt    DateTime     @default(now())  @map("created_at") @db.Timestamp(0)
+  proofFileUrl String?      @map("proof_file_url") @db.VarChar(500)
+  createdAt    DateTime     @default(now()) @map("created_at") @db.Timestamp(0)
   updatedAt    DateTime     @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
   items        PayoutItem[]
   store        Store        @relation(fields: [storeId], references: [id], onUpdate: NoAction, map: "payouts_store_id_foreign")
@@ -572,8 +561,8 @@ model Payout {
 model PayoutItem {
   id               String    @id
   payoutId         String    @map("payout_id")
-  storeSaleId      Int       @unique(map: "payout_items_store_sale_id_unique") @db.UnsignedInt @map("store_sale_id")
-  orderId          String    @db.VarChar(255) @map("order_id")
+  storeSaleId      Int       @unique(map: "payout_items_store_sale_id_unique") @map("store_sale_id") @db.UnsignedInt
+  orderId          String    @map("order_id") @db.VarChar(255)
   saleGrossInCents Int       @map("sale_gross_in_cents")
   saleFeeInCents   Int       @map("sale_fee_in_cents")
   saleNetInCents   Int       @map("sale_net_in_cents")
@@ -597,4 +586,19 @@ model Adjustment {
 
   @@index([createdAt], map: "adjustments_created_at_index")
   @@map("adjustments")
+}
+
+enum AdjustmentType {
+  CREDIT
+  DEBIT
+}
+
+enum CustomerWalletTransactionType {
+  in
+  out
+}
+
+enum PayoutStatus {
+  PENDING
+  PAID
 }

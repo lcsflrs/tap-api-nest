@@ -3585,6 +3585,7 @@ export namespace Prisma {
     batches: number
     invites: number
     partyShops: number
+    pixTransactions: number
     promoters: number
   }
 
@@ -3593,6 +3594,7 @@ export namespace Prisma {
     batches?: boolean | PartyCountOutputTypeCountBatchesArgs
     invites?: boolean | PartyCountOutputTypeCountInvitesArgs
     partyShops?: boolean | PartyCountOutputTypeCountPartyShopsArgs
+    pixTransactions?: boolean | PartyCountOutputTypeCountPixTransactionsArgs
     promoters?: boolean | PartyCountOutputTypeCountPromotersArgs
   }
 
@@ -3633,6 +3635,13 @@ export namespace Prisma {
    */
   export type PartyCountOutputTypeCountPartyShopsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PartyShopWhereInput
+  }
+
+  /**
+   * PartyCountOutputType without action
+   */
+  export type PartyCountOutputTypeCountPixTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PixTransactionWhereInput
   }
 
   /**
@@ -3783,9 +3792,9 @@ export namespace Prisma {
   export type StoreCountOutputType = {
     payouts: number
     pixTransactions: number
-    storePixTransactions: number
     shops: number
     bankAccounts: number
+    storePixTransactions: number
     storeSales: number
     transferHistories: number
   }
@@ -3793,9 +3802,9 @@ export namespace Prisma {
   export type StoreCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     payouts?: boolean | StoreCountOutputTypeCountPayoutsArgs
     pixTransactions?: boolean | StoreCountOutputTypeCountPixTransactionsArgs
-    storePixTransactions?: boolean | StoreCountOutputTypeCountStorePixTransactionsArgs
     shops?: boolean | StoreCountOutputTypeCountShopsArgs
     bankAccounts?: boolean | StoreCountOutputTypeCountBankAccountsArgs
+    storePixTransactions?: boolean | StoreCountOutputTypeCountStorePixTransactionsArgs
     storeSales?: boolean | StoreCountOutputTypeCountStoreSalesArgs
     transferHistories?: boolean | StoreCountOutputTypeCountTransferHistoriesArgs
   }
@@ -3828,13 +3837,6 @@ export namespace Prisma {
   /**
    * StoreCountOutputType without action
    */
-  export type StoreCountOutputTypeCountStorePixTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StorePixTransactionWhereInput
-  }
-
-  /**
-   * StoreCountOutputType without action
-   */
   export type StoreCountOutputTypeCountShopsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ShopWhereInput
   }
@@ -3844,6 +3846,13 @@ export namespace Prisma {
    */
   export type StoreCountOutputTypeCountBankAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StoreBankAccountWhereInput
+  }
+
+  /**
+   * StoreCountOutputType without action
+   */
+  export type StoreCountOutputTypeCountStorePixTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StorePixTransactionWhereInput
   }
 
   /**
@@ -5377,9 +5386,9 @@ export namespace Prisma {
     zipCode: string | null
     isActive: boolean | null
     accessUserId: number | null
-    ioCustomerId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    ioCustomerId: string | null
   }
 
   export type OwnerMaxAggregateOutputType = {
@@ -5402,9 +5411,9 @@ export namespace Prisma {
     zipCode: string | null
     isActive: boolean | null
     accessUserId: number | null
-    ioCustomerId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    ioCustomerId: string | null
   }
 
   export type OwnerCountAggregateOutputType = {
@@ -5427,9 +5436,9 @@ export namespace Prisma {
     zipCode: number
     isActive: number
     accessUserId: number
-    ioCustomerId: number
     createdAt: number
     updatedAt: number
+    ioCustomerId: number
     _all: number
   }
 
@@ -5464,9 +5473,9 @@ export namespace Prisma {
     zipCode?: true
     isActive?: true
     accessUserId?: true
-    ioCustomerId?: true
     createdAt?: true
     updatedAt?: true
+    ioCustomerId?: true
   }
 
   export type OwnerMaxAggregateInputType = {
@@ -5489,9 +5498,9 @@ export namespace Prisma {
     zipCode?: true
     isActive?: true
     accessUserId?: true
-    ioCustomerId?: true
     createdAt?: true
     updatedAt?: true
+    ioCustomerId?: true
   }
 
   export type OwnerCountAggregateInputType = {
@@ -5514,9 +5523,9 @@ export namespace Prisma {
     zipCode?: true
     isActive?: true
     accessUserId?: true
-    ioCustomerId?: true
     createdAt?: true
     updatedAt?: true
+    ioCustomerId?: true
     _all?: true
   }
 
@@ -5626,9 +5635,9 @@ export namespace Prisma {
     zipCode: string | null
     isActive: boolean | null
     accessUserId: number
-    ioCustomerId: string | null
     createdAt: Date
     updatedAt: Date
+    ioCustomerId: string | null
     _count: OwnerCountAggregateOutputType | null
     _avg: OwnerAvgAggregateOutputType | null
     _sum: OwnerSumAggregateOutputType | null
@@ -5670,9 +5679,9 @@ export namespace Prisma {
     zipCode?: boolean
     isActive?: boolean
     accessUserId?: boolean
-    ioCustomerId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ioCustomerId?: boolean
     accessUser?: boolean | AccessUserDefaultArgs<ExtArgs>
     stores?: boolean | Owner$storesArgs<ExtArgs>
     _count?: boolean | OwnerCountOutputTypeDefaultArgs<ExtArgs>
@@ -5700,12 +5709,12 @@ export namespace Prisma {
     zipCode?: boolean
     isActive?: boolean
     accessUserId?: boolean
-    ioCustomerId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ioCustomerId?: boolean
   }
 
-  export type OwnerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phone" | "email" | "name" | "document" | "emailVerified" | "phoneVerified" | "lastName" | "birthdate" | "line1" | "line2" | "line3" | "neighborhood" | "city" | "state" | "countryCode" | "zipCode" | "isActive" | "accessUserId" | "ioCustomerId" | "createdAt" | "updatedAt", ExtArgs["result"]["owner"]>
+  export type OwnerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phone" | "email" | "name" | "document" | "emailVerified" | "phoneVerified" | "lastName" | "birthdate" | "line1" | "line2" | "line3" | "neighborhood" | "city" | "state" | "countryCode" | "zipCode" | "isActive" | "accessUserId" | "createdAt" | "updatedAt" | "ioCustomerId", ExtArgs["result"]["owner"]>
   export type OwnerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accessUser?: boolean | AccessUserDefaultArgs<ExtArgs>
     stores?: boolean | Owner$storesArgs<ExtArgs>
@@ -5738,9 +5747,9 @@ export namespace Prisma {
       zipCode: string | null
       isActive: boolean | null
       accessUserId: number
-      ioCustomerId: string | null
       createdAt: Date
       updatedAt: Date
+      ioCustomerId: string | null
     }, ExtArgs["result"]["owner"]>
     composites: {}
   }
@@ -6131,9 +6140,9 @@ export namespace Prisma {
     readonly zipCode: FieldRef<"Owner", 'String'>
     readonly isActive: FieldRef<"Owner", 'Boolean'>
     readonly accessUserId: FieldRef<"Owner", 'Int'>
-    readonly ioCustomerId: FieldRef<"Owner", 'String'>
     readonly createdAt: FieldRef<"Owner", 'DateTime'>
     readonly updatedAt: FieldRef<"Owner", 'DateTime'>
+    readonly ioCustomerId: FieldRef<"Owner", 'String'>
   }
     
 
@@ -11129,11 +11138,12 @@ export namespace Prisma {
     accessUserId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    accessUser?: boolean | AccessUserDefaultArgs<ExtArgs>
     ingresses?: boolean | Party$ingressesArgs<ExtArgs>
     batches?: boolean | Party$batchesArgs<ExtArgs>
     invites?: boolean | Party$invitesArgs<ExtArgs>
+    accessUser?: boolean | AccessUserDefaultArgs<ExtArgs>
     partyShops?: boolean | Party$partyShopsArgs<ExtArgs>
+    pixTransactions?: boolean | Party$pixTransactionsArgs<ExtArgs>
     promoters?: boolean | Party$promotersArgs<ExtArgs>
     _count?: boolean | PartyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["party"]>
@@ -11154,11 +11164,12 @@ export namespace Prisma {
 
   export type PartyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "date" | "time" | "description" | "address" | "accessUserId" | "createdAt" | "updatedAt", ExtArgs["result"]["party"]>
   export type PartyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    accessUser?: boolean | AccessUserDefaultArgs<ExtArgs>
     ingresses?: boolean | Party$ingressesArgs<ExtArgs>
     batches?: boolean | Party$batchesArgs<ExtArgs>
     invites?: boolean | Party$invitesArgs<ExtArgs>
+    accessUser?: boolean | AccessUserDefaultArgs<ExtArgs>
     partyShops?: boolean | Party$partyShopsArgs<ExtArgs>
+    pixTransactions?: boolean | Party$pixTransactionsArgs<ExtArgs>
     promoters?: boolean | Party$promotersArgs<ExtArgs>
     _count?: boolean | PartyCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -11166,11 +11177,12 @@ export namespace Prisma {
   export type $PartyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Party"
     objects: {
-      accessUser: Prisma.$AccessUserPayload<ExtArgs>
       ingresses: Prisma.$IngressPayload<ExtArgs>[]
       batches: Prisma.$IngressBatchPayload<ExtArgs>[]
       invites: Prisma.$InvitePayload<ExtArgs>[]
+      accessUser: Prisma.$AccessUserPayload<ExtArgs>
       partyShops: Prisma.$PartyShopPayload<ExtArgs>[]
+      pixTransactions: Prisma.$PixTransactionPayload<ExtArgs>[]
       promoters: Prisma.$PromoterPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -11523,11 +11535,12 @@ export namespace Prisma {
    */
   export interface Prisma__PartyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    accessUser<T extends AccessUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccessUserDefaultArgs<ExtArgs>>): Prisma__AccessUserClient<$Result.GetResult<Prisma.$AccessUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     ingresses<T extends Party$ingressesArgs<ExtArgs> = {}>(args?: Subset<T, Party$ingressesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IngressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     batches<T extends Party$batchesArgs<ExtArgs> = {}>(args?: Subset<T, Party$batchesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IngressBatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     invites<T extends Party$invitesArgs<ExtArgs> = {}>(args?: Subset<T, Party$invitesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    accessUser<T extends AccessUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccessUserDefaultArgs<ExtArgs>>): Prisma__AccessUserClient<$Result.GetResult<Prisma.$AccessUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     partyShops<T extends Party$partyShopsArgs<ExtArgs> = {}>(args?: Subset<T, Party$partyShopsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartyShopPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    pixTransactions<T extends Party$pixTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, Party$pixTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PixTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     promoters<T extends Party$promotersArgs<ExtArgs> = {}>(args?: Subset<T, Party$promotersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PromoterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -12006,6 +12019,30 @@ export namespace Prisma {
   }
 
   /**
+   * Party.pixTransactions
+   */
+  export type Party$pixTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PixTransaction
+     */
+    select?: PixTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PixTransaction
+     */
+    omit?: PixTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PixTransactionInclude<ExtArgs> | null
+    where?: PixTransactionWhereInput
+    orderBy?: PixTransactionOrderByWithRelationInput | PixTransactionOrderByWithRelationInput[]
+    cursor?: PixTransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PixTransactionScalarFieldEnum | PixTransactionScalarFieldEnum[]
+  }
+
+  /**
    * Party.promoters
    */
   export type Party$promotersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12286,8 +12323,8 @@ export namespace Prisma {
     priceInCents?: boolean
     isActive?: boolean
     partyId?: boolean
-    party?: boolean | PartyDefaultArgs<ExtArgs>
     ingresses?: boolean | IngressBatch$ingressesArgs<ExtArgs>
+    party?: boolean | PartyDefaultArgs<ExtArgs>
     _count?: boolean | IngressBatchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ingressBatch"]>
 
@@ -12306,16 +12343,16 @@ export namespace Prisma {
 
   export type IngressBatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "quantity" | "quantitySold" | "priceInCents" | "isActive" | "partyId", ExtArgs["result"]["ingressBatch"]>
   export type IngressBatchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    party?: boolean | PartyDefaultArgs<ExtArgs>
     ingresses?: boolean | IngressBatch$ingressesArgs<ExtArgs>
+    party?: boolean | PartyDefaultArgs<ExtArgs>
     _count?: boolean | IngressBatchCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $IngressBatchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "IngressBatch"
     objects: {
-      party: Prisma.$PartyPayload<ExtArgs>
       ingresses: Prisma.$IngressPayload<ExtArgs>[]
+      party: Prisma.$PartyPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -12666,8 +12703,8 @@ export namespace Prisma {
    */
   export interface Prisma__IngressBatchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    party<T extends PartyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PartyDefaultArgs<ExtArgs>>): Prisma__PartyClient<$Result.GetResult<Prisma.$PartyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     ingresses<T extends IngressBatch$ingressesArgs<ExtArgs> = {}>(args?: Subset<T, IngressBatch$ingressesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IngressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    party<T extends PartyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PartyDefaultArgs<ExtArgs>>): Prisma__PartyClient<$Result.GetResult<Prisma.$PartyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16256,9 +16293,9 @@ export namespace Prisma {
     partyId: number | null
     customerId: number | null
     isActive: boolean | null
-    bonusInCents: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    bonusInCents: number | null
   }
 
   export type PromoterMaxAggregateOutputType = {
@@ -16266,9 +16303,9 @@ export namespace Prisma {
     partyId: number | null
     customerId: number | null
     isActive: boolean | null
-    bonusInCents: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    bonusInCents: number | null
   }
 
   export type PromoterCountAggregateOutputType = {
@@ -16276,9 +16313,9 @@ export namespace Prisma {
     partyId: number
     customerId: number
     isActive: number
-    bonusInCents: number
     createdAt: number
     updatedAt: number
+    bonusInCents: number
     _all: number
   }
 
@@ -16302,9 +16339,9 @@ export namespace Prisma {
     partyId?: true
     customerId?: true
     isActive?: true
-    bonusInCents?: true
     createdAt?: true
     updatedAt?: true
+    bonusInCents?: true
   }
 
   export type PromoterMaxAggregateInputType = {
@@ -16312,9 +16349,9 @@ export namespace Prisma {
     partyId?: true
     customerId?: true
     isActive?: true
-    bonusInCents?: true
     createdAt?: true
     updatedAt?: true
+    bonusInCents?: true
   }
 
   export type PromoterCountAggregateInputType = {
@@ -16322,9 +16359,9 @@ export namespace Prisma {
     partyId?: true
     customerId?: true
     isActive?: true
-    bonusInCents?: true
     createdAt?: true
     updatedAt?: true
+    bonusInCents?: true
     _all?: true
   }
 
@@ -16419,9 +16456,9 @@ export namespace Prisma {
     partyId: number
     customerId: number
     isActive: boolean | null
-    bonusInCents: number | null
     createdAt: Date
     updatedAt: Date
+    bonusInCents: number | null
     _count: PromoterCountAggregateOutputType | null
     _avg: PromoterAvgAggregateOutputType | null
     _sum: PromoterSumAggregateOutputType | null
@@ -16448,9 +16485,9 @@ export namespace Prisma {
     partyId?: boolean
     customerId?: boolean
     isActive?: boolean
-    bonusInCents?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    bonusInCents?: boolean
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     party?: boolean | PartyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["promoter"]>
@@ -16462,12 +16499,12 @@ export namespace Prisma {
     partyId?: boolean
     customerId?: boolean
     isActive?: boolean
-    bonusInCents?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    bonusInCents?: boolean
   }
 
-  export type PromoterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "partyId" | "customerId" | "isActive" | "bonusInCents" | "createdAt" | "updatedAt", ExtArgs["result"]["promoter"]>
+  export type PromoterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "partyId" | "customerId" | "isActive" | "createdAt" | "updatedAt" | "bonusInCents", ExtArgs["result"]["promoter"]>
   export type PromoterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     party?: boolean | PartyDefaultArgs<ExtArgs>
@@ -16484,9 +16521,9 @@ export namespace Prisma {
       partyId: number
       customerId: number
       isActive: boolean | null
-      bonusInCents: number | null
       createdAt: Date
       updatedAt: Date
+      bonusInCents: number | null
     }, ExtArgs["result"]["promoter"]>
     composites: {}
   }
@@ -16862,9 +16899,9 @@ export namespace Prisma {
     readonly partyId: FieldRef<"Promoter", 'Int'>
     readonly customerId: FieldRef<"Promoter", 'Int'>
     readonly isActive: FieldRef<"Promoter", 'Boolean'>
-    readonly bonusInCents: FieldRef<"Promoter", 'Int'>
     readonly createdAt: FieldRef<"Promoter", 'DateTime'>
     readonly updatedAt: FieldRef<"Promoter", 'DateTime'>
+    readonly bonusInCents: FieldRef<"Promoter", 'Int'>
   }
     
 
@@ -18226,12 +18263,14 @@ export namespace Prisma {
     id: number | null
     customerId: number | null
     storeId: number | null
+    partyId: number | null
   }
 
   export type PixTransactionSumAggregateOutputType = {
     id: number | null
     customerId: number | null
     storeId: number | null
+    partyId: number | null
   }
 
   export type PixTransactionMinAggregateOutputType = {
@@ -18246,10 +18285,11 @@ export namespace Prisma {
     pixQrCode: string | null
     amountInCents: string | null
     description: string | null
-    pixEmv: string | null
-    pixType: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    pixEmv: string | null
+    pixType: string | null
+    partyId: number | null
   }
 
   export type PixTransactionMaxAggregateOutputType = {
@@ -18264,10 +18304,11 @@ export namespace Prisma {
     pixQrCode: string | null
     amountInCents: string | null
     description: string | null
-    pixEmv: string | null
-    pixType: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    pixEmv: string | null
+    pixType: string | null
+    partyId: number | null
   }
 
   export type PixTransactionCountAggregateOutputType = {
@@ -18282,10 +18323,11 @@ export namespace Prisma {
     pixQrCode: number
     amountInCents: number
     description: number
-    pixEmv: number
-    pixType: number
     createdAt: number
     updatedAt: number
+    pixEmv: number
+    pixType: number
+    partyId: number
     _all: number
   }
 
@@ -18294,12 +18336,14 @@ export namespace Prisma {
     id?: true
     customerId?: true
     storeId?: true
+    partyId?: true
   }
 
   export type PixTransactionSumAggregateInputType = {
     id?: true
     customerId?: true
     storeId?: true
+    partyId?: true
   }
 
   export type PixTransactionMinAggregateInputType = {
@@ -18314,10 +18358,11 @@ export namespace Prisma {
     pixQrCode?: true
     amountInCents?: true
     description?: true
-    pixEmv?: true
-    pixType?: true
     createdAt?: true
     updatedAt?: true
+    pixEmv?: true
+    pixType?: true
+    partyId?: true
   }
 
   export type PixTransactionMaxAggregateInputType = {
@@ -18332,10 +18377,11 @@ export namespace Prisma {
     pixQrCode?: true
     amountInCents?: true
     description?: true
-    pixEmv?: true
-    pixType?: true
     createdAt?: true
     updatedAt?: true
+    pixEmv?: true
+    pixType?: true
+    partyId?: true
   }
 
   export type PixTransactionCountAggregateInputType = {
@@ -18350,10 +18396,11 @@ export namespace Prisma {
     pixQrCode?: true
     amountInCents?: true
     description?: true
-    pixEmv?: true
-    pixType?: true
     createdAt?: true
     updatedAt?: true
+    pixEmv?: true
+    pixType?: true
+    partyId?: true
     _all?: true
   }
 
@@ -18455,10 +18502,11 @@ export namespace Prisma {
     pixQrCode: string
     amountInCents: string
     description: string | null
-    pixEmv: string | null
-    pixType: string | null
     createdAt: Date
     updatedAt: Date
+    pixEmv: string | null
+    pixType: string | null
+    partyId: number | null
     _count: PixTransactionCountAggregateOutputType | null
     _avg: PixTransactionAvgAggregateOutputType | null
     _sum: PixTransactionSumAggregateOutputType | null
@@ -18492,11 +18540,13 @@ export namespace Prisma {
     pixQrCode?: boolean
     amountInCents?: boolean
     description?: boolean
-    pixEmv?: boolean
-    pixType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pixEmv?: boolean
+    pixType?: boolean
+    partyId?: boolean
     customer?: boolean | PixTransaction$customerArgs<ExtArgs>
+    party?: boolean | PixTransaction$partyArgs<ExtArgs>
     store?: boolean | PixTransaction$storeArgs<ExtArgs>
   }, ExtArgs["result"]["pixTransaction"]>
 
@@ -18514,15 +18564,17 @@ export namespace Prisma {
     pixQrCode?: boolean
     amountInCents?: boolean
     description?: boolean
-    pixEmv?: boolean
-    pixType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pixEmv?: boolean
+    pixType?: boolean
+    partyId?: boolean
   }
 
-  export type PixTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "storeId" | "transactionId" | "referenceId" | "status" | "expirationDate" | "pixKey" | "pixQrCode" | "amountInCents" | "description" | "pixEmv" | "pixType" | "createdAt" | "updatedAt", ExtArgs["result"]["pixTransaction"]>
+  export type PixTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "storeId" | "transactionId" | "referenceId" | "status" | "expirationDate" | "pixKey" | "pixQrCode" | "amountInCents" | "description" | "createdAt" | "updatedAt" | "pixEmv" | "pixType" | "partyId", ExtArgs["result"]["pixTransaction"]>
   export type PixTransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | PixTransaction$customerArgs<ExtArgs>
+    party?: boolean | PixTransaction$partyArgs<ExtArgs>
     store?: boolean | PixTransaction$storeArgs<ExtArgs>
   }
 
@@ -18530,6 +18582,7 @@ export namespace Prisma {
     name: "PixTransaction"
     objects: {
       customer: Prisma.$CustomerPayload<ExtArgs> | null
+      party: Prisma.$PartyPayload<ExtArgs> | null
       store: Prisma.$StorePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -18544,10 +18597,11 @@ export namespace Prisma {
       pixQrCode: string
       amountInCents: string
       description: string | null
-      pixEmv: string | null
-      pixType: string | null
       createdAt: Date
       updatedAt: Date
+      pixEmv: string | null
+      pixType: string | null
+      partyId: number | null
     }, ExtArgs["result"]["pixTransaction"]>
     composites: {}
   }
@@ -18889,6 +18943,7 @@ export namespace Prisma {
   export interface Prisma__PixTransactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     customer<T extends PixTransaction$customerArgs<ExtArgs> = {}>(args?: Subset<T, PixTransaction$customerArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    party<T extends PixTransaction$partyArgs<ExtArgs> = {}>(args?: Subset<T, PixTransaction$partyArgs<ExtArgs>>): Prisma__PartyClient<$Result.GetResult<Prisma.$PartyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     store<T extends PixTransaction$storeArgs<ExtArgs> = {}>(args?: Subset<T, PixTransaction$storeArgs<ExtArgs>>): Prisma__StoreClient<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -18930,10 +18985,11 @@ export namespace Prisma {
     readonly pixQrCode: FieldRef<"PixTransaction", 'String'>
     readonly amountInCents: FieldRef<"PixTransaction", 'String'>
     readonly description: FieldRef<"PixTransaction", 'String'>
-    readonly pixEmv: FieldRef<"PixTransaction", 'String'>
-    readonly pixType: FieldRef<"PixTransaction", 'String'>
     readonly createdAt: FieldRef<"PixTransaction", 'DateTime'>
     readonly updatedAt: FieldRef<"PixTransaction", 'DateTime'>
+    readonly pixEmv: FieldRef<"PixTransaction", 'String'>
+    readonly pixType: FieldRef<"PixTransaction", 'String'>
+    readonly partyId: FieldRef<"PixTransaction", 'Int'>
   }
     
 
@@ -19293,6 +19349,25 @@ export namespace Prisma {
      */
     include?: CustomerInclude<ExtArgs> | null
     where?: CustomerWhereInput
+  }
+
+  /**
+   * PixTransaction.party
+   */
+  export type PixTransaction$partyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Party
+     */
+    select?: PartySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Party
+     */
+    omit?: PartyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartyInclude<ExtArgs> | null
+    where?: PartyWhereInput
   }
 
   /**
@@ -20424,9 +20499,9 @@ export namespace Prisma {
     ioSellerId: string | null
     taxpayerId: string | null
     ownerTaxpayerId: string | null
-    webhookUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    webhookUrl: string | null
   }
 
   export type StoreMaxAggregateOutputType = {
@@ -20452,9 +20527,9 @@ export namespace Prisma {
     ioSellerId: string | null
     taxpayerId: string | null
     ownerTaxpayerId: string | null
-    webhookUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    webhookUrl: string | null
   }
 
   export type StoreCountAggregateOutputType = {
@@ -20480,9 +20555,9 @@ export namespace Prisma {
     ioSellerId: number
     taxpayerId: number
     ownerTaxpayerId: number
-    webhookUrl: number
     createdAt: number
     updatedAt: number
+    webhookUrl: number
     _all: number
   }
 
@@ -20522,9 +20597,9 @@ export namespace Prisma {
     ioSellerId?: true
     taxpayerId?: true
     ownerTaxpayerId?: true
-    webhookUrl?: true
     createdAt?: true
     updatedAt?: true
+    webhookUrl?: true
   }
 
   export type StoreMaxAggregateInputType = {
@@ -20550,9 +20625,9 @@ export namespace Prisma {
     ioSellerId?: true
     taxpayerId?: true
     ownerTaxpayerId?: true
-    webhookUrl?: true
     createdAt?: true
     updatedAt?: true
+    webhookUrl?: true
   }
 
   export type StoreCountAggregateInputType = {
@@ -20578,9 +20653,9 @@ export namespace Prisma {
     ioSellerId?: true
     taxpayerId?: true
     ownerTaxpayerId?: true
-    webhookUrl?: true
     createdAt?: true
     updatedAt?: true
+    webhookUrl?: true
     _all?: true
   }
 
@@ -20693,9 +20768,9 @@ export namespace Prisma {
     ioSellerId: string | null
     taxpayerId: string | null
     ownerTaxpayerId: string | null
-    webhookUrl: string | null
     createdAt: Date
     updatedAt: Date
+    webhookUrl: string | null
     _count: StoreCountAggregateOutputType | null
     _avg: StoreAvgAggregateOutputType | null
     _sum: StoreSumAggregateOutputType | null
@@ -20740,15 +20815,15 @@ export namespace Prisma {
     ioSellerId?: boolean
     taxpayerId?: boolean
     ownerTaxpayerId?: boolean
-    webhookUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    owner?: boolean | OwnerDefaultArgs<ExtArgs>
+    webhookUrl?: boolean
     payouts?: boolean | Store$payoutsArgs<ExtArgs>
     pixTransactions?: boolean | Store$pixTransactionsArgs<ExtArgs>
-    storePixTransactions?: boolean | Store$storePixTransactionsArgs<ExtArgs>
     shops?: boolean | Store$shopsArgs<ExtArgs>
+    owner?: boolean | OwnerDefaultArgs<ExtArgs>
     bankAccounts?: boolean | Store$bankAccountsArgs<ExtArgs>
+    storePixTransactions?: boolean | Store$storePixTransactionsArgs<ExtArgs>
     storeSales?: boolean | Store$storeSalesArgs<ExtArgs>
     transferHistories?: boolean | Store$transferHistoriesArgs<ExtArgs>
     _count?: boolean | StoreCountOutputTypeDefaultArgs<ExtArgs>
@@ -20779,19 +20854,19 @@ export namespace Prisma {
     ioSellerId?: boolean
     taxpayerId?: boolean
     ownerTaxpayerId?: boolean
-    webhookUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    webhookUrl?: boolean
   }
 
-  export type StoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ownerId" | "name" | "statementDescriptor" | "mcc" | "businessLine1" | "businessLine2" | "businessLine3" | "businessNeighborhood" | "businessCity" | "businessState" | "businessCountryCode" | "businessZipCode" | "businessPhone" | "businessEmail" | "businessName" | "businessDocument" | "businessWebsite" | "businessOpenDate" | "ioSellerId" | "taxpayerId" | "ownerTaxpayerId" | "webhookUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["store"]>
+  export type StoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ownerId" | "name" | "statementDescriptor" | "mcc" | "businessLine1" | "businessLine2" | "businessLine3" | "businessNeighborhood" | "businessCity" | "businessState" | "businessCountryCode" | "businessZipCode" | "businessPhone" | "businessEmail" | "businessName" | "businessDocument" | "businessWebsite" | "businessOpenDate" | "ioSellerId" | "taxpayerId" | "ownerTaxpayerId" | "createdAt" | "updatedAt" | "webhookUrl", ExtArgs["result"]["store"]>
   export type StoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | OwnerDefaultArgs<ExtArgs>
     payouts?: boolean | Store$payoutsArgs<ExtArgs>
     pixTransactions?: boolean | Store$pixTransactionsArgs<ExtArgs>
-    storePixTransactions?: boolean | Store$storePixTransactionsArgs<ExtArgs>
     shops?: boolean | Store$shopsArgs<ExtArgs>
+    owner?: boolean | OwnerDefaultArgs<ExtArgs>
     bankAccounts?: boolean | Store$bankAccountsArgs<ExtArgs>
+    storePixTransactions?: boolean | Store$storePixTransactionsArgs<ExtArgs>
     storeSales?: boolean | Store$storeSalesArgs<ExtArgs>
     transferHistories?: boolean | Store$transferHistoriesArgs<ExtArgs>
     _count?: boolean | StoreCountOutputTypeDefaultArgs<ExtArgs>
@@ -20800,12 +20875,12 @@ export namespace Prisma {
   export type $StorePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Store"
     objects: {
-      owner: Prisma.$OwnerPayload<ExtArgs>
       payouts: Prisma.$PayoutPayload<ExtArgs>[]
       pixTransactions: Prisma.$PixTransactionPayload<ExtArgs>[]
-      storePixTransactions: Prisma.$StorePixTransactionPayload<ExtArgs>[]
       shops: Prisma.$ShopPayload<ExtArgs>[]
+      owner: Prisma.$OwnerPayload<ExtArgs>
       bankAccounts: Prisma.$StoreBankAccountPayload<ExtArgs>[]
+      storePixTransactions: Prisma.$StorePixTransactionPayload<ExtArgs>[]
       storeSales: Prisma.$StoreSalePayload<ExtArgs>[]
       transferHistories: Prisma.$TransferHistoryPayload<ExtArgs>[]
     }
@@ -20832,9 +20907,9 @@ export namespace Prisma {
       ioSellerId: string | null
       taxpayerId: string | null
       ownerTaxpayerId: string | null
-      webhookUrl: string | null
       createdAt: Date
       updatedAt: Date
+      webhookUrl: string | null
     }, ExtArgs["result"]["store"]>
     composites: {}
   }
@@ -21175,12 +21250,12 @@ export namespace Prisma {
    */
   export interface Prisma__StoreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    owner<T extends OwnerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OwnerDefaultArgs<ExtArgs>>): Prisma__OwnerClient<$Result.GetResult<Prisma.$OwnerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     payouts<T extends Store$payoutsArgs<ExtArgs> = {}>(args?: Subset<T, Store$payoutsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PayoutPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pixTransactions<T extends Store$pixTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, Store$pixTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PixTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    storePixTransactions<T extends Store$storePixTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, Store$storePixTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StorePixTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     shops<T extends Store$shopsArgs<ExtArgs> = {}>(args?: Subset<T, Store$shopsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShopPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    owner<T extends OwnerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OwnerDefaultArgs<ExtArgs>>): Prisma__OwnerClient<$Result.GetResult<Prisma.$OwnerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     bankAccounts<T extends Store$bankAccountsArgs<ExtArgs> = {}>(args?: Subset<T, Store$bankAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoreBankAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    storePixTransactions<T extends Store$storePixTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, Store$storePixTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StorePixTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     storeSales<T extends Store$storeSalesArgs<ExtArgs> = {}>(args?: Subset<T, Store$storeSalesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoreSalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     transferHistories<T extends Store$transferHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Store$transferHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -21234,9 +21309,9 @@ export namespace Prisma {
     readonly ioSellerId: FieldRef<"Store", 'String'>
     readonly taxpayerId: FieldRef<"Store", 'String'>
     readonly ownerTaxpayerId: FieldRef<"Store", 'String'>
-    readonly webhookUrl: FieldRef<"Store", 'String'>
     readonly createdAt: FieldRef<"Store", 'DateTime'>
     readonly updatedAt: FieldRef<"Store", 'DateTime'>
+    readonly webhookUrl: FieldRef<"Store", 'String'>
   }
     
 
@@ -21628,30 +21703,6 @@ export namespace Prisma {
   }
 
   /**
-   * Store.storePixTransactions
-   */
-  export type Store$storePixTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the StorePixTransaction
-     */
-    select?: StorePixTransactionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the StorePixTransaction
-     */
-    omit?: StorePixTransactionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StorePixTransactionInclude<ExtArgs> | null
-    where?: StorePixTransactionWhereInput
-    orderBy?: StorePixTransactionOrderByWithRelationInput | StorePixTransactionOrderByWithRelationInput[]
-    cursor?: StorePixTransactionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StorePixTransactionScalarFieldEnum | StorePixTransactionScalarFieldEnum[]
-  }
-
-  /**
    * Store.shops
    */
   export type Store$shopsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -21697,6 +21748,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StoreBankAccountScalarFieldEnum | StoreBankAccountScalarFieldEnum[]
+  }
+
+  /**
+   * Store.storePixTransactions
+   */
+  export type Store$storePixTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StorePixTransaction
+     */
+    select?: StorePixTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StorePixTransaction
+     */
+    omit?: StorePixTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StorePixTransactionInclude<ExtArgs> | null
+    where?: StorePixTransactionWhereInput
+    orderBy?: StorePixTransactionOrderByWithRelationInput | StorePixTransactionOrderByWithRelationInput[]
+    cursor?: StorePixTransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StorePixTransactionScalarFieldEnum | StorePixTransactionScalarFieldEnum[]
   }
 
   /**
@@ -22844,48 +22919,48 @@ export namespace Prisma {
   export type TransferHistoryAvgAggregateOutputType = {
     id: number | null
     bankAccountId: number | null
-    storeId: number | null
     amountInCents: number | null
+    storeId: number | null
   }
 
   export type TransferHistorySumAggregateOutputType = {
     id: number | null
     bankAccountId: number | null
-    storeId: number | null
     amountInCents: number | null
+    storeId: number | null
   }
 
   export type TransferHistoryMinAggregateOutputType = {
     id: number | null
     bankAccountId: number | null
-    storeId: number | null
     description: string | null
     statementDescriptor: string | null
     amountInCents: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    storeId: number | null
   }
 
   export type TransferHistoryMaxAggregateOutputType = {
     id: number | null
     bankAccountId: number | null
-    storeId: number | null
     description: string | null
     statementDescriptor: string | null
     amountInCents: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    storeId: number | null
   }
 
   export type TransferHistoryCountAggregateOutputType = {
     id: number
     bankAccountId: number
-    storeId: number
     description: number
     statementDescriptor: number
     amountInCents: number
     createdAt: number
     updatedAt: number
+    storeId: number
     _all: number
   }
 
@@ -22893,48 +22968,48 @@ export namespace Prisma {
   export type TransferHistoryAvgAggregateInputType = {
     id?: true
     bankAccountId?: true
-    storeId?: true
     amountInCents?: true
+    storeId?: true
   }
 
   export type TransferHistorySumAggregateInputType = {
     id?: true
     bankAccountId?: true
-    storeId?: true
     amountInCents?: true
+    storeId?: true
   }
 
   export type TransferHistoryMinAggregateInputType = {
     id?: true
     bankAccountId?: true
-    storeId?: true
     description?: true
     statementDescriptor?: true
     amountInCents?: true
     createdAt?: true
     updatedAt?: true
+    storeId?: true
   }
 
   export type TransferHistoryMaxAggregateInputType = {
     id?: true
     bankAccountId?: true
-    storeId?: true
     description?: true
     statementDescriptor?: true
     amountInCents?: true
     createdAt?: true
     updatedAt?: true
+    storeId?: true
   }
 
   export type TransferHistoryCountAggregateInputType = {
     id?: true
     bankAccountId?: true
-    storeId?: true
     description?: true
     statementDescriptor?: true
     amountInCents?: true
     createdAt?: true
     updatedAt?: true
+    storeId?: true
     _all?: true
   }
 
@@ -23027,12 +23102,12 @@ export namespace Prisma {
   export type TransferHistoryGroupByOutputType = {
     id: number
     bankAccountId: number
-    storeId: number
     description: string | null
     statementDescriptor: string | null
     amountInCents: number
     createdAt: Date
     updatedAt: Date
+    storeId: number
     _count: TransferHistoryCountAggregateOutputType | null
     _avg: TransferHistoryAvgAggregateOutputType | null
     _sum: TransferHistorySumAggregateOutputType | null
@@ -23057,12 +23132,12 @@ export namespace Prisma {
   export type TransferHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     bankAccountId?: boolean
-    storeId?: boolean
     description?: boolean
     statementDescriptor?: boolean
     amountInCents?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    storeId?: boolean
     storeBankAccount?: boolean | StoreBankAccountDefaultArgs<ExtArgs>
     store?: boolean | StoreDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["transferHistory"]>
@@ -23072,15 +23147,15 @@ export namespace Prisma {
   export type TransferHistorySelectScalar = {
     id?: boolean
     bankAccountId?: boolean
-    storeId?: boolean
     description?: boolean
     statementDescriptor?: boolean
     amountInCents?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    storeId?: boolean
   }
 
-  export type TransferHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "bankAccountId" | "storeId" | "description" | "statementDescriptor" | "amountInCents" | "createdAt" | "updatedAt", ExtArgs["result"]["transferHistory"]>
+  export type TransferHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "bankAccountId" | "description" | "statementDescriptor" | "amountInCents" | "createdAt" | "updatedAt" | "storeId", ExtArgs["result"]["transferHistory"]>
   export type TransferHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     storeBankAccount?: boolean | StoreBankAccountDefaultArgs<ExtArgs>
     store?: boolean | StoreDefaultArgs<ExtArgs>
@@ -23095,12 +23170,12 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       bankAccountId: number
-      storeId: number
       description: string | null
       statementDescriptor: string | null
       amountInCents: number
       createdAt: Date
       updatedAt: Date
+      storeId: number
     }, ExtArgs["result"]["transferHistory"]>
     composites: {}
   }
@@ -23474,12 +23549,12 @@ export namespace Prisma {
   interface TransferHistoryFieldRefs {
     readonly id: FieldRef<"TransferHistory", 'Int'>
     readonly bankAccountId: FieldRef<"TransferHistory", 'Int'>
-    readonly storeId: FieldRef<"TransferHistory", 'Int'>
     readonly description: FieldRef<"TransferHistory", 'String'>
     readonly statementDescriptor: FieldRef<"TransferHistory", 'String'>
     readonly amountInCents: FieldRef<"TransferHistory", 'Int'>
     readonly createdAt: FieldRef<"TransferHistory", 'DateTime'>
     readonly updatedAt: FieldRef<"TransferHistory", 'DateTime'>
+    readonly storeId: FieldRef<"TransferHistory", 'Int'>
   }
     
 
@@ -24043,8 +24118,8 @@ export namespace Prisma {
     name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    store?: boolean | StoreDefaultArgs<ExtArgs>
     partyShops?: boolean | Shop$partyShopsArgs<ExtArgs>
+    store?: boolean | StoreDefaultArgs<ExtArgs>
     shopProducts?: boolean | Shop$shopProductsArgs<ExtArgs>
     shopWorkers?: boolean | Shop$shopWorkersArgs<ExtArgs>
     storeSales?: boolean | Shop$storeSalesArgs<ExtArgs>
@@ -24063,8 +24138,8 @@ export namespace Prisma {
 
   export type ShopOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "storeId" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["shop"]>
   export type ShopInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    store?: boolean | StoreDefaultArgs<ExtArgs>
     partyShops?: boolean | Shop$partyShopsArgs<ExtArgs>
+    store?: boolean | StoreDefaultArgs<ExtArgs>
     shopProducts?: boolean | Shop$shopProductsArgs<ExtArgs>
     shopWorkers?: boolean | Shop$shopWorkersArgs<ExtArgs>
     storeSales?: boolean | Shop$storeSalesArgs<ExtArgs>
@@ -24074,8 +24149,8 @@ export namespace Prisma {
   export type $ShopPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Shop"
     objects: {
-      store: Prisma.$StorePayload<ExtArgs>
       partyShops: Prisma.$PartyShopPayload<ExtArgs>[]
+      store: Prisma.$StorePayload<ExtArgs>
       shopProducts: Prisma.$ShopProductPayload<ExtArgs>[]
       shopWorkers: Prisma.$ShopWorkerPayload<ExtArgs>[]
       storeSales: Prisma.$StoreSalePayload<ExtArgs>[]
@@ -24426,8 +24501,8 @@ export namespace Prisma {
    */
   export interface Prisma__ShopClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    store<T extends StoreDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StoreDefaultArgs<ExtArgs>>): Prisma__StoreClient<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     partyShops<T extends Shop$partyShopsArgs<ExtArgs> = {}>(args?: Subset<T, Shop$partyShopsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartyShopPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    store<T extends StoreDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StoreDefaultArgs<ExtArgs>>): Prisma__StoreClient<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     shopProducts<T extends Shop$shopProductsArgs<ExtArgs> = {}>(args?: Subset<T, Shop$shopProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShopProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     shopWorkers<T extends Shop$shopWorkersArgs<ExtArgs> = {}>(args?: Subset<T, Shop$shopWorkersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShopWorkerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     storeSales<T extends Shop$storeSalesArgs<ExtArgs> = {}>(args?: Subset<T, Shop$storeSalesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoreSalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -25985,105 +26060,105 @@ export namespace Prisma {
   }
 
   export type ShopWorkerAvgAggregateOutputType = {
-    id: number | null
     shopId: number | null
     accessUserId: number | null
     role: number | null
+    id: number | null
   }
 
   export type ShopWorkerSumAggregateOutputType = {
-    id: number | null
     shopId: number | null
     accessUserId: number | null
     role: number | null
+    id: number | null
   }
 
   export type ShopWorkerMinAggregateOutputType = {
-    id: number | null
     shopId: number | null
     accessUserId: number | null
     role: number | null
     active: boolean | null
-    expirationDate: Date | null
-    name: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    id: number | null
+    expirationDate: Date | null
+    name: string | null
   }
 
   export type ShopWorkerMaxAggregateOutputType = {
-    id: number | null
     shopId: number | null
     accessUserId: number | null
     role: number | null
     active: boolean | null
-    expirationDate: Date | null
-    name: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    id: number | null
+    expirationDate: Date | null
+    name: string | null
   }
 
   export type ShopWorkerCountAggregateOutputType = {
-    id: number
     shopId: number
     accessUserId: number
     role: number
     active: number
-    expirationDate: number
-    name: number
     createdAt: number
     updatedAt: number
+    id: number
+    expirationDate: number
+    name: number
     _all: number
   }
 
 
   export type ShopWorkerAvgAggregateInputType = {
-    id?: true
     shopId?: true
     accessUserId?: true
     role?: true
+    id?: true
   }
 
   export type ShopWorkerSumAggregateInputType = {
-    id?: true
     shopId?: true
     accessUserId?: true
     role?: true
+    id?: true
   }
 
   export type ShopWorkerMinAggregateInputType = {
-    id?: true
     shopId?: true
     accessUserId?: true
     role?: true
     active?: true
-    expirationDate?: true
-    name?: true
     createdAt?: true
     updatedAt?: true
+    id?: true
+    expirationDate?: true
+    name?: true
   }
 
   export type ShopWorkerMaxAggregateInputType = {
-    id?: true
     shopId?: true
     accessUserId?: true
     role?: true
     active?: true
-    expirationDate?: true
-    name?: true
     createdAt?: true
     updatedAt?: true
+    id?: true
+    expirationDate?: true
+    name?: true
   }
 
   export type ShopWorkerCountAggregateInputType = {
-    id?: true
     shopId?: true
     accessUserId?: true
     role?: true
     active?: true
-    expirationDate?: true
-    name?: true
     createdAt?: true
     updatedAt?: true
+    id?: true
+    expirationDate?: true
+    name?: true
     _all?: true
   }
 
@@ -26174,15 +26249,15 @@ export namespace Prisma {
   }
 
   export type ShopWorkerGroupByOutputType = {
-    id: number
     shopId: number
     accessUserId: number | null
     role: number
     active: boolean | null
-    expirationDate: Date | null
-    name: string | null
     createdAt: Date
     updatedAt: Date
+    id: number
+    expirationDate: Date | null
+    name: string | null
     _count: ShopWorkerCountAggregateOutputType | null
     _avg: ShopWorkerAvgAggregateOutputType | null
     _sum: ShopWorkerSumAggregateOutputType | null
@@ -26205,15 +26280,15 @@ export namespace Prisma {
 
 
   export type ShopWorkerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     shopId?: boolean
     accessUserId?: boolean
     role?: boolean
     active?: boolean
-    expirationDate?: boolean
-    name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    id?: boolean
+    expirationDate?: boolean
+    name?: boolean
     accessUser?: boolean | ShopWorker$accessUserArgs<ExtArgs>
     shop?: boolean | ShopDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["shopWorker"]>
@@ -26221,18 +26296,18 @@ export namespace Prisma {
 
 
   export type ShopWorkerSelectScalar = {
-    id?: boolean
     shopId?: boolean
     accessUserId?: boolean
     role?: boolean
     active?: boolean
-    expirationDate?: boolean
-    name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    id?: boolean
+    expirationDate?: boolean
+    name?: boolean
   }
 
-  export type ShopWorkerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "shopId" | "accessUserId" | "role" | "active" | "expirationDate" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["shopWorker"]>
+  export type ShopWorkerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"shopId" | "accessUserId" | "role" | "active" | "createdAt" | "updatedAt" | "id" | "expirationDate" | "name", ExtArgs["result"]["shopWorker"]>
   export type ShopWorkerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accessUser?: boolean | ShopWorker$accessUserArgs<ExtArgs>
     shop?: boolean | ShopDefaultArgs<ExtArgs>
@@ -26245,15 +26320,15 @@ export namespace Prisma {
       shop: Prisma.$ShopPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
       shopId: number
       accessUserId: number | null
       role: number
       active: boolean | null
-      expirationDate: Date | null
-      name: string | null
       createdAt: Date
       updatedAt: Date
+      id: number
+      expirationDate: Date | null
+      name: string | null
     }, ExtArgs["result"]["shopWorker"]>
     composites: {}
   }
@@ -26337,8 +26412,8 @@ export namespace Prisma {
      * // Get first 10 ShopWorkers
      * const shopWorkers = await prisma.shopWorker.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const shopWorkerWithIdOnly = await prisma.shopWorker.findMany({ select: { id: true } })
+     * // Only select the `shopId`
+     * const shopWorkerWithShopIdOnly = await prisma.shopWorker.findMany({ select: { shopId: true } })
      * 
      */
     findMany<T extends ShopWorkerFindManyArgs>(args?: SelectSubset<T, ShopWorkerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShopWorkerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -26625,15 +26700,15 @@ export namespace Prisma {
    * Fields of the ShopWorker model
    */
   interface ShopWorkerFieldRefs {
-    readonly id: FieldRef<"ShopWorker", 'Int'>
     readonly shopId: FieldRef<"ShopWorker", 'Int'>
     readonly accessUserId: FieldRef<"ShopWorker", 'Int'>
     readonly role: FieldRef<"ShopWorker", 'Int'>
     readonly active: FieldRef<"ShopWorker", 'Boolean'>
-    readonly expirationDate: FieldRef<"ShopWorker", 'DateTime'>
-    readonly name: FieldRef<"ShopWorker", 'String'>
     readonly createdAt: FieldRef<"ShopWorker", 'DateTime'>
     readonly updatedAt: FieldRef<"ShopWorker", 'DateTime'>
+    readonly id: FieldRef<"ShopWorker", 'Int'>
+    readonly expirationDate: FieldRef<"ShopWorker", 'DateTime'>
+    readonly name: FieldRef<"ShopWorker", 'String'>
   }
     
 
@@ -37345,9 +37420,9 @@ export namespace Prisma {
     zipCode: 'zipCode',
     isActive: 'isActive',
     accessUserId: 'accessUserId',
-    ioCustomerId: 'ioCustomerId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    ioCustomerId: 'ioCustomerId'
   };
 
   export type OwnerScalarFieldEnum = (typeof OwnerScalarFieldEnum)[keyof typeof OwnerScalarFieldEnum]
@@ -37495,9 +37570,9 @@ export namespace Prisma {
     partyId: 'partyId',
     customerId: 'customerId',
     isActive: 'isActive',
-    bonusInCents: 'bonusInCents',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    bonusInCents: 'bonusInCents'
   };
 
   export type PromoterScalarFieldEnum = (typeof PromoterScalarFieldEnum)[keyof typeof PromoterScalarFieldEnum]
@@ -37523,10 +37598,11 @@ export namespace Prisma {
     pixQrCode: 'pixQrCode',
     amountInCents: 'amountInCents',
     description: 'description',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     pixEmv: 'pixEmv',
     pixType: 'pixType',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    partyId: 'partyId'
   };
 
   export type PixTransactionScalarFieldEnum = (typeof PixTransactionScalarFieldEnum)[keyof typeof PixTransactionScalarFieldEnum]
@@ -37573,9 +37649,9 @@ export namespace Prisma {
     ioSellerId: 'ioSellerId',
     taxpayerId: 'taxpayerId',
     ownerTaxpayerId: 'ownerTaxpayerId',
-    webhookUrl: 'webhookUrl',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    webhookUrl: 'webhookUrl'
   };
 
   export type StoreScalarFieldEnum = (typeof StoreScalarFieldEnum)[keyof typeof StoreScalarFieldEnum]
@@ -37601,12 +37677,12 @@ export namespace Prisma {
   export const TransferHistoryScalarFieldEnum: {
     id: 'id',
     bankAccountId: 'bankAccountId',
-    storeId: 'storeId',
     description: 'description',
     statementDescriptor: 'statementDescriptor',
     amountInCents: 'amountInCents',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    storeId: 'storeId'
   };
 
   export type TransferHistoryScalarFieldEnum = (typeof TransferHistoryScalarFieldEnum)[keyof typeof TransferHistoryScalarFieldEnum]
@@ -37637,15 +37713,15 @@ export namespace Prisma {
 
 
   export const ShopWorkerScalarFieldEnum: {
-    id: 'id',
     shopId: 'shopId',
     accessUserId: 'accessUserId',
     role: 'role',
     active: 'active',
-    expirationDate: 'expirationDate',
-    name: 'name',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    id: 'id',
+    expirationDate: 'expirationDate',
+    name: 'name'
   };
 
   export type ShopWorkerScalarFieldEnum = (typeof ShopWorkerScalarFieldEnum)[keyof typeof ShopWorkerScalarFieldEnum]
@@ -38268,9 +38344,9 @@ export namespace Prisma {
     zipCode?: StringNullableFilter<"Owner"> | string | null
     isActive?: BoolNullableFilter<"Owner"> | boolean | null
     accessUserId?: IntFilter<"Owner"> | number
-    ioCustomerId?: StringNullableFilter<"Owner"> | string | null
     createdAt?: DateTimeFilter<"Owner"> | Date | string
     updatedAt?: DateTimeFilter<"Owner"> | Date | string
+    ioCustomerId?: StringNullableFilter<"Owner"> | string | null
     accessUser?: XOR<AccessUserScalarRelationFilter, AccessUserWhereInput>
     stores?: StoreListRelationFilter
   }
@@ -38295,9 +38371,9 @@ export namespace Prisma {
     zipCode?: SortOrderInput | SortOrder
     isActive?: SortOrderInput | SortOrder
     accessUserId?: SortOrder
-    ioCustomerId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ioCustomerId?: SortOrderInput | SortOrder
     accessUser?: AccessUserOrderByWithRelationInput
     stores?: StoreOrderByRelationAggregateInput
     _relevance?: OwnerOrderByRelevanceInput
@@ -38326,9 +38402,9 @@ export namespace Prisma {
     zipCode?: StringNullableFilter<"Owner"> | string | null
     isActive?: BoolNullableFilter<"Owner"> | boolean | null
     accessUserId?: IntFilter<"Owner"> | number
-    ioCustomerId?: StringNullableFilter<"Owner"> | string | null
     createdAt?: DateTimeFilter<"Owner"> | Date | string
     updatedAt?: DateTimeFilter<"Owner"> | Date | string
+    ioCustomerId?: StringNullableFilter<"Owner"> | string | null
     accessUser?: XOR<AccessUserScalarRelationFilter, AccessUserWhereInput>
     stores?: StoreListRelationFilter
   }, "id">
@@ -38353,9 +38429,9 @@ export namespace Prisma {
     zipCode?: SortOrderInput | SortOrder
     isActive?: SortOrderInput | SortOrder
     accessUserId?: SortOrder
-    ioCustomerId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ioCustomerId?: SortOrderInput | SortOrder
     _count?: OwnerCountOrderByAggregateInput
     _avg?: OwnerAvgOrderByAggregateInput
     _max?: OwnerMaxOrderByAggregateInput
@@ -38386,9 +38462,9 @@ export namespace Prisma {
     zipCode?: StringNullableWithAggregatesFilter<"Owner"> | string | null
     isActive?: BoolNullableWithAggregatesFilter<"Owner"> | boolean | null
     accessUserId?: IntWithAggregatesFilter<"Owner"> | number
-    ioCustomerId?: StringNullableWithAggregatesFilter<"Owner"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Owner"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Owner"> | Date | string
+    ioCustomerId?: StringNullableWithAggregatesFilter<"Owner"> | string | null
   }
 
   export type CustomerWhereInput = {
@@ -38775,11 +38851,12 @@ export namespace Prisma {
     accessUserId?: IntFilter<"Party"> | number
     createdAt?: DateTimeFilter<"Party"> | Date | string
     updatedAt?: DateTimeFilter<"Party"> | Date | string
-    accessUser?: XOR<AccessUserScalarRelationFilter, AccessUserWhereInput>
     ingresses?: IngressListRelationFilter
     batches?: IngressBatchListRelationFilter
     invites?: InviteListRelationFilter
+    accessUser?: XOR<AccessUserScalarRelationFilter, AccessUserWhereInput>
     partyShops?: PartyShopListRelationFilter
+    pixTransactions?: PixTransactionListRelationFilter
     promoters?: PromoterListRelationFilter
   }
 
@@ -38793,11 +38870,12 @@ export namespace Prisma {
     accessUserId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    accessUser?: AccessUserOrderByWithRelationInput
     ingresses?: IngressOrderByRelationAggregateInput
     batches?: IngressBatchOrderByRelationAggregateInput
     invites?: InviteOrderByRelationAggregateInput
+    accessUser?: AccessUserOrderByWithRelationInput
     partyShops?: PartyShopOrderByRelationAggregateInput
+    pixTransactions?: PixTransactionOrderByRelationAggregateInput
     promoters?: PromoterOrderByRelationAggregateInput
     _relevance?: PartyOrderByRelevanceInput
   }
@@ -38815,11 +38893,12 @@ export namespace Prisma {
     accessUserId?: IntFilter<"Party"> | number
     createdAt?: DateTimeFilter<"Party"> | Date | string
     updatedAt?: DateTimeFilter<"Party"> | Date | string
-    accessUser?: XOR<AccessUserScalarRelationFilter, AccessUserWhereInput>
     ingresses?: IngressListRelationFilter
     batches?: IngressBatchListRelationFilter
     invites?: InviteListRelationFilter
+    accessUser?: XOR<AccessUserScalarRelationFilter, AccessUserWhereInput>
     partyShops?: PartyShopListRelationFilter
+    pixTransactions?: PixTransactionListRelationFilter
     promoters?: PromoterListRelationFilter
   }, "id">
 
@@ -38867,8 +38946,8 @@ export namespace Prisma {
     priceInCents?: IntFilter<"IngressBatch"> | number
     isActive?: BoolFilter<"IngressBatch"> | boolean
     partyId?: IntFilter<"IngressBatch"> | number
-    party?: XOR<PartyScalarRelationFilter, PartyWhereInput>
     ingresses?: IngressListRelationFilter
+    party?: XOR<PartyScalarRelationFilter, PartyWhereInput>
   }
 
   export type IngressBatchOrderByWithRelationInput = {
@@ -38880,8 +38959,8 @@ export namespace Prisma {
     priceInCents?: SortOrder
     isActive?: SortOrder
     partyId?: SortOrder
-    party?: PartyOrderByWithRelationInput
     ingresses?: IngressOrderByRelationAggregateInput
+    party?: PartyOrderByWithRelationInput
     _relevance?: IngressBatchOrderByRelevanceInput
   }
 
@@ -38897,8 +38976,8 @@ export namespace Prisma {
     priceInCents?: IntFilter<"IngressBatch"> | number
     isActive?: BoolFilter<"IngressBatch"> | boolean
     partyId?: IntFilter<"IngressBatch"> | number
-    party?: XOR<PartyScalarRelationFilter, PartyWhereInput>
     ingresses?: IngressListRelationFilter
+    party?: XOR<PartyScalarRelationFilter, PartyWhereInput>
   }, "id">
 
   export type IngressBatchOrderByWithAggregationInput = {
@@ -39174,9 +39253,9 @@ export namespace Prisma {
     partyId?: IntFilter<"Promoter"> | number
     customerId?: IntFilter<"Promoter"> | number
     isActive?: BoolNullableFilter<"Promoter"> | boolean | null
-    bonusInCents?: IntNullableFilter<"Promoter"> | number | null
     createdAt?: DateTimeFilter<"Promoter"> | Date | string
     updatedAt?: DateTimeFilter<"Promoter"> | Date | string
+    bonusInCents?: IntNullableFilter<"Promoter"> | number | null
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     party?: XOR<PartyScalarRelationFilter, PartyWhereInput>
   }
@@ -39186,9 +39265,9 @@ export namespace Prisma {
     partyId?: SortOrder
     customerId?: SortOrder
     isActive?: SortOrderInput | SortOrder
-    bonusInCents?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bonusInCents?: SortOrderInput | SortOrder
     customer?: CustomerOrderByWithRelationInput
     party?: PartyOrderByWithRelationInput
   }
@@ -39201,9 +39280,9 @@ export namespace Prisma {
     partyId?: IntFilter<"Promoter"> | number
     customerId?: IntFilter<"Promoter"> | number
     isActive?: BoolNullableFilter<"Promoter"> | boolean | null
-    bonusInCents?: IntNullableFilter<"Promoter"> | number | null
     createdAt?: DateTimeFilter<"Promoter"> | Date | string
     updatedAt?: DateTimeFilter<"Promoter"> | Date | string
+    bonusInCents?: IntNullableFilter<"Promoter"> | number | null
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     party?: XOR<PartyScalarRelationFilter, PartyWhereInput>
   }, "id">
@@ -39213,9 +39292,9 @@ export namespace Prisma {
     partyId?: SortOrder
     customerId?: SortOrder
     isActive?: SortOrderInput | SortOrder
-    bonusInCents?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bonusInCents?: SortOrderInput | SortOrder
     _count?: PromoterCountOrderByAggregateInput
     _avg?: PromoterAvgOrderByAggregateInput
     _max?: PromoterMaxOrderByAggregateInput
@@ -39231,9 +39310,9 @@ export namespace Prisma {
     partyId?: IntWithAggregatesFilter<"Promoter"> | number
     customerId?: IntWithAggregatesFilter<"Promoter"> | number
     isActive?: BoolNullableWithAggregatesFilter<"Promoter"> | boolean | null
-    bonusInCents?: IntNullableWithAggregatesFilter<"Promoter"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Promoter"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Promoter"> | Date | string
+    bonusInCents?: IntNullableWithAggregatesFilter<"Promoter"> | number | null
   }
 
   export type PaymentMethodWhereInput = {
@@ -39297,11 +39376,13 @@ export namespace Prisma {
     pixQrCode?: StringFilter<"PixTransaction"> | string
     amountInCents?: StringFilter<"PixTransaction"> | string
     description?: StringNullableFilter<"PixTransaction"> | string | null
-    pixEmv?: StringNullableFilter<"PixTransaction"> | string | null
-    pixType?: StringNullableFilter<"PixTransaction"> | string | null
     createdAt?: DateTimeFilter<"PixTransaction"> | Date | string
     updatedAt?: DateTimeFilter<"PixTransaction"> | Date | string
+    pixEmv?: StringNullableFilter<"PixTransaction"> | string | null
+    pixType?: StringNullableFilter<"PixTransaction"> | string | null
+    partyId?: IntNullableFilter<"PixTransaction"> | number | null
     customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+    party?: XOR<PartyNullableScalarRelationFilter, PartyWhereInput> | null
     store?: XOR<StoreNullableScalarRelationFilter, StoreWhereInput> | null
   }
 
@@ -39317,11 +39398,13 @@ export namespace Prisma {
     pixQrCode?: SortOrder
     amountInCents?: SortOrder
     description?: SortOrderInput | SortOrder
-    pixEmv?: SortOrderInput | SortOrder
-    pixType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pixEmv?: SortOrderInput | SortOrder
+    pixType?: SortOrderInput | SortOrder
+    partyId?: SortOrderInput | SortOrder
     customer?: CustomerOrderByWithRelationInput
+    party?: PartyOrderByWithRelationInput
     store?: StoreOrderByWithRelationInput
     _relevance?: PixTransactionOrderByRelevanceInput
   }
@@ -39341,11 +39424,13 @@ export namespace Prisma {
     pixQrCode?: StringFilter<"PixTransaction"> | string
     amountInCents?: StringFilter<"PixTransaction"> | string
     description?: StringNullableFilter<"PixTransaction"> | string | null
-    pixEmv?: StringNullableFilter<"PixTransaction"> | string | null
-    pixType?: StringNullableFilter<"PixTransaction"> | string | null
     createdAt?: DateTimeFilter<"PixTransaction"> | Date | string
     updatedAt?: DateTimeFilter<"PixTransaction"> | Date | string
+    pixEmv?: StringNullableFilter<"PixTransaction"> | string | null
+    pixType?: StringNullableFilter<"PixTransaction"> | string | null
+    partyId?: IntNullableFilter<"PixTransaction"> | number | null
     customer?: XOR<CustomerNullableScalarRelationFilter, CustomerWhereInput> | null
+    party?: XOR<PartyNullableScalarRelationFilter, PartyWhereInput> | null
     store?: XOR<StoreNullableScalarRelationFilter, StoreWhereInput> | null
   }, "id" | "transactionId" | "referenceId">
 
@@ -39361,10 +39446,11 @@ export namespace Prisma {
     pixQrCode?: SortOrder
     amountInCents?: SortOrder
     description?: SortOrderInput | SortOrder
-    pixEmv?: SortOrderInput | SortOrder
-    pixType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pixEmv?: SortOrderInput | SortOrder
+    pixType?: SortOrderInput | SortOrder
+    partyId?: SortOrderInput | SortOrder
     _count?: PixTransactionCountOrderByAggregateInput
     _avg?: PixTransactionAvgOrderByAggregateInput
     _max?: PixTransactionMaxOrderByAggregateInput
@@ -39387,10 +39473,11 @@ export namespace Prisma {
     pixQrCode?: StringWithAggregatesFilter<"PixTransaction"> | string
     amountInCents?: StringWithAggregatesFilter<"PixTransaction"> | string
     description?: StringNullableWithAggregatesFilter<"PixTransaction"> | string | null
-    pixEmv?: StringNullableWithAggregatesFilter<"PixTransaction"> | string | null
-    pixType?: StringNullableWithAggregatesFilter<"PixTransaction"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"PixTransaction"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PixTransaction"> | Date | string
+    pixEmv?: StringNullableWithAggregatesFilter<"PixTransaction"> | string | null
+    pixType?: StringNullableWithAggregatesFilter<"PixTransaction"> | string | null
+    partyId?: IntNullableWithAggregatesFilter<"PixTransaction"> | number | null
   }
 
   export type StorePixTransactionWhereInput = {
@@ -39512,15 +39599,15 @@ export namespace Prisma {
     ioSellerId?: StringNullableFilter<"Store"> | string | null
     taxpayerId?: StringNullableFilter<"Store"> | string | null
     ownerTaxpayerId?: StringNullableFilter<"Store"> | string | null
-    webhookUrl?: StringNullableFilter<"Store"> | string | null
     createdAt?: DateTimeFilter<"Store"> | Date | string
     updatedAt?: DateTimeFilter<"Store"> | Date | string
-    owner?: XOR<OwnerScalarRelationFilter, OwnerWhereInput>
+    webhookUrl?: StringNullableFilter<"Store"> | string | null
     payouts?: PayoutListRelationFilter
     pixTransactions?: PixTransactionListRelationFilter
-    storePixTransactions?: StorePixTransactionListRelationFilter
     shops?: ShopListRelationFilter
+    owner?: XOR<OwnerScalarRelationFilter, OwnerWhereInput>
     bankAccounts?: StoreBankAccountListRelationFilter
+    storePixTransactions?: StorePixTransactionListRelationFilter
     storeSales?: StoreSaleListRelationFilter
     transferHistories?: TransferHistoryListRelationFilter
   }
@@ -39548,15 +39635,15 @@ export namespace Prisma {
     ioSellerId?: SortOrderInput | SortOrder
     taxpayerId?: SortOrderInput | SortOrder
     ownerTaxpayerId?: SortOrderInput | SortOrder
-    webhookUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    owner?: OwnerOrderByWithRelationInput
+    webhookUrl?: SortOrderInput | SortOrder
     payouts?: PayoutOrderByRelationAggregateInput
     pixTransactions?: PixTransactionOrderByRelationAggregateInput
-    storePixTransactions?: StorePixTransactionOrderByRelationAggregateInput
     shops?: ShopOrderByRelationAggregateInput
+    owner?: OwnerOrderByWithRelationInput
     bankAccounts?: StoreBankAccountOrderByRelationAggregateInput
+    storePixTransactions?: StorePixTransactionOrderByRelationAggregateInput
     storeSales?: StoreSaleOrderByRelationAggregateInput
     transferHistories?: TransferHistoryOrderByRelationAggregateInput
     _relevance?: StoreOrderByRelevanceInput
@@ -39588,15 +39675,15 @@ export namespace Prisma {
     ioSellerId?: StringNullableFilter<"Store"> | string | null
     taxpayerId?: StringNullableFilter<"Store"> | string | null
     ownerTaxpayerId?: StringNullableFilter<"Store"> | string | null
-    webhookUrl?: StringNullableFilter<"Store"> | string | null
     createdAt?: DateTimeFilter<"Store"> | Date | string
     updatedAt?: DateTimeFilter<"Store"> | Date | string
-    owner?: XOR<OwnerScalarRelationFilter, OwnerWhereInput>
+    webhookUrl?: StringNullableFilter<"Store"> | string | null
     payouts?: PayoutListRelationFilter
     pixTransactions?: PixTransactionListRelationFilter
-    storePixTransactions?: StorePixTransactionListRelationFilter
     shops?: ShopListRelationFilter
+    owner?: XOR<OwnerScalarRelationFilter, OwnerWhereInput>
     bankAccounts?: StoreBankAccountListRelationFilter
+    storePixTransactions?: StorePixTransactionListRelationFilter
     storeSales?: StoreSaleListRelationFilter
     transferHistories?: TransferHistoryListRelationFilter
   }, "id">
@@ -39624,9 +39711,9 @@ export namespace Prisma {
     ioSellerId?: SortOrderInput | SortOrder
     taxpayerId?: SortOrderInput | SortOrder
     ownerTaxpayerId?: SortOrderInput | SortOrder
-    webhookUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    webhookUrl?: SortOrderInput | SortOrder
     _count?: StoreCountOrderByAggregateInput
     _avg?: StoreAvgOrderByAggregateInput
     _max?: StoreMaxOrderByAggregateInput
@@ -39660,9 +39747,9 @@ export namespace Prisma {
     ioSellerId?: StringNullableWithAggregatesFilter<"Store"> | string | null
     taxpayerId?: StringNullableWithAggregatesFilter<"Store"> | string | null
     ownerTaxpayerId?: StringNullableWithAggregatesFilter<"Store"> | string | null
-    webhookUrl?: StringNullableWithAggregatesFilter<"Store"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Store"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Store"> | Date | string
+    webhookUrl?: StringNullableWithAggregatesFilter<"Store"> | string | null
   }
 
   export type StoreBankAccountWhereInput = {
@@ -39762,12 +39849,12 @@ export namespace Prisma {
     NOT?: TransferHistoryWhereInput | TransferHistoryWhereInput[]
     id?: IntFilter<"TransferHistory"> | number
     bankAccountId?: IntFilter<"TransferHistory"> | number
-    storeId?: IntFilter<"TransferHistory"> | number
     description?: StringNullableFilter<"TransferHistory"> | string | null
     statementDescriptor?: StringNullableFilter<"TransferHistory"> | string | null
     amountInCents?: IntFilter<"TransferHistory"> | number
     createdAt?: DateTimeFilter<"TransferHistory"> | Date | string
     updatedAt?: DateTimeFilter<"TransferHistory"> | Date | string
+    storeId?: IntFilter<"TransferHistory"> | number
     storeBankAccount?: XOR<StoreBankAccountScalarRelationFilter, StoreBankAccountWhereInput>
     store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
   }
@@ -39775,12 +39862,12 @@ export namespace Prisma {
   export type TransferHistoryOrderByWithRelationInput = {
     id?: SortOrder
     bankAccountId?: SortOrder
-    storeId?: SortOrder
     description?: SortOrderInput | SortOrder
     statementDescriptor?: SortOrderInput | SortOrder
     amountInCents?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    storeId?: SortOrder
     storeBankAccount?: StoreBankAccountOrderByWithRelationInput
     store?: StoreOrderByWithRelationInput
     _relevance?: TransferHistoryOrderByRelevanceInput
@@ -39792,12 +39879,12 @@ export namespace Prisma {
     OR?: TransferHistoryWhereInput[]
     NOT?: TransferHistoryWhereInput | TransferHistoryWhereInput[]
     bankAccountId?: IntFilter<"TransferHistory"> | number
-    storeId?: IntFilter<"TransferHistory"> | number
     description?: StringNullableFilter<"TransferHistory"> | string | null
     statementDescriptor?: StringNullableFilter<"TransferHistory"> | string | null
     amountInCents?: IntFilter<"TransferHistory"> | number
     createdAt?: DateTimeFilter<"TransferHistory"> | Date | string
     updatedAt?: DateTimeFilter<"TransferHistory"> | Date | string
+    storeId?: IntFilter<"TransferHistory"> | number
     storeBankAccount?: XOR<StoreBankAccountScalarRelationFilter, StoreBankAccountWhereInput>
     store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
   }, "id">
@@ -39805,12 +39892,12 @@ export namespace Prisma {
   export type TransferHistoryOrderByWithAggregationInput = {
     id?: SortOrder
     bankAccountId?: SortOrder
-    storeId?: SortOrder
     description?: SortOrderInput | SortOrder
     statementDescriptor?: SortOrderInput | SortOrder
     amountInCents?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    storeId?: SortOrder
     _count?: TransferHistoryCountOrderByAggregateInput
     _avg?: TransferHistoryAvgOrderByAggregateInput
     _max?: TransferHistoryMaxOrderByAggregateInput
@@ -39824,12 +39911,12 @@ export namespace Prisma {
     NOT?: TransferHistoryScalarWhereWithAggregatesInput | TransferHistoryScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"TransferHistory"> | number
     bankAccountId?: IntWithAggregatesFilter<"TransferHistory"> | number
-    storeId?: IntWithAggregatesFilter<"TransferHistory"> | number
     description?: StringNullableWithAggregatesFilter<"TransferHistory"> | string | null
     statementDescriptor?: StringNullableWithAggregatesFilter<"TransferHistory"> | string | null
     amountInCents?: IntWithAggregatesFilter<"TransferHistory"> | number
     createdAt?: DateTimeWithAggregatesFilter<"TransferHistory"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TransferHistory"> | Date | string
+    storeId?: IntWithAggregatesFilter<"TransferHistory"> | number
   }
 
   export type ShopWhereInput = {
@@ -39841,8 +39928,8 @@ export namespace Prisma {
     name?: StringFilter<"Shop"> | string
     createdAt?: DateTimeFilter<"Shop"> | Date | string
     updatedAt?: DateTimeFilter<"Shop"> | Date | string
-    store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
     partyShops?: PartyShopListRelationFilter
+    store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
     shopProducts?: ShopProductListRelationFilter
     shopWorkers?: ShopWorkerListRelationFilter
     storeSales?: StoreSaleListRelationFilter
@@ -39854,8 +39941,8 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    store?: StoreOrderByWithRelationInput
     partyShops?: PartyShopOrderByRelationAggregateInput
+    store?: StoreOrderByWithRelationInput
     shopProducts?: ShopProductOrderByRelationAggregateInput
     shopWorkers?: ShopWorkerOrderByRelationAggregateInput
     storeSales?: StoreSaleOrderByRelationAggregateInput
@@ -39871,8 +39958,8 @@ export namespace Prisma {
     name?: StringFilter<"Shop"> | string
     createdAt?: DateTimeFilter<"Shop"> | Date | string
     updatedAt?: DateTimeFilter<"Shop"> | Date | string
-    store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
     partyShops?: PartyShopListRelationFilter
+    store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
     shopProducts?: ShopProductListRelationFilter
     shopWorkers?: ShopWorkerListRelationFilter
     storeSales?: StoreSaleListRelationFilter
@@ -39979,29 +40066,29 @@ export namespace Prisma {
     AND?: ShopWorkerWhereInput | ShopWorkerWhereInput[]
     OR?: ShopWorkerWhereInput[]
     NOT?: ShopWorkerWhereInput | ShopWorkerWhereInput[]
-    id?: IntFilter<"ShopWorker"> | number
     shopId?: IntFilter<"ShopWorker"> | number
     accessUserId?: IntNullableFilter<"ShopWorker"> | number | null
     role?: IntFilter<"ShopWorker"> | number
     active?: BoolNullableFilter<"ShopWorker"> | boolean | null
-    expirationDate?: DateTimeNullableFilter<"ShopWorker"> | Date | string | null
-    name?: StringNullableFilter<"ShopWorker"> | string | null
     createdAt?: DateTimeFilter<"ShopWorker"> | Date | string
     updatedAt?: DateTimeFilter<"ShopWorker"> | Date | string
+    id?: IntFilter<"ShopWorker"> | number
+    expirationDate?: DateTimeNullableFilter<"ShopWorker"> | Date | string | null
+    name?: StringNullableFilter<"ShopWorker"> | string | null
     accessUser?: XOR<AccessUserNullableScalarRelationFilter, AccessUserWhereInput> | null
     shop?: XOR<ShopScalarRelationFilter, ShopWhereInput>
   }
 
   export type ShopWorkerOrderByWithRelationInput = {
-    id?: SortOrder
     shopId?: SortOrder
     accessUserId?: SortOrderInput | SortOrder
     role?: SortOrder
     active?: SortOrderInput | SortOrder
-    expirationDate?: SortOrderInput | SortOrder
-    name?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    id?: SortOrder
+    expirationDate?: SortOrderInput | SortOrder
+    name?: SortOrderInput | SortOrder
     accessUser?: AccessUserOrderByWithRelationInput
     shop?: ShopOrderByWithRelationInput
     _relevance?: ShopWorkerOrderByRelevanceInput
@@ -40016,24 +40103,24 @@ export namespace Prisma {
     accessUserId?: IntNullableFilter<"ShopWorker"> | number | null
     role?: IntFilter<"ShopWorker"> | number
     active?: BoolNullableFilter<"ShopWorker"> | boolean | null
-    expirationDate?: DateTimeNullableFilter<"ShopWorker"> | Date | string | null
-    name?: StringNullableFilter<"ShopWorker"> | string | null
     createdAt?: DateTimeFilter<"ShopWorker"> | Date | string
     updatedAt?: DateTimeFilter<"ShopWorker"> | Date | string
+    expirationDate?: DateTimeNullableFilter<"ShopWorker"> | Date | string | null
+    name?: StringNullableFilter<"ShopWorker"> | string | null
     accessUser?: XOR<AccessUserNullableScalarRelationFilter, AccessUserWhereInput> | null
     shop?: XOR<ShopScalarRelationFilter, ShopWhereInput>
   }, "id">
 
   export type ShopWorkerOrderByWithAggregationInput = {
-    id?: SortOrder
     shopId?: SortOrder
     accessUserId?: SortOrderInput | SortOrder
     role?: SortOrder
     active?: SortOrderInput | SortOrder
-    expirationDate?: SortOrderInput | SortOrder
-    name?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    id?: SortOrder
+    expirationDate?: SortOrderInput | SortOrder
+    name?: SortOrderInput | SortOrder
     _count?: ShopWorkerCountOrderByAggregateInput
     _avg?: ShopWorkerAvgOrderByAggregateInput
     _max?: ShopWorkerMaxOrderByAggregateInput
@@ -40045,15 +40132,15 @@ export namespace Prisma {
     AND?: ShopWorkerScalarWhereWithAggregatesInput | ShopWorkerScalarWhereWithAggregatesInput[]
     OR?: ShopWorkerScalarWhereWithAggregatesInput[]
     NOT?: ShopWorkerScalarWhereWithAggregatesInput | ShopWorkerScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"ShopWorker"> | number
     shopId?: IntWithAggregatesFilter<"ShopWorker"> | number
     accessUserId?: IntNullableWithAggregatesFilter<"ShopWorker"> | number | null
     role?: IntWithAggregatesFilter<"ShopWorker"> | number
     active?: BoolNullableWithAggregatesFilter<"ShopWorker"> | boolean | null
-    expirationDate?: DateTimeNullableWithAggregatesFilter<"ShopWorker"> | Date | string | null
-    name?: StringNullableWithAggregatesFilter<"ShopWorker"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ShopWorker"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ShopWorker"> | Date | string
+    id?: IntWithAggregatesFilter<"ShopWorker"> | number
+    expirationDate?: DateTimeNullableWithAggregatesFilter<"ShopWorker"> | Date | string | null
+    name?: StringNullableWithAggregatesFilter<"ShopWorker"> | string | null
   }
 
   export type PartyShopWhereInput = {
@@ -40915,9 +41002,9 @@ export namespace Prisma {
     countryCode?: string | null
     zipCode?: string | null
     isActive?: boolean | null
-    ioCustomerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    ioCustomerId?: string | null
     accessUser: AccessUserCreateNestedOneWithoutOwnersInput
     stores?: StoreCreateNestedManyWithoutOwnerInput
   }
@@ -40942,9 +41029,9 @@ export namespace Prisma {
     zipCode?: string | null
     isActive?: boolean | null
     accessUserId: number
-    ioCustomerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    ioCustomerId?: string | null
     stores?: StoreUncheckedCreateNestedManyWithoutOwnerInput
   }
 
@@ -40966,9 +41053,9 @@ export namespace Prisma {
     countryCode?: NullableStringFieldUpdateOperationsInput | string | null
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     accessUser?: AccessUserUpdateOneRequiredWithoutOwnersNestedInput
     stores?: StoreUpdateManyWithoutOwnerNestedInput
   }
@@ -40993,9 +41080,9 @@ export namespace Prisma {
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     accessUserId?: IntFieldUpdateOperationsInput | number
-    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     stores?: StoreUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
@@ -41019,9 +41106,9 @@ export namespace Prisma {
     zipCode?: string | null
     isActive?: boolean | null
     accessUserId: number
-    ioCustomerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    ioCustomerId?: string | null
   }
 
   export type OwnerUpdateManyMutationInput = {
@@ -41042,9 +41129,9 @@ export namespace Prisma {
     countryCode?: NullableStringFieldUpdateOperationsInput | string | null
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OwnerUncheckedUpdateManyInput = {
@@ -41067,9 +41154,9 @@ export namespace Prisma {
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
     accessUserId?: IntFieldUpdateOperationsInput | number
-    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CustomerCreateInput = {
@@ -41489,11 +41576,12 @@ export namespace Prisma {
     address?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
     ingresses?: IngressCreateNestedManyWithoutPartyInput
     batches?: IngressBatchCreateNestedManyWithoutPartyInput
     invites?: InviteCreateNestedManyWithoutPartyInput
+    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
     partyShops?: PartyShopCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionCreateNestedManyWithoutPartyInput
     promoters?: PromoterCreateNestedManyWithoutPartyInput
   }
 
@@ -41511,6 +41599,7 @@ export namespace Prisma {
     batches?: IngressBatchUncheckedCreateNestedManyWithoutPartyInput
     invites?: InviteUncheckedCreateNestedManyWithoutPartyInput
     partyShops?: PartyShopUncheckedCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutPartyInput
     promoters?: PromoterUncheckedCreateNestedManyWithoutPartyInput
   }
 
@@ -41522,11 +41611,12 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     ingresses?: IngressUpdateManyWithoutPartyNestedInput
     batches?: IngressBatchUpdateManyWithoutPartyNestedInput
     invites?: InviteUpdateManyWithoutPartyNestedInput
+    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     partyShops?: PartyShopUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUpdateManyWithoutPartyNestedInput
   }
 
@@ -41544,6 +41634,7 @@ export namespace Prisma {
     batches?: IngressBatchUncheckedUpdateManyWithoutPartyNestedInput
     invites?: InviteUncheckedUpdateManyWithoutPartyNestedInput
     partyShops?: PartyShopUncheckedUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUncheckedUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUncheckedUpdateManyWithoutPartyNestedInput
   }
 
@@ -41588,8 +41679,8 @@ export namespace Prisma {
     quantitySold?: number
     priceInCents: number
     isActive?: boolean
-    party: PartyCreateNestedOneWithoutBatchesInput
     ingresses?: IngressCreateNestedManyWithoutIngressBatchInput
+    party: PartyCreateNestedOneWithoutBatchesInput
   }
 
   export type IngressBatchUncheckedCreateInput = {
@@ -41611,8 +41702,8 @@ export namespace Prisma {
     quantitySold?: IntFieldUpdateOperationsInput | number
     priceInCents?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    party?: PartyUpdateOneRequiredWithoutBatchesNestedInput
     ingresses?: IngressUpdateManyWithoutIngressBatchNestedInput
+    party?: PartyUpdateOneRequiredWithoutBatchesNestedInput
   }
 
   export type IngressBatchUncheckedUpdateInput = {
@@ -41875,9 +41966,9 @@ export namespace Prisma {
 
   export type PromoterCreateInput = {
     isActive?: boolean | null
-    bonusInCents?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    bonusInCents?: number | null
     customer: CustomerCreateNestedOneWithoutPromotersInput
     party: PartyCreateNestedOneWithoutPromotersInput
   }
@@ -41887,16 +41978,16 @@ export namespace Prisma {
     partyId: number
     customerId: number
     isActive?: boolean | null
-    bonusInCents?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    bonusInCents?: number | null
   }
 
   export type PromoterUpdateInput = {
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     customer?: CustomerUpdateOneRequiredWithoutPromotersNestedInput
     party?: PartyUpdateOneRequiredWithoutPromotersNestedInput
   }
@@ -41906,9 +41997,9 @@ export namespace Prisma {
     partyId?: IntFieldUpdateOperationsInput | number
     customerId?: IntFieldUpdateOperationsInput | number
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PromoterCreateManyInput = {
@@ -41916,16 +42007,16 @@ export namespace Prisma {
     partyId: number
     customerId: number
     isActive?: boolean | null
-    bonusInCents?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    bonusInCents?: number | null
   }
 
   export type PromoterUpdateManyMutationInput = {
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PromoterUncheckedUpdateManyInput = {
@@ -41933,9 +42024,9 @@ export namespace Prisma {
     partyId?: IntFieldUpdateOperationsInput | number
     customerId?: IntFieldUpdateOperationsInput | number
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PaymentMethodCreateInput = {
@@ -41987,11 +42078,12 @@ export namespace Prisma {
     pixQrCode: string
     amountInCents: string
     description?: string | null
-    pixEmv?: string | null
-    pixType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
     customer?: CustomerCreateNestedOneWithoutPixTransactionsInput
+    party?: PartyCreateNestedOneWithoutPixTransactionsInput
     store?: StoreCreateNestedOneWithoutPixTransactionsInput
   }
 
@@ -42007,10 +42099,11 @@ export namespace Prisma {
     pixQrCode: string
     amountInCents: string
     description?: string | null
-    pixEmv?: string | null
-    pixType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
+    partyId?: number | null
   }
 
   export type PixTransactionUpdateInput = {
@@ -42022,11 +42115,12 @@ export namespace Prisma {
     pixQrCode?: StringFieldUpdateOperationsInput | string
     amountInCents?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
-    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: CustomerUpdateOneWithoutPixTransactionsNestedInput
+    party?: PartyUpdateOneWithoutPixTransactionsNestedInput
     store?: StoreUpdateOneWithoutPixTransactionsNestedInput
   }
 
@@ -42042,10 +42136,11 @@ export namespace Prisma {
     pixQrCode?: StringFieldUpdateOperationsInput | string
     amountInCents?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
-    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
+    partyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PixTransactionCreateManyInput = {
@@ -42060,10 +42155,11 @@ export namespace Prisma {
     pixQrCode: string
     amountInCents: string
     description?: string | null
-    pixEmv?: string | null
-    pixType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
+    partyId?: number | null
   }
 
   export type PixTransactionUpdateManyMutationInput = {
@@ -42075,10 +42171,10 @@ export namespace Prisma {
     pixQrCode?: StringFieldUpdateOperationsInput | string
     amountInCents?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
-    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PixTransactionUncheckedUpdateManyInput = {
@@ -42093,10 +42189,11 @@ export namespace Prisma {
     pixQrCode?: StringFieldUpdateOperationsInput | string
     amountInCents?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
-    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
+    partyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type StorePixTransactionCreateInput = {
@@ -42221,15 +42318,15 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner: OwnerCreateNestedOneWithoutStoresInput
+    webhookUrl?: string | null
     payouts?: PayoutCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     shops?: ShopCreateNestedManyWithoutStoreInput
+    owner: OwnerCreateNestedOneWithoutStoresInput
     bankAccounts?: StoreBankAccountCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryCreateNestedManyWithoutStoreInput
   }
@@ -42257,14 +42354,14 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
     payouts?: PayoutUncheckedCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     shops?: ShopUncheckedCreateNestedManyWithoutStoreInput
     bankAccounts?: StoreBankAccountUncheckedCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleUncheckedCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryUncheckedCreateNestedManyWithoutStoreInput
   }
@@ -42290,15 +42387,15 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     shops?: ShopUpdateManyWithoutStoreNestedInput
+    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
     bankAccounts?: StoreBankAccountUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUpdateManyWithoutStoreNestedInput
   }
@@ -42326,14 +42423,14 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUncheckedUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUncheckedUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     shops?: ShopUncheckedUpdateManyWithoutStoreNestedInput
     bankAccounts?: StoreBankAccountUncheckedUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUncheckedUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUncheckedUpdateManyWithoutStoreNestedInput
   }
@@ -42361,9 +42458,9 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
   }
 
   export type StoreUpdateManyMutationInput = {
@@ -42387,9 +42484,9 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StoreUncheckedUpdateManyInput = {
@@ -42415,9 +42512,9 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StoreBankAccountCreateInput = {
@@ -42531,12 +42628,12 @@ export namespace Prisma {
   export type TransferHistoryUncheckedCreateInput = {
     id?: number
     bankAccountId: number
-    storeId: number
     description?: string | null
     statementDescriptor?: string | null
     amountInCents: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    storeId: number
   }
 
   export type TransferHistoryUpdateInput = {
@@ -42552,23 +42649,23 @@ export namespace Prisma {
   export type TransferHistoryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     bankAccountId?: IntFieldUpdateOperationsInput | number
-    storeId?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     statementDescriptor?: NullableStringFieldUpdateOperationsInput | string | null
     amountInCents?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storeId?: IntFieldUpdateOperationsInput | number
   }
 
   export type TransferHistoryCreateManyInput = {
     id?: number
     bankAccountId: number
-    storeId: number
     description?: string | null
     statementDescriptor?: string | null
     amountInCents: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    storeId: number
   }
 
   export type TransferHistoryUpdateManyMutationInput = {
@@ -42582,20 +42679,20 @@ export namespace Prisma {
   export type TransferHistoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     bankAccountId?: IntFieldUpdateOperationsInput | number
-    storeId?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     statementDescriptor?: NullableStringFieldUpdateOperationsInput | string | null
     amountInCents?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storeId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ShopCreateInput = {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    store: StoreCreateNestedOneWithoutShopsInput
     partyShops?: PartyShopCreateNestedManyWithoutShopInput
+    store: StoreCreateNestedOneWithoutShopsInput
     shopProducts?: ShopProductCreateNestedManyWithoutShopInput
     shopWorkers?: ShopWorkerCreateNestedManyWithoutShopInput
     storeSales?: StoreSaleCreateNestedManyWithoutShopInput
@@ -42617,8 +42714,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    store?: StoreUpdateOneRequiredWithoutShopsNestedInput
     partyShops?: PartyShopUpdateManyWithoutShopNestedInput
+    store?: StoreUpdateOneRequiredWithoutShopsNestedInput
     shopProducts?: ShopProductUpdateManyWithoutShopNestedInput
     shopWorkers?: ShopWorkerUpdateManyWithoutShopNestedInput
     storeSales?: StoreSaleUpdateManyWithoutShopNestedInput
@@ -42730,80 +42827,80 @@ export namespace Prisma {
   export type ShopWorkerCreateInput = {
     role: number
     active?: boolean | null
-    expirationDate?: Date | string | null
-    name?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    expirationDate?: Date | string | null
+    name?: string | null
     accessUser?: AccessUserCreateNestedOneWithoutShopWorkersInput
     shop: ShopCreateNestedOneWithoutShopWorkersInput
   }
 
   export type ShopWorkerUncheckedCreateInput = {
-    id?: number
     shopId: number
     accessUserId?: number | null
     role: number
     active?: boolean | null
-    expirationDate?: Date | string | null
-    name?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    id?: number
+    expirationDate?: Date | string | null
+    name?: string | null
   }
 
   export type ShopWorkerUpdateInput = {
     role?: IntFieldUpdateOperationsInput | number
     active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     accessUser?: AccessUserUpdateOneWithoutShopWorkersNestedInput
     shop?: ShopUpdateOneRequiredWithoutShopWorkersNestedInput
   }
 
   export type ShopWorkerUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
     shopId?: IntFieldUpdateOperationsInput | number
     accessUserId?: NullableIntFieldUpdateOperationsInput | number | null
     role?: IntFieldUpdateOperationsInput | number
     active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: IntFieldUpdateOperationsInput | number
+    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ShopWorkerCreateManyInput = {
-    id?: number
     shopId: number
     accessUserId?: number | null
     role: number
     active?: boolean | null
-    expirationDate?: Date | string | null
-    name?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    id?: number
+    expirationDate?: Date | string | null
+    name?: string | null
   }
 
   export type ShopWorkerUpdateManyMutationInput = {
     role?: IntFieldUpdateOperationsInput | number
     active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ShopWorkerUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
     shopId?: IntFieldUpdateOperationsInput | number
     accessUserId?: NullableIntFieldUpdateOperationsInput | number | null
     role?: IntFieldUpdateOperationsInput | number
     active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: IntFieldUpdateOperationsInput | number
+    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PartyShopCreateInput = {
@@ -43795,9 +43892,9 @@ export namespace Prisma {
     zipCode?: SortOrder
     isActive?: SortOrder
     accessUserId?: SortOrder
-    ioCustomerId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ioCustomerId?: SortOrder
   }
 
   export type OwnerAvgOrderByAggregateInput = {
@@ -43825,9 +43922,9 @@ export namespace Prisma {
     zipCode?: SortOrder
     isActive?: SortOrder
     accessUserId?: SortOrder
-    ioCustomerId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ioCustomerId?: SortOrder
   }
 
   export type OwnerMinOrderByAggregateInput = {
@@ -43850,9 +43947,9 @@ export namespace Prisma {
     zipCode?: SortOrder
     isActive?: SortOrder
     accessUserId?: SortOrder
-    ioCustomerId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ioCustomerId?: SortOrder
   }
 
   export type OwnerSumOrderByAggregateInput = {
@@ -44545,9 +44642,9 @@ export namespace Prisma {
     partyId?: SortOrder
     customerId?: SortOrder
     isActive?: SortOrder
-    bonusInCents?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bonusInCents?: SortOrder
   }
 
   export type PromoterAvgOrderByAggregateInput = {
@@ -44562,9 +44659,9 @@ export namespace Prisma {
     partyId?: SortOrder
     customerId?: SortOrder
     isActive?: SortOrder
-    bonusInCents?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bonusInCents?: SortOrder
   }
 
   export type PromoterMinOrderByAggregateInput = {
@@ -44572,9 +44669,9 @@ export namespace Prisma {
     partyId?: SortOrder
     customerId?: SortOrder
     isActive?: SortOrder
-    bonusInCents?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bonusInCents?: SortOrder
   }
 
   export type PromoterSumOrderByAggregateInput = {
@@ -44618,6 +44715,11 @@ export namespace Prisma {
     isNot?: CustomerWhereInput | null
   }
 
+  export type PartyNullableScalarRelationFilter = {
+    is?: PartyWhereInput | null
+    isNot?: PartyWhereInput | null
+  }
+
   export type StoreNullableScalarRelationFilter = {
     is?: StoreWhereInput | null
     isNot?: StoreWhereInput | null
@@ -44641,16 +44743,18 @@ export namespace Prisma {
     pixQrCode?: SortOrder
     amountInCents?: SortOrder
     description?: SortOrder
-    pixEmv?: SortOrder
-    pixType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pixEmv?: SortOrder
+    pixType?: SortOrder
+    partyId?: SortOrder
   }
 
   export type PixTransactionAvgOrderByAggregateInput = {
     id?: SortOrder
     customerId?: SortOrder
     storeId?: SortOrder
+    partyId?: SortOrder
   }
 
   export type PixTransactionMaxOrderByAggregateInput = {
@@ -44665,10 +44769,11 @@ export namespace Prisma {
     pixQrCode?: SortOrder
     amountInCents?: SortOrder
     description?: SortOrder
-    pixEmv?: SortOrder
-    pixType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pixEmv?: SortOrder
+    pixType?: SortOrder
+    partyId?: SortOrder
   }
 
   export type PixTransactionMinOrderByAggregateInput = {
@@ -44683,16 +44788,18 @@ export namespace Prisma {
     pixQrCode?: SortOrder
     amountInCents?: SortOrder
     description?: SortOrder
-    pixEmv?: SortOrder
-    pixType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pixEmv?: SortOrder
+    pixType?: SortOrder
+    partyId?: SortOrder
   }
 
   export type PixTransactionSumOrderByAggregateInput = {
     id?: SortOrder
     customerId?: SortOrder
     storeId?: SortOrder
+    partyId?: SortOrder
   }
 
   export type StoreScalarRelationFilter = {
@@ -44761,21 +44868,10 @@ export namespace Prisma {
     storeId?: SortOrder
   }
 
-  export type OwnerScalarRelationFilter = {
-    is?: OwnerWhereInput
-    isNot?: OwnerWhereInput
-  }
-
   export type PayoutListRelationFilter = {
     every?: PayoutWhereInput
     some?: PayoutWhereInput
     none?: PayoutWhereInput
-  }
-
-  export type StorePixTransactionListRelationFilter = {
-    every?: StorePixTransactionWhereInput
-    some?: StorePixTransactionWhereInput
-    none?: StorePixTransactionWhereInput
   }
 
   export type ShopListRelationFilter = {
@@ -44784,10 +44880,21 @@ export namespace Prisma {
     none?: ShopWhereInput
   }
 
+  export type OwnerScalarRelationFilter = {
+    is?: OwnerWhereInput
+    isNot?: OwnerWhereInput
+  }
+
   export type StoreBankAccountListRelationFilter = {
     every?: StoreBankAccountWhereInput
     some?: StoreBankAccountWhereInput
     none?: StoreBankAccountWhereInput
+  }
+
+  export type StorePixTransactionListRelationFilter = {
+    every?: StorePixTransactionWhereInput
+    some?: StorePixTransactionWhereInput
+    none?: StorePixTransactionWhereInput
   }
 
   export type TransferHistoryListRelationFilter = {
@@ -44800,15 +44907,15 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type StorePixTransactionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type ShopOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type StoreBankAccountOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StorePixTransactionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -44845,9 +44952,9 @@ export namespace Prisma {
     ioSellerId?: SortOrder
     taxpayerId?: SortOrder
     ownerTaxpayerId?: SortOrder
-    webhookUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    webhookUrl?: SortOrder
   }
 
   export type StoreAvgOrderByAggregateInput = {
@@ -44879,9 +44986,9 @@ export namespace Prisma {
     ioSellerId?: SortOrder
     taxpayerId?: SortOrder
     ownerTaxpayerId?: SortOrder
-    webhookUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    webhookUrl?: SortOrder
   }
 
   export type StoreMinOrderByAggregateInput = {
@@ -44907,9 +45014,9 @@ export namespace Prisma {
     ioSellerId?: SortOrder
     taxpayerId?: SortOrder
     ownerTaxpayerId?: SortOrder
-    webhookUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    webhookUrl?: SortOrder
   }
 
   export type StoreSumOrderByAggregateInput = {
@@ -44990,48 +45097,48 @@ export namespace Prisma {
   export type TransferHistoryCountOrderByAggregateInput = {
     id?: SortOrder
     bankAccountId?: SortOrder
-    storeId?: SortOrder
     description?: SortOrder
     statementDescriptor?: SortOrder
     amountInCents?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    storeId?: SortOrder
   }
 
   export type TransferHistoryAvgOrderByAggregateInput = {
     id?: SortOrder
     bankAccountId?: SortOrder
-    storeId?: SortOrder
     amountInCents?: SortOrder
+    storeId?: SortOrder
   }
 
   export type TransferHistoryMaxOrderByAggregateInput = {
     id?: SortOrder
     bankAccountId?: SortOrder
-    storeId?: SortOrder
     description?: SortOrder
     statementDescriptor?: SortOrder
     amountInCents?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    storeId?: SortOrder
   }
 
   export type TransferHistoryMinOrderByAggregateInput = {
     id?: SortOrder
     bankAccountId?: SortOrder
-    storeId?: SortOrder
     description?: SortOrder
     statementDescriptor?: SortOrder
     amountInCents?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    storeId?: SortOrder
   }
 
   export type TransferHistorySumOrderByAggregateInput = {
     id?: SortOrder
     bankAccountId?: SortOrder
-    storeId?: SortOrder
     amountInCents?: SortOrder
+    storeId?: SortOrder
   }
 
   export type ShopProductListRelationFilter = {
@@ -45160,53 +45267,53 @@ export namespace Prisma {
   }
 
   export type ShopWorkerCountOrderByAggregateInput = {
-    id?: SortOrder
     shopId?: SortOrder
     accessUserId?: SortOrder
     role?: SortOrder
     active?: SortOrder
-    expirationDate?: SortOrder
-    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    id?: SortOrder
+    expirationDate?: SortOrder
+    name?: SortOrder
   }
 
   export type ShopWorkerAvgOrderByAggregateInput = {
-    id?: SortOrder
     shopId?: SortOrder
     accessUserId?: SortOrder
     role?: SortOrder
+    id?: SortOrder
   }
 
   export type ShopWorkerMaxOrderByAggregateInput = {
-    id?: SortOrder
     shopId?: SortOrder
     accessUserId?: SortOrder
     role?: SortOrder
     active?: SortOrder
-    expirationDate?: SortOrder
-    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    id?: SortOrder
+    expirationDate?: SortOrder
+    name?: SortOrder
   }
 
   export type ShopWorkerMinOrderByAggregateInput = {
-    id?: SortOrder
     shopId?: SortOrder
     accessUserId?: SortOrder
     role?: SortOrder
     active?: SortOrder
-    expirationDate?: SortOrder
-    name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    id?: SortOrder
+    expirationDate?: SortOrder
+    name?: SortOrder
   }
 
   export type ShopWorkerSumOrderByAggregateInput = {
-    id?: SortOrder
     shopId?: SortOrder
     accessUserId?: SortOrder
     role?: SortOrder
+    id?: SortOrder
   }
 
   export type PartyShopCountOrderByAggregateInput = {
@@ -46418,12 +46525,6 @@ export namespace Prisma {
     deleteMany?: StoreSaleScalarWhereInput | StoreSaleScalarWhereInput[]
   }
 
-  export type AccessUserCreateNestedOneWithoutPartiesInput = {
-    create?: XOR<AccessUserCreateWithoutPartiesInput, AccessUserUncheckedCreateWithoutPartiesInput>
-    connectOrCreate?: AccessUserCreateOrConnectWithoutPartiesInput
-    connect?: AccessUserWhereUniqueInput
-  }
-
   export type IngressCreateNestedManyWithoutPartyInput = {
     create?: XOR<IngressCreateWithoutPartyInput, IngressUncheckedCreateWithoutPartyInput> | IngressCreateWithoutPartyInput[] | IngressUncheckedCreateWithoutPartyInput[]
     connectOrCreate?: IngressCreateOrConnectWithoutPartyInput | IngressCreateOrConnectWithoutPartyInput[]
@@ -46445,11 +46546,24 @@ export namespace Prisma {
     connect?: InviteWhereUniqueInput | InviteWhereUniqueInput[]
   }
 
+  export type AccessUserCreateNestedOneWithoutPartiesInput = {
+    create?: XOR<AccessUserCreateWithoutPartiesInput, AccessUserUncheckedCreateWithoutPartiesInput>
+    connectOrCreate?: AccessUserCreateOrConnectWithoutPartiesInput
+    connect?: AccessUserWhereUniqueInput
+  }
+
   export type PartyShopCreateNestedManyWithoutPartyInput = {
     create?: XOR<PartyShopCreateWithoutPartyInput, PartyShopUncheckedCreateWithoutPartyInput> | PartyShopCreateWithoutPartyInput[] | PartyShopUncheckedCreateWithoutPartyInput[]
     connectOrCreate?: PartyShopCreateOrConnectWithoutPartyInput | PartyShopCreateOrConnectWithoutPartyInput[]
     createMany?: PartyShopCreateManyPartyInputEnvelope
     connect?: PartyShopWhereUniqueInput | PartyShopWhereUniqueInput[]
+  }
+
+  export type PixTransactionCreateNestedManyWithoutPartyInput = {
+    create?: XOR<PixTransactionCreateWithoutPartyInput, PixTransactionUncheckedCreateWithoutPartyInput> | PixTransactionCreateWithoutPartyInput[] | PixTransactionUncheckedCreateWithoutPartyInput[]
+    connectOrCreate?: PixTransactionCreateOrConnectWithoutPartyInput | PixTransactionCreateOrConnectWithoutPartyInput[]
+    createMany?: PixTransactionCreateManyPartyInputEnvelope
+    connect?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
   }
 
   export type PromoterCreateNestedManyWithoutPartyInput = {
@@ -46487,19 +46601,18 @@ export namespace Prisma {
     connect?: PartyShopWhereUniqueInput | PartyShopWhereUniqueInput[]
   }
 
+  export type PixTransactionUncheckedCreateNestedManyWithoutPartyInput = {
+    create?: XOR<PixTransactionCreateWithoutPartyInput, PixTransactionUncheckedCreateWithoutPartyInput> | PixTransactionCreateWithoutPartyInput[] | PixTransactionUncheckedCreateWithoutPartyInput[]
+    connectOrCreate?: PixTransactionCreateOrConnectWithoutPartyInput | PixTransactionCreateOrConnectWithoutPartyInput[]
+    createMany?: PixTransactionCreateManyPartyInputEnvelope
+    connect?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
+  }
+
   export type PromoterUncheckedCreateNestedManyWithoutPartyInput = {
     create?: XOR<PromoterCreateWithoutPartyInput, PromoterUncheckedCreateWithoutPartyInput> | PromoterCreateWithoutPartyInput[] | PromoterUncheckedCreateWithoutPartyInput[]
     connectOrCreate?: PromoterCreateOrConnectWithoutPartyInput | PromoterCreateOrConnectWithoutPartyInput[]
     createMany?: PromoterCreateManyPartyInputEnvelope
     connect?: PromoterWhereUniqueInput | PromoterWhereUniqueInput[]
-  }
-
-  export type AccessUserUpdateOneRequiredWithoutPartiesNestedInput = {
-    create?: XOR<AccessUserCreateWithoutPartiesInput, AccessUserUncheckedCreateWithoutPartiesInput>
-    connectOrCreate?: AccessUserCreateOrConnectWithoutPartiesInput
-    upsert?: AccessUserUpsertWithoutPartiesInput
-    connect?: AccessUserWhereUniqueInput
-    update?: XOR<XOR<AccessUserUpdateToOneWithWhereWithoutPartiesInput, AccessUserUpdateWithoutPartiesInput>, AccessUserUncheckedUpdateWithoutPartiesInput>
   }
 
   export type IngressUpdateManyWithoutPartyNestedInput = {
@@ -46544,6 +46657,14 @@ export namespace Prisma {
     deleteMany?: InviteScalarWhereInput | InviteScalarWhereInput[]
   }
 
+  export type AccessUserUpdateOneRequiredWithoutPartiesNestedInput = {
+    create?: XOR<AccessUserCreateWithoutPartiesInput, AccessUserUncheckedCreateWithoutPartiesInput>
+    connectOrCreate?: AccessUserCreateOrConnectWithoutPartiesInput
+    upsert?: AccessUserUpsertWithoutPartiesInput
+    connect?: AccessUserWhereUniqueInput
+    update?: XOR<XOR<AccessUserUpdateToOneWithWhereWithoutPartiesInput, AccessUserUpdateWithoutPartiesInput>, AccessUserUncheckedUpdateWithoutPartiesInput>
+  }
+
   export type PartyShopUpdateManyWithoutPartyNestedInput = {
     create?: XOR<PartyShopCreateWithoutPartyInput, PartyShopUncheckedCreateWithoutPartyInput> | PartyShopCreateWithoutPartyInput[] | PartyShopUncheckedCreateWithoutPartyInput[]
     connectOrCreate?: PartyShopCreateOrConnectWithoutPartyInput | PartyShopCreateOrConnectWithoutPartyInput[]
@@ -46556,6 +46677,20 @@ export namespace Prisma {
     update?: PartyShopUpdateWithWhereUniqueWithoutPartyInput | PartyShopUpdateWithWhereUniqueWithoutPartyInput[]
     updateMany?: PartyShopUpdateManyWithWhereWithoutPartyInput | PartyShopUpdateManyWithWhereWithoutPartyInput[]
     deleteMany?: PartyShopScalarWhereInput | PartyShopScalarWhereInput[]
+  }
+
+  export type PixTransactionUpdateManyWithoutPartyNestedInput = {
+    create?: XOR<PixTransactionCreateWithoutPartyInput, PixTransactionUncheckedCreateWithoutPartyInput> | PixTransactionCreateWithoutPartyInput[] | PixTransactionUncheckedCreateWithoutPartyInput[]
+    connectOrCreate?: PixTransactionCreateOrConnectWithoutPartyInput | PixTransactionCreateOrConnectWithoutPartyInput[]
+    upsert?: PixTransactionUpsertWithWhereUniqueWithoutPartyInput | PixTransactionUpsertWithWhereUniqueWithoutPartyInput[]
+    createMany?: PixTransactionCreateManyPartyInputEnvelope
+    set?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
+    disconnect?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
+    delete?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
+    connect?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
+    update?: PixTransactionUpdateWithWhereUniqueWithoutPartyInput | PixTransactionUpdateWithWhereUniqueWithoutPartyInput[]
+    updateMany?: PixTransactionUpdateManyWithWhereWithoutPartyInput | PixTransactionUpdateManyWithWhereWithoutPartyInput[]
+    deleteMany?: PixTransactionScalarWhereInput | PixTransactionScalarWhereInput[]
   }
 
   export type PromoterUpdateManyWithoutPartyNestedInput = {
@@ -46628,6 +46763,20 @@ export namespace Prisma {
     deleteMany?: PartyShopScalarWhereInput | PartyShopScalarWhereInput[]
   }
 
+  export type PixTransactionUncheckedUpdateManyWithoutPartyNestedInput = {
+    create?: XOR<PixTransactionCreateWithoutPartyInput, PixTransactionUncheckedCreateWithoutPartyInput> | PixTransactionCreateWithoutPartyInput[] | PixTransactionUncheckedCreateWithoutPartyInput[]
+    connectOrCreate?: PixTransactionCreateOrConnectWithoutPartyInput | PixTransactionCreateOrConnectWithoutPartyInput[]
+    upsert?: PixTransactionUpsertWithWhereUniqueWithoutPartyInput | PixTransactionUpsertWithWhereUniqueWithoutPartyInput[]
+    createMany?: PixTransactionCreateManyPartyInputEnvelope
+    set?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
+    disconnect?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
+    delete?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
+    connect?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
+    update?: PixTransactionUpdateWithWhereUniqueWithoutPartyInput | PixTransactionUpdateWithWhereUniqueWithoutPartyInput[]
+    updateMany?: PixTransactionUpdateManyWithWhereWithoutPartyInput | PixTransactionUpdateManyWithWhereWithoutPartyInput[]
+    deleteMany?: PixTransactionScalarWhereInput | PixTransactionScalarWhereInput[]
+  }
+
   export type PromoterUncheckedUpdateManyWithoutPartyNestedInput = {
     create?: XOR<PromoterCreateWithoutPartyInput, PromoterUncheckedCreateWithoutPartyInput> | PromoterCreateWithoutPartyInput[] | PromoterUncheckedCreateWithoutPartyInput[]
     connectOrCreate?: PromoterCreateOrConnectWithoutPartyInput | PromoterCreateOrConnectWithoutPartyInput[]
@@ -46642,17 +46791,17 @@ export namespace Prisma {
     deleteMany?: PromoterScalarWhereInput | PromoterScalarWhereInput[]
   }
 
-  export type PartyCreateNestedOneWithoutBatchesInput = {
-    create?: XOR<PartyCreateWithoutBatchesInput, PartyUncheckedCreateWithoutBatchesInput>
-    connectOrCreate?: PartyCreateOrConnectWithoutBatchesInput
-    connect?: PartyWhereUniqueInput
-  }
-
   export type IngressCreateNestedManyWithoutIngressBatchInput = {
     create?: XOR<IngressCreateWithoutIngressBatchInput, IngressUncheckedCreateWithoutIngressBatchInput> | IngressCreateWithoutIngressBatchInput[] | IngressUncheckedCreateWithoutIngressBatchInput[]
     connectOrCreate?: IngressCreateOrConnectWithoutIngressBatchInput | IngressCreateOrConnectWithoutIngressBatchInput[]
     createMany?: IngressCreateManyIngressBatchInputEnvelope
     connect?: IngressWhereUniqueInput | IngressWhereUniqueInput[]
+  }
+
+  export type PartyCreateNestedOneWithoutBatchesInput = {
+    create?: XOR<PartyCreateWithoutBatchesInput, PartyUncheckedCreateWithoutBatchesInput>
+    connectOrCreate?: PartyCreateOrConnectWithoutBatchesInput
+    connect?: PartyWhereUniqueInput
   }
 
   export type IngressUncheckedCreateNestedManyWithoutIngressBatchInput = {
@@ -46664,14 +46813,6 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type PartyUpdateOneRequiredWithoutBatchesNestedInput = {
-    create?: XOR<PartyCreateWithoutBatchesInput, PartyUncheckedCreateWithoutBatchesInput>
-    connectOrCreate?: PartyCreateOrConnectWithoutBatchesInput
-    upsert?: PartyUpsertWithoutBatchesInput
-    connect?: PartyWhereUniqueInput
-    update?: XOR<XOR<PartyUpdateToOneWithWhereWithoutBatchesInput, PartyUpdateWithoutBatchesInput>, PartyUncheckedUpdateWithoutBatchesInput>
   }
 
   export type IngressUpdateManyWithoutIngressBatchNestedInput = {
@@ -46686,6 +46827,14 @@ export namespace Prisma {
     update?: IngressUpdateWithWhereUniqueWithoutIngressBatchInput | IngressUpdateWithWhereUniqueWithoutIngressBatchInput[]
     updateMany?: IngressUpdateManyWithWhereWithoutIngressBatchInput | IngressUpdateManyWithWhereWithoutIngressBatchInput[]
     deleteMany?: IngressScalarWhereInput | IngressScalarWhereInput[]
+  }
+
+  export type PartyUpdateOneRequiredWithoutBatchesNestedInput = {
+    create?: XOR<PartyCreateWithoutBatchesInput, PartyUncheckedCreateWithoutBatchesInput>
+    connectOrCreate?: PartyCreateOrConnectWithoutBatchesInput
+    upsert?: PartyUpsertWithoutBatchesInput
+    connect?: PartyWhereUniqueInput
+    update?: XOR<XOR<PartyUpdateToOneWithWhereWithoutBatchesInput, PartyUpdateWithoutBatchesInput>, PartyUncheckedUpdateWithoutBatchesInput>
   }
 
   export type IngressUncheckedUpdateManyWithoutIngressBatchNestedInput = {
@@ -47020,6 +47169,12 @@ export namespace Prisma {
     connect?: CustomerWhereUniqueInput
   }
 
+  export type PartyCreateNestedOneWithoutPixTransactionsInput = {
+    create?: XOR<PartyCreateWithoutPixTransactionsInput, PartyUncheckedCreateWithoutPixTransactionsInput>
+    connectOrCreate?: PartyCreateOrConnectWithoutPixTransactionsInput
+    connect?: PartyWhereUniqueInput
+  }
+
   export type StoreCreateNestedOneWithoutPixTransactionsInput = {
     create?: XOR<StoreCreateWithoutPixTransactionsInput, StoreUncheckedCreateWithoutPixTransactionsInput>
     connectOrCreate?: StoreCreateOrConnectWithoutPixTransactionsInput
@@ -47034,6 +47189,16 @@ export namespace Prisma {
     delete?: CustomerWhereInput | boolean
     connect?: CustomerWhereUniqueInput
     update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutPixTransactionsInput, CustomerUpdateWithoutPixTransactionsInput>, CustomerUncheckedUpdateWithoutPixTransactionsInput>
+  }
+
+  export type PartyUpdateOneWithoutPixTransactionsNestedInput = {
+    create?: XOR<PartyCreateWithoutPixTransactionsInput, PartyUncheckedCreateWithoutPixTransactionsInput>
+    connectOrCreate?: PartyCreateOrConnectWithoutPixTransactionsInput
+    upsert?: PartyUpsertWithoutPixTransactionsInput
+    disconnect?: PartyWhereInput | boolean
+    delete?: PartyWhereInput | boolean
+    connect?: PartyWhereUniqueInput
+    update?: XOR<XOR<PartyUpdateToOneWithWhereWithoutPixTransactionsInput, PartyUpdateWithoutPixTransactionsInput>, PartyUncheckedUpdateWithoutPixTransactionsInput>
   }
 
   export type StoreUpdateOneWithoutPixTransactionsNestedInput = {
@@ -47060,12 +47225,6 @@ export namespace Prisma {
     update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutStorePixTransactionsInput, StoreUpdateWithoutStorePixTransactionsInput>, StoreUncheckedUpdateWithoutStorePixTransactionsInput>
   }
 
-  export type OwnerCreateNestedOneWithoutStoresInput = {
-    create?: XOR<OwnerCreateWithoutStoresInput, OwnerUncheckedCreateWithoutStoresInput>
-    connectOrCreate?: OwnerCreateOrConnectWithoutStoresInput
-    connect?: OwnerWhereUniqueInput
-  }
-
   export type PayoutCreateNestedManyWithoutStoreInput = {
     create?: XOR<PayoutCreateWithoutStoreInput, PayoutUncheckedCreateWithoutStoreInput> | PayoutCreateWithoutStoreInput[] | PayoutUncheckedCreateWithoutStoreInput[]
     connectOrCreate?: PayoutCreateOrConnectWithoutStoreInput | PayoutCreateOrConnectWithoutStoreInput[]
@@ -47080,13 +47239,6 @@ export namespace Prisma {
     connect?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
   }
 
-  export type StorePixTransactionCreateNestedManyWithoutStoreInput = {
-    create?: XOR<StorePixTransactionCreateWithoutStoreInput, StorePixTransactionUncheckedCreateWithoutStoreInput> | StorePixTransactionCreateWithoutStoreInput[] | StorePixTransactionUncheckedCreateWithoutStoreInput[]
-    connectOrCreate?: StorePixTransactionCreateOrConnectWithoutStoreInput | StorePixTransactionCreateOrConnectWithoutStoreInput[]
-    createMany?: StorePixTransactionCreateManyStoreInputEnvelope
-    connect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
-  }
-
   export type ShopCreateNestedManyWithoutStoreInput = {
     create?: XOR<ShopCreateWithoutStoreInput, ShopUncheckedCreateWithoutStoreInput> | ShopCreateWithoutStoreInput[] | ShopUncheckedCreateWithoutStoreInput[]
     connectOrCreate?: ShopCreateOrConnectWithoutStoreInput | ShopCreateOrConnectWithoutStoreInput[]
@@ -47094,11 +47246,24 @@ export namespace Prisma {
     connect?: ShopWhereUniqueInput | ShopWhereUniqueInput[]
   }
 
+  export type OwnerCreateNestedOneWithoutStoresInput = {
+    create?: XOR<OwnerCreateWithoutStoresInput, OwnerUncheckedCreateWithoutStoresInput>
+    connectOrCreate?: OwnerCreateOrConnectWithoutStoresInput
+    connect?: OwnerWhereUniqueInput
+  }
+
   export type StoreBankAccountCreateNestedManyWithoutStoreInput = {
     create?: XOR<StoreBankAccountCreateWithoutStoreInput, StoreBankAccountUncheckedCreateWithoutStoreInput> | StoreBankAccountCreateWithoutStoreInput[] | StoreBankAccountUncheckedCreateWithoutStoreInput[]
     connectOrCreate?: StoreBankAccountCreateOrConnectWithoutStoreInput | StoreBankAccountCreateOrConnectWithoutStoreInput[]
     createMany?: StoreBankAccountCreateManyStoreInputEnvelope
     connect?: StoreBankAccountWhereUniqueInput | StoreBankAccountWhereUniqueInput[]
+  }
+
+  export type StorePixTransactionCreateNestedManyWithoutStoreInput = {
+    create?: XOR<StorePixTransactionCreateWithoutStoreInput, StorePixTransactionUncheckedCreateWithoutStoreInput> | StorePixTransactionCreateWithoutStoreInput[] | StorePixTransactionUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: StorePixTransactionCreateOrConnectWithoutStoreInput | StorePixTransactionCreateOrConnectWithoutStoreInput[]
+    createMany?: StorePixTransactionCreateManyStoreInputEnvelope
+    connect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
   }
 
   export type StoreSaleCreateNestedManyWithoutStoreInput = {
@@ -47129,13 +47294,6 @@ export namespace Prisma {
     connect?: PixTransactionWhereUniqueInput | PixTransactionWhereUniqueInput[]
   }
 
-  export type StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput = {
-    create?: XOR<StorePixTransactionCreateWithoutStoreInput, StorePixTransactionUncheckedCreateWithoutStoreInput> | StorePixTransactionCreateWithoutStoreInput[] | StorePixTransactionUncheckedCreateWithoutStoreInput[]
-    connectOrCreate?: StorePixTransactionCreateOrConnectWithoutStoreInput | StorePixTransactionCreateOrConnectWithoutStoreInput[]
-    createMany?: StorePixTransactionCreateManyStoreInputEnvelope
-    connect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
-  }
-
   export type ShopUncheckedCreateNestedManyWithoutStoreInput = {
     create?: XOR<ShopCreateWithoutStoreInput, ShopUncheckedCreateWithoutStoreInput> | ShopCreateWithoutStoreInput[] | ShopUncheckedCreateWithoutStoreInput[]
     connectOrCreate?: ShopCreateOrConnectWithoutStoreInput | ShopCreateOrConnectWithoutStoreInput[]
@@ -47150,6 +47308,13 @@ export namespace Prisma {
     connect?: StoreBankAccountWhereUniqueInput | StoreBankAccountWhereUniqueInput[]
   }
 
+  export type StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput = {
+    create?: XOR<StorePixTransactionCreateWithoutStoreInput, StorePixTransactionUncheckedCreateWithoutStoreInput> | StorePixTransactionCreateWithoutStoreInput[] | StorePixTransactionUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: StorePixTransactionCreateOrConnectWithoutStoreInput | StorePixTransactionCreateOrConnectWithoutStoreInput[]
+    createMany?: StorePixTransactionCreateManyStoreInputEnvelope
+    connect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
+  }
+
   export type StoreSaleUncheckedCreateNestedManyWithoutStoreInput = {
     create?: XOR<StoreSaleCreateWithoutStoreInput, StoreSaleUncheckedCreateWithoutStoreInput> | StoreSaleCreateWithoutStoreInput[] | StoreSaleUncheckedCreateWithoutStoreInput[]
     connectOrCreate?: StoreSaleCreateOrConnectWithoutStoreInput | StoreSaleCreateOrConnectWithoutStoreInput[]
@@ -47162,14 +47327,6 @@ export namespace Prisma {
     connectOrCreate?: TransferHistoryCreateOrConnectWithoutStoreInput | TransferHistoryCreateOrConnectWithoutStoreInput[]
     createMany?: TransferHistoryCreateManyStoreInputEnvelope
     connect?: TransferHistoryWhereUniqueInput | TransferHistoryWhereUniqueInput[]
-  }
-
-  export type OwnerUpdateOneRequiredWithoutStoresNestedInput = {
-    create?: XOR<OwnerCreateWithoutStoresInput, OwnerUncheckedCreateWithoutStoresInput>
-    connectOrCreate?: OwnerCreateOrConnectWithoutStoresInput
-    upsert?: OwnerUpsertWithoutStoresInput
-    connect?: OwnerWhereUniqueInput
-    update?: XOR<XOR<OwnerUpdateToOneWithWhereWithoutStoresInput, OwnerUpdateWithoutStoresInput>, OwnerUncheckedUpdateWithoutStoresInput>
   }
 
   export type PayoutUpdateManyWithoutStoreNestedInput = {
@@ -47200,20 +47357,6 @@ export namespace Prisma {
     deleteMany?: PixTransactionScalarWhereInput | PixTransactionScalarWhereInput[]
   }
 
-  export type StorePixTransactionUpdateManyWithoutStoreNestedInput = {
-    create?: XOR<StorePixTransactionCreateWithoutStoreInput, StorePixTransactionUncheckedCreateWithoutStoreInput> | StorePixTransactionCreateWithoutStoreInput[] | StorePixTransactionUncheckedCreateWithoutStoreInput[]
-    connectOrCreate?: StorePixTransactionCreateOrConnectWithoutStoreInput | StorePixTransactionCreateOrConnectWithoutStoreInput[]
-    upsert?: StorePixTransactionUpsertWithWhereUniqueWithoutStoreInput | StorePixTransactionUpsertWithWhereUniqueWithoutStoreInput[]
-    createMany?: StorePixTransactionCreateManyStoreInputEnvelope
-    set?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
-    disconnect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
-    delete?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
-    connect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
-    update?: StorePixTransactionUpdateWithWhereUniqueWithoutStoreInput | StorePixTransactionUpdateWithWhereUniqueWithoutStoreInput[]
-    updateMany?: StorePixTransactionUpdateManyWithWhereWithoutStoreInput | StorePixTransactionUpdateManyWithWhereWithoutStoreInput[]
-    deleteMany?: StorePixTransactionScalarWhereInput | StorePixTransactionScalarWhereInput[]
-  }
-
   export type ShopUpdateManyWithoutStoreNestedInput = {
     create?: XOR<ShopCreateWithoutStoreInput, ShopUncheckedCreateWithoutStoreInput> | ShopCreateWithoutStoreInput[] | ShopUncheckedCreateWithoutStoreInput[]
     connectOrCreate?: ShopCreateOrConnectWithoutStoreInput | ShopCreateOrConnectWithoutStoreInput[]
@@ -47228,6 +47371,14 @@ export namespace Prisma {
     deleteMany?: ShopScalarWhereInput | ShopScalarWhereInput[]
   }
 
+  export type OwnerUpdateOneRequiredWithoutStoresNestedInput = {
+    create?: XOR<OwnerCreateWithoutStoresInput, OwnerUncheckedCreateWithoutStoresInput>
+    connectOrCreate?: OwnerCreateOrConnectWithoutStoresInput
+    upsert?: OwnerUpsertWithoutStoresInput
+    connect?: OwnerWhereUniqueInput
+    update?: XOR<XOR<OwnerUpdateToOneWithWhereWithoutStoresInput, OwnerUpdateWithoutStoresInput>, OwnerUncheckedUpdateWithoutStoresInput>
+  }
+
   export type StoreBankAccountUpdateManyWithoutStoreNestedInput = {
     create?: XOR<StoreBankAccountCreateWithoutStoreInput, StoreBankAccountUncheckedCreateWithoutStoreInput> | StoreBankAccountCreateWithoutStoreInput[] | StoreBankAccountUncheckedCreateWithoutStoreInput[]
     connectOrCreate?: StoreBankAccountCreateOrConnectWithoutStoreInput | StoreBankAccountCreateOrConnectWithoutStoreInput[]
@@ -47240,6 +47391,20 @@ export namespace Prisma {
     update?: StoreBankAccountUpdateWithWhereUniqueWithoutStoreInput | StoreBankAccountUpdateWithWhereUniqueWithoutStoreInput[]
     updateMany?: StoreBankAccountUpdateManyWithWhereWithoutStoreInput | StoreBankAccountUpdateManyWithWhereWithoutStoreInput[]
     deleteMany?: StoreBankAccountScalarWhereInput | StoreBankAccountScalarWhereInput[]
+  }
+
+  export type StorePixTransactionUpdateManyWithoutStoreNestedInput = {
+    create?: XOR<StorePixTransactionCreateWithoutStoreInput, StorePixTransactionUncheckedCreateWithoutStoreInput> | StorePixTransactionCreateWithoutStoreInput[] | StorePixTransactionUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: StorePixTransactionCreateOrConnectWithoutStoreInput | StorePixTransactionCreateOrConnectWithoutStoreInput[]
+    upsert?: StorePixTransactionUpsertWithWhereUniqueWithoutStoreInput | StorePixTransactionUpsertWithWhereUniqueWithoutStoreInput[]
+    createMany?: StorePixTransactionCreateManyStoreInputEnvelope
+    set?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
+    disconnect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
+    delete?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
+    connect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
+    update?: StorePixTransactionUpdateWithWhereUniqueWithoutStoreInput | StorePixTransactionUpdateWithWhereUniqueWithoutStoreInput[]
+    updateMany?: StorePixTransactionUpdateManyWithWhereWithoutStoreInput | StorePixTransactionUpdateManyWithWhereWithoutStoreInput[]
+    deleteMany?: StorePixTransactionScalarWhereInput | StorePixTransactionScalarWhereInput[]
   }
 
   export type StoreSaleUpdateManyWithoutStoreNestedInput = {
@@ -47298,20 +47463,6 @@ export namespace Prisma {
     deleteMany?: PixTransactionScalarWhereInput | PixTransactionScalarWhereInput[]
   }
 
-  export type StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput = {
-    create?: XOR<StorePixTransactionCreateWithoutStoreInput, StorePixTransactionUncheckedCreateWithoutStoreInput> | StorePixTransactionCreateWithoutStoreInput[] | StorePixTransactionUncheckedCreateWithoutStoreInput[]
-    connectOrCreate?: StorePixTransactionCreateOrConnectWithoutStoreInput | StorePixTransactionCreateOrConnectWithoutStoreInput[]
-    upsert?: StorePixTransactionUpsertWithWhereUniqueWithoutStoreInput | StorePixTransactionUpsertWithWhereUniqueWithoutStoreInput[]
-    createMany?: StorePixTransactionCreateManyStoreInputEnvelope
-    set?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
-    disconnect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
-    delete?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
-    connect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
-    update?: StorePixTransactionUpdateWithWhereUniqueWithoutStoreInput | StorePixTransactionUpdateWithWhereUniqueWithoutStoreInput[]
-    updateMany?: StorePixTransactionUpdateManyWithWhereWithoutStoreInput | StorePixTransactionUpdateManyWithWhereWithoutStoreInput[]
-    deleteMany?: StorePixTransactionScalarWhereInput | StorePixTransactionScalarWhereInput[]
-  }
-
   export type ShopUncheckedUpdateManyWithoutStoreNestedInput = {
     create?: XOR<ShopCreateWithoutStoreInput, ShopUncheckedCreateWithoutStoreInput> | ShopCreateWithoutStoreInput[] | ShopUncheckedCreateWithoutStoreInput[]
     connectOrCreate?: ShopCreateOrConnectWithoutStoreInput | ShopCreateOrConnectWithoutStoreInput[]
@@ -47338,6 +47489,20 @@ export namespace Prisma {
     update?: StoreBankAccountUpdateWithWhereUniqueWithoutStoreInput | StoreBankAccountUpdateWithWhereUniqueWithoutStoreInput[]
     updateMany?: StoreBankAccountUpdateManyWithWhereWithoutStoreInput | StoreBankAccountUpdateManyWithWhereWithoutStoreInput[]
     deleteMany?: StoreBankAccountScalarWhereInput | StoreBankAccountScalarWhereInput[]
+  }
+
+  export type StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput = {
+    create?: XOR<StorePixTransactionCreateWithoutStoreInput, StorePixTransactionUncheckedCreateWithoutStoreInput> | StorePixTransactionCreateWithoutStoreInput[] | StorePixTransactionUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: StorePixTransactionCreateOrConnectWithoutStoreInput | StorePixTransactionCreateOrConnectWithoutStoreInput[]
+    upsert?: StorePixTransactionUpsertWithWhereUniqueWithoutStoreInput | StorePixTransactionUpsertWithWhereUniqueWithoutStoreInput[]
+    createMany?: StorePixTransactionCreateManyStoreInputEnvelope
+    set?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
+    disconnect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
+    delete?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
+    connect?: StorePixTransactionWhereUniqueInput | StorePixTransactionWhereUniqueInput[]
+    update?: StorePixTransactionUpdateWithWhereUniqueWithoutStoreInput | StorePixTransactionUpdateWithWhereUniqueWithoutStoreInput[]
+    updateMany?: StorePixTransactionUpdateManyWithWhereWithoutStoreInput | StorePixTransactionUpdateManyWithWhereWithoutStoreInput[]
+    deleteMany?: StorePixTransactionScalarWhereInput | StorePixTransactionScalarWhereInput[]
   }
 
   export type StoreSaleUncheckedUpdateManyWithoutStoreNestedInput = {
@@ -47452,17 +47617,17 @@ export namespace Prisma {
     update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutTransferHistoriesInput, StoreUpdateWithoutTransferHistoriesInput>, StoreUncheckedUpdateWithoutTransferHistoriesInput>
   }
 
-  export type StoreCreateNestedOneWithoutShopsInput = {
-    create?: XOR<StoreCreateWithoutShopsInput, StoreUncheckedCreateWithoutShopsInput>
-    connectOrCreate?: StoreCreateOrConnectWithoutShopsInput
-    connect?: StoreWhereUniqueInput
-  }
-
   export type PartyShopCreateNestedManyWithoutShopInput = {
     create?: XOR<PartyShopCreateWithoutShopInput, PartyShopUncheckedCreateWithoutShopInput> | PartyShopCreateWithoutShopInput[] | PartyShopUncheckedCreateWithoutShopInput[]
     connectOrCreate?: PartyShopCreateOrConnectWithoutShopInput | PartyShopCreateOrConnectWithoutShopInput[]
     createMany?: PartyShopCreateManyShopInputEnvelope
     connect?: PartyShopWhereUniqueInput | PartyShopWhereUniqueInput[]
+  }
+
+  export type StoreCreateNestedOneWithoutShopsInput = {
+    create?: XOR<StoreCreateWithoutShopsInput, StoreUncheckedCreateWithoutShopsInput>
+    connectOrCreate?: StoreCreateOrConnectWithoutShopsInput
+    connect?: StoreWhereUniqueInput
   }
 
   export type ShopProductCreateNestedManyWithoutShopInput = {
@@ -47514,14 +47679,6 @@ export namespace Prisma {
     connect?: StoreSaleWhereUniqueInput | StoreSaleWhereUniqueInput[]
   }
 
-  export type StoreUpdateOneRequiredWithoutShopsNestedInput = {
-    create?: XOR<StoreCreateWithoutShopsInput, StoreUncheckedCreateWithoutShopsInput>
-    connectOrCreate?: StoreCreateOrConnectWithoutShopsInput
-    upsert?: StoreUpsertWithoutShopsInput
-    connect?: StoreWhereUniqueInput
-    update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutShopsInput, StoreUpdateWithoutShopsInput>, StoreUncheckedUpdateWithoutShopsInput>
-  }
-
   export type PartyShopUpdateManyWithoutShopNestedInput = {
     create?: XOR<PartyShopCreateWithoutShopInput, PartyShopUncheckedCreateWithoutShopInput> | PartyShopCreateWithoutShopInput[] | PartyShopUncheckedCreateWithoutShopInput[]
     connectOrCreate?: PartyShopCreateOrConnectWithoutShopInput | PartyShopCreateOrConnectWithoutShopInput[]
@@ -47534,6 +47691,14 @@ export namespace Prisma {
     update?: PartyShopUpdateWithWhereUniqueWithoutShopInput | PartyShopUpdateWithWhereUniqueWithoutShopInput[]
     updateMany?: PartyShopUpdateManyWithWhereWithoutShopInput | PartyShopUpdateManyWithWhereWithoutShopInput[]
     deleteMany?: PartyShopScalarWhereInput | PartyShopScalarWhereInput[]
+  }
+
+  export type StoreUpdateOneRequiredWithoutShopsNestedInput = {
+    create?: XOR<StoreCreateWithoutShopsInput, StoreUncheckedCreateWithoutShopsInput>
+    connectOrCreate?: StoreCreateOrConnectWithoutShopsInput
+    upsert?: StoreUpsertWithoutShopsInput
+    connect?: StoreWhereUniqueInput
+    update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutShopsInput, StoreUpdateWithoutShopsInput>, StoreUncheckedUpdateWithoutShopsInput>
   }
 
   export type ShopProductUpdateManyWithoutShopNestedInput = {
@@ -48593,9 +48758,9 @@ export namespace Prisma {
     countryCode?: string | null
     zipCode?: string | null
     isActive?: boolean | null
-    ioCustomerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    ioCustomerId?: string | null
     stores?: StoreCreateNestedManyWithoutOwnerInput
   }
 
@@ -48618,9 +48783,9 @@ export namespace Prisma {
     countryCode?: string | null
     zipCode?: string | null
     isActive?: boolean | null
-    ioCustomerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    ioCustomerId?: string | null
     stores?: StoreUncheckedCreateNestedManyWithoutOwnerInput
   }
 
@@ -48646,6 +48811,7 @@ export namespace Prisma {
     batches?: IngressBatchCreateNestedManyWithoutPartyInput
     invites?: InviteCreateNestedManyWithoutPartyInput
     partyShops?: PartyShopCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionCreateNestedManyWithoutPartyInput
     promoters?: PromoterCreateNestedManyWithoutPartyInput
   }
 
@@ -48662,6 +48828,7 @@ export namespace Prisma {
     batches?: IngressBatchUncheckedCreateNestedManyWithoutPartyInput
     invites?: InviteUncheckedCreateNestedManyWithoutPartyInput
     partyShops?: PartyShopUncheckedCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutPartyInput
     promoters?: PromoterUncheckedCreateNestedManyWithoutPartyInput
   }
 
@@ -48678,22 +48845,22 @@ export namespace Prisma {
   export type ShopWorkerCreateWithoutAccessUserInput = {
     role: number
     active?: boolean | null
-    expirationDate?: Date | string | null
-    name?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    expirationDate?: Date | string | null
+    name?: string | null
     shop: ShopCreateNestedOneWithoutShopWorkersInput
   }
 
   export type ShopWorkerUncheckedCreateWithoutAccessUserInput = {
-    id?: number
     shopId: number
     role: number
     active?: boolean | null
-    expirationDate?: Date | string | null
-    name?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    id?: number
+    expirationDate?: Date | string | null
+    name?: string | null
   }
 
   export type ShopWorkerCreateOrConnectWithoutAccessUserInput = {
@@ -48745,9 +48912,9 @@ export namespace Prisma {
     zipCode?: StringNullableFilter<"Owner"> | string | null
     isActive?: BoolNullableFilter<"Owner"> | boolean | null
     accessUserId?: IntFilter<"Owner"> | number
-    ioCustomerId?: StringNullableFilter<"Owner"> | string | null
     createdAt?: DateTimeFilter<"Owner"> | Date | string
     updatedAt?: DateTimeFilter<"Owner"> | Date | string
+    ioCustomerId?: StringNullableFilter<"Owner"> | string | null
   }
 
   export type PartyUpsertWithWhereUniqueWithoutAccessUserInput = {
@@ -48801,15 +48968,15 @@ export namespace Prisma {
     AND?: ShopWorkerScalarWhereInput | ShopWorkerScalarWhereInput[]
     OR?: ShopWorkerScalarWhereInput[]
     NOT?: ShopWorkerScalarWhereInput | ShopWorkerScalarWhereInput[]
-    id?: IntFilter<"ShopWorker"> | number
     shopId?: IntFilter<"ShopWorker"> | number
     accessUserId?: IntNullableFilter<"ShopWorker"> | number | null
     role?: IntFilter<"ShopWorker"> | number
     active?: BoolNullableFilter<"ShopWorker"> | boolean | null
-    expirationDate?: DateTimeNullableFilter<"ShopWorker"> | Date | string | null
-    name?: StringNullableFilter<"ShopWorker"> | string | null
     createdAt?: DateTimeFilter<"ShopWorker"> | Date | string
     updatedAt?: DateTimeFilter<"ShopWorker"> | Date | string
+    id?: IntFilter<"ShopWorker"> | number
+    expirationDate?: DateTimeNullableFilter<"ShopWorker"> | Date | string | null
+    name?: StringNullableFilter<"ShopWorker"> | string | null
   }
 
   export type AccessUserCreateWithoutOwnersInput = {
@@ -48873,14 +49040,14 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
     payouts?: PayoutCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     shops?: ShopCreateNestedManyWithoutStoreInput
     bankAccounts?: StoreBankAccountCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryCreateNestedManyWithoutStoreInput
   }
@@ -48907,14 +49074,14 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
     payouts?: PayoutUncheckedCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     shops?: ShopUncheckedCreateNestedManyWithoutStoreInput
     bankAccounts?: StoreBankAccountUncheckedCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleUncheckedCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryUncheckedCreateNestedManyWithoutStoreInput
   }
@@ -49017,9 +49184,9 @@ export namespace Prisma {
     ioSellerId?: StringNullableFilter<"Store"> | string | null
     taxpayerId?: StringNullableFilter<"Store"> | string | null
     ownerTaxpayerId?: StringNullableFilter<"Store"> | string | null
-    webhookUrl?: StringNullableFilter<"Store"> | string | null
     createdAt?: DateTimeFilter<"Store"> | Date | string
     updatedAt?: DateTimeFilter<"Store"> | Date | string
+    webhookUrl?: StringNullableFilter<"Store"> | string | null
   }
 
   export type CreditCardCreateWithoutCustomerInput = {
@@ -49198,10 +49365,11 @@ export namespace Prisma {
     pixQrCode: string
     amountInCents: string
     description?: string | null
-    pixEmv?: string | null
-    pixType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
+    party?: PartyCreateNestedOneWithoutPixTransactionsInput
     store?: StoreCreateNestedOneWithoutPixTransactionsInput
   }
 
@@ -49216,10 +49384,11 @@ export namespace Prisma {
     pixQrCode: string
     amountInCents: string
     description?: string | null
-    pixEmv?: string | null
-    pixType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
+    partyId?: number | null
   }
 
   export type PixTransactionCreateOrConnectWithoutCustomerInput = {
@@ -49234,9 +49403,9 @@ export namespace Prisma {
 
   export type PromoterCreateWithoutCustomerInput = {
     isActive?: boolean | null
-    bonusInCents?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    bonusInCents?: number | null
     party: PartyCreateNestedOneWithoutPromotersInput
   }
 
@@ -49244,9 +49413,9 @@ export namespace Prisma {
     id?: number
     partyId: number
     isActive?: boolean | null
-    bonusInCents?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    bonusInCents?: number | null
   }
 
   export type PromoterCreateOrConnectWithoutCustomerInput = {
@@ -49499,10 +49668,11 @@ export namespace Prisma {
     pixQrCode?: StringFilter<"PixTransaction"> | string
     amountInCents?: StringFilter<"PixTransaction"> | string
     description?: StringNullableFilter<"PixTransaction"> | string | null
-    pixEmv?: StringNullableFilter<"PixTransaction"> | string | null
-    pixType?: StringNullableFilter<"PixTransaction"> | string | null
     createdAt?: DateTimeFilter<"PixTransaction"> | Date | string
     updatedAt?: DateTimeFilter<"PixTransaction"> | Date | string
+    pixEmv?: StringNullableFilter<"PixTransaction"> | string | null
+    pixType?: StringNullableFilter<"PixTransaction"> | string | null
+    partyId?: IntNullableFilter<"PixTransaction"> | number | null
   }
 
   export type PromoterUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -49529,9 +49699,9 @@ export namespace Prisma {
     partyId?: IntFilter<"Promoter"> | number
     customerId?: IntFilter<"Promoter"> | number
     isActive?: BoolNullableFilter<"Promoter"> | boolean | null
-    bonusInCents?: IntNullableFilter<"Promoter"> | number | null
     createdAt?: DateTimeFilter<"Promoter"> | Date | string
     updatedAt?: DateTimeFilter<"Promoter"> | Date | string
+    bonusInCents?: IntNullableFilter<"Promoter"> | number | null
   }
 
   export type StoreSaleUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -49958,46 +50128,6 @@ export namespace Prisma {
     data: XOR<StoreSaleUpdateManyMutationInput, StoreSaleUncheckedUpdateManyWithoutCreditCardInput>
   }
 
-  export type AccessUserCreateWithoutPartiesInput = {
-    phone?: string | null
-    email: string
-    name: string
-    password: string
-    document: string
-    emailVerified?: boolean | null
-    phoneVerified?: boolean | null
-    emailCodeVerification?: string | null
-    firstAccess?: boolean | null
-    birthdate?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    owners?: OwnerCreateNestedManyWithoutAccessUserInput
-    shopWorkers?: ShopWorkerCreateNestedManyWithoutAccessUserInput
-  }
-
-  export type AccessUserUncheckedCreateWithoutPartiesInput = {
-    id?: number
-    phone?: string | null
-    email: string
-    name: string
-    password: string
-    document: string
-    emailVerified?: boolean | null
-    phoneVerified?: boolean | null
-    emailCodeVerification?: string | null
-    firstAccess?: boolean | null
-    birthdate?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    owners?: OwnerUncheckedCreateNestedManyWithoutAccessUserInput
-    shopWorkers?: ShopWorkerUncheckedCreateNestedManyWithoutAccessUserInput
-  }
-
-  export type AccessUserCreateOrConnectWithoutPartiesInput = {
-    where: AccessUserWhereUniqueInput
-    create: XOR<AccessUserCreateWithoutPartiesInput, AccessUserUncheckedCreateWithoutPartiesInput>
-  }
-
   export type IngressCreateWithoutPartyInput = {
     transactionId?: string | null
     valueInCents?: number | null
@@ -50099,6 +50229,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AccessUserCreateWithoutPartiesInput = {
+    phone?: string | null
+    email: string
+    name: string
+    password: string
+    document: string
+    emailVerified?: boolean | null
+    phoneVerified?: boolean | null
+    emailCodeVerification?: string | null
+    firstAccess?: boolean | null
+    birthdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    owners?: OwnerCreateNestedManyWithoutAccessUserInput
+    shopWorkers?: ShopWorkerCreateNestedManyWithoutAccessUserInput
+  }
+
+  export type AccessUserUncheckedCreateWithoutPartiesInput = {
+    id?: number
+    phone?: string | null
+    email: string
+    name: string
+    password: string
+    document: string
+    emailVerified?: boolean | null
+    phoneVerified?: boolean | null
+    emailCodeVerification?: string | null
+    firstAccess?: boolean | null
+    birthdate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    owners?: OwnerUncheckedCreateNestedManyWithoutAccessUserInput
+    shopWorkers?: ShopWorkerUncheckedCreateNestedManyWithoutAccessUserInput
+  }
+
+  export type AccessUserCreateOrConnectWithoutPartiesInput = {
+    where: AccessUserWhereUniqueInput
+    create: XOR<AccessUserCreateWithoutPartiesInput, AccessUserUncheckedCreateWithoutPartiesInput>
+  }
+
   export type PartyShopCreateWithoutPartyInput = {
     isActive?: boolean | null
     createdAt?: Date | string
@@ -50126,11 +50296,56 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type PromoterCreateWithoutPartyInput = {
-    isActive?: boolean | null
-    bonusInCents?: number | null
+  export type PixTransactionCreateWithoutPartyInput = {
+    transactionId: string
+    referenceId: string
+    status: string
+    expirationDate: string
+    pixKey: string
+    pixQrCode: string
+    amountInCents: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
+    customer?: CustomerCreateNestedOneWithoutPixTransactionsInput
+    store?: StoreCreateNestedOneWithoutPixTransactionsInput
+  }
+
+  export type PixTransactionUncheckedCreateWithoutPartyInput = {
+    id?: number
+    customerId?: number | null
+    storeId?: number | null
+    transactionId: string
+    referenceId: string
+    status: string
+    expirationDate: string
+    pixKey: string
+    pixQrCode: string
+    amountInCents: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
+  }
+
+  export type PixTransactionCreateOrConnectWithoutPartyInput = {
+    where: PixTransactionWhereUniqueInput
+    create: XOR<PixTransactionCreateWithoutPartyInput, PixTransactionUncheckedCreateWithoutPartyInput>
+  }
+
+  export type PixTransactionCreateManyPartyInputEnvelope = {
+    data: PixTransactionCreateManyPartyInput | PixTransactionCreateManyPartyInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PromoterCreateWithoutPartyInput = {
+    isActive?: boolean | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bonusInCents?: number | null
     customer: CustomerCreateNestedOneWithoutPromotersInput
   }
 
@@ -50138,9 +50353,9 @@ export namespace Prisma {
     id?: number
     customerId: number
     isActive?: boolean | null
-    bonusInCents?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    bonusInCents?: number | null
   }
 
   export type PromoterCreateOrConnectWithoutPartyInput = {
@@ -50151,52 +50366,6 @@ export namespace Prisma {
   export type PromoterCreateManyPartyInputEnvelope = {
     data: PromoterCreateManyPartyInput | PromoterCreateManyPartyInput[]
     skipDuplicates?: boolean
-  }
-
-  export type AccessUserUpsertWithoutPartiesInput = {
-    update: XOR<AccessUserUpdateWithoutPartiesInput, AccessUserUncheckedUpdateWithoutPartiesInput>
-    create: XOR<AccessUserCreateWithoutPartiesInput, AccessUserUncheckedCreateWithoutPartiesInput>
-    where?: AccessUserWhereInput
-  }
-
-  export type AccessUserUpdateToOneWithWhereWithoutPartiesInput = {
-    where?: AccessUserWhereInput
-    data: XOR<AccessUserUpdateWithoutPartiesInput, AccessUserUncheckedUpdateWithoutPartiesInput>
-  }
-
-  export type AccessUserUpdateWithoutPartiesInput = {
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    document?: StringFieldUpdateOperationsInput | string
-    emailVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    phoneVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    emailCodeVerification?: NullableStringFieldUpdateOperationsInput | string | null
-    firstAccess?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owners?: OwnerUpdateManyWithoutAccessUserNestedInput
-    shopWorkers?: ShopWorkerUpdateManyWithoutAccessUserNestedInput
-  }
-
-  export type AccessUserUncheckedUpdateWithoutPartiesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    document?: StringFieldUpdateOperationsInput | string
-    emailVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    phoneVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    emailCodeVerification?: NullableStringFieldUpdateOperationsInput | string | null
-    firstAccess?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owners?: OwnerUncheckedUpdateManyWithoutAccessUserNestedInput
-    shopWorkers?: ShopWorkerUncheckedUpdateManyWithoutAccessUserNestedInput
   }
 
   export type IngressUpsertWithWhereUniqueWithoutPartyInput = {
@@ -50261,6 +50430,52 @@ export namespace Prisma {
     data: XOR<InviteUpdateManyMutationInput, InviteUncheckedUpdateManyWithoutPartyInput>
   }
 
+  export type AccessUserUpsertWithoutPartiesInput = {
+    update: XOR<AccessUserUpdateWithoutPartiesInput, AccessUserUncheckedUpdateWithoutPartiesInput>
+    create: XOR<AccessUserCreateWithoutPartiesInput, AccessUserUncheckedCreateWithoutPartiesInput>
+    where?: AccessUserWhereInput
+  }
+
+  export type AccessUserUpdateToOneWithWhereWithoutPartiesInput = {
+    where?: AccessUserWhereInput
+    data: XOR<AccessUserUpdateWithoutPartiesInput, AccessUserUncheckedUpdateWithoutPartiesInput>
+  }
+
+  export type AccessUserUpdateWithoutPartiesInput = {
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    document?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    phoneVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    emailCodeVerification?: NullableStringFieldUpdateOperationsInput | string | null
+    firstAccess?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owners?: OwnerUpdateManyWithoutAccessUserNestedInput
+    shopWorkers?: ShopWorkerUpdateManyWithoutAccessUserNestedInput
+  }
+
+  export type AccessUserUncheckedUpdateWithoutPartiesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    document?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    phoneVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    emailCodeVerification?: NullableStringFieldUpdateOperationsInput | string | null
+    firstAccess?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owners?: OwnerUncheckedUpdateManyWithoutAccessUserNestedInput
+    shopWorkers?: ShopWorkerUncheckedUpdateManyWithoutAccessUserNestedInput
+  }
+
   export type PartyShopUpsertWithWhereUniqueWithoutPartyInput = {
     where: PartyShopWhereUniqueInput
     update: XOR<PartyShopUpdateWithoutPartyInput, PartyShopUncheckedUpdateWithoutPartyInput>
@@ -50289,6 +50504,22 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"PartyShop"> | Date | string
   }
 
+  export type PixTransactionUpsertWithWhereUniqueWithoutPartyInput = {
+    where: PixTransactionWhereUniqueInput
+    update: XOR<PixTransactionUpdateWithoutPartyInput, PixTransactionUncheckedUpdateWithoutPartyInput>
+    create: XOR<PixTransactionCreateWithoutPartyInput, PixTransactionUncheckedCreateWithoutPartyInput>
+  }
+
+  export type PixTransactionUpdateWithWhereUniqueWithoutPartyInput = {
+    where: PixTransactionWhereUniqueInput
+    data: XOR<PixTransactionUpdateWithoutPartyInput, PixTransactionUncheckedUpdateWithoutPartyInput>
+  }
+
+  export type PixTransactionUpdateManyWithWhereWithoutPartyInput = {
+    where: PixTransactionScalarWhereInput
+    data: XOR<PixTransactionUpdateManyMutationInput, PixTransactionUncheckedUpdateManyWithoutPartyInput>
+  }
+
   export type PromoterUpsertWithWhereUniqueWithoutPartyInput = {
     where: PromoterWhereUniqueInput
     update: XOR<PromoterUpdateWithoutPartyInput, PromoterUncheckedUpdateWithoutPartyInput>
@@ -50303,42 +50534,6 @@ export namespace Prisma {
   export type PromoterUpdateManyWithWhereWithoutPartyInput = {
     where: PromoterScalarWhereInput
     data: XOR<PromoterUpdateManyMutationInput, PromoterUncheckedUpdateManyWithoutPartyInput>
-  }
-
-  export type PartyCreateWithoutBatchesInput = {
-    name: string
-    date: Date | string
-    time: Date | string
-    description: string
-    address?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
-    ingresses?: IngressCreateNestedManyWithoutPartyInput
-    invites?: InviteCreateNestedManyWithoutPartyInput
-    partyShops?: PartyShopCreateNestedManyWithoutPartyInput
-    promoters?: PromoterCreateNestedManyWithoutPartyInput
-  }
-
-  export type PartyUncheckedCreateWithoutBatchesInput = {
-    id?: number
-    name: string
-    date: Date | string
-    time: Date | string
-    description: string
-    address?: string | null
-    accessUserId: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    ingresses?: IngressUncheckedCreateNestedManyWithoutPartyInput
-    invites?: InviteUncheckedCreateNestedManyWithoutPartyInput
-    partyShops?: PartyShopUncheckedCreateNestedManyWithoutPartyInput
-    promoters?: PromoterUncheckedCreateNestedManyWithoutPartyInput
-  }
-
-  export type PartyCreateOrConnectWithoutBatchesInput = {
-    where: PartyWhereUniqueInput
-    create: XOR<PartyCreateWithoutBatchesInput, PartyUncheckedCreateWithoutBatchesInput>
   }
 
   export type IngressCreateWithoutIngressBatchInput = {
@@ -50378,6 +50573,60 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PartyCreateWithoutBatchesInput = {
+    name: string
+    date: Date | string
+    time: Date | string
+    description: string
+    address?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ingresses?: IngressCreateNestedManyWithoutPartyInput
+    invites?: InviteCreateNestedManyWithoutPartyInput
+    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
+    partyShops?: PartyShopCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionCreateNestedManyWithoutPartyInput
+    promoters?: PromoterCreateNestedManyWithoutPartyInput
+  }
+
+  export type PartyUncheckedCreateWithoutBatchesInput = {
+    id?: number
+    name: string
+    date: Date | string
+    time: Date | string
+    description: string
+    address?: string | null
+    accessUserId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ingresses?: IngressUncheckedCreateNestedManyWithoutPartyInput
+    invites?: InviteUncheckedCreateNestedManyWithoutPartyInput
+    partyShops?: PartyShopUncheckedCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutPartyInput
+    promoters?: PromoterUncheckedCreateNestedManyWithoutPartyInput
+  }
+
+  export type PartyCreateOrConnectWithoutBatchesInput = {
+    where: PartyWhereUniqueInput
+    create: XOR<PartyCreateWithoutBatchesInput, PartyUncheckedCreateWithoutBatchesInput>
+  }
+
+  export type IngressUpsertWithWhereUniqueWithoutIngressBatchInput = {
+    where: IngressWhereUniqueInput
+    update: XOR<IngressUpdateWithoutIngressBatchInput, IngressUncheckedUpdateWithoutIngressBatchInput>
+    create: XOR<IngressCreateWithoutIngressBatchInput, IngressUncheckedCreateWithoutIngressBatchInput>
+  }
+
+  export type IngressUpdateWithWhereUniqueWithoutIngressBatchInput = {
+    where: IngressWhereUniqueInput
+    data: XOR<IngressUpdateWithoutIngressBatchInput, IngressUncheckedUpdateWithoutIngressBatchInput>
+  }
+
+  export type IngressUpdateManyWithWhereWithoutIngressBatchInput = {
+    where: IngressScalarWhereInput
+    data: XOR<IngressUpdateManyMutationInput, IngressUncheckedUpdateManyWithoutIngressBatchInput>
+  }
+
   export type PartyUpsertWithoutBatchesInput = {
     update: XOR<PartyUpdateWithoutBatchesInput, PartyUncheckedUpdateWithoutBatchesInput>
     create: XOR<PartyCreateWithoutBatchesInput, PartyUncheckedCreateWithoutBatchesInput>
@@ -50397,10 +50646,11 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     ingresses?: IngressUpdateManyWithoutPartyNestedInput
     invites?: InviteUpdateManyWithoutPartyNestedInput
+    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     partyShops?: PartyShopUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUpdateManyWithoutPartyNestedInput
   }
 
@@ -50417,23 +50667,8 @@ export namespace Prisma {
     ingresses?: IngressUncheckedUpdateManyWithoutPartyNestedInput
     invites?: InviteUncheckedUpdateManyWithoutPartyNestedInput
     partyShops?: PartyShopUncheckedUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUncheckedUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUncheckedUpdateManyWithoutPartyNestedInput
-  }
-
-  export type IngressUpsertWithWhereUniqueWithoutIngressBatchInput = {
-    where: IngressWhereUniqueInput
-    update: XOR<IngressUpdateWithoutIngressBatchInput, IngressUncheckedUpdateWithoutIngressBatchInput>
-    create: XOR<IngressCreateWithoutIngressBatchInput, IngressUncheckedCreateWithoutIngressBatchInput>
-  }
-
-  export type IngressUpdateWithWhereUniqueWithoutIngressBatchInput = {
-    where: IngressWhereUniqueInput
-    data: XOR<IngressUpdateWithoutIngressBatchInput, IngressUncheckedUpdateWithoutIngressBatchInput>
-  }
-
-  export type IngressUpdateManyWithWhereWithoutIngressBatchInput = {
-    where: IngressScalarWhereInput
-    data: XOR<IngressUpdateManyMutationInput, IngressUncheckedUpdateManyWithoutIngressBatchInput>
   }
 
   export type IngressCreateWithoutIngressStatusInput = {
@@ -50587,10 +50822,11 @@ export namespace Prisma {
     address?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
     batches?: IngressBatchCreateNestedManyWithoutPartyInput
     invites?: InviteCreateNestedManyWithoutPartyInput
+    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
     partyShops?: PartyShopCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionCreateNestedManyWithoutPartyInput
     promoters?: PromoterCreateNestedManyWithoutPartyInput
   }
 
@@ -50607,6 +50843,7 @@ export namespace Prisma {
     batches?: IngressBatchUncheckedCreateNestedManyWithoutPartyInput
     invites?: InviteUncheckedCreateNestedManyWithoutPartyInput
     partyShops?: PartyShopUncheckedCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutPartyInput
     promoters?: PromoterUncheckedCreateNestedManyWithoutPartyInput
   }
 
@@ -50791,10 +51028,11 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     batches?: IngressBatchUpdateManyWithoutPartyNestedInput
     invites?: InviteUpdateManyWithoutPartyNestedInput
+    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     partyShops?: PartyShopUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUpdateManyWithoutPartyNestedInput
   }
 
@@ -50811,6 +51049,7 @@ export namespace Prisma {
     batches?: IngressBatchUncheckedUpdateManyWithoutPartyNestedInput
     invites?: InviteUncheckedUpdateManyWithoutPartyNestedInput
     partyShops?: PartyShopUncheckedUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUncheckedUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUncheckedUpdateManyWithoutPartyNestedInput
   }
 
@@ -50942,10 +51181,11 @@ export namespace Prisma {
     address?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
     ingresses?: IngressCreateNestedManyWithoutPartyInput
     batches?: IngressBatchCreateNestedManyWithoutPartyInput
+    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
     partyShops?: PartyShopCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionCreateNestedManyWithoutPartyInput
     promoters?: PromoterCreateNestedManyWithoutPartyInput
   }
 
@@ -50962,6 +51202,7 @@ export namespace Prisma {
     ingresses?: IngressUncheckedCreateNestedManyWithoutPartyInput
     batches?: IngressBatchUncheckedCreateNestedManyWithoutPartyInput
     partyShops?: PartyShopUncheckedCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutPartyInput
     promoters?: PromoterUncheckedCreateNestedManyWithoutPartyInput
   }
 
@@ -51083,10 +51324,11 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     ingresses?: IngressUpdateManyWithoutPartyNestedInput
     batches?: IngressBatchUpdateManyWithoutPartyNestedInput
+    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     partyShops?: PartyShopUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUpdateManyWithoutPartyNestedInput
   }
 
@@ -51103,6 +51345,7 @@ export namespace Prisma {
     ingresses?: IngressUncheckedUpdateManyWithoutPartyNestedInput
     batches?: IngressBatchUncheckedUpdateManyWithoutPartyNestedInput
     partyShops?: PartyShopUncheckedUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUncheckedUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUncheckedUpdateManyWithoutPartyNestedInput
   }
 
@@ -51164,11 +51407,12 @@ export namespace Prisma {
     address?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
     ingresses?: IngressCreateNestedManyWithoutPartyInput
     batches?: IngressBatchCreateNestedManyWithoutPartyInput
     invites?: InviteCreateNestedManyWithoutPartyInput
+    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
     partyShops?: PartyShopCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionCreateNestedManyWithoutPartyInput
   }
 
   export type PartyUncheckedCreateWithoutPromotersInput = {
@@ -51185,6 +51429,7 @@ export namespace Prisma {
     batches?: IngressBatchUncheckedCreateNestedManyWithoutPartyInput
     invites?: InviteUncheckedCreateNestedManyWithoutPartyInput
     partyShops?: PartyShopUncheckedCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutPartyInput
   }
 
   export type PartyCreateOrConnectWithoutPromotersInput = {
@@ -51267,11 +51512,12 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     ingresses?: IngressUpdateManyWithoutPartyNestedInput
     batches?: IngressBatchUpdateManyWithoutPartyNestedInput
     invites?: InviteUpdateManyWithoutPartyNestedInput
+    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     partyShops?: PartyShopUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUpdateManyWithoutPartyNestedInput
   }
 
   export type PartyUncheckedUpdateWithoutPromotersInput = {
@@ -51288,6 +51534,7 @@ export namespace Prisma {
     batches?: IngressBatchUncheckedUpdateManyWithoutPartyNestedInput
     invites?: InviteUncheckedUpdateManyWithoutPartyNestedInput
     partyShops?: PartyShopUncheckedUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUncheckedUpdateManyWithoutPartyNestedInput
   }
 
   export type IngressCreateWithoutPaymentMethodInput = {
@@ -51460,6 +51707,44 @@ export namespace Prisma {
     create: XOR<CustomerCreateWithoutPixTransactionsInput, CustomerUncheckedCreateWithoutPixTransactionsInput>
   }
 
+  export type PartyCreateWithoutPixTransactionsInput = {
+    name: string
+    date: Date | string
+    time: Date | string
+    description: string
+    address?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ingresses?: IngressCreateNestedManyWithoutPartyInput
+    batches?: IngressBatchCreateNestedManyWithoutPartyInput
+    invites?: InviteCreateNestedManyWithoutPartyInput
+    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
+    partyShops?: PartyShopCreateNestedManyWithoutPartyInput
+    promoters?: PromoterCreateNestedManyWithoutPartyInput
+  }
+
+  export type PartyUncheckedCreateWithoutPixTransactionsInput = {
+    id?: number
+    name: string
+    date: Date | string
+    time: Date | string
+    description: string
+    address?: string | null
+    accessUserId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ingresses?: IngressUncheckedCreateNestedManyWithoutPartyInput
+    batches?: IngressBatchUncheckedCreateNestedManyWithoutPartyInput
+    invites?: InviteUncheckedCreateNestedManyWithoutPartyInput
+    partyShops?: PartyShopUncheckedCreateNestedManyWithoutPartyInput
+    promoters?: PromoterUncheckedCreateNestedManyWithoutPartyInput
+  }
+
+  export type PartyCreateOrConnectWithoutPixTransactionsInput = {
+    where: PartyWhereUniqueInput
+    create: XOR<PartyCreateWithoutPixTransactionsInput, PartyUncheckedCreateWithoutPixTransactionsInput>
+  }
+
   export type StoreCreateWithoutPixTransactionsInput = {
     name: string
     statementDescriptor?: string | null
@@ -51481,14 +51766,14 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner: OwnerCreateNestedOneWithoutStoresInput
+    webhookUrl?: string | null
     payouts?: PayoutCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     shops?: ShopCreateNestedManyWithoutStoreInput
+    owner: OwnerCreateNestedOneWithoutStoresInput
     bankAccounts?: StoreBankAccountCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryCreateNestedManyWithoutStoreInput
   }
@@ -51516,13 +51801,13 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
     payouts?: PayoutUncheckedCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     shops?: ShopUncheckedCreateNestedManyWithoutStoreInput
     bankAccounts?: StoreBankAccountUncheckedCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleUncheckedCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryUncheckedCreateNestedManyWithoutStoreInput
   }
@@ -51588,6 +51873,50 @@ export namespace Prisma {
     storeSales?: StoreSaleUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
+  export type PartyUpsertWithoutPixTransactionsInput = {
+    update: XOR<PartyUpdateWithoutPixTransactionsInput, PartyUncheckedUpdateWithoutPixTransactionsInput>
+    create: XOR<PartyCreateWithoutPixTransactionsInput, PartyUncheckedCreateWithoutPixTransactionsInput>
+    where?: PartyWhereInput
+  }
+
+  export type PartyUpdateToOneWithWhereWithoutPixTransactionsInput = {
+    where?: PartyWhereInput
+    data: XOR<PartyUpdateWithoutPixTransactionsInput, PartyUncheckedUpdateWithoutPixTransactionsInput>
+  }
+
+  export type PartyUpdateWithoutPixTransactionsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ingresses?: IngressUpdateManyWithoutPartyNestedInput
+    batches?: IngressBatchUpdateManyWithoutPartyNestedInput
+    invites?: InviteUpdateManyWithoutPartyNestedInput
+    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
+    partyShops?: PartyShopUpdateManyWithoutPartyNestedInput
+    promoters?: PromoterUpdateManyWithoutPartyNestedInput
+  }
+
+  export type PartyUncheckedUpdateWithoutPixTransactionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    time?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    accessUserId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ingresses?: IngressUncheckedUpdateManyWithoutPartyNestedInput
+    batches?: IngressBatchUncheckedUpdateManyWithoutPartyNestedInput
+    invites?: InviteUncheckedUpdateManyWithoutPartyNestedInput
+    partyShops?: PartyShopUncheckedUpdateManyWithoutPartyNestedInput
+    promoters?: PromoterUncheckedUpdateManyWithoutPartyNestedInput
+  }
+
   export type StoreUpsertWithoutPixTransactionsInput = {
     update: XOR<StoreUpdateWithoutPixTransactionsInput, StoreUncheckedUpdateWithoutPixTransactionsInput>
     create: XOR<StoreCreateWithoutPixTransactionsInput, StoreUncheckedCreateWithoutPixTransactionsInput>
@@ -51620,14 +51949,14 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     shops?: ShopUpdateManyWithoutStoreNestedInput
+    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
     bankAccounts?: StoreBankAccountUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUpdateManyWithoutStoreNestedInput
   }
@@ -51655,13 +51984,13 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUncheckedUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     shops?: ShopUncheckedUpdateManyWithoutStoreNestedInput
     bankAccounts?: StoreBankAccountUncheckedUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUncheckedUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUncheckedUpdateManyWithoutStoreNestedInput
   }
@@ -51687,13 +52016,13 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner: OwnerCreateNestedOneWithoutStoresInput
+    webhookUrl?: string | null
     payouts?: PayoutCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionCreateNestedManyWithoutStoreInput
     shops?: ShopCreateNestedManyWithoutStoreInput
+    owner: OwnerCreateNestedOneWithoutStoresInput
     bankAccounts?: StoreBankAccountCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryCreateNestedManyWithoutStoreInput
@@ -51722,9 +52051,9 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
     payouts?: PayoutUncheckedCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutStoreInput
     shops?: ShopUncheckedCreateNestedManyWithoutStoreInput
@@ -51770,13 +52099,13 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUpdateManyWithoutStoreNestedInput
     shops?: ShopUpdateManyWithoutStoreNestedInput
+    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
     bankAccounts?: StoreBankAccountUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUpdateManyWithoutStoreNestedInput
@@ -51805,69 +52134,15 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUncheckedUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     shops?: ShopUncheckedUpdateManyWithoutStoreNestedInput
     bankAccounts?: StoreBankAccountUncheckedUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUncheckedUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUncheckedUpdateManyWithoutStoreNestedInput
-  }
-
-  export type OwnerCreateWithoutStoresInput = {
-    phone?: string | null
-    email: string
-    name: string
-    document?: string | null
-    emailVerified?: boolean | null
-    phoneVerified?: boolean | null
-    lastName: string
-    birthdate?: Date | string | null
-    line1?: string | null
-    line2?: string | null
-    line3?: string | null
-    neighborhood?: string | null
-    city?: string | null
-    state?: string | null
-    countryCode?: string | null
-    zipCode?: string | null
-    isActive?: boolean | null
-    ioCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    accessUser: AccessUserCreateNestedOneWithoutOwnersInput
-  }
-
-  export type OwnerUncheckedCreateWithoutStoresInput = {
-    id?: number
-    phone?: string | null
-    email: string
-    name: string
-    document?: string | null
-    emailVerified?: boolean | null
-    phoneVerified?: boolean | null
-    lastName: string
-    birthdate?: Date | string | null
-    line1?: string | null
-    line2?: string | null
-    line3?: string | null
-    neighborhood?: string | null
-    city?: string | null
-    state?: string | null
-    countryCode?: string | null
-    zipCode?: string | null
-    isActive?: boolean | null
-    accessUserId: number
-    ioCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type OwnerCreateOrConnectWithoutStoresInput = {
-    where: OwnerWhereUniqueInput
-    create: XOR<OwnerCreateWithoutStoresInput, OwnerUncheckedCreateWithoutStoresInput>
   }
 
   export type PayoutCreateWithoutStoreInput = {
@@ -51915,11 +52190,12 @@ export namespace Prisma {
     pixQrCode: string
     amountInCents: string
     description?: string | null
-    pixEmv?: string | null
-    pixType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
     customer?: CustomerCreateNestedOneWithoutPixTransactionsInput
+    party?: PartyCreateNestedOneWithoutPixTransactionsInput
   }
 
   export type PixTransactionUncheckedCreateWithoutStoreInput = {
@@ -51933,10 +52209,11 @@ export namespace Prisma {
     pixQrCode: string
     amountInCents: string
     description?: string | null
-    pixEmv?: string | null
-    pixType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
+    partyId?: number | null
   }
 
   export type PixTransactionCreateOrConnectWithoutStoreInput = {
@@ -51946,6 +52223,128 @@ export namespace Prisma {
 
   export type PixTransactionCreateManyStoreInputEnvelope = {
     data: PixTransactionCreateManyStoreInput | PixTransactionCreateManyStoreInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ShopCreateWithoutStoreInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    partyShops?: PartyShopCreateNestedManyWithoutShopInput
+    shopProducts?: ShopProductCreateNestedManyWithoutShopInput
+    shopWorkers?: ShopWorkerCreateNestedManyWithoutShopInput
+    storeSales?: StoreSaleCreateNestedManyWithoutShopInput
+  }
+
+  export type ShopUncheckedCreateWithoutStoreInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    partyShops?: PartyShopUncheckedCreateNestedManyWithoutShopInput
+    shopProducts?: ShopProductUncheckedCreateNestedManyWithoutShopInput
+    shopWorkers?: ShopWorkerUncheckedCreateNestedManyWithoutShopInput
+    storeSales?: StoreSaleUncheckedCreateNestedManyWithoutShopInput
+  }
+
+  export type ShopCreateOrConnectWithoutStoreInput = {
+    where: ShopWhereUniqueInput
+    create: XOR<ShopCreateWithoutStoreInput, ShopUncheckedCreateWithoutStoreInput>
+  }
+
+  export type ShopCreateManyStoreInputEnvelope = {
+    data: ShopCreateManyStoreInput | ShopCreateManyStoreInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OwnerCreateWithoutStoresInput = {
+    phone?: string | null
+    email: string
+    name: string
+    document?: string | null
+    emailVerified?: boolean | null
+    phoneVerified?: boolean | null
+    lastName: string
+    birthdate?: Date | string | null
+    line1?: string | null
+    line2?: string | null
+    line3?: string | null
+    neighborhood?: string | null
+    city?: string | null
+    state?: string | null
+    countryCode?: string | null
+    zipCode?: string | null
+    isActive?: boolean | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ioCustomerId?: string | null
+    accessUser: AccessUserCreateNestedOneWithoutOwnersInput
+  }
+
+  export type OwnerUncheckedCreateWithoutStoresInput = {
+    id?: number
+    phone?: string | null
+    email: string
+    name: string
+    document?: string | null
+    emailVerified?: boolean | null
+    phoneVerified?: boolean | null
+    lastName: string
+    birthdate?: Date | string | null
+    line1?: string | null
+    line2?: string | null
+    line3?: string | null
+    neighborhood?: string | null
+    city?: string | null
+    state?: string | null
+    countryCode?: string | null
+    zipCode?: string | null
+    isActive?: boolean | null
+    accessUserId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ioCustomerId?: string | null
+  }
+
+  export type OwnerCreateOrConnectWithoutStoresInput = {
+    where: OwnerWhereUniqueInput
+    create: XOR<OwnerCreateWithoutStoresInput, OwnerUncheckedCreateWithoutStoresInput>
+  }
+
+  export type StoreBankAccountCreateWithoutStoreInput = {
+    ioToken: string
+    accountNumber: string
+    routingNumber: string
+    holderName: string
+    type: string
+    bankCode: string
+    document: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transferHistories?: TransferHistoryCreateNestedManyWithoutStoreBankAccountInput
+  }
+
+  export type StoreBankAccountUncheckedCreateWithoutStoreInput = {
+    id?: number
+    ioToken: string
+    accountNumber: string
+    routingNumber: string
+    holderName: string
+    type: string
+    bankCode: string
+    document: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transferHistories?: TransferHistoryUncheckedCreateNestedManyWithoutStoreBankAccountInput
+  }
+
+  export type StoreBankAccountCreateOrConnectWithoutStoreInput = {
+    where: StoreBankAccountWhereUniqueInput
+    create: XOR<StoreBankAccountCreateWithoutStoreInput, StoreBankAccountUncheckedCreateWithoutStoreInput>
+  }
+
+  export type StoreBankAccountCreateManyStoreInputEnvelope = {
+    data: StoreBankAccountCreateManyStoreInput | StoreBankAccountCreateManyStoreInput[]
     skipDuplicates?: boolean
   }
 
@@ -51983,74 +52382,6 @@ export namespace Prisma {
 
   export type StorePixTransactionCreateManyStoreInputEnvelope = {
     data: StorePixTransactionCreateManyStoreInput | StorePixTransactionCreateManyStoreInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ShopCreateWithoutStoreInput = {
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    partyShops?: PartyShopCreateNestedManyWithoutShopInput
-    shopProducts?: ShopProductCreateNestedManyWithoutShopInput
-    shopWorkers?: ShopWorkerCreateNestedManyWithoutShopInput
-    storeSales?: StoreSaleCreateNestedManyWithoutShopInput
-  }
-
-  export type ShopUncheckedCreateWithoutStoreInput = {
-    id?: number
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    partyShops?: PartyShopUncheckedCreateNestedManyWithoutShopInput
-    shopProducts?: ShopProductUncheckedCreateNestedManyWithoutShopInput
-    shopWorkers?: ShopWorkerUncheckedCreateNestedManyWithoutShopInput
-    storeSales?: StoreSaleUncheckedCreateNestedManyWithoutShopInput
-  }
-
-  export type ShopCreateOrConnectWithoutStoreInput = {
-    where: ShopWhereUniqueInput
-    create: XOR<ShopCreateWithoutStoreInput, ShopUncheckedCreateWithoutStoreInput>
-  }
-
-  export type ShopCreateManyStoreInputEnvelope = {
-    data: ShopCreateManyStoreInput | ShopCreateManyStoreInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type StoreBankAccountCreateWithoutStoreInput = {
-    ioToken: string
-    accountNumber: string
-    routingNumber: string
-    holderName: string
-    type: string
-    bankCode: string
-    document: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    transferHistories?: TransferHistoryCreateNestedManyWithoutStoreBankAccountInput
-  }
-
-  export type StoreBankAccountUncheckedCreateWithoutStoreInput = {
-    id?: number
-    ioToken: string
-    accountNumber: string
-    routingNumber: string
-    holderName: string
-    type: string
-    bankCode: string
-    document: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    transferHistories?: TransferHistoryUncheckedCreateNestedManyWithoutStoreBankAccountInput
-  }
-
-  export type StoreBankAccountCreateOrConnectWithoutStoreInput = {
-    where: StoreBankAccountWhereUniqueInput
-    create: XOR<StoreBankAccountCreateWithoutStoreInput, StoreBankAccountUncheckedCreateWithoutStoreInput>
-  }
-
-  export type StoreBankAccountCreateManyStoreInputEnvelope = {
-    data: StoreBankAccountCreateManyStoreInput | StoreBankAccountCreateManyStoreInput[]
     skipDuplicates?: boolean
   }
 
@@ -52134,66 +52465,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type OwnerUpsertWithoutStoresInput = {
-    update: XOR<OwnerUpdateWithoutStoresInput, OwnerUncheckedUpdateWithoutStoresInput>
-    create: XOR<OwnerCreateWithoutStoresInput, OwnerUncheckedCreateWithoutStoresInput>
-    where?: OwnerWhereInput
-  }
-
-  export type OwnerUpdateToOneWithWhereWithoutStoresInput = {
-    where?: OwnerWhereInput
-    data: XOR<OwnerUpdateWithoutStoresInput, OwnerUncheckedUpdateWithoutStoresInput>
-  }
-
-  export type OwnerUpdateWithoutStoresInput = {
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    document?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    phoneVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    lastName?: StringFieldUpdateOperationsInput | string
-    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    line1?: NullableStringFieldUpdateOperationsInput | string | null
-    line2?: NullableStringFieldUpdateOperationsInput | string | null
-    line3?: NullableStringFieldUpdateOperationsInput | string | null
-    neighborhood?: NullableStringFieldUpdateOperationsInput | string | null
-    city?: NullableStringFieldUpdateOperationsInput | string | null
-    state?: NullableStringFieldUpdateOperationsInput | string | null
-    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessUser?: AccessUserUpdateOneRequiredWithoutOwnersNestedInput
-  }
-
-  export type OwnerUncheckedUpdateWithoutStoresInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    document?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    phoneVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    lastName?: StringFieldUpdateOperationsInput | string
-    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    line1?: NullableStringFieldUpdateOperationsInput | string | null
-    line2?: NullableStringFieldUpdateOperationsInput | string | null
-    line3?: NullableStringFieldUpdateOperationsInput | string | null
-    neighborhood?: NullableStringFieldUpdateOperationsInput | string | null
-    city?: NullableStringFieldUpdateOperationsInput | string | null
-    state?: NullableStringFieldUpdateOperationsInput | string | null
-    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
-    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    accessUserId?: IntFieldUpdateOperationsInput | number
-    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type PayoutUpsertWithWhereUniqueWithoutStoreInput = {
     where: PayoutWhereUniqueInput
     update: XOR<PayoutUpdateWithoutStoreInput, PayoutUncheckedUpdateWithoutStoreInput>
@@ -52242,40 +52513,6 @@ export namespace Prisma {
     data: XOR<PixTransactionUpdateManyMutationInput, PixTransactionUncheckedUpdateManyWithoutStoreInput>
   }
 
-  export type StorePixTransactionUpsertWithWhereUniqueWithoutStoreInput = {
-    where: StorePixTransactionWhereUniqueInput
-    update: XOR<StorePixTransactionUpdateWithoutStoreInput, StorePixTransactionUncheckedUpdateWithoutStoreInput>
-    create: XOR<StorePixTransactionCreateWithoutStoreInput, StorePixTransactionUncheckedCreateWithoutStoreInput>
-  }
-
-  export type StorePixTransactionUpdateWithWhereUniqueWithoutStoreInput = {
-    where: StorePixTransactionWhereUniqueInput
-    data: XOR<StorePixTransactionUpdateWithoutStoreInput, StorePixTransactionUncheckedUpdateWithoutStoreInput>
-  }
-
-  export type StorePixTransactionUpdateManyWithWhereWithoutStoreInput = {
-    where: StorePixTransactionScalarWhereInput
-    data: XOR<StorePixTransactionUpdateManyMutationInput, StorePixTransactionUncheckedUpdateManyWithoutStoreInput>
-  }
-
-  export type StorePixTransactionScalarWhereInput = {
-    AND?: StorePixTransactionScalarWhereInput | StorePixTransactionScalarWhereInput[]
-    OR?: StorePixTransactionScalarWhereInput[]
-    NOT?: StorePixTransactionScalarWhereInput | StorePixTransactionScalarWhereInput[]
-    id?: IntFilter<"StorePixTransaction"> | number
-    storeId?: IntFilter<"StorePixTransaction"> | number
-    transactionId?: StringFilter<"StorePixTransaction"> | string
-    referenceId?: StringFilter<"StorePixTransaction"> | string
-    status?: StringFilter<"StorePixTransaction"> | string
-    expirationDate?: StringFilter<"StorePixTransaction"> | string
-    pixKey?: StringFilter<"StorePixTransaction"> | string
-    pixQrCode?: StringFilter<"StorePixTransaction"> | string
-    amountInCents?: StringFilter<"StorePixTransaction"> | string
-    description?: StringNullableFilter<"StorePixTransaction"> | string | null
-    createdAt?: DateTimeFilter<"StorePixTransaction"> | Date | string
-    updatedAt?: DateTimeFilter<"StorePixTransaction"> | Date | string
-  }
-
   export type ShopUpsertWithWhereUniqueWithoutStoreInput = {
     where: ShopWhereUniqueInput
     update: XOR<ShopUpdateWithoutStoreInput, ShopUncheckedUpdateWithoutStoreInput>
@@ -52301,6 +52538,66 @@ export namespace Prisma {
     name?: StringFilter<"Shop"> | string
     createdAt?: DateTimeFilter<"Shop"> | Date | string
     updatedAt?: DateTimeFilter<"Shop"> | Date | string
+  }
+
+  export type OwnerUpsertWithoutStoresInput = {
+    update: XOR<OwnerUpdateWithoutStoresInput, OwnerUncheckedUpdateWithoutStoresInput>
+    create: XOR<OwnerCreateWithoutStoresInput, OwnerUncheckedCreateWithoutStoresInput>
+    where?: OwnerWhereInput
+  }
+
+  export type OwnerUpdateToOneWithWhereWithoutStoresInput = {
+    where?: OwnerWhereInput
+    data: XOR<OwnerUpdateWithoutStoresInput, OwnerUncheckedUpdateWithoutStoresInput>
+  }
+
+  export type OwnerUpdateWithoutStoresInput = {
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    document?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    phoneVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    line1?: NullableStringFieldUpdateOperationsInput | string | null
+    line2?: NullableStringFieldUpdateOperationsInput | string | null
+    line3?: NullableStringFieldUpdateOperationsInput | string | null
+    neighborhood?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    accessUser?: AccessUserUpdateOneRequiredWithoutOwnersNestedInput
+  }
+
+  export type OwnerUncheckedUpdateWithoutStoresInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    document?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    phoneVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    line1?: NullableStringFieldUpdateOperationsInput | string | null
+    line2?: NullableStringFieldUpdateOperationsInput | string | null
+    line3?: NullableStringFieldUpdateOperationsInput | string | null
+    neighborhood?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    accessUserId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StoreBankAccountUpsertWithWhereUniqueWithoutStoreInput = {
@@ -52334,6 +52631,40 @@ export namespace Prisma {
     storeId?: IntFilter<"StoreBankAccount"> | number
     createdAt?: DateTimeFilter<"StoreBankAccount"> | Date | string
     updatedAt?: DateTimeFilter<"StoreBankAccount"> | Date | string
+  }
+
+  export type StorePixTransactionUpsertWithWhereUniqueWithoutStoreInput = {
+    where: StorePixTransactionWhereUniqueInput
+    update: XOR<StorePixTransactionUpdateWithoutStoreInput, StorePixTransactionUncheckedUpdateWithoutStoreInput>
+    create: XOR<StorePixTransactionCreateWithoutStoreInput, StorePixTransactionUncheckedCreateWithoutStoreInput>
+  }
+
+  export type StorePixTransactionUpdateWithWhereUniqueWithoutStoreInput = {
+    where: StorePixTransactionWhereUniqueInput
+    data: XOR<StorePixTransactionUpdateWithoutStoreInput, StorePixTransactionUncheckedUpdateWithoutStoreInput>
+  }
+
+  export type StorePixTransactionUpdateManyWithWhereWithoutStoreInput = {
+    where: StorePixTransactionScalarWhereInput
+    data: XOR<StorePixTransactionUpdateManyMutationInput, StorePixTransactionUncheckedUpdateManyWithoutStoreInput>
+  }
+
+  export type StorePixTransactionScalarWhereInput = {
+    AND?: StorePixTransactionScalarWhereInput | StorePixTransactionScalarWhereInput[]
+    OR?: StorePixTransactionScalarWhereInput[]
+    NOT?: StorePixTransactionScalarWhereInput | StorePixTransactionScalarWhereInput[]
+    id?: IntFilter<"StorePixTransaction"> | number
+    storeId?: IntFilter<"StorePixTransaction"> | number
+    transactionId?: StringFilter<"StorePixTransaction"> | string
+    referenceId?: StringFilter<"StorePixTransaction"> | string
+    status?: StringFilter<"StorePixTransaction"> | string
+    expirationDate?: StringFilter<"StorePixTransaction"> | string
+    pixKey?: StringFilter<"StorePixTransaction"> | string
+    pixQrCode?: StringFilter<"StorePixTransaction"> | string
+    amountInCents?: StringFilter<"StorePixTransaction"> | string
+    description?: StringNullableFilter<"StorePixTransaction"> | string | null
+    createdAt?: DateTimeFilter<"StorePixTransaction"> | Date | string
+    updatedAt?: DateTimeFilter<"StorePixTransaction"> | Date | string
   }
 
   export type StoreSaleUpsertWithWhereUniqueWithoutStoreInput = {
@@ -52374,12 +52705,12 @@ export namespace Prisma {
     NOT?: TransferHistoryScalarWhereInput | TransferHistoryScalarWhereInput[]
     id?: IntFilter<"TransferHistory"> | number
     bankAccountId?: IntFilter<"TransferHistory"> | number
-    storeId?: IntFilter<"TransferHistory"> | number
     description?: StringNullableFilter<"TransferHistory"> | string | null
     statementDescriptor?: StringNullableFilter<"TransferHistory"> | string | null
     amountInCents?: IntFilter<"TransferHistory"> | number
     createdAt?: DateTimeFilter<"TransferHistory"> | Date | string
     updatedAt?: DateTimeFilter<"TransferHistory"> | Date | string
+    storeId?: IntFilter<"TransferHistory"> | number
   }
 
   export type StoreCreateWithoutBankAccountsInput = {
@@ -52403,14 +52734,14 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner: OwnerCreateNestedOneWithoutStoresInput
+    webhookUrl?: string | null
     payouts?: PayoutCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     shops?: ShopCreateNestedManyWithoutStoreInput
+    owner: OwnerCreateNestedOneWithoutStoresInput
+    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryCreateNestedManyWithoutStoreInput
   }
@@ -52438,13 +52769,13 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
     payouts?: PayoutUncheckedCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     shops?: ShopUncheckedCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleUncheckedCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryUncheckedCreateNestedManyWithoutStoreInput
   }
@@ -52465,12 +52796,12 @@ export namespace Prisma {
 
   export type TransferHistoryUncheckedCreateWithoutStoreBankAccountInput = {
     id?: number
-    storeId: number
     description?: string | null
     statementDescriptor?: string | null
     amountInCents: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    storeId: number
   }
 
   export type TransferHistoryCreateOrConnectWithoutStoreBankAccountInput = {
@@ -52515,14 +52846,14 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     shops?: ShopUpdateManyWithoutStoreNestedInput
+    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
+    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUpdateManyWithoutStoreNestedInput
   }
@@ -52550,13 +52881,13 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUncheckedUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUncheckedUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     shops?: ShopUncheckedUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUncheckedUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUncheckedUpdateManyWithoutStoreNestedInput
   }
@@ -52630,15 +52961,15 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner: OwnerCreateNestedOneWithoutStoresInput
+    webhookUrl?: string | null
     payouts?: PayoutCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     shops?: ShopCreateNestedManyWithoutStoreInput
+    owner: OwnerCreateNestedOneWithoutStoresInput
     bankAccounts?: StoreBankAccountCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleCreateNestedManyWithoutStoreInput
   }
 
@@ -52665,14 +52996,14 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
     payouts?: PayoutUncheckedCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     shops?: ShopUncheckedCreateNestedManyWithoutStoreInput
     bankAccounts?: StoreBankAccountUncheckedCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleUncheckedCreateNestedManyWithoutStoreInput
   }
 
@@ -52751,15 +53082,15 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     shops?: ShopUpdateManyWithoutStoreNestedInput
+    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
     bankAccounts?: StoreBankAccountUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUpdateManyWithoutStoreNestedInput
   }
 
@@ -52786,87 +53117,15 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUncheckedUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUncheckedUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     shops?: ShopUncheckedUpdateManyWithoutStoreNestedInput
     bankAccounts?: StoreBankAccountUncheckedUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUncheckedUpdateManyWithoutStoreNestedInput
-  }
-
-  export type StoreCreateWithoutShopsInput = {
-    name: string
-    statementDescriptor?: string | null
-    mcc?: number | null
-    businessLine1?: string | null
-    businessLine2?: string | null
-    businessLine3?: string | null
-    businessNeighborhood?: string | null
-    businessCity?: string | null
-    businessState?: string | null
-    businessCountryCode?: string | null
-    businessZipCode?: string | null
-    businessPhone?: string | null
-    businessEmail?: string | null
-    businessName?: string | null
-    businessDocument?: string | null
-    businessWebsite?: string | null
-    businessOpenDate?: Date | string | null
-    ioSellerId?: string | null
-    taxpayerId?: string | null
-    ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    owner: OwnerCreateNestedOneWithoutStoresInput
-    payouts?: PayoutCreateNestedManyWithoutStoreInput
-    pixTransactions?: PixTransactionCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
-    bankAccounts?: StoreBankAccountCreateNestedManyWithoutStoreInput
-    storeSales?: StoreSaleCreateNestedManyWithoutStoreInput
-    transferHistories?: TransferHistoryCreateNestedManyWithoutStoreInput
-  }
-
-  export type StoreUncheckedCreateWithoutShopsInput = {
-    id?: number
-    ownerId: number
-    name: string
-    statementDescriptor?: string | null
-    mcc?: number | null
-    businessLine1?: string | null
-    businessLine2?: string | null
-    businessLine3?: string | null
-    businessNeighborhood?: string | null
-    businessCity?: string | null
-    businessState?: string | null
-    businessCountryCode?: string | null
-    businessZipCode?: string | null
-    businessPhone?: string | null
-    businessEmail?: string | null
-    businessName?: string | null
-    businessDocument?: string | null
-    businessWebsite?: string | null
-    businessOpenDate?: Date | string | null
-    ioSellerId?: string | null
-    taxpayerId?: string | null
-    ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    payouts?: PayoutUncheckedCreateNestedManyWithoutStoreInput
-    pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
-    bankAccounts?: StoreBankAccountUncheckedCreateNestedManyWithoutStoreInput
-    storeSales?: StoreSaleUncheckedCreateNestedManyWithoutStoreInput
-    transferHistories?: TransferHistoryUncheckedCreateNestedManyWithoutStoreInput
-  }
-
-  export type StoreCreateOrConnectWithoutShopsInput = {
-    where: StoreWhereUniqueInput
-    create: XOR<StoreCreateWithoutShopsInput, StoreUncheckedCreateWithoutShopsInput>
   }
 
   export type PartyShopCreateWithoutShopInput = {
@@ -52894,6 +53153,78 @@ export namespace Prisma {
   export type PartyShopCreateManyShopInputEnvelope = {
     data: PartyShopCreateManyShopInput | PartyShopCreateManyShopInput[]
     skipDuplicates?: boolean
+  }
+
+  export type StoreCreateWithoutShopsInput = {
+    name: string
+    statementDescriptor?: string | null
+    mcc?: number | null
+    businessLine1?: string | null
+    businessLine2?: string | null
+    businessLine3?: string | null
+    businessNeighborhood?: string | null
+    businessCity?: string | null
+    businessState?: string | null
+    businessCountryCode?: string | null
+    businessZipCode?: string | null
+    businessPhone?: string | null
+    businessEmail?: string | null
+    businessName?: string | null
+    businessDocument?: string | null
+    businessWebsite?: string | null
+    businessOpenDate?: Date | string | null
+    ioSellerId?: string | null
+    taxpayerId?: string | null
+    ownerTaxpayerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    webhookUrl?: string | null
+    payouts?: PayoutCreateNestedManyWithoutStoreInput
+    pixTransactions?: PixTransactionCreateNestedManyWithoutStoreInput
+    owner: OwnerCreateNestedOneWithoutStoresInput
+    bankAccounts?: StoreBankAccountCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
+    storeSales?: StoreSaleCreateNestedManyWithoutStoreInput
+    transferHistories?: TransferHistoryCreateNestedManyWithoutStoreInput
+  }
+
+  export type StoreUncheckedCreateWithoutShopsInput = {
+    id?: number
+    ownerId: number
+    name: string
+    statementDescriptor?: string | null
+    mcc?: number | null
+    businessLine1?: string | null
+    businessLine2?: string | null
+    businessLine3?: string | null
+    businessNeighborhood?: string | null
+    businessCity?: string | null
+    businessState?: string | null
+    businessCountryCode?: string | null
+    businessZipCode?: string | null
+    businessPhone?: string | null
+    businessEmail?: string | null
+    businessName?: string | null
+    businessDocument?: string | null
+    businessWebsite?: string | null
+    businessOpenDate?: Date | string | null
+    ioSellerId?: string | null
+    taxpayerId?: string | null
+    ownerTaxpayerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    webhookUrl?: string | null
+    payouts?: PayoutUncheckedCreateNestedManyWithoutStoreInput
+    pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutStoreInput
+    bankAccounts?: StoreBankAccountUncheckedCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
+    storeSales?: StoreSaleUncheckedCreateNestedManyWithoutStoreInput
+    transferHistories?: TransferHistoryUncheckedCreateNestedManyWithoutStoreInput
+  }
+
+  export type StoreCreateOrConnectWithoutShopsInput = {
+    where: StoreWhereUniqueInput
+    create: XOR<StoreCreateWithoutShopsInput, StoreUncheckedCreateWithoutShopsInput>
   }
 
   export type ShopProductCreateWithoutShopInput = {
@@ -52928,22 +53259,22 @@ export namespace Prisma {
   export type ShopWorkerCreateWithoutShopInput = {
     role: number
     active?: boolean | null
-    expirationDate?: Date | string | null
-    name?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    expirationDate?: Date | string | null
+    name?: string | null
     accessUser?: AccessUserCreateNestedOneWithoutShopWorkersInput
   }
 
   export type ShopWorkerUncheckedCreateWithoutShopInput = {
-    id?: number
     accessUserId?: number | null
     role: number
     active?: boolean | null
-    expirationDate?: Date | string | null
-    name?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    id?: number
+    expirationDate?: Date | string | null
+    name?: string | null
   }
 
   export type ShopWorkerCreateOrConnectWithoutShopInput = {
@@ -53007,6 +53338,22 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PartyShopUpsertWithWhereUniqueWithoutShopInput = {
+    where: PartyShopWhereUniqueInput
+    update: XOR<PartyShopUpdateWithoutShopInput, PartyShopUncheckedUpdateWithoutShopInput>
+    create: XOR<PartyShopCreateWithoutShopInput, PartyShopUncheckedCreateWithoutShopInput>
+  }
+
+  export type PartyShopUpdateWithWhereUniqueWithoutShopInput = {
+    where: PartyShopWhereUniqueInput
+    data: XOR<PartyShopUpdateWithoutShopInput, PartyShopUncheckedUpdateWithoutShopInput>
+  }
+
+  export type PartyShopUpdateManyWithWhereWithoutShopInput = {
+    where: PartyShopScalarWhereInput
+    data: XOR<PartyShopUpdateManyMutationInput, PartyShopUncheckedUpdateManyWithoutShopInput>
+  }
+
   export type StoreUpsertWithoutShopsInput = {
     update: XOR<StoreUpdateWithoutShopsInput, StoreUncheckedUpdateWithoutShopsInput>
     create: XOR<StoreCreateWithoutShopsInput, StoreUncheckedCreateWithoutShopsInput>
@@ -53039,14 +53386,14 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
+    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
     bankAccounts?: StoreBankAccountUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUpdateManyWithoutStoreNestedInput
   }
@@ -53074,31 +53421,15 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUncheckedUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUncheckedUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     bankAccounts?: StoreBankAccountUncheckedUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUncheckedUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUncheckedUpdateManyWithoutStoreNestedInput
-  }
-
-  export type PartyShopUpsertWithWhereUniqueWithoutShopInput = {
-    where: PartyShopWhereUniqueInput
-    update: XOR<PartyShopUpdateWithoutShopInput, PartyShopUncheckedUpdateWithoutShopInput>
-    create: XOR<PartyShopCreateWithoutShopInput, PartyShopUncheckedCreateWithoutShopInput>
-  }
-
-  export type PartyShopUpdateWithWhereUniqueWithoutShopInput = {
-    where: PartyShopWhereUniqueInput
-    data: XOR<PartyShopUpdateWithoutShopInput, PartyShopUncheckedUpdateWithoutShopInput>
-  }
-
-  export type PartyShopUpdateManyWithWhereWithoutShopInput = {
-    where: PartyShopScalarWhereInput
-    data: XOR<PartyShopUpdateManyMutationInput, PartyShopUncheckedUpdateManyWithoutShopInput>
   }
 
   export type ShopProductUpsertWithWhereUniqueWithoutShopInput = {
@@ -53192,8 +53523,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    store: StoreCreateNestedOneWithoutShopsInput
     partyShops?: PartyShopCreateNestedManyWithoutShopInput
+    store: StoreCreateNestedOneWithoutShopsInput
     shopWorkers?: ShopWorkerCreateNestedManyWithoutShopInput
     storeSales?: StoreSaleCreateNestedManyWithoutShopInput
   }
@@ -53290,8 +53621,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    store?: StoreUpdateOneRequiredWithoutShopsNestedInput
     partyShops?: PartyShopUpdateManyWithoutShopNestedInput
+    store?: StoreUpdateOneRequiredWithoutShopsNestedInput
     shopWorkers?: ShopWorkerUpdateManyWithoutShopNestedInput
     storeSales?: StoreSaleUpdateManyWithoutShopNestedInput
   }
@@ -53381,8 +53712,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    store: StoreCreateNestedOneWithoutShopsInput
     partyShops?: PartyShopCreateNestedManyWithoutShopInput
+    store: StoreCreateNestedOneWithoutShopsInput
     shopProducts?: ShopProductCreateNestedManyWithoutShopInput
     storeSales?: StoreSaleCreateNestedManyWithoutShopInput
   }
@@ -53464,8 +53795,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    store?: StoreUpdateOneRequiredWithoutShopsNestedInput
     partyShops?: PartyShopUpdateManyWithoutShopNestedInput
+    store?: StoreUpdateOneRequiredWithoutShopsNestedInput
     shopProducts?: ShopProductUpdateManyWithoutShopNestedInput
     storeSales?: StoreSaleUpdateManyWithoutShopNestedInput
   }
@@ -53489,10 +53820,11 @@ export namespace Prisma {
     address?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
     ingresses?: IngressCreateNestedManyWithoutPartyInput
     batches?: IngressBatchCreateNestedManyWithoutPartyInput
     invites?: InviteCreateNestedManyWithoutPartyInput
+    accessUser: AccessUserCreateNestedOneWithoutPartiesInput
+    pixTransactions?: PixTransactionCreateNestedManyWithoutPartyInput
     promoters?: PromoterCreateNestedManyWithoutPartyInput
   }
 
@@ -53509,6 +53841,7 @@ export namespace Prisma {
     ingresses?: IngressUncheckedCreateNestedManyWithoutPartyInput
     batches?: IngressBatchUncheckedCreateNestedManyWithoutPartyInput
     invites?: InviteUncheckedCreateNestedManyWithoutPartyInput
+    pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutPartyInput
     promoters?: PromoterUncheckedCreateNestedManyWithoutPartyInput
   }
 
@@ -53613,10 +53946,11 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
     ingresses?: IngressUpdateManyWithoutPartyNestedInput
     batches?: IngressBatchUpdateManyWithoutPartyNestedInput
     invites?: InviteUpdateManyWithoutPartyNestedInput
+    accessUser?: AccessUserUpdateOneRequiredWithoutPartiesNestedInput
+    pixTransactions?: PixTransactionUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUpdateManyWithoutPartyNestedInput
   }
 
@@ -53633,6 +53967,7 @@ export namespace Prisma {
     ingresses?: IngressUncheckedUpdateManyWithoutPartyNestedInput
     batches?: IngressBatchUncheckedUpdateManyWithoutPartyNestedInput
     invites?: InviteUncheckedUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUncheckedUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUncheckedUpdateManyWithoutPartyNestedInput
   }
 
@@ -53843,8 +54178,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    store: StoreCreateNestedOneWithoutShopsInput
     partyShops?: PartyShopCreateNestedManyWithoutShopInput
+    store: StoreCreateNestedOneWithoutShopsInput
     shopProducts?: ShopProductCreateNestedManyWithoutShopInput
     shopWorkers?: ShopWorkerCreateNestedManyWithoutShopInput
   }
@@ -53886,15 +54221,15 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner: OwnerCreateNestedOneWithoutStoresInput
+    webhookUrl?: string | null
     payouts?: PayoutCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     shops?: ShopCreateNestedManyWithoutStoreInput
+    owner: OwnerCreateNestedOneWithoutStoresInput
     bankAccounts?: StoreBankAccountCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryCreateNestedManyWithoutStoreInput
   }
 
@@ -53921,14 +54256,14 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
     payouts?: PayoutUncheckedCreateNestedManyWithoutStoreInput
     pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     shops?: ShopUncheckedCreateNestedManyWithoutStoreInput
     bankAccounts?: StoreBankAccountUncheckedCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryUncheckedCreateNestedManyWithoutStoreInput
   }
 
@@ -54166,8 +54501,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    store?: StoreUpdateOneRequiredWithoutShopsNestedInput
     partyShops?: PartyShopUpdateManyWithoutShopNestedInput
+    store?: StoreUpdateOneRequiredWithoutShopsNestedInput
     shopProducts?: ShopProductUpdateManyWithoutShopNestedInput
     shopWorkers?: ShopWorkerUpdateManyWithoutShopNestedInput
   }
@@ -54215,15 +54550,15 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     shops?: ShopUpdateManyWithoutStoreNestedInput
+    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
     bankAccounts?: StoreBankAccountUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUpdateManyWithoutStoreNestedInput
   }
 
@@ -54250,14 +54585,14 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUncheckedUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUncheckedUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     shops?: ShopUncheckedUpdateManyWithoutStoreNestedInput
     bankAccounts?: StoreBankAccountUncheckedUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUncheckedUpdateManyWithoutStoreNestedInput
   }
 
@@ -54782,14 +55117,14 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner: OwnerCreateNestedOneWithoutStoresInput
+    webhookUrl?: string | null
     pixTransactions?: PixTransactionCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     shops?: ShopCreateNestedManyWithoutStoreInput
+    owner: OwnerCreateNestedOneWithoutStoresInput
     bankAccounts?: StoreBankAccountCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryCreateNestedManyWithoutStoreInput
   }
@@ -54817,13 +55152,13 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
     pixTransactions?: PixTransactionUncheckedCreateNestedManyWithoutStoreInput
-    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     shops?: ShopUncheckedCreateNestedManyWithoutStoreInput
     bankAccounts?: StoreBankAccountUncheckedCreateNestedManyWithoutStoreInput
+    storePixTransactions?: StorePixTransactionUncheckedCreateNestedManyWithoutStoreInput
     storeSales?: StoreSaleUncheckedCreateNestedManyWithoutStoreInput
     transferHistories?: TransferHistoryUncheckedCreateNestedManyWithoutStoreInput
   }
@@ -54895,14 +55230,14 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     pixTransactions?: PixTransactionUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     shops?: ShopUpdateManyWithoutStoreNestedInput
+    owner?: OwnerUpdateOneRequiredWithoutStoresNestedInput
     bankAccounts?: StoreBankAccountUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUpdateManyWithoutStoreNestedInput
   }
@@ -54930,13 +55265,13 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     pixTransactions?: PixTransactionUncheckedUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     shops?: ShopUncheckedUpdateManyWithoutStoreNestedInput
     bankAccounts?: StoreBankAccountUncheckedUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUncheckedUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUncheckedUpdateManyWithoutStoreNestedInput
   }
@@ -55126,9 +55461,9 @@ export namespace Prisma {
     countryCode?: string | null
     zipCode?: string | null
     isActive?: boolean | null
-    ioCustomerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    ioCustomerId?: string | null
   }
 
   export type PartyCreateManyAccessUserInput = {
@@ -55143,14 +55478,14 @@ export namespace Prisma {
   }
 
   export type ShopWorkerCreateManyAccessUserInput = {
-    id?: number
     shopId: number
     role: number
     active?: boolean | null
-    expirationDate?: Date | string | null
-    name?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    id?: number
+    expirationDate?: Date | string | null
+    name?: string | null
   }
 
   export type OwnerUpdateWithoutAccessUserInput = {
@@ -55171,9 +55506,9 @@ export namespace Prisma {
     countryCode?: NullableStringFieldUpdateOperationsInput | string | null
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     stores?: StoreUpdateManyWithoutOwnerNestedInput
   }
 
@@ -55196,9 +55531,9 @@ export namespace Prisma {
     countryCode?: NullableStringFieldUpdateOperationsInput | string | null
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     stores?: StoreUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
@@ -55221,9 +55556,9 @@ export namespace Prisma {
     countryCode?: NullableStringFieldUpdateOperationsInput | string | null
     zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ioCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PartyUpdateWithoutAccessUserInput = {
@@ -55238,6 +55573,7 @@ export namespace Prisma {
     batches?: IngressBatchUpdateManyWithoutPartyNestedInput
     invites?: InviteUpdateManyWithoutPartyNestedInput
     partyShops?: PartyShopUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUpdateManyWithoutPartyNestedInput
   }
 
@@ -55254,6 +55590,7 @@ export namespace Prisma {
     batches?: IngressBatchUncheckedUpdateManyWithoutPartyNestedInput
     invites?: InviteUncheckedUpdateManyWithoutPartyNestedInput
     partyShops?: PartyShopUncheckedUpdateManyWithoutPartyNestedInput
+    pixTransactions?: PixTransactionUncheckedUpdateManyWithoutPartyNestedInput
     promoters?: PromoterUncheckedUpdateManyWithoutPartyNestedInput
   }
 
@@ -55271,33 +55608,33 @@ export namespace Prisma {
   export type ShopWorkerUpdateWithoutAccessUserInput = {
     role?: IntFieldUpdateOperationsInput | number
     active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     shop?: ShopUpdateOneRequiredWithoutShopWorkersNestedInput
   }
 
   export type ShopWorkerUncheckedUpdateWithoutAccessUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
     shopId?: IntFieldUpdateOperationsInput | number
     role?: IntFieldUpdateOperationsInput | number
     active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: IntFieldUpdateOperationsInput | number
+    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ShopWorkerUncheckedUpdateManyWithoutAccessUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
     shopId?: IntFieldUpdateOperationsInput | number
     role?: IntFieldUpdateOperationsInput | number
     active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: IntFieldUpdateOperationsInput | number
+    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StoreCreateManyOwnerInput = {
@@ -55322,9 +55659,9 @@ export namespace Prisma {
     ioSellerId?: string | null
     taxpayerId?: string | null
     ownerTaxpayerId?: string | null
-    webhookUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    webhookUrl?: string | null
   }
 
   export type StoreUpdateWithoutOwnerInput = {
@@ -55348,14 +55685,14 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     shops?: ShopUpdateManyWithoutStoreNestedInput
     bankAccounts?: StoreBankAccountUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUpdateManyWithoutStoreNestedInput
   }
@@ -55382,14 +55719,14 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     payouts?: PayoutUncheckedUpdateManyWithoutStoreNestedInput
     pixTransactions?: PixTransactionUncheckedUpdateManyWithoutStoreNestedInput
-    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     shops?: ShopUncheckedUpdateManyWithoutStoreNestedInput
     bankAccounts?: StoreBankAccountUncheckedUpdateManyWithoutStoreNestedInput
+    storePixTransactions?: StorePixTransactionUncheckedUpdateManyWithoutStoreNestedInput
     storeSales?: StoreSaleUncheckedUpdateManyWithoutStoreNestedInput
     transferHistories?: TransferHistoryUncheckedUpdateManyWithoutStoreNestedInput
   }
@@ -55416,9 +55753,9 @@ export namespace Prisma {
     ioSellerId?: NullableStringFieldUpdateOperationsInput | string | null
     taxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
     ownerTaxpayerId?: NullableStringFieldUpdateOperationsInput | string | null
-    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webhookUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CreditCardCreateManyCustomerInput = {
@@ -55487,19 +55824,20 @@ export namespace Prisma {
     pixQrCode: string
     amountInCents: string
     description?: string | null
-    pixEmv?: string | null
-    pixType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
+    partyId?: number | null
   }
 
   export type PromoterCreateManyCustomerInput = {
     id?: number
     partyId: number
     isActive?: boolean | null
-    bonusInCents?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    bonusInCents?: number | null
   }
 
   export type StoreSaleCreateManyCustomerInput = {
@@ -55695,10 +56033,11 @@ export namespace Prisma {
     pixQrCode?: StringFieldUpdateOperationsInput | string
     amountInCents?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
-    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
+    party?: PartyUpdateOneWithoutPixTransactionsNestedInput
     store?: StoreUpdateOneWithoutPixTransactionsNestedInput
   }
 
@@ -55713,10 +56052,11 @@ export namespace Prisma {
     pixQrCode?: StringFieldUpdateOperationsInput | string
     amountInCents?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
-    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
+    partyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PixTransactionUncheckedUpdateManyWithoutCustomerInput = {
@@ -55730,17 +56070,18 @@ export namespace Prisma {
     pixQrCode?: StringFieldUpdateOperationsInput | string
     amountInCents?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
-    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
+    partyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PromoterUpdateWithoutCustomerInput = {
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     party?: PartyUpdateOneRequiredWithoutPromotersNestedInput
   }
 
@@ -55748,18 +56089,18 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     partyId?: IntFieldUpdateOperationsInput | number
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PromoterUncheckedUpdateManyWithoutCustomerInput = {
     id?: IntFieldUpdateOperationsInput | number
     partyId?: IntFieldUpdateOperationsInput | number
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type StoreSaleUpdateWithoutCustomerInput = {
@@ -55944,13 +56285,31 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type PixTransactionCreateManyPartyInput = {
+    id?: number
+    customerId?: number | null
+    storeId?: number | null
+    transactionId: string
+    referenceId: string
+    status: string
+    expirationDate: string
+    pixKey: string
+    pixQrCode: string
+    amountInCents: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    pixEmv?: string | null
+    pixType?: string | null
+  }
+
   export type PromoterCreateManyPartyInput = {
     id?: number
     customerId: number
     isActive?: boolean | null
-    bonusInCents?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    bonusInCents?: number | null
   }
 
   export type IngressUpdateWithoutPartyInput = {
@@ -56084,11 +56443,64 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PromoterUpdateWithoutPartyInput = {
-    isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
+  export type PixTransactionUpdateWithoutPartyInput = {
+    transactionId?: StringFieldUpdateOperationsInput | string
+    referenceId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    expirationDate?: StringFieldUpdateOperationsInput | string
+    pixKey?: StringFieldUpdateOperationsInput | string
+    pixQrCode?: StringFieldUpdateOperationsInput | string
+    amountInCents?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
+    customer?: CustomerUpdateOneWithoutPixTransactionsNestedInput
+    store?: StoreUpdateOneWithoutPixTransactionsNestedInput
+  }
+
+  export type PixTransactionUncheckedUpdateWithoutPartyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    customerId?: NullableIntFieldUpdateOperationsInput | number | null
+    storeId?: NullableIntFieldUpdateOperationsInput | number | null
+    transactionId?: StringFieldUpdateOperationsInput | string
+    referenceId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    expirationDate?: StringFieldUpdateOperationsInput | string
+    pixKey?: StringFieldUpdateOperationsInput | string
+    pixQrCode?: StringFieldUpdateOperationsInput | string
+    amountInCents?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PixTransactionUncheckedUpdateManyWithoutPartyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    customerId?: NullableIntFieldUpdateOperationsInput | number | null
+    storeId?: NullableIntFieldUpdateOperationsInput | number | null
+    transactionId?: StringFieldUpdateOperationsInput | string
+    referenceId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    expirationDate?: StringFieldUpdateOperationsInput | string
+    pixKey?: StringFieldUpdateOperationsInput | string
+    pixQrCode?: StringFieldUpdateOperationsInput | string
+    amountInCents?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PromoterUpdateWithoutPartyInput = {
+    isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     customer?: CustomerUpdateOneRequiredWithoutPromotersNestedInput
   }
 
@@ -56096,18 +56508,18 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     customerId?: IntFieldUpdateOperationsInput | number
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PromoterUncheckedUpdateManyWithoutPartyInput = {
     id?: IntFieldUpdateOperationsInput | number
     customerId?: IntFieldUpdateOperationsInput | number
     isActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bonusInCents?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type IngressCreateManyIngressBatchInput = {
@@ -56418,24 +56830,11 @@ export namespace Prisma {
     pixQrCode: string
     amountInCents: string
     description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     pixEmv?: string | null
     pixType?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type StorePixTransactionCreateManyStoreInput = {
-    id?: number
-    transactionId: string
-    referenceId: string
-    status: string
-    expirationDate: string
-    pixKey: string
-    pixQrCode: string
-    amountInCents: string
-    description?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    partyId?: number | null
   }
 
   export type ShopCreateManyStoreInput = {
@@ -56454,6 +56853,20 @@ export namespace Prisma {
     type: string
     bankCode: string
     document: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StorePixTransactionCreateManyStoreInput = {
+    id?: number
+    transactionId: string
+    referenceId: string
+    status: string
+    expirationDate: string
+    pixKey: string
+    pixQrCode: string
+    amountInCents: string
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -56534,11 +56947,12 @@ export namespace Prisma {
     pixQrCode?: StringFieldUpdateOperationsInput | string
     amountInCents?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
-    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     customer?: CustomerUpdateOneWithoutPixTransactionsNestedInput
+    party?: PartyUpdateOneWithoutPixTransactionsNestedInput
   }
 
   export type PixTransactionUncheckedUpdateWithoutStoreInput = {
@@ -56552,10 +56966,11 @@ export namespace Prisma {
     pixQrCode?: StringFieldUpdateOperationsInput | string
     amountInCents?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
-    pixType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
+    pixType?: NullableStringFieldUpdateOperationsInput | string | null
+    partyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PixTransactionUncheckedUpdateManyWithoutStoreInput = {
@@ -56569,51 +56984,11 @@ export namespace Prisma {
     pixQrCode?: StringFieldUpdateOperationsInput | string
     amountInCents?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pixEmv?: NullableStringFieldUpdateOperationsInput | string | null
     pixType?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StorePixTransactionUpdateWithoutStoreInput = {
-    transactionId?: StringFieldUpdateOperationsInput | string
-    referenceId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    expirationDate?: StringFieldUpdateOperationsInput | string
-    pixKey?: StringFieldUpdateOperationsInput | string
-    pixQrCode?: StringFieldUpdateOperationsInput | string
-    amountInCents?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StorePixTransactionUncheckedUpdateWithoutStoreInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    transactionId?: StringFieldUpdateOperationsInput | string
-    referenceId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    expirationDate?: StringFieldUpdateOperationsInput | string
-    pixKey?: StringFieldUpdateOperationsInput | string
-    pixQrCode?: StringFieldUpdateOperationsInput | string
-    amountInCents?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StorePixTransactionUncheckedUpdateManyWithoutStoreInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    transactionId?: StringFieldUpdateOperationsInput | string
-    referenceId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    expirationDate?: StringFieldUpdateOperationsInput | string
-    pixKey?: StringFieldUpdateOperationsInput | string
-    pixQrCode?: StringFieldUpdateOperationsInput | string
-    amountInCents?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    partyId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ShopUpdateWithoutStoreInput = {
@@ -56680,6 +57055,47 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     bankCode?: StringFieldUpdateOperationsInput | string
     document?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StorePixTransactionUpdateWithoutStoreInput = {
+    transactionId?: StringFieldUpdateOperationsInput | string
+    referenceId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    expirationDate?: StringFieldUpdateOperationsInput | string
+    pixKey?: StringFieldUpdateOperationsInput | string
+    pixQrCode?: StringFieldUpdateOperationsInput | string
+    amountInCents?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StorePixTransactionUncheckedUpdateWithoutStoreInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    transactionId?: StringFieldUpdateOperationsInput | string
+    referenceId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    expirationDate?: StringFieldUpdateOperationsInput | string
+    pixKey?: StringFieldUpdateOperationsInput | string
+    pixQrCode?: StringFieldUpdateOperationsInput | string
+    amountInCents?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StorePixTransactionUncheckedUpdateManyWithoutStoreInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    transactionId?: StringFieldUpdateOperationsInput | string
+    referenceId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    expirationDate?: StringFieldUpdateOperationsInput | string
+    pixKey?: StringFieldUpdateOperationsInput | string
+    pixQrCode?: StringFieldUpdateOperationsInput | string
+    amountInCents?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -56775,12 +57191,12 @@ export namespace Prisma {
 
   export type TransferHistoryCreateManyStoreBankAccountInput = {
     id?: number
-    storeId: number
     description?: string | null
     statementDescriptor?: string | null
     amountInCents: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    storeId: number
   }
 
   export type TransferHistoryUpdateWithoutStoreBankAccountInput = {
@@ -56794,22 +57210,22 @@ export namespace Prisma {
 
   export type TransferHistoryUncheckedUpdateWithoutStoreBankAccountInput = {
     id?: IntFieldUpdateOperationsInput | number
-    storeId?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     statementDescriptor?: NullableStringFieldUpdateOperationsInput | string | null
     amountInCents?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storeId?: IntFieldUpdateOperationsInput | number
   }
 
   export type TransferHistoryUncheckedUpdateManyWithoutStoreBankAccountInput = {
     id?: IntFieldUpdateOperationsInput | number
-    storeId?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     statementDescriptor?: NullableStringFieldUpdateOperationsInput | string | null
     amountInCents?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storeId?: IntFieldUpdateOperationsInput | number
   }
 
   export type PartyShopCreateManyShopInput = {
@@ -56830,14 +57246,14 @@ export namespace Prisma {
   }
 
   export type ShopWorkerCreateManyShopInput = {
-    id?: number
     accessUserId?: number | null
     role: number
     active?: boolean | null
-    expirationDate?: Date | string | null
-    name?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    id?: number
+    expirationDate?: Date | string | null
+    name?: string | null
   }
 
   export type StoreSaleCreateManyShopInput = {
@@ -56915,33 +57331,33 @@ export namespace Prisma {
   export type ShopWorkerUpdateWithoutShopInput = {
     role?: IntFieldUpdateOperationsInput | number
     active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     accessUser?: AccessUserUpdateOneWithoutShopWorkersNestedInput
   }
 
   export type ShopWorkerUncheckedUpdateWithoutShopInput = {
-    id?: IntFieldUpdateOperationsInput | number
     accessUserId?: NullableIntFieldUpdateOperationsInput | number | null
     role?: IntFieldUpdateOperationsInput | number
     active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: IntFieldUpdateOperationsInput | number
+    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ShopWorkerUncheckedUpdateManyWithoutShopInput = {
-    id?: IntFieldUpdateOperationsInput | number
     accessUserId?: NullableIntFieldUpdateOperationsInput | number | null
     role?: IntFieldUpdateOperationsInput | number
     active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: IntFieldUpdateOperationsInput | number
+    expirationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StoreSaleUpdateWithoutShopInput = {

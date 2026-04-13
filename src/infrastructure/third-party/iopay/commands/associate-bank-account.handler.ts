@@ -5,7 +5,7 @@ import {
   AssociateBankAccountResult,
 } from "./dtos/associate-bank-account.command";
 import { PAYMENT_GATEWAY_TOKEN } from "@domain/@shared/payment-gateway/payment-gateway.token";
-import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
+import type { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 import {
   BodyAssociateTokenizedBankAccountDTO,
   BodyTokenizeBankAccountDTO,

@@ -5,7 +5,7 @@ import {
   CreateSellerPFResult,
 } from "./dtos/create-seller-pf.command";
 import { PAYMENT_GATEWAY_TOKEN } from "@domain/@shared/payment-gateway/payment-gateway.token";
-import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
+import type { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 import { BodyCreateSellerPFDTO } from "@domain/@shared/payment-gateway/payment-gateway.dto";
 import { formatPhoneForIopay } from "src/utils/third-party/format-phone-for-iopay";
 

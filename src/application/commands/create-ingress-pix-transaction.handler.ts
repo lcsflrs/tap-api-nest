@@ -6,7 +6,7 @@ import type { IPixTransactionRepository } from "@infrastructure/repositories/int
 import type { ICustomerRepository } from "@infrastructure/repositories/interfaces/customer-repository.interface";
 import type { IIngressRepository } from "@infrastructure/repositories/interfaces/ingress-repository.interface";
 import { PAYMENT_GATEWAY_TOKEN } from "@domain/@shared/payment-gateway/payment-gateway.token";
-import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
+import type { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 import { PixTransaction } from "@domain/payment/pix-transaction.aggregate";
 import { PixTransactionID } from "@domain/payment/pix-transaction-id.value";
 import { PixStatus } from "@domain/payment/pix-status.value";

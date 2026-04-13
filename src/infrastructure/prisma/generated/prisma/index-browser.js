@@ -156,9 +156,9 @@ exports.Prisma.OwnerScalarFieldEnum = {
   zipCode: 'zipCode',
   isActive: 'isActive',
   accessUserId: 'accessUserId',
-  ioCustomerId: 'ioCustomerId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  ioCustomerId: 'ioCustomerId'
 };
 
 exports.Prisma.CustomerScalarFieldEnum = {
@@ -276,9 +276,9 @@ exports.Prisma.PromoterScalarFieldEnum = {
   partyId: 'partyId',
   customerId: 'customerId',
   isActive: 'isActive',
-  bonusInCents: 'bonusInCents',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  bonusInCents: 'bonusInCents'
 };
 
 exports.Prisma.PaymentMethodScalarFieldEnum = {
@@ -298,10 +298,11 @@ exports.Prisma.PixTransactionScalarFieldEnum = {
   pixQrCode: 'pixQrCode',
   amountInCents: 'amountInCents',
   description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   pixEmv: 'pixEmv',
   pixType: 'pixType',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  partyId: 'partyId'
 };
 
 exports.Prisma.StorePixTransactionScalarFieldEnum = {
@@ -342,9 +343,9 @@ exports.Prisma.StoreScalarFieldEnum = {
   ioSellerId: 'ioSellerId',
   taxpayerId: 'taxpayerId',
   ownerTaxpayerId: 'ownerTaxpayerId',
-  webhookUrl: 'webhookUrl',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  webhookUrl: 'webhookUrl'
 };
 
 exports.Prisma.StoreBankAccountScalarFieldEnum = {
@@ -364,12 +365,12 @@ exports.Prisma.StoreBankAccountScalarFieldEnum = {
 exports.Prisma.TransferHistoryScalarFieldEnum = {
   id: 'id',
   bankAccountId: 'bankAccountId',
-  storeId: 'storeId',
   description: 'description',
   statementDescriptor: 'statementDescriptor',
   amountInCents: 'amountInCents',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  storeId: 'storeId'
 };
 
 exports.Prisma.ShopScalarFieldEnum = {
@@ -391,15 +392,15 @@ exports.Prisma.ShopProductScalarFieldEnum = {
 };
 
 exports.Prisma.ShopWorkerScalarFieldEnum = {
-  id: 'id',
   shopId: 'shopId',
   accessUserId: 'accessUserId',
   role: 'role',
   active: 'active',
-  expirationDate: 'expirationDate',
-  name: 'name',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  id: 'id',
+  expirationDate: 'expirationDate',
+  name: 'name'
 };
 
 exports.Prisma.PartyShopScalarFieldEnum = {

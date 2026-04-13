@@ -7,7 +7,6 @@ const getInterestValue = (total: number, installments: number) => {
   }
 
   const totalByInstallments = getTotalByInstallments(total, installments);
-
   const interest = totalByInstallments - getOurServiceTax(installments) - total;
 
   return interest;

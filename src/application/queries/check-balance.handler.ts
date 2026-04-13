@@ -3,7 +3,7 @@ import { Inject } from "@nestjs/common";
 import { CheckBalanceQuery } from "./dtos/check-balance.query";
 import { PrismaService } from "@infrastructure/prisma/prisma.service";
 import { PAYMENT_GATEWAY_TOKEN } from "@domain/@shared/payment-gateway/payment-gateway.token";
-import { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
+import type { PaymentGatewayInterface } from "@domain/@shared/payment-gateway/payment-gateway.interface";
 
 @QueryHandler(CheckBalanceQuery)
 export class CheckBalanceHandler implements IQueryHandler<CheckBalanceQuery> {
