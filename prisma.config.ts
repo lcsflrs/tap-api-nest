@@ -5,8 +5,9 @@ export default defineConfig({
   schema: "src/infrastructure/prisma/schema.prisma",
   migrations: {
     path: "src/infrastructure/prisma/migrations",
+    seed: "bun run src/infrastructure/prisma/seed.ts",
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    url: env("DB_URL"),
   },
 });

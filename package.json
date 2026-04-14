@@ -11,6 +11,9 @@
     "prisma:pull": "prisma db pull",
     "prisma:generate": "prisma generate"
   },
+  "prisma": {
+    "seed": "bun run src/infrastructure/prisma/seed.ts"
+  },
   "devDependencies": {
     "@nestjs/cli": "^11.0.10",
     "@nestjs/testing": "^11.1.8",

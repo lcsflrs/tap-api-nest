@@ -10,7 +10,7 @@ import { AssociatePromoterHandler } from "./commands/associate-promoter.handler"
 import { AuthenticateCardHandler } from "./commands/authenticate-card.handler";
 import { AuthorizeEntryHandler } from "./commands/authorize-entry.handler";
 import { BuyEventIngressHandler } from "./commands/buy-event-ingress.handler";
-import { BuyIngressHandler } from "@infrastructure/third-party/iopay/commands/buy-ingress.handler";
+import { BuyIngressHandler } from "./commands/buy-ingress.handler";
 import { BuyIngressPixHandler } from "./commands/buy-ingress-pix.handler";
 import { ChangePasswordHandler } from "./commands/change-password.handler";
 import { ConfirmPixPaymentHandler } from "./commands/confirm-pix-payment.handler";

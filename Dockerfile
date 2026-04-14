@@ -9,19 +9,22 @@ RUN apt-get update \
 WORKDIR /usr/app
 
 COPY package.json bun.lockb* ./
-
-FROM base AS dev
-
 RUN bun install
 
+COPY . .
+ARG DB_URL
+RUN bun prisma generate
+
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+FROM base AS dev
 EXPOSE 5000
 
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["bun", "run", "dev"]
 
 FROM base AS builder
-
-RUN bun install
-COPY . .
 RUN bun run build
 
 FROM oven/bun:1 AS prod
@@ -37,6 +40,7 @@ RUN bun install --production
 
 COPY --from=builder /usr/app/dist ./dist
 COPY --from=builder /usr/app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /usr/app/src/infrastructure/prisma/generated ./src/infrastructure/prisma/generated
 
 EXPOSE 5000
 
